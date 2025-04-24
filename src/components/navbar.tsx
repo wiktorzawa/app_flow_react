@@ -451,6 +451,19 @@ const AppDrawerDropdown: FC = function () {
 };
 
 const UserDropdown: FC = function () {
+  // Pobierz informacje o zalogowanym użytkowniku z localStorage
+  const userRole = localStorage.getItem("userRole");
+  const userEmail = localStorage.getItem("username") || "admin@msbox.com";
+  
+  // Funkcja do wylogowania
+  const handleLogout = () => {
+    // Usuń dane użytkownika z localStorage
+    localStorage.removeItem("userRole");
+    localStorage.removeItem("username");
+    // Przekieruj do strony logowania
+    window.location.href = "/authentication/sign-in";
+  };
+
   return (
     <Dropdown
       arrowIcon={false}
@@ -468,16 +481,18 @@ const UserDropdown: FC = function () {
       }
     >
       <Dropdown.Header>
-        <span className="block text-sm">Neil Sims</span>
+        <span className="block text-sm font-bold">{userRole || "Użytkownik"}</span>
         <span className="block truncate text-sm font-medium">
-          neil.sims@flowbite.com
+          {userEmail}
         </span>
       </Dropdown.Header>
-      <Dropdown.Item>Dashboard</Dropdown.Item>
-      <Dropdown.Item>Settings</Dropdown.Item>
-      <Dropdown.Item>Earnings</Dropdown.Item>
+      <Dropdown.Item href="/">Dashboard</Dropdown.Item>
+      <Dropdown.Item href="/users/settings">Ustawienia</Dropdown.Item>
+      {userRole === "admin" && (
+        <Dropdown.Item href="/users/list">Zarządzaj użytkownikami</Dropdown.Item>
+      )}
       <Dropdown.Divider />
-      <Dropdown.Item>Sign out</Dropdown.Item>
+      <Dropdown.Item onClick={handleLogout}>Wyloguj</Dropdown.Item>
     </Dropdown>
   );
 };
