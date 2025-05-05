@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import * as supplierService from '../services/login_table_suppliers.service';
 import asyncHandler from 'express-async-handler';
+import bcrypt from 'bcrypt';
 
 /**
  * Pobiera listę wszystkich dostawców
@@ -165,6 +166,80 @@ export const deleteSupplier = asyncHandler(async (req: Request, res: Response): 
     }
   } catch (error) {
     console.error(`Błąd podczas usuwania dostawcy o ID ${id}:`, error);
+    res.status(500).json({ error: 'Błąd serwera' });
+  }
+});
+
+/**
+ * Generuje ID dostawcy
+ */
+export const generateSupplierId = asyncHandler(async (req: Request, res: Response): Promise<void> => {
+  try {
+    console.log('Generowanie ID dostawcy');
+    const newId = await supplierService.generateSupplierId();
+    console.log(`Wygenerowane ID: ${newId}`);
+    res.json({ id_supplier: newId });
+  } catch (error) {
+    console.error('Błąd podczas generowania ID dostawcy:', error);
+    res.status(500).json({ error: 'Błąd serwera' });
+  }
+});
+
+/**
+ * Tworzy nowego dostawcę wraz z wygenerowanym hasłem
+ */
+export const createSupplierWithPassword = asyncHandler(async (req: Request, res: Response): Promise<void> => {
+  try {
+    // Walidacja danych wejściowych
+    const { 
+      company_name, first_name, last_name, nip, email, phone, website,
+      address_street, address_building, address_apartment, address_city, 
+      address_postal_code, address_country 
+    } = req.body;
+    
+    if (!company_name || !first_name || !last_name || !nip || !email || !phone ||
+        !address_street || !address_building || !address_city || !address_postal_code || !address_country) {
+      res.status(400).json({ error: 'Wszystkie wymagane pola muszą być wypełnione' });
+      return;
+    }
+    
+    // Sprawdź, czy dostawca o podanym adresie email lub NIP już istnieje
+    const existingSupplierByEmail = await supplierService.getSupplierByEmail(email);
+    if (existingSupplierByEmail) {
+      res.status(409).json({ error: 'Dostawca o podanym adresie email już istnieje' });
+      return;
+    }
+    
+    const existingSupplierByNip = await supplierService.getSupplierByNip(nip);
+    if (existingSupplierByNip) {
+      res.status(409).json({ error: 'Dostawca o podanym numerze NIP już istnieje' });
+      return;
+    }
+    
+    // Utwórz nowego dostawcę wraz z danymi logowania
+    const result = await supplierService.createSupplierWithPassword({
+      company_name, 
+      first_name, 
+      last_name, 
+      nip, 
+      email, 
+      phone, 
+      website, 
+      address_street, 
+      address_building, 
+      address_apartment, 
+      address_city, 
+      address_postal_code, 
+      address_country
+    });
+    
+    if (result) {
+      res.status(201).json(result);
+    } else {
+      res.status(500).json({ error: 'Nie udało się utworzyć dostawcy' });
+    }
+  } catch (error) {
+    console.error('Błąd podczas tworzenia dostawcy z hasłem:', error);
     res.status(500).json({ error: 'Błąd serwera' });
   }
 }); 

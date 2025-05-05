@@ -1,6 +1,7 @@
 import pool from '../db';
 import { LoginTableSuppliers } from '../models/login_table_suppliers.model';
 import { RowDataPacket, ResultSetHeader } from 'mysql2';
+import bcrypt from 'bcrypt';
 
 /**
  * Pobiera wszystkich dostawców
@@ -101,6 +102,67 @@ export const createSupplier = async (supplier: Omit<LoginTableSuppliers, 'create
 };
 
 /**
+ * Tworzy nowego dostawcę wraz z danymi do logowania
+ * @param supplier Dane nowego dostawcy (bez ID)
+ * @returns Dane utworzonego dostawcy wraz z wygenerowanym hasłem lub null
+ */
+export const createSupplierWithPassword = async (
+  supplier: Omit<LoginTableSuppliers, 'id_supplier' | 'created_at' | 'updated_at'>
+): Promise<(LoginTableSuppliers & { password: string }) | null> => {
+  const connection = await pool.getConnection();
+  try {
+    await connection.beginTransaction();
+    
+    // Generuj ID dostawcy
+    const id_supplier = await generateSupplierId();
+    
+    // Generuj hasło
+    const plainPassword = generatePassword(id_supplier);
+    const hashedPassword = await bcrypt.hash(plainPassword, 10);
+    
+    // Utwórz nowego dostawcę
+    await connection.execute(
+      `INSERT INTO login_table_suppliers (
+        id_supplier, company_name, first_name, last_name, nip, email, phone, 
+        website, address_street, address_building, address_apartment, 
+        address_city, address_postal_code, address_country
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [
+        id_supplier, supplier.company_name, supplier.first_name, supplier.last_name,
+        supplier.nip, supplier.email, supplier.phone, supplier.website,
+        supplier.address_street, supplier.address_building, supplier.address_apartment,
+        supplier.address_city, supplier.address_postal_code, supplier.address_country
+      ]
+    );
+    
+    // Utwórz dane uwierzytelniające
+    const id_login = `${id_supplier}/LOG`;
+    await connection.execute(
+      'INSERT INTO login_auth_data (id_login, related_id, email, password_hash, role, failed_login_attempts) VALUES (?, ?, ?, ?, ?, ?)',
+      [id_login, id_supplier, supplier.email, hashedPassword, 'supplier', 0]
+    );
+    
+    await connection.commit();
+    
+    const newSupplier = await getSupplierById(id_supplier);
+    if (!newSupplier) {
+      return null;
+    }
+    
+    return {
+      ...newSupplier,
+      password: plainPassword
+    };
+  } catch (error) {
+    await connection.rollback();
+    console.error('Błąd podczas tworzenia dostawcy z hasłem:', error);
+    throw error;
+  } finally {
+    connection.release();
+  }
+};
+
+/**
  * Aktualizuje dane dostawcy
  * @param id_supplier Identyfikator dostawcy
  * @param supplier Dane do aktualizacji
@@ -148,13 +210,86 @@ export const updateSupplier = async (
 export const deleteSupplier = async (id_supplier: string): Promise<boolean> => {
   const connection = await pool.getConnection();
   try {
+    await connection.beginTransaction();
+    
+    // Usuń powiązane dane logowania
+    const id_login = `${id_supplier}/LOG`;
+    await connection.execute(
+      'DELETE FROM login_auth_data WHERE id_login = ? OR related_id = ?',
+      [id_login, id_supplier]
+    );
+    
+    // Usuń dostawcę
     const [result] = await connection.execute<ResultSetHeader>(
       'DELETE FROM login_table_suppliers WHERE id_supplier = ?',
       [id_supplier]
     );
     
+    await connection.commit();
+    
     return result.affectedRows > 0;
+  } catch (error) {
+    await connection.rollback();
+    console.error(`Błąd podczas usuwania dostawcy o ID ${id_supplier}:`, error);
+    return false;
   } finally {
     connection.release();
   }
+};
+
+/**
+ * Generuje nowe ID dostawcy
+ * @returns Wygenerowane ID dostawcy
+ */
+export const generateSupplierId = async (): Promise<string> => {
+  const connection = await pool.getConnection();
+  try {
+    const prefix = 'SUP/';
+    
+    // Pobierz wszystkie ID dostawców
+    const [rows] = await connection.query<RowDataPacket[]>(
+      'SELECT id_supplier FROM login_table_suppliers WHERE id_supplier LIKE ?',
+      [`${prefix}%`]
+    );
+    
+    // Znajdź największy numer
+    let maxNumber = 0;
+    rows.forEach((row) => {
+      const idParts = row.id_supplier.split('/');
+      if (idParts.length === 2) {
+        const numStr = idParts[1];
+        const num = parseInt(numStr, 10);
+        if (!isNaN(num) && num > maxNumber) {
+          maxNumber = num;
+        }
+      }
+    });
+    
+    // Wygeneruj nowe ID
+    const nextNumber = maxNumber + 1;
+    const paddedNumber = nextNumber.toString().padStart(5, '0');
+    const newId = `${prefix}${paddedNumber}`;
+    
+    console.log(`Wygenerowano nowe ID dostawcy: ${newId}`);
+    return newId;
+  } catch (error) {
+    console.error('Błąd podczas generowania ID dostawcy:', error);
+    // Wygeneruj domyślne ID w przypadku błędu
+    const defaultId = 'SUP/00001';
+    console.log(`Błąd generowania ID, zwracam domyślne: ${defaultId}`);
+    return defaultId;
+  } finally {
+    connection.release();
+  }
+};
+
+/**
+ * Generuje hasło dla nowego dostawcy na podstawie ID
+ * @param id_supplier ID dostawcy
+ * @returns Wygenerowane hasło w formie jawnej (przed haszowaniem)
+ */
+export const generatePassword = (id_supplier: string): string => {
+  // Pobierz ostatnią cyfrę z ID
+  const lastChar = id_supplier.charAt(id_supplier.length - 1);
+  return `dostawca${lastChar}`;
 }; 

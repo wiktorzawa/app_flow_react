@@ -45,9 +45,65 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteStaff = exports.updateStaff = exports.createStaff = exports.getStaffById = exports.getAllStaff = void 0;
+exports.deleteStaff = exports.updateStaff = exports.createStaff = exports.getStaffById = exports.getAllStaff = exports.createStaffWithPassword = exports.generateStaffId = void 0;
 const staffService = __importStar(require("../services/login_table_staff.service"));
 const express_async_handler_1 = __importDefault(require("express-async-handler"));
+/**
+ * Generuje ID pracownika na podstawie roli
+ */
+exports.generateStaffId = (0, express_async_handler_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { role } = req.query;
+    if (!role || (role !== 'admin' && role !== 'staff')) {
+        res.status(400).json({ error: 'Nieprawidłowa rola. Dozwolone wartości to "admin" lub "staff"' });
+        return;
+    }
+    try {
+        console.log(`Generowanie ID dla roli: ${role}`);
+        const newId = yield staffService.generateStaffId(role);
+        console.log(`Wygenerowane ID: ${newId}`);
+        res.json({ id_staff: newId });
+    }
+    catch (error) {
+        console.error('Błąd podczas generowania ID pracownika:', error);
+        res.status(500).json({ error: 'Błąd serwera' });
+    }
+}));
+/**
+ * Tworzy nowego pracownika z automatycznie wygenerowanym ID i hasłem
+ */
+exports.createStaffWithPassword = (0, express_async_handler_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        // Walidacja danych wejściowych
+        const { first_name, last_name, role, email, phone } = req.body;
+        if (!first_name || !last_name || !role || !email) {
+            res.status(400).json({ error: 'Wszystkie wymagane pola muszą być wypełnione' });
+            return;
+        }
+        if (role !== 'admin' && role !== 'staff') {
+            res.status(400).json({ error: 'Nieprawidłowa rola. Dozwolone wartości to "admin" lub "staff"' });
+            return;
+        }
+        // Sprawdź, czy pracownik o tym adresie email już istnieje
+        const existingStaffByEmail = yield staffService.getStaffByEmail(email);
+        if (existingStaffByEmail) {
+            res.status(409).json({ error: 'Pracownik o podanym adresie email już istnieje' });
+            return;
+        }
+        // Utwórz nowego pracownika z automatycznie wygenerowanym ID i hasłem
+        const newStaff = yield staffService.createStaffWithPassword({
+            first_name,
+            last_name,
+            role,
+            email,
+            phone
+        });
+        res.status(201).json(newStaff);
+    }
+    catch (error) {
+        console.error('Błąd podczas tworzenia pracownika:', error);
+        res.status(500).json({ error: 'Błąd serwera' });
+    }
+}));
 /**
  * Pobiera listę wszystkich pracowników
  */
@@ -158,25 +214,27 @@ exports.updateStaff = (0, express_async_handler_1.default)((req, res) => __await
  * Usuwa pracownika
  */
 exports.deleteStaff = (0, express_async_handler_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { id } = req.params;
+    // Dekoduj ID z parametru URL, ponieważ może zawierać znaki specjalne (np. /)
+    const encodedId = req.params.id;
+    const id = decodeURIComponent(encodedId);
     try {
         // Sprawdź, czy pracownik istnieje
         const existingStaff = yield staffService.getStaffById(id);
         if (!existingStaff) {
-            res.status(404).json({ error: 'Pracownik nie został znaleziony' });
+            res.status(404).json({ error: "Pracownik nie został znaleziony" });
             return;
         }
         // Usuń pracownika
         const deleted = yield staffService.deleteStaff(id);
         if (deleted) {
-            res.status(200).json({ message: 'Pracownik został usunięty' });
+            res.status(200).json({ message: "Pracownik został usunięty" });
         }
         else {
-            res.status(500).json({ error: 'Nie udało się usunąć pracownika' });
+            res.status(500).json({ error: "Nie udało się usunąć pracownika" });
         }
     }
     catch (error) {
         console.error(`Błąd podczas usuwania pracownika o ID ${id}:`, error);
-        res.status(500).json({ error: 'Błąd serwera' });
+        res.status(500).json({ error: "Błąd serwera" });
     }
 }));

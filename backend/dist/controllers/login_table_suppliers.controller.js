@@ -45,7 +45,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteSupplier = exports.updateSupplier = exports.createSupplier = exports.getSupplierById = exports.getAllSuppliers = void 0;
+exports.createSupplierWithPassword = exports.generateSupplierId = exports.deleteSupplier = exports.updateSupplier = exports.createSupplier = exports.getSupplierById = exports.getAllSuppliers = void 0;
 const supplierService = __importStar(require("../services/login_table_suppliers.service"));
 const express_async_handler_1 = __importDefault(require("express-async-handler"));
 /**
@@ -191,6 +191,72 @@ exports.deleteSupplier = (0, express_async_handler_1.default)((req, res) => __aw
     }
     catch (error) {
         console.error(`Błąd podczas usuwania dostawcy o ID ${id}:`, error);
+        res.status(500).json({ error: 'Błąd serwera' });
+    }
+}));
+/**
+ * Generuje ID dostawcy
+ */
+exports.generateSupplierId = (0, express_async_handler_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        console.log('Generowanie ID dostawcy');
+        const newId = yield supplierService.generateSupplierId();
+        console.log(`Wygenerowane ID: ${newId}`);
+        res.json({ id_supplier: newId });
+    }
+    catch (error) {
+        console.error('Błąd podczas generowania ID dostawcy:', error);
+        res.status(500).json({ error: 'Błąd serwera' });
+    }
+}));
+/**
+ * Tworzy nowego dostawcę wraz z wygenerowanym hasłem
+ */
+exports.createSupplierWithPassword = (0, express_async_handler_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        // Walidacja danych wejściowych
+        const { company_name, first_name, last_name, nip, email, phone, website, address_street, address_building, address_apartment, address_city, address_postal_code, address_country } = req.body;
+        if (!company_name || !first_name || !last_name || !nip || !email || !phone ||
+            !address_street || !address_building || !address_city || !address_postal_code || !address_country) {
+            res.status(400).json({ error: 'Wszystkie wymagane pola muszą być wypełnione' });
+            return;
+        }
+        // Sprawdź, czy dostawca o podanym adresie email lub NIP już istnieje
+        const existingSupplierByEmail = yield supplierService.getSupplierByEmail(email);
+        if (existingSupplierByEmail) {
+            res.status(409).json({ error: 'Dostawca o podanym adresie email już istnieje' });
+            return;
+        }
+        const existingSupplierByNip = yield supplierService.getSupplierByNip(nip);
+        if (existingSupplierByNip) {
+            res.status(409).json({ error: 'Dostawca o podanym numerze NIP już istnieje' });
+            return;
+        }
+        // Utwórz nowego dostawcę wraz z danymi logowania
+        const result = yield supplierService.createSupplierWithPassword({
+            company_name,
+            first_name,
+            last_name,
+            nip,
+            email,
+            phone,
+            website,
+            address_street,
+            address_building,
+            address_apartment,
+            address_city,
+            address_postal_code,
+            address_country
+        });
+        if (result) {
+            res.status(201).json(result);
+        }
+        else {
+            res.status(500).json({ error: 'Nie udało się utworzyć dostawcy' });
+        }
+    }
+    catch (error) {
+        console.error('Błąd podczas tworzenia dostawcy z hasłem:', error);
         res.status(500).json({ error: 'Błąd serwera' });
     }
 }));

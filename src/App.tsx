@@ -22,6 +22,7 @@ import MaintenancePage from "./pages/pages/maintenance";
 import PricingPage from "./pages/pages/pricing";
 import UserFeedPage from "./pages/users/feed";
 import UserListPage from "./pages/users/list";
+import SupplierListPage from "./pages/users/listSuppliers";
 import UserProfilePage from "./pages/users/profile";
 import UserSettingsPage from "./pages/users/settings";
 import FlowbiteWrapper from "./components/flowbite-wrapper";
@@ -67,6 +68,7 @@ const App: FC = function () {
           {/* Trasy z ograniczeniami ról */}
           <Route path="/users/feed" element={<ProtectedRoute element={<UserFeedPage />} allowedRoles={["admin"]} />} />
           <Route path="/users/list" element={<ProtectedRoute element={<UserListPage />} allowedRoles={["admin"]} />} />
+          <Route path="/users/listSuppliers" element={<ProtectedRoute element={<SupplierListPage />} allowedRoles={["admin"]} />} />
           <Route path="/users/profile" element={<ProtectedRoute element={<UserProfilePage />} />} />
           <Route path="/users/settings" element={<ProtectedRoute element={<UserSettingsPage />} />} />
           

@@ -18,6 +18,39 @@ export type NowyPracownik = Omit<Pracownik, "created_at" | "updated_at">;
 // Typ dla aktualizacji pracownika (częściowe dane, bez ID i dat)
 export type AktualizacjaPracownika = Partial<Omit<Pracownik, "id_staff" | "created_at" | "updated_at">>;
 
+// Typ dla nowego pracownika bez ID (generowane automatycznie)
+export type NowyPracownikBezId = Omit<NowyPracownik, "id_staff">;
+
+/**
+ * Generuje ID pracownika na podstawie roli
+ * @param role Rola pracownika ('admin' lub 'staff')
+ * @returns Wygenerowane ID lub pusty string w przypadku błędu
+ */
+export const generujIdPracownika = async (role: "admin" | "staff"): Promise<string> => {
+  try {
+    const response = await axiosInstance.get(`/staff/generate-id?role=${role}`);
+    return response.data.id_staff;
+  } catch (error) {
+    console.error("Błąd podczas generowania ID pracownika:", error);
+    return "";
+  }
+};
+
+/**
+ * Dodaje nowego pracownika z automatycznie wygenerowanym ID i hasłem
+ * @param pracownik Dane nowego pracownika (bez ID)
+ * @returns Dane utworzonego pracownika lub null w przypadku błędu
+ */
+export const dodajPracownikaZHaslem = async (pracownik: NowyPracownikBezId): Promise<Pracownik | null> => {
+  try {
+    const response = await axiosInstance.post("/staff/with-password", pracownik);
+    return response.data;
+  } catch (error) {
+    console.error("Błąd podczas dodawania pracownika z hasłem:", error);
+    return null;
+  }
+};
+
 /**
  * Pobiera wszystkich pracowników
  * @returns Lista pracowników
@@ -88,7 +121,9 @@ export const aktualizujPracownika = async (
  */
 export const usunPracownika = async (id: string): Promise<boolean> => {
   try {
-    await axiosInstance.delete(`/staff/${id}`);
+    // Enkoduj ID w URL, aby uniknąć problemów z "/" w identyfikatorze
+    const encodedId = encodeURIComponent(id);
+    await axiosInstance.delete(`/staff/${encodedId}`);
     return true;
   } catch (error) {
     console.error(`Błąd podczas usuwania pracownika o ID ${id}:`, error);
