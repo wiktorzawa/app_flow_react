@@ -20,10 +20,15 @@ const bcrypt_1 = __importDefault(require("bcrypt"));
 const express_async_handler_1 = __importDefault(require("express-async-handler"));
 const db_1 = __importDefault(require("./db")); // Import puli połączeń
 const routes_1 = __importDefault(require("./routes")); // Import tras API
+const express_session_1 = __importDefault(require("express-session")); // Import express-session
+const crypto_1 = __importDefault(require("crypto")); // Do generowania secret
 // Wczytaj najpierw główny .env (dla bazy danych itp.)
 dotenv_1.default.config({ path: path_1.default.resolve(__dirname, "../../.env") });
 // Następnie wczytaj lokalny backend/.env (może nadpisać niektóre zmienne jak PORT)
 dotenv_1.default.config(); // Domyślnie szuka .env w bieżącym katalogu (backend)
+// --- DEBUG: Sprawdź wczytaną wartość ALLEGRO_REDIRECT_URI ---
+console.log("DEBUG: ALLEGRO_REDIRECT_URI from process.env in server.ts:", process.env.ALLEGRO_REDIRECT_URI);
+// --- END DEBUG ---
 const app = (0, express_1.default)();
 const port = process.env.PORT || 3001;
 // --- Middleware ---
@@ -34,6 +39,20 @@ app.use((0, cors_1.default)({
 }));
 // Parser JSON - aby Express rozumiał ciało żądania w formacie JSON
 app.use(express_1.default.json());
+// Middleware do obsługi sesji
+// WAŻNE: W produkcji użyj bardziej bezpiecznego store, np. connect-redis, connect-mongo itp.
+// oraz ustaw 'secure: true' jeśli używasz HTTPS.
+// Sekret powinien być długim, losowym ciągiem znaków przechowywanym w zmiennych środowiskowych.
+app.use((0, express_session_1.default)({
+    secret: process.env.SESSION_SECRET || crypto_1.default.randomBytes(32).toString("hex"), // Użyj zmiennej środowiskowej!
+    resave: false,
+    saveUninitialized: false, // Zmień na true, jeśli chcesz zapisywać sesje od razu
+    cookie: {
+        secure: process.env.NODE_ENV === "production", // Używaj bezpiecznych ciasteczek w produkcji (HTTPS)
+        httpOnly: true, // Pomaga chronić przed atakami XSS
+        maxAge: 1000 * 60 * 60 * 24, // Czas życia ciasteczka sesji (np. 1 dzień)
+    },
+}));
 // --- Routes ---
 // Główny router API
 app.use("/api", routes_1.default);
@@ -74,7 +93,7 @@ app.post("/api/login", (0, express_async_handler_1.default)((req, res) => __awai
         const passwordString = String(password);
         console.log("Podane hasło:", passwordString);
         console.log("Długość hasła:", passwordString.length);
-        console.log("Kody znaków hasła:", [...passwordString].map(c => c.charCodeAt(0)));
+        console.log("Kody znaków hasła:", [...passwordString].map((c) => c.charCodeAt(0)));
         // TYMCZASOWE ROZWIĄZANIE: Akceptuj hasło "test" dla wszystkich użytkowników
         let isMatch = false;
         if (passwordString === "test") {

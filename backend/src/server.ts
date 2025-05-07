@@ -7,6 +7,8 @@ import asyncHandler from "express-async-handler";
 import pool from "./db"; // Import puli połączeń
 import { RowDataPacket } from "mysql2"; // Import typu dla wyników zapytania
 import routes from "./routes"; // Import tras API
+import session from "express-session"; // Import express-session
+import crypto from "crypto"; // Do generowania secret
 
 // Wczytaj najpierw główny .env (dla bazy danych itp.)
 dotenv.config({ path: path.resolve(__dirname, "../../.env") });
@@ -14,19 +16,42 @@ dotenv.config({ path: path.resolve(__dirname, "../../.env") });
 // Następnie wczytaj lokalny backend/.env (może nadpisać niektóre zmienne jak PORT)
 dotenv.config(); // Domyślnie szuka .env w bieżącym katalogu (backend)
 
+// --- DEBUG: Sprawdź wczytaną wartość ALLEGRO_REDIRECT_URI ---
+console.log("DEBUG: ALLEGRO_REDIRECT_URI from process.env in server.ts:", process.env.ALLEGRO_REDIRECT_URI);
+// --- END DEBUG ---
+
 const app: Express = express();
 const port = process.env.PORT || 3001;
 
 // --- Middleware ---
 
 // CORS - Zezwalaj na żądania z frontendu (dostosuj origin w razie potrzeby)
-app.use(cors({ 
-  origin: process.env.FRONTEND_URL || "http://localhost:5173",
-  credentials: true,
-}));
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL || "http://localhost:5173",
+    credentials: true,
+  })
+);
 
 // Parser JSON - aby Express rozumiał ciało żądania w formacie JSON
 app.use(express.json());
+
+// Middleware do obsługi sesji
+// WAŻNE: W produkcji użyj bardziej bezpiecznego store, np. connect-redis, connect-mongo itp.
+// oraz ustaw 'secure: true' jeśli używasz HTTPS.
+// Sekret powinien być długim, losowym ciągiem znaków przechowywanym w zmiennych środowiskowych.
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET || crypto.randomBytes(32).toString("hex"), // Użyj zmiennej środowiskowej!
+    resave: false,
+    saveUninitialized: false, // Zmień na true, jeśli chcesz zapisywać sesje od razu
+    cookie: {
+      secure: process.env.NODE_ENV === "production", // Używaj bezpiecznych ciasteczek w produkcji (HTTPS)
+      httpOnly: true, // Pomaga chronić przed atakami XSS
+      maxAge: 1000 * 60 * 60 * 24, // Czas życia ciasteczka sesji (np. 1 dzień)
+    },
+  })
+);
 
 // --- Routes ---
 
@@ -79,7 +104,10 @@ app.post(
       const passwordString = String(password);
       console.log("Podane hasło:", passwordString);
       console.log("Długość hasła:", passwordString.length);
-      console.log("Kody znaków hasła:", [...passwordString].map(c => c.charCodeAt(0)));
+      console.log(
+        "Kody znaków hasła:",
+        [...passwordString].map((c) => c.charCodeAt(0))
+      );
       
       // TYMCZASOWE ROZWIĄZANIE: Akceptuj hasło "test" dla wszystkich użytkowników
       let isMatch = false;

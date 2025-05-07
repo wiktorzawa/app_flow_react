@@ -13,7 +13,7 @@
     "noEmit": true,
     "outDir": "./dist"
   },
-  "include": ["src/**/*", "backend/src/**/*"],
+  "include": ["src/**/*"],
   "exclude": ["node_modules", "server"],
   "references": [
     { "path": "./tsconfig.node.json" }
