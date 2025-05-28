@@ -334,7 +334,6 @@ const NewProductsChart: FC = function () {
       hover: {
         filter: {
           type: "darken",
-          value: 1,
         },
       },
     },
@@ -661,7 +660,6 @@ const UserSignupsChart: FC = function () {
       hover: {
         filter: {
           type: "darken",
-          value: 0.8,
         },
       },
     },
@@ -1692,7 +1690,6 @@ const AcquisitionChart: FC = function () {
       hover: {
         filter: {
           type: "darken",
-          value: 0.9,
         },
       },
     },
