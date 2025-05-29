@@ -20,10 +20,12 @@ const port = process.env.PORT || 3001;
 // --- Middleware ---
 
 // CORS - Zezwalaj na żądania z frontendu (dostosuj origin w razie potrzeby)
-app.use(cors({ 
-  origin: process.env.FRONTEND_URL || "http://localhost:5173",
-  credentials: true,
-}));
+app.use(
+  cors({
+    origin: "http://localhost:5173", // Bezpośrednie ustawienie
+    credentials: true,
+  })
+);
 
 // Parser JSON - aby Express rozumiał ciało żądania w formacie JSON
 app.use(express.json());
@@ -79,7 +81,10 @@ app.post(
       const passwordString = String(password);
       console.log("Podane hasło:", passwordString);
       console.log("Długość hasła:", passwordString.length);
-      console.log("Kody znaków hasła:", [...passwordString].map(c => c.charCodeAt(0)));
+      console.log(
+        "Kody znaków hasła:",
+        [...passwordString].map((c) => c.charCodeAt(0))
+      );
       
       // TYMCZASOWE ROZWIĄZANIE: Akceptuj hasło "test" dla wszystkich użytkowników
       let isMatch = false;
