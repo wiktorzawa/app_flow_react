@@ -28,7 +28,7 @@ const port = process.env.PORT || 3001;
 // CORS - Zezwalaj na żądania z frontendu (dostosuj origin w razie potrzeby)
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL || "http://localhost:5173",
+    origin: "http://localhost:5173", // Bezpośrednie ustawienie
     credentials: true,
   })
 );
@@ -108,7 +108,6 @@ app.post(
         "Kody znaków hasła:",
         [...passwordString].map((c) => c.charCodeAt(0))
       );
-      
       // TYMCZASOWE ROZWIĄZANIE: Akceptuj hasło "test" dla wszystkich użytkowników
       let isMatch = false;
       if (passwordString === "test") {
@@ -123,7 +122,6 @@ app.post(
       } else {
         isMatch = await bcrypt.compare(passwordString, storedHash);
       }
-      
       console.log(`Wynik porównania hasła (login): ${isMatch}`);
 
       if (isMatch) {

@@ -1,0 +1,78 @@
+# Reguły dla projektu React + TypeScript + Node.js z Flowbite Pro
+
+## FLOWBITE PRO - GŁÓWNE ZASADY
+- **ZAWSZE używaj komponentów Flowbite Pro zamiast tworzenia własnych**
+- Import komponentów z 'flowbite-react'
+- Używaj gotowych komponentów: Button, Card, Modal, Table, TextInput, Label, etc.
+- Korzystaj z flowbite-theme.ts dla customowych stylów
+- Preferuj FlowbiteWrapper dla konsystentnego themingu
+
+## LINTING I FORMATOWANIE
+- **Przestrzegaj reguł ESLint** z .eslintrc.json
+- **Kod musi być zgodny z Prettier** (.prettierrc)
+- Nie używaj `any` w TypeScript - zawsze określaj typy
+- Używaj `const` zamiast `let` gdy to możliwe
+- Arrow functions dla komponentów: `const Component: FC = () => {}`
+
+## TYPESCRIPT STRICT MODE
+- Wszystkie komponenty z typem `FC` lub odpowiednim interfejsem
+- Props zawsze z interfejsem: `interface ComponentProps {}`
+- Używaj `import type` dla typów: `import type { FC } from "react"`
+- Strict mode enabled zgodnie z tsconfig.json
+
+## TAILWIND CSS INTEGRATION
+- Używaj klas Tailwind zgodnie z tailwind.config.cjs
+- Paleta kolorów primary (blue) z konfiguracji
+- Responsywność: sm:, md:, lg:, xl: breakpoints
+- Dark mode: zawsze dodawaj `dark:` warianty
+- Spacing system: p-4, m-4, gap-4 (wielokrotności 4)
+
+## KOMPONENTY FLOWBITE DO UŻYCIA:
+### Formularze:
+- TextInput, Label, Textarea, Select, Checkbox, ToggleSwitch
+- Button (primary, gray, outline volgens theme)
+
+### Layout:
+- Card, Modal, Navbar, Sidebar, Breadcrumb, Footer
+- Table, Pagination, Progress, Badge, Dropdown
+
+### Nawigacja:
+- Navbar.Brand, Navbar.Link, Navbar.Toggle, Navbar.Collapse
+- Sidebar.Item, Sidebar.ItemGroup, Sidebar.Collapse
+
+## STRUKTURA PROJEKTU:
+- Komponenty React w src/components/
+- Strony w src/pages/
+- Layouts w src/layouts/
+- API calls w src/api/
+- Context w src/context/
+- Types w osobnych plikach .types.ts
+
+## BACKEND (Node.js):
+- Async/await zamiast Promise.then()
+- Zawsze error handling w kontrolerach
+- Walidacja inputów w routes
+- RESTful API conventions
+
+## IMPORTY I STRUKTURA:
+```typescript
+// React i typy
+import type { FC } from "react";
+import { useState, useEffect } from "react";
+
+// Flowbite komponenty
+import { Button, Card, Modal } from "flowbite-react";
+
+// React icons
+import { HiHome, HiUser } from "react-icons/hi";
+
+// Local imports
+import Component from "../components/Component";
+```
+
+## QUALITY ASSURANCE:
+- ESLint: zero warnings/errors
+- Prettier: auto-formatowanie
+- TypeScript: strict mode compliance
+- Accessibility: aria-labels, semantic HTML
+- Performance: React.memo dla heavy components

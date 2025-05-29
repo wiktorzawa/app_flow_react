@@ -1,0 +1,56 @@
+{
+  "codeGeneration": {
+    "preferredLibraries": {
+      "ui": "flowbite-react",
+      "icons": "react-icons/hi",
+      "styling": "tailwindcss",
+      "stateManagement": "react-hooks",
+      "routing": "react-router-dom"
+    },
+    "avoidLibraries": [
+      "material-ui",
+      "ant-design", 
+      "bootstrap",
+      "styled-components"
+    ]
+  },
+  "codeStyle": {
+    "componentStyle": "functional",
+    "exportStyle": "default",
+    "quotingStyle": "double",
+    "semicolons": true,
+    "trailingComma": "es5"
+  },
+  "typescript": {
+    "strictMode": true,
+    "explicitReturnTypes": false,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "preferInterfaces": true
+  },
+  "react": {
+    "componentNaming": "PascalCase",
+    "hookNaming": "use[Name]",
+    "propsDestructuring": true,
+    "defaultExport": true,
+    "functionalComponents": true
+  },
+  "flowbite": {
+    "alwaysUseComponents": true,
+    "preferThemeCustomization": true,
+    "darkModeSupport": true,
+    "responsiveDesign": true
+  },
+  "backend": {
+    "preferAsync": true,
+    "errorHandling": "required",
+    "inputValidation": "required",
+    "apiStyle": "RESTful"
+  },
+  "fileStructure": {
+    "componentFiles": "src/components/",
+    "pageFiles": "src/pages/",
+    "typeFiles": "separate .types.ts files",
+    "testFiles": "alongside source files"
+  }
+}
