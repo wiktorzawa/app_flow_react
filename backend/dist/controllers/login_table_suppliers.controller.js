@@ -57,8 +57,8 @@ exports.getAllSuppliers = (0, express_async_handler_1.default)((req, res) => __a
         res.json(suppliersList);
     }
     catch (error) {
-        console.error('Błąd podczas pobierania dostawców:', error);
-        res.status(500).json({ error: 'Błąd serwera' });
+        console.error("Błąd podczas pobierania dostawców:", error);
+        res.status(500).json({ error: "Błąd serwera" });
     }
 }));
 /**
@@ -69,14 +69,14 @@ exports.getSupplierById = (0, express_async_handler_1.default)((req, res) => __a
     try {
         const supplier = yield supplierService.getSupplierById(id);
         if (!supplier) {
-            res.status(404).json({ error: 'Dostawca nie został znaleziony' });
+            res.status(404).json({ error: "Dostawca nie został znaleziony" });
             return;
         }
         res.json(supplier);
     }
     catch (error) {
         console.error(`Błąd podczas pobierania dostawcy o ID ${id}:`, error);
-        res.status(500).json({ error: 'Błąd serwera' });
+        res.status(500).json({ error: "Błąd serwera" });
     }
 }));
 /**
@@ -85,26 +85,36 @@ exports.getSupplierById = (0, express_async_handler_1.default)((req, res) => __a
 exports.createSupplier = (0, express_async_handler_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         // Walidacja danych wejściowych
-        const { id_supplier, company_name, first_name, last_name, nip, email, phone, website, address_street, address_building, address_apartment, address_city, address_postal_code, address_country } = req.body;
-        if (!id_supplier || !company_name || !first_name || !last_name || !nip || !email || !phone ||
-            !address_street || !address_building || !address_city || !address_postal_code || !address_country) {
-            res.status(400).json({ error: 'Wszystkie wymagane pola muszą być wypełnione' });
+        const { id_supplier, company_name, first_name, last_name, nip, email, phone, website, address_street, address_building, address_apartment, address_city, address_postal_code, address_country, } = req.body;
+        if (!id_supplier ||
+            !company_name ||
+            !first_name ||
+            !last_name ||
+            !nip ||
+            !email ||
+            !phone ||
+            !address_street ||
+            !address_building ||
+            !address_city ||
+            !address_postal_code ||
+            !address_country) {
+            res.status(400).json({ error: "Wszystkie wymagane pola muszą być wypełnione" });
             return;
         }
         // Sprawdź, czy dostawca o tym ID, NIP lub adresie email już istnieje
         const existingSupplierById = yield supplierService.getSupplierById(id_supplier);
         if (existingSupplierById) {
-            res.status(409).json({ error: 'Dostawca o podanym ID już istnieje' });
+            res.status(409).json({ error: "Dostawca o podanym ID już istnieje" });
             return;
         }
         const existingSupplierByEmail = yield supplierService.getSupplierByEmail(email);
         if (existingSupplierByEmail) {
-            res.status(409).json({ error: 'Dostawca o podanym adresie email już istnieje' });
+            res.status(409).json({ error: "Dostawca o podanym adresie email już istnieje" });
             return;
         }
         const existingSupplierByNip = yield supplierService.getSupplierByNip(nip);
         if (existingSupplierByNip) {
-            res.status(409).json({ error: 'Dostawca o podanym numerze NIP już istnieje' });
+            res.status(409).json({ error: "Dostawca o podanym numerze NIP już istnieje" });
             return;
         }
         // Utwórz nowego dostawcę
@@ -122,13 +132,13 @@ exports.createSupplier = (0, express_async_handler_1.default)((req, res) => __aw
             address_apartment,
             address_city,
             address_postal_code,
-            address_country
+            address_country,
         });
         res.status(201).json(newSupplier);
     }
     catch (error) {
-        console.error('Błąd podczas tworzenia dostawcy:', error);
-        res.status(500).json({ error: 'Błąd serwera' });
+        console.error("Błąd podczas tworzenia dostawcy:", error);
+        res.status(500).json({ error: "Błąd serwera" });
     }
 }));
 /**
@@ -140,7 +150,7 @@ exports.updateSupplier = (0, express_async_handler_1.default)((req, res) => __aw
         // Sprawdź, czy dostawca istnieje
         const existingSupplier = yield supplierService.getSupplierById(id);
         if (!existingSupplier) {
-            res.status(404).json({ error: 'Dostawca nie został znaleziony' });
+            res.status(404).json({ error: "Dostawca nie został znaleziony" });
             return;
         }
         // Walidacja danych wejściowych - sprawdź unikalność emaila i NIP jeśli są zmieniane
@@ -148,14 +158,14 @@ exports.updateSupplier = (0, express_async_handler_1.default)((req, res) => __aw
         if (email && email !== existingSupplier.email) {
             const existingSupplierByEmail = yield supplierService.getSupplierByEmail(email);
             if (existingSupplierByEmail && existingSupplierByEmail.id_supplier !== id) {
-                res.status(409).json({ error: 'Dostawca o podanym adresie email już istnieje' });
+                res.status(409).json({ error: "Dostawca o podanym adresie email już istnieje" });
                 return;
             }
         }
         if (nip && nip !== existingSupplier.nip) {
             const existingSupplierByNip = yield supplierService.getSupplierByNip(nip);
             if (existingSupplierByNip && existingSupplierByNip.id_supplier !== id) {
-                res.status(409).json({ error: 'Dostawca o podanym numerze NIP już istnieje' });
+                res.status(409).json({ error: "Dostawca o podanym numerze NIP już istnieje" });
                 return;
             }
         }
@@ -165,7 +175,7 @@ exports.updateSupplier = (0, express_async_handler_1.default)((req, res) => __aw
     }
     catch (error) {
         console.error(`Błąd podczas aktualizacji dostawcy o ID ${id}:`, error);
-        res.status(500).json({ error: 'Błąd serwera' });
+        res.status(500).json({ error: "Błąd serwera" });
     }
 }));
 /**
@@ -177,21 +187,21 @@ exports.deleteSupplier = (0, express_async_handler_1.default)((req, res) => __aw
         // Sprawdź, czy dostawca istnieje
         const existingSupplier = yield supplierService.getSupplierById(id);
         if (!existingSupplier) {
-            res.status(404).json({ error: 'Dostawca nie został znaleziony' });
+            res.status(404).json({ error: "Dostawca nie został znaleziony" });
             return;
         }
         // Usuń dostawcę
         const deleted = yield supplierService.deleteSupplier(id);
         if (deleted) {
-            res.status(200).json({ message: 'Dostawca został usunięty' });
+            res.status(200).json({ message: "Dostawca został usunięty" });
         }
         else {
-            res.status(500).json({ error: 'Nie udało się usunąć dostawcy' });
+            res.status(500).json({ error: "Nie udało się usunąć dostawcy" });
         }
     }
     catch (error) {
         console.error(`Błąd podczas usuwania dostawcy o ID ${id}:`, error);
-        res.status(500).json({ error: 'Błąd serwera' });
+        res.status(500).json({ error: "Błąd serwera" });
     }
 }));
 /**
@@ -199,14 +209,14 @@ exports.deleteSupplier = (0, express_async_handler_1.default)((req, res) => __aw
  */
 exports.generateSupplierId = (0, express_async_handler_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        console.log('Generowanie ID dostawcy');
+        console.log("Generowanie ID dostawcy");
         const newId = yield supplierService.generateSupplierId();
         console.log(`Wygenerowane ID: ${newId}`);
         res.json({ id_supplier: newId });
     }
     catch (error) {
-        console.error('Błąd podczas generowania ID dostawcy:', error);
-        res.status(500).json({ error: 'Błąd serwera' });
+        console.error("Błąd podczas generowania ID dostawcy:", error);
+        res.status(500).json({ error: "Błąd serwera" });
     }
 }));
 /**
@@ -215,21 +225,30 @@ exports.generateSupplierId = (0, express_async_handler_1.default)((req, res) => 
 exports.createSupplierWithPassword = (0, express_async_handler_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         // Walidacja danych wejściowych
-        const { company_name, first_name, last_name, nip, email, phone, website, address_street, address_building, address_apartment, address_city, address_postal_code, address_country } = req.body;
-        if (!company_name || !first_name || !last_name || !nip || !email || !phone ||
-            !address_street || !address_building || !address_city || !address_postal_code || !address_country) {
-            res.status(400).json({ error: 'Wszystkie wymagane pola muszą być wypełnione' });
+        const { company_name, first_name, last_name, nip, email, phone, website, address_street, address_building, address_apartment, address_city, address_postal_code, address_country, } = req.body;
+        if (!company_name ||
+            !first_name ||
+            !last_name ||
+            !nip ||
+            !email ||
+            !phone ||
+            !address_street ||
+            !address_building ||
+            !address_city ||
+            !address_postal_code ||
+            !address_country) {
+            res.status(400).json({ error: "Wszystkie wymagane pola muszą być wypełnione" });
             return;
         }
         // Sprawdź, czy dostawca o podanym adresie email lub NIP już istnieje
         const existingSupplierByEmail = yield supplierService.getSupplierByEmail(email);
         if (existingSupplierByEmail) {
-            res.status(409).json({ error: 'Dostawca o podanym adresie email już istnieje' });
+            res.status(409).json({ error: "Dostawca o podanym adresie email już istnieje" });
             return;
         }
         const existingSupplierByNip = yield supplierService.getSupplierByNip(nip);
         if (existingSupplierByNip) {
-            res.status(409).json({ error: 'Dostawca o podanym numerze NIP już istnieje' });
+            res.status(409).json({ error: "Dostawca o podanym numerze NIP już istnieje" });
             return;
         }
         // Utwórz nowego dostawcę wraz z danymi logowania
@@ -246,17 +265,17 @@ exports.createSupplierWithPassword = (0, express_async_handler_1.default)((req, 
             address_apartment,
             address_city,
             address_postal_code,
-            address_country
+            address_country,
         });
         if (result) {
             res.status(201).json(result);
         }
         else {
-            res.status(500).json({ error: 'Nie udało się utworzyć dostawcy' });
+            res.status(500).json({ error: "Nie udało się utworzyć dostawcy" });
         }
     }
     catch (error) {
-        console.error('Błąd podczas tworzenia dostawcy z hasłem:', error);
-        res.status(500).json({ error: 'Błąd serwera' });
+        console.error("Błąd podczas tworzenia dostawcy z hasłem:", error);
+        res.status(500).json({ error: "Błąd serwera" });
     }
 }));

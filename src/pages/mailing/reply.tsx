@@ -26,19 +26,11 @@ const MailingReplyPage: FC = function () {
       <div className="p-5">
         <div className="mb-4 flex items-center">
           <div className="shrink-0">
-            <img
-              alt=""
-              src="../../images/users/bonnie-green.png"
-              className="h-8 w-8 rounded-full"
-            />
+            <img alt="" src="../../images/users/bonnie-green.png" className="h-8 w-8 rounded-full" />
           </div>
           <div className="ml-4">
-            <div className="truncate text-base font-semibold text-gray-900 dark:text-white">
-              Bonnie Green
-            </div>
-            <div className="text-sm text-gray-500 dark:text-gray-400">
-              email@flowbite.com
-            </div>
+            <div className="truncate text-base font-semibold text-gray-900 dark:text-white">Bonnie Green</div>
+            <div className="text-sm text-gray-500 dark:text-gray-400">email@flowbite.com</div>
           </div>
         </div>
         <h1 className="mb-4 text-2xl font-bold text-gray-900 dark:text-white">
@@ -46,17 +38,14 @@ const MailingReplyPage: FC = function () {
         </h1>
         <div className="space-y-2">
           <p className="text-base font-normal text-gray-500 dark:text-gray-400">
-            Do you know what could beat the exciting feeling of having a new
-            computer? Make your own PC easy and compatible!
+            Do you know what could beat the exciting feeling of having a new computer? Make your own PC easy and
+            compatible!
           </p>
           <p className="text-base font-normal text-gray-500 dark:text-gray-400">
-            So insisted received is occasion advanced honoured. Among ready to
-            which up. Attacks smiling and may out assured moments man nothing
-            outward. Thrown any behind afford either the set depend one temper.
-            Instrument melancholy in acceptance collecting frequently be if.
-            Zealously now pronounce existence add you instantly say offending.
-            Merry their far had widen was. Concerns no in expenses raillery
-            formerly.
+            So insisted received is occasion advanced honoured. Among ready to which up. Attacks smiling and may out
+            assured moments man nothing outward. Thrown any behind afford either the set depend one temper. Instrument
+            melancholy in acceptance collecting frequently be if. Zealously now pronounce existence add you instantly
+            say offending. Merry their far had widen was. Concerns no in expenses raillery formerly.
           </p>
           <p className="text-base font-normal text-gray-500 dark:text-gray-400">
             Best Regards,
@@ -113,9 +102,7 @@ const Menu: FC = function () {
             <HiOutlineTag className="text-2xl" />
           </a>
         </div>
-        <div className="pl-3 text-sm font-medium text-gray-500">
-          Today, 08:34 AM
-        </div>
+        <div className="pl-3 text-sm font-medium text-gray-500">Today, 08:34 AM</div>
       </div>
       <div className="hidden space-x-2 divide-x divide-gray-100 pl-0 dark:divide-gray-700 sm:flex sm:px-2">
         <div className="pr-2">
@@ -163,22 +150,13 @@ const SendForm: FC = function () {
           <Label htmlFor="reply-to" className="sr-only">
             Reply to
           </Label>
-          <TextInput
-            id="reply-to"
-            name="reply-to"
-            defaultValue="email@flowbite.com"
-          />
+          <TextInput id="reply-to" name="reply-to" defaultValue="email@flowbite.com" />
         </div>
         <div>
           <Label htmlFor="reply-message" className="sr-only">
             Message
           </Label>
-          <Textarea
-            id="reply-message"
-            name="reply-message"
-            rows={6}
-            placeholder="Write text here ..."
-          />
+          <Textarea id="reply-message" name="reply-message" rows={6} placeholder="Write text here ..." />
         </div>
       </form>
       <div className="items-center dark:divide-gray-700 sm:flex sm:divide-x sm:divide-gray-100 lg:pl-4">

@@ -8,6 +8,8 @@ const login_auth_data_routes_1 = __importDefault(require("./login_auth_data.rout
 const login_table_staff_routes_1 = __importDefault(require("./login_table_staff.routes"));
 const login_table_suppliers_routes_1 = __importDefault(require("./login_table_suppliers.routes"));
 const allegroRoutes_1 = __importDefault(require("./allegroRoutes"));
+const adsPowerRoutes_1 = __importDefault(require("./adsPowerRoutes"));
+const brightDataRoutes_1 = __importDefault(require("./brightDataRoutes"));
 const router = express_1.default.Router();
 // Trasy do uwierzytelniania
 router.use("/auth", login_auth_data_routes_1.default);
@@ -17,4 +19,8 @@ router.use("/staff", login_table_staff_routes_1.default);
 router.use("/suppliers", login_table_suppliers_routes_1.default);
 // Trasy dla Allegro
 router.use("/allegro", allegroRoutes_1.default);
+// Trasy dla AdsPower
+router.use("/adspower", adsPowerRoutes_1.default);
+// Trasy dla Bright Data
+router.use("/brightdata", brightDataRoutes_1.default);
 exports.default = router;

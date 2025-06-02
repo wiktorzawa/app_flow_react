@@ -16,7 +16,7 @@ allegroRouter.get("/categories", allegroController.getCategories);
 allegroRouter.get("/login", (req: Request, res: Response, next: NextFunction) => {
   try {
     // initLogin nie jest asyncHandler, więc obsługujemy błędy bezpośrednio lub przekazujemy
-    allegroController.initLogin(req, res); 
+    allegroController.initLogin(req, res);
   } catch (error) {
     next(error); // Przekaż błąd do globalnego error handlera Express
   }
@@ -27,6 +27,6 @@ allegroRouter.get("/login", (req: Request, res: Response, next: NextFunction) =>
 allegroRouter.get("/oauth/callback", allegroController.handleCallback);
 
 // Możesz dodać tutaj inne trasy, np. do odświeżania tokenu użytkownika, wylogowania itp.
-// np. allegroRouter.post("/refresh-token", ...) 
+// np. allegroRouter.post("/refresh-token", ...)
 
 export default allegroRouter;

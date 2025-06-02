@@ -8,4 +8,4 @@ export const scraperConfig = {
 };
 
 export type ScraperConfig = typeof scraperConfig;
-// Dodano pustą linię na końcu pliku dla lintera 
+// Dodano pustą linię na końcu pliku dla lintera

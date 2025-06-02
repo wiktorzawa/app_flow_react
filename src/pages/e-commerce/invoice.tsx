@@ -1,13 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { Breadcrumb, Label, Table, TextInput } from "flowbite-react";
 import type { FC } from "react";
-import {
-  HiCog,
-  HiDotsVertical,
-  HiDownload,
-  HiHome,
-  HiPrinter,
-} from "react-icons/hi";
+import { HiCog, HiDotsVertical, HiDownload, HiHome, HiPrinter } from "react-icons/hi";
 import NavbarSidebarLayout from "../../layouts/navbar-sidebar";
 
 const EcommerceInvoicePage: FC = function () {
@@ -23,14 +17,10 @@ const EcommerceInvoicePage: FC = function () {
                 <span className="dark:text-white">Home</span>
               </div>
             </Breadcrumb.Item>
-            <Breadcrumb.Item href="/e-commerce/products">
-              E-commerce
-            </Breadcrumb.Item>
+            <Breadcrumb.Item href="/e-commerce/products">E-commerce</Breadcrumb.Item>
             <Breadcrumb.Item>Invoice</Breadcrumb.Item>
           </Breadcrumb>
-          <h1 className="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">
-            Invoice
-          </h1>
+          <h1 className="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">Invoice</h1>
         </div>
         <div className="col-span-12 mx-4 mb-4 rounded-lg bg-white p-4 shadow dark:bg-gray-800 sm:p-6 md:mx-6 lg:my-6 xl:col-span-10 xl:col-start-2 xl:p-8 2xl:col-span-8 2xl:col-start-3">
           <Invoice />
@@ -102,16 +92,9 @@ const Invoice: FC = function () {
   return (
     <div className="space-y-6 overflow-hidden p-4 md:p-8">
       <div className="sm:flex">
-        <div className="mb-5 text-2xl font-bold dark:text-white sm:mb-0 sm:text-3xl">
-          Invoice #0472
-        </div>
+        <div className="mb-5 text-2xl font-bold dark:text-white sm:mb-0 sm:text-3xl">Invoice #0472</div>
         <div className="space-y-3 text-left sm:ml-auto sm:text-right">
-          <svg
-            className="h-10 w-10 sm:ml-auto"
-            viewBox="0 0 39 46"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
+          <svg className="h-10 w-10 sm:ml-auto" viewBox="0 0 39 46" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M38.1622 1.47093L22.6807 5.26078C22.5339 5.29495 22.3817 5.2995 22.2331 5.27414C22.0844 5.24879 21.9424 5.19404 21.8152 5.11312L14.4967 0.331871C14.3629 0.244902 14.2118 0.187926 14.0539 0.164864C13.896 0.141802 13.7349 0.153201 13.5819 0.198277L0.915185 3.92484C0.799036 3.95271 0.695356 4.01814 0.620271 4.11096C0.545186 4.20379 0.502904 4.3188 0.5 4.43812V12.0178L13.5819 8.17171C13.7349 8.12664 13.896 8.11524 14.0539 8.1383C14.2118 8.16136 14.3629 8.21834 14.4967 8.30531L21.8152 13.0795C21.941 13.1635 22.0831 13.2201 22.2322 13.2455C22.3814 13.271 22.5342 13.2647 22.6807 13.2272L38.5 9.36V1.72406C38.4982 1.65256 38.4684 1.5846 38.4172 1.53469C38.3659 1.48477 38.2971 1.45685 38.2256 1.45687L38.1622 1.47093Z"
               fill="#FF7F66"
@@ -148,25 +131,18 @@ const Invoice: FC = function () {
             </g>
           </svg>
           <div className="space-y-1">
-            <div className="text-lg font-semibold text-gray-900 dark:text-white">
-              Themesberg Inc.
-            </div>
+            <div className="text-lg font-semibold text-gray-900 dark:text-white">Themesberg Inc.</div>
             <div className="text-sm font-normal text-gray-900 dark:text-white">
               291 N 4th St, San Jose, CA 95112, USA
             </div>
           </div>
-          <div className="text-sm font-normal text-gray-500 dark:text-gray-400">
-            August 1, 2021
-          </div>
+          <div className="text-sm font-normal text-gray-500 dark:text-gray-400">August 1, 2021</div>
         </div>
       </div>
       <div className="sm:w-72">
-        <div className="mb-4 text-base font-bold uppercase text-gray-900 dark:text-white">
-          Bill to
-        </div>
+        <div className="mb-4 text-base font-bold uppercase text-gray-900 dark:text-white">Bill to</div>
         <address className="text-base font-normal text-gray-500 dark:text-gray-400">
-          Themesberg Inc., LOUISVILLE, Selby 3864 Johnson Street, United States
-          of America VAT Code: AA-1234567890
+          Themesberg Inc., LOUISVILLE, Selby 3864 Johnson Street, United States of America VAT Code: AA-1234567890
         </address>
       </div>
       <div className="my-8 flex flex-col">
@@ -184,12 +160,8 @@ const Invoice: FC = function () {
                 <Table.Body>
                   <Table.Row>
                     <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal">
-                      <div className="text-base font-semibold">
-                        Pixel Design System
-                      </div>
-                      <div className="text-sm font-normal text-gray-500 dark:text-gray-400">
-                        Html components
-                      </div>
+                      <div className="text-base font-semibold">Pixel Design System</div>
+                      <div className="text-sm font-normal text-gray-500 dark:text-gray-400">Html components</div>
                     </Table.Cell>
                     <Table.Cell className="whitespace-nowrap p-4 text-base font-normal text-gray-500 dark:text-gray-400">
                       $128.00
@@ -197,21 +169,13 @@ const Invoice: FC = function () {
                     <Table.Cell className="whitespace-nowrap p-4 text-base font-semibold text-gray-900 dark:text-white">
                       1
                     </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap p-4 text-base font-normal">
-                      50%
-                    </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap p-4 text-base font-semibold">
-                      $64.00
-                    </Table.Cell>
+                    <Table.Cell className="whitespace-nowrap p-4 text-base font-normal">50%</Table.Cell>
+                    <Table.Cell className="whitespace-nowrap p-4 text-base font-semibold">$64.00</Table.Cell>
                   </Table.Row>
                   <Table.Row>
                     <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal">
-                      <div className="text-base font-semibold">
-                        Volt Dashboard Template
-                      </div>
-                      <div className="text-sm font-normal text-gray-500 dark:text-gray-400">
-                        Tailwind template
-                      </div>
+                      <div className="text-base font-semibold">Volt Dashboard Template</div>
+                      <div className="text-sm font-normal text-gray-500 dark:text-gray-400">Tailwind template</div>
                     </Table.Cell>
                     <Table.Cell className="whitespace-nowrap p-4 text-base font-normal text-gray-500 dark:text-gray-400">
                       $69.00
@@ -219,21 +183,13 @@ const Invoice: FC = function () {
                     <Table.Cell className="whitespace-nowrap p-4 text-base font-semibold text-gray-900 dark:text-white">
                       1
                     </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap p-4 text-base font-normal">
-                      0%
-                    </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap p-4 text-base font-semibold">
-                      $69.00
-                    </Table.Cell>
+                    <Table.Cell className="whitespace-nowrap p-4 text-base font-normal">0%</Table.Cell>
+                    <Table.Cell className="whitespace-nowrap p-4 text-base font-semibold">$69.00</Table.Cell>
                   </Table.Row>
                   <Table.Row>
                     <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal">
-                      <div className="text-base font-semibold">
-                        Neumorphism UI
-                      </div>
-                      <div className="text-sm font-normal text-gray-500 dark:text-gray-400">
-                        Html template
-                      </div>
+                      <div className="text-base font-semibold">Neumorphism UI</div>
+                      <div className="text-sm font-normal text-gray-500 dark:text-gray-400">Html template</div>
                     </Table.Cell>
                     <Table.Cell className="whitespace-nowrap p-4 text-base font-normal text-gray-500 dark:text-gray-400">
                       $69.00
@@ -241,21 +197,13 @@ const Invoice: FC = function () {
                     <Table.Cell className="whitespace-nowrap p-4 text-base font-semibold text-gray-900 dark:text-white">
                       1
                     </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap p-4 text-base font-normal">
-                      0%
-                    </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap p-4 text-base font-semibold">
-                      $69.00
-                    </Table.Cell>
+                    <Table.Cell className="whitespace-nowrap p-4 text-base font-normal">0%</Table.Cell>
+                    <Table.Cell className="whitespace-nowrap p-4 text-base font-semibold">$69.00</Table.Cell>
                   </Table.Row>
                   <Table.Row>
                     <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal">
-                      <div className="text-base font-semibold">
-                        Glassmorphism UI
-                      </div>
-                      <div className="text-sm font-normal text-gray-500 dark:text-gray-400">
-                        Figma template
-                      </div>
+                      <div className="text-base font-semibold">Glassmorphism UI</div>
+                      <div className="text-sm font-normal text-gray-500 dark:text-gray-400">Figma template</div>
                     </Table.Cell>
                     <Table.Cell className="whitespace-nowrap p-4 text-base font-normal text-gray-500 dark:text-gray-400">
                       $149.00
@@ -263,12 +211,8 @@ const Invoice: FC = function () {
                     <Table.Cell className="whitespace-nowrap p-4 text-base font-semibold text-gray-900 dark:text-white">
                       1
                     </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap p-4 text-base font-normal">
-                      0%
-                    </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap p-4 text-base font-semibold">
-                      $149.00
-                    </Table.Cell>
+                    <Table.Cell className="whitespace-nowrap p-4 text-base font-normal">0%</Table.Cell>
+                    <Table.Cell className="whitespace-nowrap p-4 text-base font-semibold">$149.00</Table.Cell>
                   </Table.Row>
                 </Table.Body>
               </Table>
@@ -278,36 +222,20 @@ const Invoice: FC = function () {
       </div>
       <div className="space-y-3 sm:ml-auto sm:w-72 sm:text-right">
         <div className="flex justify-between">
-          <div className="text-sm font-medium uppercase text-gray-500 dark:text-gray-400">
-            Subtotal
-          </div>
-          <div className="text-base font-medium text-gray-900 dark:text-white">
-            $415.00
-          </div>
+          <div className="text-sm font-medium uppercase text-gray-500 dark:text-gray-400">Subtotal</div>
+          <div className="text-base font-medium text-gray-900 dark:text-white">$415.00</div>
         </div>
         <div className="flex justify-between">
-          <div className="text-sm font-medium uppercase text-gray-500 dark:text-gray-400">
-            Tax rate
-          </div>
-          <div className="text-base font-medium text-gray-900 dark:text-white">
-            5%
-          </div>
+          <div className="text-sm font-medium uppercase text-gray-500 dark:text-gray-400">Tax rate</div>
+          <div className="text-base font-medium text-gray-900 dark:text-white">5%</div>
         </div>
         <div className="flex justify-between">
-          <div className="text-sm font-medium uppercase text-gray-500 dark:text-gray-400">
-            Discount
-          </div>
-          <div className="text-base font-medium text-gray-900 dark:text-white">
-            $64.00
-          </div>
+          <div className="text-sm font-medium uppercase text-gray-500 dark:text-gray-400">Discount</div>
+          <div className="text-base font-medium text-gray-900 dark:text-white">$64.00</div>
         </div>
         <div className="flex justify-between">
-          <div className="text-base font-semibold uppercase text-gray-900 dark:text-white">
-            Total
-          </div>
-          <div className="text-base font-bold text-gray-900 dark:text-white">
-            $351.00
-          </div>
+          <div className="text-base font-semibold uppercase text-gray-900 dark:text-white">Total</div>
+          <div className="text-base font-bold text-gray-900 dark:text-white">$351.00</div>
         </div>
       </div>
     </div>

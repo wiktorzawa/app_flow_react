@@ -24,5 +24,5 @@ exports.allegroRouter.get("/login", (req, res, next) => {
 // Metoda handleCallback w kontrolerze jest już opakowana w asyncHandler
 exports.allegroRouter.get("/oauth/callback", allegroController_1.allegroController.handleCallback);
 // Możesz dodać tutaj inne trasy, np. do odświeżania tokenu użytkownika, wylogowania itp.
-// np. allegroRouter.post("/refresh-token", ...) 
+// np. allegroRouter.post("/refresh-token", ...)
 exports.default = exports.allegroRouter;

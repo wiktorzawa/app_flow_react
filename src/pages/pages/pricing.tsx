@@ -16,13 +16,11 @@ const PricingPage: FC = function () {
             Our pricing plan made simple
           </h1>
           <p className="mb-6 text-lg font-normal text-gray-500 dark:text-gray-400 sm:text-xl">
-            All types of businesses need access to development resources, so we
-            give you the option to decide how much you need to use.
+            All types of businesses need access to development resources, so we give you the option to decide how much
+            you need to use.
           </p>
           <div className="flex items-center">
-            <span className="text-base font-medium text-gray-900 dark:text-white">
-              Monthly
-            </span>
+            <span className="text-base font-medium text-gray-900 dark:text-white">Monthly</span>
             <div className="mx-3">
               <Label htmlFor="yearly" className="sr-only">
                 Toggle yearly prices
@@ -35,26 +33,16 @@ const PricingPage: FC = function () {
                 onChange={() => setYearly(!isYearly)}
               />
             </div>
-            <span className="text-base font-medium text-gray-500 dark:text-gray-400">
-              Yearly
-            </span>
+            <span className="text-base font-medium text-gray-500 dark:text-gray-400">Yearly</span>
           </div>
           <section className="grid grid-cols-1 space-y-12 pt-9 lg:grid-cols-3 lg:gap-x-6 lg:space-y-0 xl:gap-8">
             <div className="flex flex-col rounded-lg bg-white p-6 shadow dark:bg-gray-800 xl:p-8">
               <div className="flex-1">
-                <h3 className="mb-4 text-2xl font-semibold text-gray-500 dark:text-gray-400">
-                  Freelancer
-                </h3>
+                <h3 className="mb-4 text-2xl font-semibold text-gray-500 dark:text-gray-400">Freelancer</h3>
                 <div className="mb-4 flex items-baseline text-gray-900 dark:text-white">
-                  <span className="text-3xl font-semibold dark:text-white">
-                    $
-                  </span>
-                  <span className="text-5xl font-extrabold tracking-tight dark:text-white">
-                    49
-                  </span>
-                  <span className="ml-1 text-2xl font-normal text-gray-500 dark:text-gray-400">
-                    /month
-                  </span>
+                  <span className="text-3xl font-semibold dark:text-white">$</span>
+                  <span className="text-5xl font-extrabold tracking-tight dark:text-white">49</span>
+                  <span className="ml-1 text-2xl font-normal text-gray-500 dark:text-gray-400">/month</span>
                 </div>
                 <p className="text-lg font-normal text-gray-500 dark:text-gray-400">
                   Great for personal use and for your side projects.
@@ -201,19 +189,11 @@ const PricingPage: FC = function () {
             </div>
             <div className="flex flex-col rounded-lg bg-white p-6 shadow dark:bg-gray-800 xl:p-8">
               <div className="flex-1">
-                <h3 className="mb-4 text-2xl font-semibold text-gray-500 dark:text-gray-400">
-                  Company
-                </h3>
+                <h3 className="mb-4 text-2xl font-semibold text-gray-500 dark:text-gray-400">Company</h3>
                 <div className="mb-4 flex items-baseline text-gray-900 dark:text-white">
-                  <span className="text-3xl font-semibold dark:text-white">
-                    $
-                  </span>
-                  <span className="text-5xl font-extrabold tracking-tight dark:text-white">
-                    299
-                  </span>
-                  <span className="ml-1 text-2xl font-normal text-gray-500 dark:text-gray-400">
-                    /month
-                  </span>
+                  <span className="text-3xl font-semibold dark:text-white">$</span>
+                  <span className="text-5xl font-extrabold tracking-tight dark:text-white">299</span>
+                  <span className="ml-1 text-2xl font-normal text-gray-500 dark:text-gray-400">/month</span>
                 </div>
                 <p className="text-lg font-normal text-gray-500 dark:text-gray-400">
                   Great for personal use and for your side projects.
@@ -359,19 +339,11 @@ const PricingPage: FC = function () {
             </div>
             <div className="flex flex-col rounded-lg bg-white p-6 shadow dark:bg-gray-800 xl:p-8">
               <div className="flex-1">
-                <h3 className="mb-4 text-2xl font-semibold text-gray-500 dark:text-gray-400">
-                  Enterprise
-                </h3>
+                <h3 className="mb-4 text-2xl font-semibold text-gray-500 dark:text-gray-400">Enterprise</h3>
                 <div className="mb-4 flex items-baseline text-gray-900 dark:text-white">
-                  <span className="text-3xl font-semibold dark:text-white">
-                    $
-                  </span>
-                  <span className="text-5xl font-extrabold tracking-tight dark:text-white">
-                    2999
-                  </span>
-                  <span className="ml-1 text-2xl font-normal text-gray-500 dark:text-gray-400">
-                    /month
-                  </span>
+                  <span className="text-3xl font-semibold dark:text-white">$</span>
+                  <span className="text-5xl font-extrabold tracking-tight dark:text-white">2999</span>
+                  <span className="ml-1 text-2xl font-normal text-gray-500 dark:text-gray-400">/month</span>
                 </div>
                 <p className="text-lg font-normal text-gray-500 dark:text-gray-400">
                   Great for personal use and for your side projects.
@@ -894,9 +866,7 @@ const PricingPage: FC = function () {
                                 clipRule="evenodd"
                               ></path>
                             </svg>
-                            <span className="text-xs font-medium sm:text-sm md:text-base">
-                              1 User
-                            </span>
+                            <span className="text-xs font-medium sm:text-sm md:text-base">1 User</span>
                           </div>
                         </td>
                         <td className="p-4">
@@ -909,9 +879,7 @@ const PricingPage: FC = function () {
                             >
                               <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"></path>
                             </svg>
-                            <span className="text-xs font-medium sm:text-sm md:text-base">
-                              5-10 Users
-                            </span>
+                            <span className="text-xs font-medium sm:text-sm md:text-base">5-10 Users</span>
                           </div>
                         </td>
                         <td className="rounded-r-lg p-4">
@@ -924,9 +892,7 @@ const PricingPage: FC = function () {
                             >
                               <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"></path>
                             </svg>
-                            <span className="text-xs font-medium sm:text-sm md:text-base">
-                              20+ Users
-                            </span>
+                            <span className="text-xs font-medium sm:text-sm md:text-base">20+ Users</span>
                           </div>
                         </td>
                       </tr>
@@ -1082,8 +1048,8 @@ const PricingPage: FC = function () {
               Frequently asked questions
             </h2>
             <p className="mb-6 text-lg font-normal text-gray-500 dark:text-gray-400 sm:text-xl">
-              All types of businesses need access to development resources, so
-              we give you the option to decide how much you need to use.
+              All types of businesses need access to development resources, so we give you the option to decide how much
+              you need to use.
             </p>
             <hr className="my-6 border-gray-200 dark:border-gray-800 md:my-12" />
             <div className="grid gap-8 lg:grid-cols-3">
@@ -1093,10 +1059,8 @@ const PricingPage: FC = function () {
                     What do you mean by "Figma assets"?
                   </h3>
                   <p className="text-gray-600 dark:text-gray-400">
-                    You will have access to download the full Figma project
-                    including all of the pages, the components, responsive
-                    pages, and also the icons, illustrations, and images
-                    included in the screens.
+                    You will have access to download the full Figma project including all of the pages, the components,
+                    responsive pages, and also the icons, illustrations, and images included in the screens.
                   </p>
                 </div>
                 <div className="mb-10">
@@ -1104,19 +1068,15 @@ const PricingPage: FC = function () {
                     What does "lifetime access" exactly mean?
                   </h3>
                   <p className="mb-4 text-gray-600 dark:text-gray-400">
-                    Once you have purchased either the design, code, or both
-                    packages, you will have access to all of the future updates
-                    based on the roadmap, free of charge.
+                    Once you have purchased either the design, code, or both packages, you will have access to all of
+                    the future updates based on the roadmap, free of charge.
                   </p>
                 </div>
                 <div className="mb-10">
-                  <h3 className="mb-4 text-lg font-medium text-gray-900 dark:text-white">
-                    How does support work?
-                  </h3>
+                  <h3 className="mb-4 text-lg font-medium text-gray-900 dark:text-white">How does support work?</h3>
                   <p className="mb-4 text-gray-600 dark:text-gray-400">
-                    We're aware of the importance of well qualified support,
-                    that is why we decided that support will only be provided by
-                    the authors that actually worked on this project.
+                    We're aware of the importance of well qualified support, that is why we decided that support will
+                    only be provided by the authors that actually worked on this project.
                   </p>
                   <p className="mb-4 text-gray-600 dark:text-gray-400">
                     Feel free to&nbsp;
@@ -1133,15 +1093,12 @@ const PricingPage: FC = function () {
                 </div>
                 <div className="mb-10">
                   <h3 className="mb-4 text-lg font-medium text-gray-900 dark:text-white">
-                    I want to build more than one project with FlowBite. Is that
-                    allowed?
+                    I want to build more than one project with FlowBite. Is that allowed?
                   </h3>
                   <p className="mb-4 text-gray-600 dark:text-gray-400">
-                    You can use FlowBite for an unlimited amount of projects,
-                    whether it's a personal website, a SaaS app, or a website
-                    for a client. As long as you don't build a product that will
-                    directly compete with FlowBite either as a UI kit, theme, or
-                    template, it's fine.
+                    You can use FlowBite for an unlimited amount of projects, whether it's a personal website, a SaaS
+                    app, or a website for a client. As long as you don't build a product that will directly compete with
+                    FlowBite either as a UI kit, theme, or template, it's fine.
                   </p>
                   <p className="mb-4 text-gray-600 dark:text-gray-400">
                     Find out more information by&nbsp;
@@ -1166,9 +1123,8 @@ const PricingPage: FC = function () {
                     >
                       roadmap
                     </a>
-                    &nbsp;that we have laid out for this project. It is also
-                    possible that we will provide extra updates outside of the
-                    roadmap as well.
+                    &nbsp;that we have laid out for this project. It is also possible that we will provide extra updates
+                    outside of the roadmap as well.
                   </p>
                 </div>
                 <div className="mb-10">
@@ -1183,13 +1139,11 @@ const PricingPage: FC = function () {
                     >
                       free version
                     </a>
-                    &nbsp;of FlowBite includes a minimal style guidelines,
-                    component variants, and a dashboard page with the mobile
-                    version alongside it.
+                    &nbsp;of FlowBite includes a minimal style guidelines, component variants, and a dashboard page with
+                    the mobile version alongside it.
                   </p>
                   <p className="mb-4 text-gray-600 dark:text-gray-400">
-                    You can use this version for any purposes, because it is
-                    open-source under the MIT license.
+                    You can use this version for any purposes, because it is open-source under the MIT license.
                   </p>
                 </div>
                 <div className="mb-10">
@@ -1197,15 +1151,12 @@ const PricingPage: FC = function () {
                     What is the difference between FlowBite and Tailwind UI?
                   </h3>
                   <p className="mb-4 text-gray-600 dark:text-gray-400">
-                    Although both FlowBite and Tailwind UI are built for
-                    integration with Tailwind CSS, the main difference is in the
-                    design, the pages, the extra components and UI elements that
-                    FlowBite includes.
+                    Although both FlowBite and Tailwind UI are built for integration with Tailwind CSS, the main
+                    difference is in the design, the pages, the extra components and UI elements that FlowBite includes.
                   </p>
                   <p className="mb-4 text-gray-600 dark:text-gray-400">
-                    Additionally, FlowBite is a project that is still in
-                    development, and later it will include both the application,
-                    marketing, and e-commerce UI interfaces.
+                    Additionally, FlowBite is a project that is still in development, and later it will include both the
+                    application, marketing, and e-commerce UI interfaces.
                   </p>
                 </div>
               </div>
@@ -1215,8 +1166,7 @@ const PricingPage: FC = function () {
                     How do I purchase a license for my entire team?
                   </h3>
                   <p className="mb-4 text-gray-600 dark:text-gray-400">
-                    You can purchase a license that you can share with your
-                    entire team here:
+                    You can purchase a license that you can share with your entire team here:
                   </p>
                   <ul className="mb-4 list-disc pl-4">
                     <li className="mb-2 text-gray-600">
@@ -1226,20 +1176,17 @@ const PricingPage: FC = function () {
                     </li>
                     <li className="mb-2 text-gray-600">
                       <span className="cursor-pointer font-medium text-primary-600 hover:underline dark:text-primary-500">
-                        Figma Files + Tailwind CSS code pre-order - Buy a team
-                        license for <del>$699</del> $559 USD
+                        Figma Files + Tailwind CSS code pre-order - Buy a team license for <del>$699</del> $559 USD
                       </span>
                     </li>
                     <li className="mb-4 text-gray-600 dark:text-gray-400">
                       <span className="cursor-pointer font-medium text-primary-600 hover:underline dark:text-primary-500">
-                        Tailwind CSS code pre-order - Buy a team license for{" "}
-                        <del>$399</del> $319 USD
+                        Tailwind CSS code pre-order - Buy a team license for <del>$399</del> $319 USD
                       </span>
                     </li>
                   </ul>
                   <p className="mb-4 text-gray-600 dark:text-gray-400">
-                    Please use a single account to share with your team to
-                    access the download files.
+                    Please use a single account to share with your team to access the download files.
                   </p>
                 </div>
                 <div className="mb-10">
@@ -1247,8 +1194,8 @@ const PricingPage: FC = function () {
                     Can I build/sell templates or themes using FlowBite?
                   </h3>
                   <p className="mb-4 text-gray-600 dark:text-gray-400">
-                    It is not allowed to use FlowBite or parts of the project to
-                    build themes, templates, UI kits, or page builders.
+                    It is not allowed to use FlowBite or parts of the project to build themes, templates, UI kits, or
+                    page builders.
                   </p>
                   <p className="mb-4 text-gray-600 dark:text-gray-400">
                     Find out more information by{" "}
@@ -1266,14 +1213,12 @@ const PricingPage: FC = function () {
                     Can I use FlowBite in open-source projects?
                   </h3>
                   <p className="mb-4 text-gray-600 dark:text-gray-400">
-                    Generally, it is accepted to use FlowBite in open-source
-                    projects, as long as it is not a UI library, a theme, a
-                    template, a page-builder that would be considered as an
-                    alternative to FlowBite itself.
+                    Generally, it is accepted to use FlowBite in open-source projects, as long as it is not a UI
+                    library, a theme, a template, a page-builder that would be considered as an alternative to FlowBite
+                    itself.
                   </p>
                   <p className="mb-4 text-gray-600 dark:text-gray-400">
-                    With that being said, feel free to use this design kit for
-                    your open-source projects.
+                    With that being said, feel free to use this design kit for your open-source projects.
                   </p>
                   <p className="mb-4 text-gray-600 dark:text-gray-400">
                     Find out more information by{" "}
@@ -1291,13 +1236,12 @@ const PricingPage: FC = function () {
                     Can I use FlowBite for commercial purposes?
                   </h3>
                   <p className="mb-4 text-gray-600 dark:text-gray-400">
-                    Absolutely! You can use this design kit to build any type of
-                    commercial business, whether it's a SaaS, an e-commerce app,
-                    an application UI.
+                    Absolutely! You can use this design kit to build any type of commercial business, whether it's a
+                    SaaS, an e-commerce app, an application UI.
                   </p>
                   <p className="mb-4 text-gray-600 dark:text-gray-400">
-                    As long as it is not a design resource that you will
-                    re-sell, it is alright to use it for commercial purposes.
+                    As long as it is not a design resource that you will re-sell, it is alright to use it for commercial
+                    purposes.
                   </p>
                   <p className="mb-4 text-gray-600 dark:text-gray-400">
                     Find out more information by{" "}
@@ -1311,18 +1255,14 @@ const PricingPage: FC = function () {
                   </p>
                 </div>
                 <div className="mb-10">
-                  <h3 className="mb-4 text-lg font-medium text-gray-900 dark:text-white">
-                    Can I get an invoice?
-                  </h3>
+                  <h3 className="mb-4 text-lg font-medium text-gray-900 dark:text-white">Can I get an invoice?</h3>
                   <p className="mb-4 text-gray-600 dark:text-gray-400">
-                    After opening the checkout process, you will be able to add
-                    all of your personal or company information that you want to
-                    be available on the invoice. After the purchase, you will
-                    get an email with the invoice.
+                    After opening the checkout process, you will be able to add all of your personal or company
+                    information that you want to be available on the invoice. After the purchase, you will get an email
+                    with the invoice.
                   </p>
                   <p className="mb-4 text-gray-600 dark:text-gray-400">
-                    If you forgot to complete the information, or you didn't get
-                    the invoice by email, feel free to{" "}
+                    If you forgot to complete the information, or you didn't get the invoice by email, feel free to{" "}
                     <a
                       rel="noreferrer"
                       target="_blank"
@@ -1338,22 +1278,16 @@ const PricingPage: FC = function () {
               <div>
                 <div className="mb-10">
                   <h3 className="mb-4 text-lg font-medium text-gray-900 dark:text-white">
-                    When will I get access to the Tailwind CSS code if I
-                    pre-ordered it?
+                    When will I get access to the Tailwind CSS code if I pre-ordered it?
                   </h3>
                   <p className="mb-4 text-gray-600 dark:text-gray-400">
-                    The official date that we have set out to release the code
-                    version of FlowBite is the{" "}
-                    <span className="font-medium text-gray-900">
-                      25th of September, 2021
-                    </span>
-                    . We are already working on the integration and if you have
-                    a pre-order, you will also get frequent updates about the
+                    The official date that we have set out to release the code version of FlowBite is the{" "}
+                    <span className="font-medium text-gray-900">25th of September, 2021</span>. We are already working
+                    on the integration and if you have a pre-order, you will also get frequent updates about the
                     progress.
                   </p>
                   <p className="mb-4 text-gray-600 dark:text-gray-400">
-                    You'll be one of the first to know when it will be
-                    available.
+                    You'll be one of the first to know when it will be available.
                   </p>
                 </div>
                 <div className="mb-10">
@@ -1375,14 +1309,12 @@ const PricingPage: FC = function () {
                 </div>
                 <div className="mb-10">
                   <h3 className="mb-4 text-lg font-medium text-gray-900 dark:text-white">
-                    Is it allowed to use the design assets, such as the fonts,
-                    icons, and illustrations?
+                    Is it allowed to use the design assets, such as the fonts, icons, and illustrations?
                   </h3>
                   <p className="mb-4 text-gray-600 dark:text-gray-400">
-                    What you see is what you get. Which means that all icons,
-                    fonts, and illustrations can be used based on the licensing
-                    that we researched or purchased. For example, we purchased
-                    rights to use the illustrations in Flowbite.
+                    What you see is what you get. Which means that all icons, fonts, and illustrations can be used based
+                    on the licensing that we researched or purchased. For example, we purchased rights to use the
+                    illustrations in Flowbite.
                   </p>
                 </div>
                 <div className="mb-10">
@@ -1390,26 +1322,22 @@ const PricingPage: FC = function () {
                     Where can I access my download files?
                   </h3>
                   <p className="mb-4 text-gray-600 dark:text-gray-400">
-                    After you purchased one of the plans, you will get two
-                    emails: one for the invoice, and another one with the
-                    download files.
+                    After you purchased one of the plans, you will get two emails: one for the invoice, and another one
+                    with the download files.
                   </p>
                   <p className="mb-4 text-gray-600 dark:text-gray-400">
-                    Soon we will create a way that you will be able to access
-                    the download files from the FlowBite dashboard from this
-                    website.
+                    Soon we will create a way that you will be able to access the download files from the FlowBite
+                    dashboard from this website.
                   </p>
                 </div>
                 <div className="mb-10">
                   <h3 className="mb-4 text-lg font-medium text-gray-900 dark:text-white">
-                    I have a company registered for VAT. Where can I add the VAT
-                    for the invoice?
+                    I have a company registered for VAT. Where can I add the VAT for the invoice?
                   </h3>
                   <p className="mb-4 text-gray-600 dark:text-gray-400">
-                    After initializing the checkout process from Paddle, you
-                    will be able to see a text "Add VAT code". Click on that,
-                    and add the VAT code for your company. This will also remove
-                    the extra VAT tax from the purchase.
+                    After initializing the checkout process from Paddle, you will be able to see a text "Add VAT code".
+                    Click on that, and add the VAT code for your company. This will also remove the extra VAT tax from
+                    the purchase.
                   </p>
                 </div>
                 <div className="mb-10">
@@ -1417,10 +1345,8 @@ const PricingPage: FC = function () {
                     Why would I pre-order the Tailwind CSS code?
                   </h3>
                   <p className="mb-4 text-gray-600 dark:text-gray-400">
-                    If you decide to pre-order the Tailwind CSS code, which will
-                    arrive on the 25th of September 2021, you can get a base 20%
-                    price reduction and purchase it only for $119, instead of
-                    $149.
+                    If you decide to pre-order the Tailwind CSS code, which will arrive on the 25th of September 2021,
+                    you can get a base 20% price reduction and purchase it only for $119, instead of $149.
                   </p>
                 </div>
               </div>
@@ -1439,9 +1365,7 @@ const ExampleNavbar: FC = function () {
       <div className="flex items-center gap-x-9">
         <Navbar.Brand href="/">
           <img alt="" src="/images/logo.svg" className="mr-3 h-6 sm:h-9" />
-          <span className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">
-            Flowbite
-          </span>
+          <span className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">Flowbite</span>
         </Navbar.Brand>
         <Navbar.Collapse>
           <Navbar.Link href="/" active>
@@ -1469,19 +1393,12 @@ const ExampleFooter: FC = function () {
         <div className="grid w-full grid-cols-2 gap-8 px-6 py-8 md:grid-cols-6">
           <div className="col-span-2 flex flex-col gap-y-3">
             <div className="flex items-center gap-x-3">
-              <img
-                alt="Flowbite logo"
-                src="/images/logo.svg"
-                className="h-6 sm:h-9"
-              />
-              <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-                Flowbite
-              </span>
+              <img alt="Flowbite logo" src="/images/logo.svg" className="h-6 sm:h-9" />
+              <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">Flowbite</span>
             </div>
             <p className="text-gray-500 dark:text-gray-300">
-              Flowbite is a UI library of elements & components based on
-              Tailwind CSS that can get you started building websites faster and
-              more efficiently.
+              Flowbite is a UI library of elements & components based on Tailwind CSS that can get you started building
+              websites faster and more efficiently.
             </p>
           </div>
           <div>
@@ -1523,11 +1440,7 @@ const ExampleFooter: FC = function () {
           <Footer.Divider />
         </div>
         <div className="w-full px-4 pb-24 sm:flex sm:items-center sm:justify-center">
-          <Footer.Copyright
-            by="Themesberg. All Rights Reserved."
-            href="#"
-            year={2022}
-          />
+          <Footer.Copyright by="Themesberg. All Rights Reserved." href="#" year={2022} />
         </div>
       </div>
     </Footer>

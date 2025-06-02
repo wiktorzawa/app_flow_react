@@ -51,4 +51,4 @@ export interface ProductImage {
   is_main_image?: boolean;
   s3_key?: string;
   alt_text?: string | null;
-} 
+}

@@ -46,4 +46,4 @@ export function DeleteUserModal({ isOpen, onClose, pracownikId, onSuccess }: Del
       </Modal.Body>
     </Modal>
   );
-} 
+}

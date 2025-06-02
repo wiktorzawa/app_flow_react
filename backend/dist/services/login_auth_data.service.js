@@ -23,7 +23,7 @@ const bcrypt_1 = __importDefault(require("bcrypt"));
 const getAuthDataByEmail = (email) => __awaiter(void 0, void 0, void 0, function* () {
     const connection = yield db_1.default.getConnection();
     try {
-        const [rows] = yield connection.query('SELECT * FROM login_auth_data WHERE email = ?', [email]);
+        const [rows] = yield connection.query("SELECT * FROM login_auth_data WHERE email = ?", [email]);
         return rows.length > 0 ? rows[0] : null;
     }
     finally {
@@ -39,7 +39,9 @@ exports.getAuthDataByEmail = getAuthDataByEmail;
 const getAuthDataById = (id_login) => __awaiter(void 0, void 0, void 0, function* () {
     const connection = yield db_1.default.getConnection();
     try {
-        const [rows] = yield connection.query('SELECT * FROM login_auth_data WHERE id_login = ?', [id_login]);
+        const [rows] = yield connection.query("SELECT * FROM login_auth_data WHERE id_login = ?", [
+            id_login,
+        ]);
         return rows.length > 0 ? rows[0] : null;
     }
     finally {
@@ -54,7 +56,9 @@ exports.getAuthDataById = getAuthDataById;
 const updateLastLogin = (id_login) => __awaiter(void 0, void 0, void 0, function* () {
     const connection = yield db_1.default.getConnection();
     try {
-        yield connection.execute('UPDATE login_auth_data SET last_login = CURRENT_TIMESTAMP WHERE id_login = ?', [id_login]);
+        yield connection.execute("UPDATE login_auth_data SET last_login = CURRENT_TIMESTAMP WHERE id_login = ?", [
+            id_login,
+        ]);
     }
     finally {
         connection.release();
@@ -69,8 +73,8 @@ exports.updateLastLogin = updateLastLogin;
 const incrementFailedLoginAttempts = (id_login) => __awaiter(void 0, void 0, void 0, function* () {
     const connection = yield db_1.default.getConnection();
     try {
-        yield connection.execute('UPDATE login_auth_data SET failed_login_attempts = failed_login_attempts + 1 WHERE id_login = ?', [id_login]);
-        const [rows] = yield connection.query('SELECT failed_login_attempts FROM login_auth_data WHERE id_login = ?', [id_login]);
+        yield connection.execute("UPDATE login_auth_data SET failed_login_attempts = failed_login_attempts + 1 WHERE id_login = ?", [id_login]);
+        const [rows] = yield connection.query("SELECT failed_login_attempts FROM login_auth_data WHERE id_login = ?", [id_login]);
         return rows.length > 0 ? rows[0].failed_login_attempts : 0;
     }
     finally {
@@ -85,7 +89,7 @@ exports.incrementFailedLoginAttempts = incrementFailedLoginAttempts;
 const resetFailedLoginAttempts = (id_login) => __awaiter(void 0, void 0, void 0, function* () {
     const connection = yield db_1.default.getConnection();
     try {
-        yield connection.execute('UPDATE login_auth_data SET failed_login_attempts = 0, locked_until = NULL WHERE id_login = ?', [id_login]);
+        yield connection.execute("UPDATE login_auth_data SET failed_login_attempts = 0, locked_until = NULL WHERE id_login = ?", [id_login]);
     }
     finally {
         connection.release();
@@ -100,7 +104,7 @@ exports.resetFailedLoginAttempts = resetFailedLoginAttempts;
 const lockAccount = (id_login, minutes) => __awaiter(void 0, void 0, void 0, function* () {
     const connection = yield db_1.default.getConnection();
     try {
-        yield connection.execute('UPDATE login_auth_data SET locked_until = DATE_ADD(CURRENT_TIMESTAMP, INTERVAL ? MINUTE) WHERE id_login = ?', [minutes, id_login]);
+        yield connection.execute("UPDATE login_auth_data SET locked_until = DATE_ADD(CURRENT_TIMESTAMP, INTERVAL ? MINUTE) WHERE id_login = ?", [minutes, id_login]);
     }
     finally {
         connection.release();

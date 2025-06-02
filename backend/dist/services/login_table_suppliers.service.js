@@ -22,7 +22,7 @@ const bcrypt_1 = __importDefault(require("bcrypt"));
 const getAllSuppliers = () => __awaiter(void 0, void 0, void 0, function* () {
     const connection = yield db_1.default.getConnection();
     try {
-        const [rows] = yield connection.query('SELECT * FROM login_table_suppliers');
+        const [rows] = yield connection.query("SELECT * FROM login_table_suppliers");
         return rows;
     }
     finally {
@@ -38,7 +38,7 @@ exports.getAllSuppliers = getAllSuppliers;
 const getSupplierById = (id_supplier) => __awaiter(void 0, void 0, void 0, function* () {
     const connection = yield db_1.default.getConnection();
     try {
-        const [rows] = yield connection.query('SELECT * FROM login_table_suppliers WHERE id_supplier = ?', [id_supplier]);
+        const [rows] = yield connection.query("SELECT * FROM login_table_suppliers WHERE id_supplier = ?", [id_supplier]);
         return rows.length > 0 ? rows[0] : null;
     }
     finally {
@@ -54,7 +54,9 @@ exports.getSupplierById = getSupplierById;
 const getSupplierByEmail = (email) => __awaiter(void 0, void 0, void 0, function* () {
     const connection = yield db_1.default.getConnection();
     try {
-        const [rows] = yield connection.query('SELECT * FROM login_table_suppliers WHERE email = ?', [email]);
+        const [rows] = yield connection.query("SELECT * FROM login_table_suppliers WHERE email = ?", [
+            email,
+        ]);
         return rows.length > 0 ? rows[0] : null;
     }
     finally {
@@ -70,7 +72,7 @@ exports.getSupplierByEmail = getSupplierByEmail;
 const getSupplierByNip = (nip) => __awaiter(void 0, void 0, void 0, function* () {
     const connection = yield db_1.default.getConnection();
     try {
-        const [rows] = yield connection.query('SELECT * FROM login_table_suppliers WHERE nip = ?', [nip]);
+        const [rows] = yield connection.query("SELECT * FROM login_table_suppliers WHERE nip = ?", [nip]);
         return rows.length > 0 ? rows[0] : null;
     }
     finally {
@@ -91,10 +93,20 @@ const createSupplier = (supplier) => __awaiter(void 0, void 0, void 0, function*
         website, address_street, address_building, address_apartment, 
         address_city, address_postal_code, address_country
       ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, [
-            supplier.id_supplier, supplier.company_name, supplier.first_name, supplier.last_name,
-            supplier.nip, supplier.email, supplier.phone, supplier.website,
-            supplier.address_street, supplier.address_building, supplier.address_apartment,
-            supplier.address_city, supplier.address_postal_code, supplier.address_country
+            supplier.id_supplier,
+            supplier.company_name,
+            supplier.first_name,
+            supplier.last_name,
+            supplier.nip,
+            supplier.email,
+            supplier.phone,
+            supplier.website,
+            supplier.address_street,
+            supplier.address_building,
+            supplier.address_apartment,
+            supplier.address_city,
+            supplier.address_postal_code,
+            supplier.address_country,
         ]);
         return yield (0, exports.getSupplierById)(supplier.id_supplier);
     }
@@ -123,14 +135,24 @@ const createSupplierWithPassword = (supplier) => __awaiter(void 0, void 0, void 
         website, address_street, address_building, address_apartment, 
         address_city, address_postal_code, address_country
       ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, [
-            id_supplier, supplier.company_name, supplier.first_name, supplier.last_name,
-            supplier.nip, supplier.email, supplier.phone, supplier.website,
-            supplier.address_street, supplier.address_building, supplier.address_apartment,
-            supplier.address_city, supplier.address_postal_code, supplier.address_country
+            id_supplier,
+            supplier.company_name,
+            supplier.first_name,
+            supplier.last_name,
+            supplier.nip,
+            supplier.email,
+            supplier.phone,
+            supplier.website,
+            supplier.address_street,
+            supplier.address_building,
+            supplier.address_apartment,
+            supplier.address_city,
+            supplier.address_postal_code,
+            supplier.address_country,
         ]);
         // Utwórz dane uwierzytelniające
         const id_login = `${id_supplier}/LOG`;
-        yield connection.execute('INSERT INTO login_auth_data (id_login, related_id, email, password_hash, role, failed_login_attempts) VALUES (?, ?, ?, ?, ?, ?)', [id_login, id_supplier, supplier.email, hashedPassword, 'supplier', 0]);
+        yield connection.execute("INSERT INTO login_auth_data (id_login, related_id, email, password_hash, role, failed_login_attempts) VALUES (?, ?, ?, ?, ?, ?)", [id_login, id_supplier, supplier.email, hashedPassword, "supplier", 0]);
         yield connection.commit();
         const newSupplier = yield (0, exports.getSupplierById)(id_supplier);
         if (!newSupplier) {
@@ -140,7 +162,7 @@ const createSupplierWithPassword = (supplier) => __awaiter(void 0, void 0, void 
     }
     catch (error) {
         yield connection.rollback();
-        console.error('Błąd podczas tworzenia dostawcy z hasłem:', error);
+        console.error("Błąd podczas tworzenia dostawcy z hasłem:", error);
         throw error;
     }
     finally {
@@ -170,7 +192,7 @@ const updateSupplier = (id_supplier, supplier) => __awaiter(void 0, void 0, void
             return yield (0, exports.getSupplierById)(id_supplier);
         }
         values.push(id_supplier);
-        yield connection.execute(`UPDATE login_table_suppliers SET ${updates.join(', ')} WHERE id_supplier = ?`, values);
+        yield connection.execute(`UPDATE login_table_suppliers SET ${updates.join(", ")} WHERE id_supplier = ?`, values);
         return yield (0, exports.getSupplierById)(id_supplier);
     }
     finally {
@@ -189,9 +211,12 @@ const deleteSupplier = (id_supplier) => __awaiter(void 0, void 0, void 0, functi
         yield connection.beginTransaction();
         // Usuń powiązane dane logowania
         const id_login = `${id_supplier}/LOG`;
-        yield connection.execute('DELETE FROM login_auth_data WHERE id_login = ? OR related_id = ?', [id_login, id_supplier]);
+        yield connection.execute("DELETE FROM login_auth_data WHERE id_login = ? OR related_id = ?", [
+            id_login,
+            id_supplier,
+        ]);
         // Usuń dostawcę
-        const [result] = yield connection.execute('DELETE FROM login_table_suppliers WHERE id_supplier = ?', [id_supplier]);
+        const [result] = yield connection.execute("DELETE FROM login_table_suppliers WHERE id_supplier = ?", [id_supplier]);
         yield connection.commit();
         return result.affectedRows > 0;
     }
@@ -212,13 +237,13 @@ exports.deleteSupplier = deleteSupplier;
 const generateSupplierId = () => __awaiter(void 0, void 0, void 0, function* () {
     const connection = yield db_1.default.getConnection();
     try {
-        const prefix = 'SUP/';
+        const prefix = "SUP/";
         // Pobierz wszystkie ID dostawców
-        const [rows] = yield connection.query('SELECT id_supplier FROM login_table_suppliers WHERE id_supplier LIKE ?', [`${prefix}%`]);
+        const [rows] = yield connection.query("SELECT id_supplier FROM login_table_suppliers WHERE id_supplier LIKE ?", [`${prefix}%`]);
         // Znajdź największy numer
         let maxNumber = 0;
         rows.forEach((row) => {
-            const idParts = row.id_supplier.split('/');
+            const idParts = row.id_supplier.split("/");
             if (idParts.length === 2) {
                 const numStr = idParts[1];
                 const num = parseInt(numStr, 10);
@@ -229,15 +254,15 @@ const generateSupplierId = () => __awaiter(void 0, void 0, void 0, function* () 
         });
         // Wygeneruj nowe ID
         const nextNumber = maxNumber + 1;
-        const paddedNumber = nextNumber.toString().padStart(5, '0');
+        const paddedNumber = nextNumber.toString().padStart(5, "0");
         const newId = `${prefix}${paddedNumber}`;
         console.log(`Wygenerowano nowe ID dostawcy: ${newId}`);
         return newId;
     }
     catch (error) {
-        console.error('Błąd podczas generowania ID dostawcy:', error);
+        console.error("Błąd podczas generowania ID dostawcy:", error);
         // Wygeneruj domyślne ID w przypadku błędu
-        const defaultId = 'SUP/00001';
+        const defaultId = "SUP/00001";
         console.log(`Błąd generowania ID, zwracam domyślne: ${defaultId}`);
         return defaultId;
     }

@@ -56,7 +56,7 @@ exports.login = (0, express_async_handler_1.default)((req, res) => __awaiter(voi
     if (!username || !password) {
         res.status(400).json({
             success: false,
-            error: "Nazwa użytkownika i hasło są wymagane"
+            error: "Nazwa użytkownika i hasło są wymagane",
         });
         return;
     }
@@ -71,7 +71,7 @@ exports.login = (0, express_async_handler_1.default)((req, res) => __awaiter(voi
         if (user.locked_until && new Date(user.locked_until) > new Date()) {
             res.status(401).json({
                 success: false,
-                error: `Konto jest tymczasowo zablokowane. Spróbuj ponownie po ${user.locked_until}`
+                error: `Konto jest tymczasowo zablokowane. Spróbuj ponownie po ${user.locked_until}`,
             });
             return;
         }
@@ -103,7 +103,7 @@ exports.login = (0, express_async_handler_1.default)((req, res) => __awaiter(voi
             res.json({
                 success: true,
                 userRole: user.role,
-                userId: user.related_id
+                userId: user.related_id,
             });
             return;
         }
@@ -115,7 +115,7 @@ exports.login = (0, express_async_handler_1.default)((req, res) => __awaiter(voi
                 yield authService.lockAccount(user.id_login, 15);
                 res.status(401).json({
                     success: false,
-                    error: "Przekroczono limit nieudanych prób logowania. Konto zostało tymczasowo zablokowane na 15 minut."
+                    error: "Przekroczono limit nieudanych prób logowania. Konto zostało tymczasowo zablokowane na 15 minut.",
                 });
                 return;
             }

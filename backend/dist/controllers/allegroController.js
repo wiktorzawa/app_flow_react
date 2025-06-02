@@ -33,11 +33,11 @@ class AllegroController {
             console.log(`--- AllegroController: handleCallback ---`);
             console.log(`Received code: ${code}, state: ${state}`);
             console.log(`Session allegroAuth:`, authContext);
-            if (!authContext || typeof state !== 'string' || state !== authContext.state) {
+            if (!authContext || typeof state !== "string" || state !== authContext.state) {
                 console.error("CSRF state mismatch or auth context missing.");
                 throw new Error("CSRF state mismatch or session error.");
             }
-            if (typeof code !== 'string') {
+            if (typeof code !== "string") {
                 console.error("Authorization code missing or invalid.");
                 throw new Error("Authorization code missing or invalid.");
             }

@@ -30,9 +30,9 @@ class AmazonProduct extends sequelize_1.Model {
             return AmazonProduct.findAll({
                 where: {
                     lastScraped: {
-                        [Op.gte]: date
-                    }
-                }
+                        [sequelize_1.Op.gte]: date,
+                    },
+                },
             });
         });
     }

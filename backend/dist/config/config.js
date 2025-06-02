@@ -23,14 +23,20 @@ exports.config = {
     frontendUrl: process.env.FRONTEND_URL || "http://localhost:5173",
     allegroClientId: process.env.ALLEGRO_CLIENT_ID || "",
     allegroClientSecret: process.env.ALLEGRO_CLIENT_SECRET || "",
-    allegroApiUrl: isSandbox
-        ? "https://api.allegro.pl.allegrosandbox.pl"
-        : "https://api.allegro.pl",
+    allegroApiUrl: isSandbox ? "https://api.allegro.pl.allegrosandbox.pl" : "https://api.allegro.pl",
     allegroAuthTokenUrl: isSandbox
         ? "https://allegro.pl.allegrosandbox.pl/auth/oauth/token"
         : "https://allegro.pl/auth/oauth/token",
     allegroRedirectUri: process.env.ALLEGRO_REDIRECT_URI || "",
     allegroScope: process.env.ALLEGRO_SCOPE || "allegro:api:profile:read",
+    dbHost: process.env.DB_HOST || "localhost",
+    dbPort: parseInt(process.env.DB_PORT || "3306", 10),
+    dbUsername: process.env.DB_USER || "root",
+    dbPassword: process.env.DB_PASSWORD,
+    dbName: process.env.DB_NAME || "your_database_name",
+    dbDialect: process.env.DB_DIALECT || "mysql",
+    brightDataCustomerID: process.env.BRIGHT_DATA_CUSTOMER_ID || "",
+    brightDataApiToken: process.env.BRIGHT_DATA_API_TOKEN || "",
 };
 // Walidacja kluczowych zmiennych Allegro
 if (!exports.config.allegroClientId) {

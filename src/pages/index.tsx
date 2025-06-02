@@ -35,21 +35,12 @@ const SalesThisWeek: FC = function () {
     <div className="rounded-lg bg-white p-4 shadow dark:bg-gray-800 sm:p-6 xl:p-8">
       <div className="mb-4 flex items-center justify-between">
         <div className="shrink-0">
-          <span className="text-2xl font-bold leading-none text-gray-900 dark:text-white sm:text-3xl">
-            $45,385
-          </span>
-          <h3 className="text-base font-normal text-gray-600 dark:text-gray-400">
-            Sales this week
-          </h3>
+          <span className="text-2xl font-bold leading-none text-gray-900 dark:text-white sm:text-3xl">$45,385</span>
+          <h3 className="text-base font-normal text-gray-600 dark:text-gray-400">Sales this week</h3>
         </div>
         <div className="flex flex-1 items-center justify-end text-base font-bold text-green-600 dark:text-green-400">
           12.5%
-          <svg
-            className="h-5 w-5"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
+          <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
             <path
               fillRule="evenodd"
               d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z"
@@ -74,12 +65,7 @@ const SalesThisWeek: FC = function () {
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </a>
         </div>
@@ -144,15 +130,7 @@ const SalesChart: FC = function () {
       },
     },
     xaxis: {
-      categories: [
-        "01 Feb",
-        "02 Feb",
-        "03 Feb",
-        "04 Feb",
-        "05 Feb",
-        "06 Feb",
-        "07 Feb",
-      ],
+      categories: ["01 Feb", "02 Feb", "03 Feb", "04 Feb", "05 Feb", "06 Feb", "07 Feb"],
       labels: {
         style: {
           colors: [labelColor],
@@ -253,21 +231,12 @@ const NewProductsThisWeek: FC = function () {
     <div className="rounded-lg bg-white p-4 shadow dark:bg-gray-800 sm:p-6 xl:p-8">
       <div className="flex items-center">
         <div className="shrink-0">
-          <span className="text-2xl font-bold leading-none text-gray-900 dark:text-white sm:text-3xl">
-            2,340
-          </span>
-          <h3 className="text-base font-normal text-gray-600 dark:text-gray-400">
-            New products this week
-          </h3>
+          <span className="text-2xl font-bold leading-none text-gray-900 dark:text-white sm:text-3xl">2,340</span>
+          <h3 className="text-base font-normal text-gray-600 dark:text-gray-400">New products this week</h3>
         </div>
         <div className="ml-5 flex w-0 flex-1 items-center justify-end text-base font-bold text-green-600 dark:text-green-400">
           14.6%
-          <svg
-            className="h-5 w-5"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
+          <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
             <path
               fillRule="evenodd"
               d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z"
@@ -292,12 +261,7 @@ const NewProductsThisWeek: FC = function () {
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </a>
         </div>
@@ -407,21 +371,12 @@ const VisitorsThisWeek: FC = function () {
     <div className="rounded-lg bg-white p-4 shadow dark:bg-gray-800 sm:p-6 xl:p-8">
       <div className="flex items-center">
         <div className="shrink-0">
-          <span className="text-2xl font-bold leading-none text-gray-900 dark:text-white sm:text-3xl">
-            5,355
-          </span>
-          <h3 className="text-base font-normal text-gray-600 dark:text-gray-400">
-            Visitors this week
-          </h3>
+          <span className="text-2xl font-bold leading-none text-gray-900 dark:text-white sm:text-3xl">5,355</span>
+          <h3 className="text-base font-normal text-gray-600 dark:text-gray-400">Visitors this week</h3>
         </div>
         <div className="ml-5 flex w-0 flex-1 items-center justify-end text-base font-bold text-green-600 dark:text-green-400">
           32.9%
-          <svg
-            className="h-5 w-5"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
+          <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
             <path
               fillRule="evenodd"
               d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z"
@@ -446,12 +401,7 @@ const VisitorsThisWeek: FC = function () {
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </a>
         </div>
@@ -468,15 +418,7 @@ const VisitorsChart: FC = function () {
   const fillGradientShadeIntensity = isDarkTheme ? 0.45 : 1;
 
   const options: ApexCharts.ApexOptions = {
-    labels: [
-      "01 Feb",
-      "02 Feb",
-      "03 Feb",
-      "04 Feb",
-      "05 Feb",
-      "06 Feb",
-      "07 Feb",
-    ],
+    labels: ["01 Feb", "02 Feb", "03 Feb", "04 Feb", "05 Feb", "06 Feb", "07 Feb"],
     chart: {
       fontFamily: "Inter, sans-serif",
       sparkline: {
@@ -526,21 +468,12 @@ const UserSignupsThisWeek: FC = function () {
     <div className="rounded-lg bg-white p-4 shadow dark:bg-gray-800 sm:p-6 xl:p-8">
       <div className="flex items-center">
         <div className="shrink-0">
-          <span className="text-2xl font-bold leading-none text-gray-900 dark:text-white sm:text-3xl">
-            385
-          </span>
-          <h3 className="text-base font-normal text-gray-600 dark:text-gray-400">
-            User signups this week
-          </h3>
+          <span className="text-2xl font-bold leading-none text-gray-900 dark:text-white sm:text-3xl">385</span>
+          <h3 className="text-base font-normal text-gray-600 dark:text-gray-400">User signups this week</h3>
         </div>
         <div className="ml-5 flex w-0 flex-1 items-center justify-end text-base font-bold text-red-600 dark:text-red-400">
           -2.7%
-          <svg
-            className="h-5 w-5"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
+          <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
             <path
               fillRule="evenodd"
               d="M14.707 12.293a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L9 14.586V3a1 1 0 012 0v11.586l2.293-2.293a1 1 0 011.414 0z"
@@ -565,12 +498,7 @@ const UserSignupsThisWeek: FC = function () {
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </a>
         </div>
@@ -584,35 +512,11 @@ const UserSignupsChart: FC = function () {
   const isDarkTheme = mode === "dark";
 
   const backgroundBarColors = isDarkTheme
-    ? [
-        "#374151",
-        "#374151",
-        "#374151",
-        "#374151",
-        "#374151",
-        "#374151",
-        "#374151",
-      ]
-    : [
-        "#E5E7EB",
-        "#E5E7EB",
-        "#E5E7EB",
-        "#E5E7EB",
-        "#E5E7EB",
-        "#E5E7EB",
-        "#E5E7EB",
-      ];
+    ? ["#374151", "#374151", "#374151", "#374151", "#374151", "#374151", "#374151"]
+    : ["#E5E7EB", "#E5E7EB", "#E5E7EB", "#E5E7EB", "#E5E7EB", "#E5E7EB", "#E5E7EB"];
 
   const options: ApexCharts.ApexOptions = {
-    labels: [
-      "01 Feb",
-      "02 Feb",
-      "03 Feb",
-      "04 Feb",
-      "05 Feb",
-      "06 Feb",
-      "07 Feb",
-    ],
+    labels: ["01 Feb", "02 Feb", "03 Feb", "04 Feb", "05 Feb", "06 Feb", "07 Feb"],
     chart: {
       foreColor: "#4B5563",
       fontFamily: "Inter, sans-serif",
@@ -693,9 +597,7 @@ const SessionsByCountry: FC = function () {
   return (
     <div className="mb-4 rounded-lg bg-white p-4 shadow dark:bg-gray-800 sm:p-6 xl:mb-0 xl:p-8 2xl:col-span-2">
       <div className="mb-4">
-        <h3 className="mb-2 text-xl font-bold text-gray-900 dark:text-white">
-          Sessions by country
-        </h3>
+        <h3 className="mb-2 text-xl font-bold text-gray-900 dark:text-white">Sessions by country</h3>
         <span className="text-base font-normal text-gray-600 dark:text-gray-400">
           View website visitors by hovering over the map
         </span>
@@ -704,19 +606,8 @@ const SessionsByCountry: FC = function () {
       <ul className="space-y-6">
         <li className="w-full items-center sm:flex">
           <div className="mb-3 flex items-center sm:mb-0">
-            <svg
-              className="h-4 w-4"
-              viewBox="0 0 26 18"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <rect
-                y="0.529053"
-                width="25.7522"
-                height="17.1429"
-                rx={2}
-                fill="white"
-              />
+            <svg className="h-4 w-4" viewBox="0 0 26 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect y="0.529053" width="25.7522" height="17.1429" rx={2} fill="white" />
               <mask
                 id="mask0"
                 style={{ maskType: "alpha" }}
@@ -726,13 +617,7 @@ const SessionsByCountry: FC = function () {
                 width={26}
                 height={18}
               >
-                <rect
-                  y="0.529053"
-                  width="25.7522"
-                  height="17.1429"
-                  rx={2}
-                  fill="white"
-                />
+                <rect y="0.529053" width="25.7522" height="17.1429" rx={2} fill="white" />
               </mask>
               <g mask="url(#mask0)">
                 <path
@@ -769,21 +654,9 @@ const SessionsByCountry: FC = function () {
                     result="hardAlpha"
                   />
                   <feOffset dy={1} />
-                  <feColorMatrix
-                    type="matrix"
-                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0"
-                  />
-                  <feBlend
-                    mode="normal"
-                    in2="BackgroundImageFix"
-                    result="effect1_dropShadow"
-                  />
-                  <feBlend
-                    mode="normal"
-                    in="SourceGraphic"
-                    in2="effect1_dropShadow"
-                    result="shape"
-                  />
+                  <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0" />
+                  <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow" />
+                  <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape" />
                 </filter>
                 <linearGradient
                   id="paint0_linear"
@@ -814,12 +687,7 @@ const SessionsByCountry: FC = function () {
         </li>
         <li className="w-full items-center sm:flex">
           <div className="mb-3 flex items-center sm:mb-0">
-            <svg
-              className="h-4 w-4"
-              viewBox="0 0 26 18"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+            <svg className="h-4 w-4" viewBox="0 0 26 18" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect
                 x="0.25"
                 y="0.779053"
@@ -851,19 +719,8 @@ const SessionsByCountry: FC = function () {
                 />
               </mask>
               <g mask="url(#mask0)">
-                <rect
-                  x="18.3975"
-                  y="0.529053"
-                  width="7.35907"
-                  height="17.1429"
-                  fill="#FF3131"
-                />
-                <path
-                  fillRule="evenodd"
-                  clipRule="evenodd"
-                  d="M0 17.6719H7.35907V0.529053H0V17.6719Z"
-                  fill="#FF3131"
-                />
+                <rect x="18.3975" y="0.529053" width="7.35907" height="17.1429" fill="#FF3131" />
+                <path fillRule="evenodd" clipRule="evenodd" d="M0 17.6719H7.35907V0.529053H0V17.6719Z" fill="#FF3131" />
                 <path
                   fillRule="evenodd"
                   clipRule="evenodd"
@@ -872,9 +729,7 @@ const SessionsByCountry: FC = function () {
                 />
               </g>
             </svg>
-            <span className="mx-5 ml-3 w-32 flex-none text-base font-medium text-gray-900 dark:text-white">
-              Canada
-            </span>
+            <span className="mx-5 ml-3 w-32 flex-none text-base font-medium text-gray-900 dark:text-white">Canada</span>
           </div>
           <div className="h-5 w-full rounded-lg bg-gray-200 dark:bg-gray-700">
             <div
@@ -888,12 +743,7 @@ const SessionsByCountry: FC = function () {
         </li>
         <li className="w-full items-center sm:flex">
           <div className="mb-3 flex items-center sm:mb-0">
-            <svg
-              className="h-4 w-4"
-              viewBox="0 0 26 18"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+            <svg className="h-4 w-4" viewBox="0 0 26 18" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect
                 x="0.25"
                 y="0.779053"
@@ -925,24 +775,11 @@ const SessionsByCountry: FC = function () {
                 />
               </mask>
               <g mask="url(#mask0)">
-                <rect
-                  x="17.1714"
-                  y="0.529053"
-                  width="8.58558"
-                  height="17.1429"
-                  fill="#F44653"
-                />
-                <path
-                  fillRule="evenodd"
-                  clipRule="evenodd"
-                  d="M0 17.6719H8.58558V0.529053H0V17.6719Z"
-                  fill="#1035BB"
-                />
+                <rect x="17.1714" y="0.529053" width="8.58558" height="17.1429" fill="#F44653" />
+                <path fillRule="evenodd" clipRule="evenodd" d="M0 17.6719H8.58558V0.529053H0V17.6719Z" fill="#1035BB" />
               </g>
             </svg>
-            <span className="mx-5 ml-3 w-32 flex-none text-base font-medium text-gray-900 dark:text-white">
-              France
-            </span>
+            <span className="mx-5 ml-3 w-32 flex-none text-base font-medium text-gray-900 dark:text-white">France</span>
           </div>
           <div className="h-5 w-full rounded-lg bg-gray-200 dark:bg-gray-700">
             <div
@@ -956,12 +793,7 @@ const SessionsByCountry: FC = function () {
         </li>
         <li className="w-full items-center sm:flex">
           <div className="mb-3 flex items-center sm:mb-0">
-            <svg
-              className="h-4 w-4"
-              viewBox="0 0 26 18"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+            <svg className="h-4 w-4" viewBox="0 0 26 18" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect
                 x="0.25"
                 y="0.779297"
@@ -993,24 +825,11 @@ const SessionsByCountry: FC = function () {
                 />
               </mask>
               <g mask="url(#mask0)">
-                <rect
-                  x="17.168"
-                  y="0.529297"
-                  width="8.58408"
-                  height="17.1429"
-                  fill="#E43D4C"
-                />
-                <path
-                  fillRule="evenodd"
-                  clipRule="evenodd"
-                  d="M0 17.6722H8.58408V0.529297H0V17.6722Z"
-                  fill="#1BB65D"
-                />
+                <rect x="17.168" y="0.529297" width="8.58408" height="17.1429" fill="#E43D4C" />
+                <path fillRule="evenodd" clipRule="evenodd" d="M0 17.6722H8.58408V0.529297H0V17.6722Z" fill="#1BB65D" />
               </g>
             </svg>
-            <span className="mx-5 ml-3 w-32 flex-none text-base font-medium text-gray-900 dark:text-white">
-              Italy
-            </span>
+            <span className="mx-5 ml-3 w-32 flex-none text-base font-medium text-gray-900 dark:text-white">Italy</span>
           </div>
           <div className="h-5 w-full rounded-lg bg-gray-200 dark:bg-gray-700">
             <div
@@ -1024,19 +843,8 @@ const SessionsByCountry: FC = function () {
         </li>
         <li className="w-full items-center sm:flex">
           <div className="mb-3 flex items-center sm:mb-0">
-            <svg
-              className="h-4 w-4"
-              viewBox="0 0 26 18"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <rect
-                y="0.529053"
-                width="25.7567"
-                height="17.1429"
-                rx={2}
-                fill="white"
-              />
+            <svg className="h-4 w-4" viewBox="0 0 26 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect y="0.529053" width="25.7567" height="17.1429" rx={2} fill="white" />
               <mask
                 id="mask0"
                 style={{ maskType: "alpha" }}
@@ -1046,21 +854,10 @@ const SessionsByCountry: FC = function () {
                 width={26}
                 height={18}
               >
-                <rect
-                  y="0.529053"
-                  width="25.7567"
-                  height="17.1429"
-                  rx={2}
-                  fill="white"
-                />
+                <rect y="0.529053" width="25.7567" height="17.1429" rx={2} fill="white" />
               </mask>
               <g mask="url(#mask0)">
-                <rect
-                  y="0.529053"
-                  width="25.7567"
-                  height="17.1429"
-                  fill="#0A17A7"
-                />
+                <rect y="0.529053" width="25.7567" height="17.1429" fill="#0A17A7" />
                 <path
                   d="M-0.951485 0.195719H0H0.613256H0.714042L0.797945 0.251562L5.00683 3.05286H6.04257L10.8708 0.241006L11.3719 -0.0508112V0.529053V0.921924C11.3719 1.14501 11.2604 1.3533 11.0746 1.4769L10.89 1.19941L11.0746 1.47691L7.07914 4.13618V4.94011L10.8133 7.92254C11.2032 8.23391 10.983 8.86239 10.4841 8.86239C10.3801 8.86239 10.2784 8.83164 10.1918 8.774M-0.951485 0.195719L10.1918 8.774M-0.951485 0.195719L-0.208022 0.78951L3.95946 4.118V4.92192L-0.184689 7.68013L-0.333333 7.77907V7.95763V8.52905V9.10892L0.16775 8.8171L4.99603 6.00524H6.03177L10.1918 8.774M-0.951485 0.195719L10.3764 8.49651L10.1918 8.774"
                   fill="#FF2E3B"
@@ -1157,12 +954,7 @@ const SessionsByCountry: FC = function () {
         </li>
         <li className="w-full items-center sm:flex">
           <div className="mb-3 flex items-center sm:mb-0">
-            <svg
-              className="h-4 w-4"
-              viewBox="0 0 26 18"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+            <svg className="h-4 w-4" viewBox="0 0 26 18" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect
                 x="0.25"
                 y="0.779053"
@@ -1194,18 +986,8 @@ const SessionsByCountry: FC = function () {
                 />
               </mask>
               <g mask="url(#mask0)">
-                <path
-                  fillRule="evenodd"
-                  clipRule="evenodd"
-                  d="M0 6.24334H25.7567V0.529053H0V6.24334Z"
-                  fill="#FFA44A"
-                />
-                <path
-                  fillRule="evenodd"
-                  clipRule="evenodd"
-                  d="M0 17.6718H25.7567V11.9575H0V17.6718Z"
-                  fill="#1A9F0B"
-                />
+                <path fillRule="evenodd" clipRule="evenodd" d="M0 6.24334H25.7567V0.529053H0V6.24334Z" fill="#FFA44A" />
+                <path fillRule="evenodd" clipRule="evenodd" d="M0 17.6718H25.7567V11.9575H0V17.6718Z" fill="#1A9F0B" />
                 <path
                   d="M12.8783 11.1481C14.0559 11.1481 15.0514 10.2532 15.0514 9.10052C15.0514 7.94786 14.0559 7.0529 12.8783 7.0529C11.7007 7.0529 10.7052 7.94786 10.7052 9.10052C10.7052 10.2532 11.7007 11.1481 12.8783 11.1481Z"
                   fill="#181A93"
@@ -1221,9 +1003,7 @@ const SessionsByCountry: FC = function () {
                 />
               </g>
             </svg>
-            <span className="mx-5 ml-3 w-32 flex-none text-base font-medium text-gray-900 dark:text-white">
-              India
-            </span>
+            <span className="mx-5 ml-3 w-32 flex-none text-base font-medium text-gray-900 dark:text-white">India</span>
           </div>
           <div className="h-5 w-full rounded-lg bg-gray-200 dark:bg-gray-700">
             <div
@@ -1251,12 +1031,7 @@ const SessionsByCountry: FC = function () {
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </a>
         </div>
@@ -1271,8 +1046,7 @@ const SessionsByCountryMap: FC = function () {
   const isDarkTheme = mode === "dark";
 
   useEffect(() => {
-    const previousMap =
-      document.getElementsByClassName("svgMap-map-wrapper")[0];
+    const previousMap = document.getElementsByClassName("svgMap-map-wrapper")[0];
     previousMap?.parentElement?.removeChild(previousMap);
 
     new svgMap({
@@ -1323,9 +1097,7 @@ const LatestCustomers: FC = function () {
   return (
     <div className="mb-4 h-full rounded-lg bg-white p-4 shadow dark:bg-gray-800 sm:p-6">
       <div className="mb-4 flex items-center justify-between">
-        <h3 className="text-xl font-bold leading-none text-gray-900 dark:text-white">
-          Latest Customers
-        </h3>
+        <h3 className="text-xl font-bold leading-none text-gray-900 dark:text-white">Latest Customers</h3>
         <a
           href="#"
           className="inline-flex items-center rounded-lg p-2 text-sm font-medium text-primary-700 hover:bg-gray-100 dark:text-primary-500 dark:hover:bg-gray-700"
@@ -1338,41 +1110,23 @@ const LatestCustomers: FC = function () {
           <li className="py-3 sm:py-4">
             <div className="flex items-center space-x-4">
               <div className="shrink-0">
-                <img
-                  className="h-8 w-8 rounded-full"
-                  src="../images/users/neil-sims.png"
-                  alt=""
-                />
+                <img className="h-8 w-8 rounded-full" src="../images/users/neil-sims.png" alt="" />
               </div>
               <div className="min-w-0 flex-1">
-                <p className="truncate text-sm font-medium text-gray-900 dark:text-white">
-                  Neil Sims
-                </p>
-                <p className="truncate text-sm text-gray-500 dark:text-gray-400">
-                  email@flowbite.com
-                </p>
+                <p className="truncate text-sm font-medium text-gray-900 dark:text-white">Neil Sims</p>
+                <p className="truncate text-sm text-gray-500 dark:text-gray-400">email@flowbite.com</p>
               </div>
-              <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                $320
-              </div>
+              <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">$320</div>
             </div>
           </li>
           <li className="py-3 sm:py-4">
             <div className="flex items-center space-x-4">
               <div className="shrink-0">
-                <img
-                  className="h-8 w-8 rounded-full"
-                  src="../images/users/bonnie-green.png"
-                  alt=""
-                />
+                <img className="h-8 w-8 rounded-full" src="../images/users/bonnie-green.png" alt="" />
               </div>
               <div className="min-w-0 flex-1">
-                <p className="truncate text-sm font-medium text-gray-900 dark:text-white">
-                  Bonnie Green
-                </p>
-                <p className="truncate text-sm text-gray-500 dark:text-gray-400">
-                  email@flowbite.com
-                </p>
+                <p className="truncate text-sm font-medium text-gray-900 dark:text-white">Bonnie Green</p>
+                <p className="truncate text-sm text-gray-500 dark:text-gray-400">email@flowbite.com</p>
               </div>
               <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
                 $3467
@@ -1382,41 +1136,23 @@ const LatestCustomers: FC = function () {
           <li className="py-3 sm:py-4">
             <div className="flex items-center space-x-4">
               <div className="shrink-0">
-                <img
-                  className="h-8 w-8 rounded-full"
-                  src="../images/users/michael-gough.png"
-                  alt=""
-                />
+                <img className="h-8 w-8 rounded-full" src="../images/users/michael-gough.png" alt="" />
               </div>
               <div className="min-w-0 flex-1">
-                <p className="truncate text-sm font-medium text-gray-900 dark:text-white">
-                  Michael Gough
-                </p>
-                <p className="truncate text-sm text-gray-500 dark:text-gray-400">
-                  email@flowbite.com
-                </p>
+                <p className="truncate text-sm font-medium text-gray-900 dark:text-white">Michael Gough</p>
+                <p className="truncate text-sm text-gray-500 dark:text-gray-400">email@flowbite.com</p>
               </div>
-              <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                $67
-              </div>
+              <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">$67</div>
             </div>
           </li>
           <li className="py-3 sm:py-4">
             <div className="flex items-center space-x-4">
               <div className="shrink-0">
-                <img
-                  className="h-8 w-8 rounded-full"
-                  src="../images/users/thomas-lean.png"
-                  alt=""
-                />
+                <img className="h-8 w-8 rounded-full" src="../images/users/thomas-lean.png" alt="" />
               </div>
               <div className="min-w-0 flex-1">
-                <p className="truncate text-sm font-medium text-gray-900 dark:text-white">
-                  Thomes Lean
-                </p>
-                <p className="truncate text-sm text-gray-500 dark:text-gray-400">
-                  email@flowbite.com
-                </p>
+                <p className="truncate text-sm font-medium text-gray-900 dark:text-white">Thomes Lean</p>
+                <p className="truncate text-sm text-gray-500 dark:text-gray-400">email@flowbite.com</p>
               </div>
               <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
                 $2367
@@ -1426,23 +1162,13 @@ const LatestCustomers: FC = function () {
           <li className="py-3 sm:py-4">
             <div className="flex items-center space-x-4">
               <div className="shrink-0">
-                <img
-                  className="h-8 w-8 rounded-full"
-                  src="../images/users/lana-byrd.png"
-                  alt=""
-                />
+                <img className="h-8 w-8 rounded-full" src="../images/users/lana-byrd.png" alt="" />
               </div>
               <div className="min-w-0 flex-1">
-                <p className="truncate text-sm font-medium text-gray-900 dark:text-white">
-                  Lana Byrd
-                </p>
-                <p className="truncate text-sm text-gray-500 dark:text-gray-400">
-                  email@flowbite.com
-                </p>
+                <p className="truncate text-sm font-medium text-gray-900 dark:text-white">Lana Byrd</p>
+                <p className="truncate text-sm text-gray-500 dark:text-gray-400">email@flowbite.com</p>
               </div>
-              <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                $367
-              </div>
+              <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">$367</div>
             </div>
           </li>
         </ul>
@@ -1462,12 +1188,7 @@ const LatestCustomers: FC = function () {
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </a>
         </div>
@@ -1479,9 +1200,7 @@ const LatestCustomers: FC = function () {
 const AcquisitionOverview: FC = function () {
   return (
     <div className="rounded-lg bg-white p-4 shadow dark:bg-gray-800 sm:p-6 xl:p-8">
-      <h3 className="text-xl font-bold leading-none text-gray-900 dark:text-white">
-        Acquisition Overview
-      </h3>
+      <h3 className="text-xl font-bold leading-none text-gray-900 dark:text-white">Acquisition Overview</h3>
       <div className="my-6">
         <AcquisitionChart />
       </div>
@@ -1514,10 +1233,7 @@ const AcquisitionOverview: FC = function () {
                         <span className="mr-2 text-xs font-medium">30%</span>
                         <div className="relative w-full">
                           <div className="h-2 w-full rounded-sm bg-gray-200 dark:bg-gray-700">
-                            <div
-                              className="h-2 rounded-sm bg-primary-700"
-                              style={{ width: "30%" }}
-                            />
+                            <div className="h-2 rounded-sm bg-primary-700" style={{ width: "30%" }} />
                           </div>
                         </div>
                       </div>
@@ -1535,10 +1251,7 @@ const AcquisitionOverview: FC = function () {
                         <span className="mr-2 text-xs font-medium">24%</span>
                         <div className="relative w-full">
                           <div className="h-2 w-full rounded-sm bg-gray-200 dark:bg-gray-700">
-                            <div
-                              className="h-2 rounded-sm bg-orange-300"
-                              style={{ width: "24%" }}
-                            />
+                            <div className="h-2 rounded-sm bg-orange-300" style={{ width: "24%" }} />
                           </div>
                         </div>
                       </div>
@@ -1556,10 +1269,7 @@ const AcquisitionOverview: FC = function () {
                         <span className="mr-2 text-xs font-medium">18%</span>
                         <div className="relative w-full">
                           <div className="h-2 w-full rounded-sm bg-gray-200 dark:bg-gray-700">
-                            <div
-                              className="h-2 rounded-sm bg-teal-400"
-                              style={{ width: "18%" }}
-                            />
+                            <div className="h-2 rounded-sm bg-teal-400" style={{ width: "18%" }} />
                           </div>
                         </div>
                       </div>
@@ -1577,10 +1287,7 @@ const AcquisitionOverview: FC = function () {
                         <span className="mr-2 text-xs font-medium">12%</span>
                         <div className="relative w-full">
                           <div className="h-2 w-full rounded-sm bg-gray-200 dark:bg-gray-700">
-                            <div
-                              className="h-2 rounded-sm bg-pink-600"
-                              style={{ width: "12%" }}
-                            />
+                            <div className="h-2 rounded-sm bg-pink-600" style={{ width: "12%" }} />
                           </div>
                         </div>
                       </div>
@@ -1598,10 +1305,7 @@ const AcquisitionOverview: FC = function () {
                         <span className="mr-2 text-xs font-medium">9%</span>
                         <div className="relative w-full">
                           <div className="h-2 w-full rounded-sm bg-gray-200 dark:bg-gray-700">
-                            <div
-                              className="h-2 rounded-sm bg-indigo-600"
-                              style={{ width: "9%" }}
-                            />
+                            <div className="h-2 rounded-sm bg-indigo-600" style={{ width: "9%" }} />
                           </div>
                         </div>
                       </div>
@@ -1619,10 +1323,7 @@ const AcquisitionOverview: FC = function () {
                         <span className="mr-2 text-xs font-medium">7%</span>
                         <div className="relative w-full">
                           <div className="h-2 w-full rounded-sm bg-gray-200 dark:bg-gray-700">
-                            <div
-                              className="h-2 rounded-sm bg-purple-500"
-                              style={{ width: "7%" }}
-                            />
+                            <div className="h-2 rounded-sm bg-purple-500" style={{ width: "7%" }} />
                           </div>
                         </div>
                       </div>
@@ -1649,12 +1350,7 @@ const AcquisitionOverview: FC = function () {
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </a>
         </div>
@@ -1735,9 +1431,7 @@ const Transactions: FC = function () {
     <div className="rounded-lg bg-white p-4 shadow dark:bg-gray-800 sm:p-6 xl:p-8">
       <div className="mb-4 flex items-center justify-between">
         <div>
-          <h3 className="mb-2 text-xl font-bold text-gray-900 dark:text-white">
-            Transactions
-          </h3>
+          <h3 className="mb-2 text-xl font-bold text-gray-900 dark:text-white">Transactions</h3>
           <span className="text-base font-normal text-gray-600 dark:text-gray-400">
             This is a list of latest transactions
           </span>
@@ -1755,10 +1449,7 @@ const Transactions: FC = function () {
         <div className="overflow-x-auto rounded-lg">
           <div className="inline-block min-w-full align-middle">
             <div className="overflow-hidden shadow sm:rounded-lg">
-              <Table
-                striped
-                className="min-w-full divide-y divide-gray-200 dark:divide-gray-600"
-              >
+              <Table striped className="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
                 <Table.Head className="bg-gray-50 dark:bg-gray-700">
                   <Table.HeadCell>Transaction</Table.HeadCell>
                   <Table.HeadCell>Date &amp; Time</Table.HeadCell>
@@ -1768,8 +1459,7 @@ const Transactions: FC = function () {
                 <Table.Body className="bg-white dark:bg-gray-800">
                   <Table.Row>
                     <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-900 dark:text-white">
-                      Payment from{" "}
-                      <span className="font-semibold">Bonnie Green</span>
+                      Payment from <span className="font-semibold">Bonnie Green</span>
                     </Table.Cell>
                     <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
                       Apr 23, 2021
@@ -1783,8 +1473,7 @@ const Transactions: FC = function () {
                   </Table.Row>
                   <Table.Row>
                     <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-900 dark:text-white">
-                      Payment refund to{" "}
-                      <span className="font-semibold">#00910</span>
+                      Payment refund to <span className="font-semibold">#00910</span>
                     </Table.Cell>
                     <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
                       Apr 23, 2021
@@ -1798,8 +1487,7 @@ const Transactions: FC = function () {
                   </Table.Row>
                   <Table.Row>
                     <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-900 dark:text-white">
-                      Payment failed from{" "}
-                      <span className="font-semibold">#087651</span>
+                      Payment failed from <span className="font-semibold">#087651</span>
                     </Table.Cell>
                     <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
                       Apr 18, 2021
@@ -1813,8 +1501,7 @@ const Transactions: FC = function () {
                   </Table.Row>
                   <Table.Row>
                     <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-900 dark:text-white">
-                      Payment from{" "}
-                      <span className="font-semibold">Lana Byrd</span>
+                      Payment from <span className="font-semibold">Lana Byrd</span>
                     </Table.Cell>
                     <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
                       Apr 15, 2021
@@ -1830,8 +1517,7 @@ const Transactions: FC = function () {
                   </Table.Row>
                   <Table.Row>
                     <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-900 dark:text-white">
-                      Payment from{" "}
-                      <span className="font-semibold">Jese Leos</span>
+                      Payment from <span className="font-semibold">Jese Leos</span>
                     </Table.Cell>
                     <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
                       Apr 15, 2021
@@ -1845,8 +1531,7 @@ const Transactions: FC = function () {
                   </Table.Row>
                   <Table.Row>
                     <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-900 dark:text-white">
-                      Payment from{" "}
-                      <span className="font-semibold">THEMESBERG LLC</span>
+                      Payment from <span className="font-semibold">THEMESBERG LLC</span>
                     </Table.Cell>
                     <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
                       Apr 11, 2021
@@ -1860,8 +1545,7 @@ const Transactions: FC = function () {
                   </Table.Row>
                   <Table.Row>
                     <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-900 dark:text-white">
-                      Payment from{" "}
-                      <span className="font-semibold">Lana Lysle</span>
+                      Payment from <span className="font-semibold">Lana Lysle</span>
                     </Table.Cell>
                     <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
                       Apr 6, 2021
@@ -1875,8 +1559,7 @@ const Transactions: FC = function () {
                   </Table.Row>
                   <Table.Row>
                     <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-900 dark:text-white">
-                      Payment to{" "}
-                      <span className="font-semibold">Joseph Mcfall</span>
+                      Payment to <span className="font-semibold">Joseph Mcfall</span>
                     </Table.Cell>
                     <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
                       Apr 1, 2021
@@ -1890,8 +1573,7 @@ const Transactions: FC = function () {
                   </Table.Row>
                   <Table.Row>
                     <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-900 dark:text-white">
-                      Payment from{" "}
-                      <span className="font-semibold">Alphabet LLC</span>
+                      Payment from <span className="font-semibold">Alphabet LLC</span>
                     </Table.Cell>
                     <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
                       Mar 23, 2021
@@ -1907,8 +1589,7 @@ const Transactions: FC = function () {
                   </Table.Row>
                   <Table.Row>
                     <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-900 dark:text-white">
-                      Payment from{" "}
-                      <span className="font-semibold">Bonnie Green</span>
+                      Payment from <span className="font-semibold">Bonnie Green</span>
                     </Table.Cell>
                     <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
                       Mar 23, 2021
@@ -1941,12 +1622,7 @@ const Transactions: FC = function () {
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </a>
         </div>

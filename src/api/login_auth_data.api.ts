@@ -27,10 +27,10 @@ export const zaloguj = async (credentials: DaneLogowania): Promise<OdpowiedzLogo
     if (error.response && error.response.data) {
       return error.response.data as OdpowiedzLogowania;
     }
-    
-    return { 
-      success: false, 
-      error: "Błąd połączenia z serwerem" 
+
+    return {
+      success: false,
+      error: "Błąd połączenia z serwerem",
     };
   }
-}; 
+};

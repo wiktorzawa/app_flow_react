@@ -29,10 +29,10 @@ class AllegroController {
 
     const state = crypto.randomUUID();
     const { url, verifier } = allegroService.buildLoginUrl(state);
-    
+
     // Zapisz oba stringi w sesji
     (req.session as AllegroAuthSession).allegroAuth = { verifier, state };
-    
+
     // Przekieruj użytkownika lub zwróć URL do przekierowania na frontendzie
     // Dla przykładu, przekierowujemy bezpośrednio:
     console.log(`--- AllegroController: initLogin ---`);
@@ -55,12 +55,12 @@ class AllegroController {
     console.log(`Received code: ${code}, state: ${state}`);
     console.log(`Session allegroAuth:`, authContext);
 
-    if (!authContext || typeof state !== 'string' || state !== authContext.state) {
+    if (!authContext || typeof state !== "string" || state !== authContext.state) {
       console.error("CSRF state mismatch or auth context missing.");
       throw new Error("CSRF state mismatch or session error.");
     }
 
-    if (typeof code !== 'string') {
+    if (typeof code !== "string") {
       console.error("Authorization code missing or invalid.");
       throw new Error("Authorization code missing or invalid.");
     }
@@ -73,11 +73,11 @@ class AllegroController {
       // Przekieruj użytkownika do miejsca docelowego w aplikacji, np. profilu
       // Tutaj dla przykładu wysyłamy tokeny jako JSON (NIEZALECANE W PRODUKCJI DLA TOKENÓW)
       // Lepiej przekierować i odczytać z sesji na kolejnej stronie
-      res.json({ message: "Login successful. Tokens obtained.", tokens: tokenData }); 
+      res.json({ message: "Login successful. Tokens obtained.", tokens: tokenData });
     } catch (error) {
-        console.error("Error in handleCallback while exchanging code for token:", error);
-        // Możesz chcieć przekierować do strony błędu
-        res.status(500).json({ error: "Failed to exchange code for token", details: (error as Error).message });
+      console.error("Error in handleCallback while exchanging code for token:", error);
+      // Możesz chcieć przekierować do strony błędu
+      res.status(500).json({ error: "Failed to exchange code for token", details: (error as Error).message });
     }
   });
 
@@ -107,7 +107,6 @@ class AllegroController {
     const categories = await allegroService.fetchCategories();
     res.json(categories);
   });
-
 }
 
 export const allegroController = new AllegroController();

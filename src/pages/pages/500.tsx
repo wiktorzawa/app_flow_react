@@ -10,8 +10,7 @@ const ServerErrorPage: FC = function () {
         Something has gone seriously wrong
       </h1>
       <p className="mb-6 w-4/5 text-center text-lg text-gray-500 dark:text-gray-300">
-        It's always time for a coffee break. We should be back by the time you
-        finish your coffee.
+        It's always time for a coffee break. We should be back by the time you finish your coffee.
       </p>
       <Button href="/">
         <div className="mr-1 flex items-center gap-x-2">

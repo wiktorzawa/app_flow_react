@@ -18,9 +18,7 @@ const UserProfilePage: FC = function () {
             <Breadcrumb.Item href="/users/list">Users</Breadcrumb.Item>
             <Breadcrumb.Item>Profile</Breadcrumb.Item>
           </Breadcrumb>
-          <h1 className="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">
-            Profile
-          </h1>
+          <h1 className="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">Profile</h1>
         </div>
         <div className="col-span-full xl:col-auto">
           <ProfileIntro />
@@ -40,11 +38,7 @@ const ProfileIntro: FC = function () {
   return (
     <div className="mb-4 rounded-lg bg-white p-4 shadow dark:bg-gray-800 sm:p-6 xl:p-8">
       <div className="sm:flex sm:space-x-4 xl:block xl:space-x-0">
-        <img
-          alt=""
-          src="../../images/users/jese-leos-2x.png"
-          className="mb-2 h-20 w-20 rounded-lg"
-        />
+        <img alt="" src="../../images/users/jese-leos-2x.png" className="mb-2 h-20 w-20 rounded-lg" />
         <div>
           <h2 className="text-xl font-bold dark:text-white">Jese Leos</h2>
           <ul className="mt-2 space-y-1">
@@ -63,10 +57,7 @@ const ProfileIntro: FC = function () {
         <div className="sm:flex-1">
           <address className="text-sm font-normal not-italic text-gray-500 dark:text-gray-400">
             <div className="mt-4">Email address</div>
-            <a
-              className="text-sm font-medium text-gray-900 dark:text-white"
-              href="mailto:webmaster@flowbite.com"
-            >
+            <a className="text-sm font-medium text-gray-900 dark:text-white" href="mailto:webmaster@flowbite.com">
               yourname@flowbite.com
             </a>
             <div className="mt-4">Home address</div>
@@ -75,35 +66,22 @@ const ProfileIntro: FC = function () {
               United States of America
             </div>
             <div className="mt-4">Phone number</div>
-            <div className="mb-2 text-sm font-medium text-gray-900 dark:text-white">
-              +00 123 456 789 / +12 345 678
-            </div>
+            <div className="mb-2 text-sm font-medium text-gray-900 dark:text-white">+00 123 456 789 / +12 345 678</div>
           </address>
         </div>
         <div className="hidden sm:flex-1">
-          <h3 className="mb-2 text-base font-bold text-gray-900 dark:text-white">
-            About
-          </h3>
+          <h3 className="mb-2 text-base font-bold text-gray-900 dark:text-white">About</h3>
           <p className="text-sm font-normal text-gray-500 dark:text-gray-400">
-            Dedicated, passionate, and accomplished Full Stack Developer with 9+
-            years of progressive experience working as an Independent Contractor
-            for Google and developing and growing my educational social network
-            that helps others learn programming, web design, game development,
-            networking.
+            Dedicated, passionate, and accomplished Full Stack Developer with 9+ years of progressive experience working
+            as an Independent Contractor for Google and developing and growing my educational social network that helps
+            others learn programming, web design, game development, networking.
           </p>
         </div>
       </div>
       <div>
-        <h3 className="mb-2 text-base font-bold text-gray-900 dark:text-white">
-          Software Skill
-        </h3>
+        <h3 className="mb-2 text-base font-bold text-gray-900 dark:text-white">Software Skill</h3>
         <div className="flex space-x-3">
-          <svg
-            className="h-6 w-6"
-            viewBox="0 0 17 18"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
+          <svg className="h-6 w-6" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M15.1558 0.559692H1.51087C0.676432 0.559692 0 1.23742 0 2.07346V15.7446C0 16.5806 0.676432 17.2583 1.51087 17.2583H15.1558C15.9902 17.2583 16.6667 16.5806 16.6667 15.7446V2.07346C16.6667 1.23742 15.9902 0.559692 15.1558 0.559692Z"
               fill="#DC395F"
@@ -115,55 +93,21 @@ const ProfileIntro: FC = function () {
               fill="white"
             />
           </svg>
-          <svg
-            className="h-6 w-6"
-            viewBox="0 0 18 16"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
+          <svg className="h-6 w-6" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M4.297 0.762876L8.9845 0.259155L13.672 0.762876L17.301 5.71471L8.9845 15.5586L0.667969 5.71471L4.297 0.762876Z"
               fill="#FDB300"
             />
-            <path
-              d="M4.03524 5.71497L8.98317 15.5589L0.666626 5.71497H4.03524Z"
-              fill="#EA6C00"
-            />
-            <path
-              d="M13.929 5.71497L8.98107 15.5589L17.2976 5.71497H13.929Z"
-              fill="#EA6C00"
-            />
-            <path
-              d="M4.03467 5.71497H13.9305L8.9826 15.5589L4.03467 5.71497Z"
-              fill="#FDAD00"
-            />
-            <path
-              d="M8.98272 0.259277L4.2952 0.762992L4.03479 5.71483L8.98272 0.259277Z"
-              fill="#FDD231"
-            />
-            <path
-              d="M8.98164 0.259277L13.6692 0.762992L13.9296 5.71483L8.98164 0.259277Z"
-              fill="#FDD231"
-            />
-            <path
-              d="M17.2987 5.71453L13.6696 0.762695L13.9301 5.71453H17.2987Z"
-              fill="#FDAD00"
-            />
-            <path
-              d="M0.666626 5.71453L4.29565 0.762695L4.03524 5.71453H0.666626Z"
-              fill="#FDAD00"
-            />
-            <path
-              d="M8.98272 0.259277L4.03479 5.71483H13.9306L8.98272 0.259277Z"
-              fill="#FEEEB7"
-            />
+            <path d="M4.03524 5.71497L8.98317 15.5589L0.666626 5.71497H4.03524Z" fill="#EA6C00" />
+            <path d="M13.929 5.71497L8.98107 15.5589L17.2976 5.71497H13.929Z" fill="#EA6C00" />
+            <path d="M4.03467 5.71497H13.9305L8.9826 15.5589L4.03467 5.71497Z" fill="#FDAD00" />
+            <path d="M8.98272 0.259277L4.2952 0.762992L4.03479 5.71483L8.98272 0.259277Z" fill="#FDD231" />
+            <path d="M8.98164 0.259277L13.6692 0.762992L13.9296 5.71483L8.98164 0.259277Z" fill="#FDD231" />
+            <path d="M17.2987 5.71453L13.6696 0.762695L13.9301 5.71453H17.2987Z" fill="#FDAD00" />
+            <path d="M0.666626 5.71453L4.29565 0.762695L4.03524 5.71453H0.666626Z" fill="#FDAD00" />
+            <path d="M8.98272 0.259277L4.03479 5.71483H13.9306L8.98272 0.259277Z" fill="#FEEEB7" />
           </svg>
-          <svg
-            className="h-6 w-6"
-            viewBox="0 0 12 18"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
+          <svg className="h-6 w-6" viewBox="0 0 12 18" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M3.07892 17.2564C4.61226 17.2564 5.8567 16.0098 5.8567 14.4738V11.6913H3.07892C1.54559 11.6913 0.301147 12.9379 0.301147 14.4738C0.301147 16.0098 1.54559 17.2564 3.07892 17.2564Z"
               fill="#0ACF83"
@@ -185,26 +129,15 @@ const ProfileIntro: FC = function () {
               fill="#1ABCFE"
             />
           </svg>
-          <svg
-            className="h-6 w-6"
-            viewBox="0 0 13 18"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
+          <svg className="h-6 w-6" viewBox="0 0 13 18" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               fillRule="evenodd"
               clipRule="evenodd"
               d="M4.12203 1.09285H4.79923V2.63598H5.5665V1.09285H6.24703V0.321289H4.12203V1.09285ZM2.30926 0.321317H1.54199V2.63602H2.31593V1.86445H3.01648V2.63602H3.78375V0.321317H3.01648V1.08618H2.30926V0.321317ZM6.58222 0.321289H7.38618L7.8799 1.13646L8.37362 0.321289H9.17759V2.63598H8.41032V1.4887L7.87323 2.32065L7.33614 1.4887V2.63598H6.58222V0.321289ZM10.3271 0.321289H9.5598V2.63598H11.4146V1.87113H10.3271V0.321289Z"
               fill="black"
             />
-            <path
-              d="M1.51371 16.1212L0.412842 3.69568H12.5157L11.4148 16.1145L6.45425 17.4966"
-              fill="#E44D26"
-            />
-            <path
-              d="M6.46338 16.4406V4.71619H11.4106L10.4665 15.3168"
-              fill="#F16529"
-            />
+            <path d="M1.51371 16.1212L0.412842 3.69568H12.5157L11.4148 16.1145L6.45425 17.4966" fill="#E44D26" />
+            <path d="M6.46338 16.4406V4.71619H11.4106L10.4665 15.3168" fill="#F16529" />
             <path
               fillRule="evenodd"
               clipRule="evenodd"
@@ -218,12 +151,7 @@ const ProfileIntro: FC = function () {
               fill="white"
             />
           </svg>
-          <svg
-            className="h-6 w-6"
-            viewBox="0 0 16 16"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
+          <svg className="h-6 w-6" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M13.2726 15.2265H3.03646C1.64757 15.2265 0.515625 14.1118 0.515625 12.744V3.07392C0.515625 1.70616 1.64757 0.591431 3.03646 0.591431H13.2656C14.6615 0.591431 15.7865 1.70616 15.7865 3.07392V12.7372C15.7934 14.1118 14.6615 15.2265 13.2726 15.2265Z"
               fill="#2E001F"
@@ -358,93 +286,56 @@ const Hobbies: FC = function () {
 const GeneralInformation: FC = function () {
   return (
     <div className="mb-4 rounded-lg bg-white p-4 shadow dark:bg-gray-800 sm:p-6 xl:p-8">
-      <h3 className="mb-4 text-xl font-bold dark:text-white">
-        General information
-      </h3>
+      <h3 className="mb-4 text-xl font-bold dark:text-white">General information</h3>
       <dl className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
         <div className="sm:col-span-2">
-          <dt className="text-lg font-medium text-gray-900 dark:text-white">
-            About me
-          </dt>
+          <dt className="text-lg font-medium text-gray-900 dark:text-white">About me</dt>
           <dd className="mt-1 max-w-prose space-y-3 text-sm text-gray-500 dark:text-gray-400">
             <p>
-              Tincidunt quam neque in cursus viverra orci, dapibus nec
-              tristique. Nullam ut sit dolor consectetur urna, dui cras nec sed.
-              Cursus risus congue arcu aenean posuere aliquam.
+              Tincidunt quam neque in cursus viverra orci, dapibus nec tristique. Nullam ut sit dolor consectetur urna,
+              dui cras nec sed. Cursus risus congue arcu aenean posuere aliquam.
             </p>
             <p>
-              Et vivamus lorem pulvinar nascetur non. Pulvinar a sed platea
-              rhoncus ac mauris amet. Urna, sem pretium sit pretium urna,
-              senectus vitae. Scelerisque fermentum, cursus felis dui
-              suspendisse velit pharetra. Augue et duis cursus maecenas eget
-              quam lectus. Accumsan vitae nascetur pharetra rhoncus praesent
-              dictum risus suspendisse.
+              Et vivamus lorem pulvinar nascetur non. Pulvinar a sed platea rhoncus ac mauris amet. Urna, sem pretium
+              sit pretium urna, senectus vitae. Scelerisque fermentum, cursus felis dui suspendisse velit pharetra.
+              Augue et duis cursus maecenas eget quam lectus. Accumsan vitae nascetur pharetra rhoncus praesent dictum
+              risus suspendisse.
             </p>
           </dd>
         </div>
         <div>
-          <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
-            Education
-          </dt>
+          <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">Education</dt>
           <dd className="text-sm font-semibold text-gray-900 dark:text-white">
             Thomas Jeff High School, Stanford University
           </dd>
         </div>
         <div>
-          <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
-            Work History
-          </dt>
-          <dd className="text-sm font-semibold text-gray-900 dark:text-white">
-            Twitch, Google, Apple
-          </dd>
+          <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">Work History</dt>
+          <dd className="text-sm font-semibold text-gray-900 dark:text-white">Twitch, Google, Apple</dd>
         </div>
         <div>
-          <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
-            Join Date
-          </dt>
-          <dd className="text-sm font-semibold text-gray-900 dark:text-white">
-            12-09-2021
-          </dd>
+          <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">Join Date</dt>
+          <dd className="text-sm font-semibold text-gray-900 dark:text-white">12-09-2021</dd>
         </div>
         <div>
-          <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
-            Languages
-          </dt>
-          <dd className="text-sm font-semibold text-gray-900 dark:text-white">
-            English, German, Italian, Spanish
-          </dd>
+          <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">Languages</dt>
+          <dd className="text-sm font-semibold text-gray-900 dark:text-white">English, German, Italian, Spanish</dd>
         </div>
         <div>
-          <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
-            Organization
-          </dt>
-          <dd className="text-sm font-semibold text-gray-900 dark:text-white">
-            Themesberg LLC
-          </dd>
+          <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">Organization</dt>
+          <dd className="text-sm font-semibold text-gray-900 dark:text-white">Themesberg LLC</dd>
         </div>
         <div>
-          <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
-            Role
-          </dt>
-          <dd className="text-sm font-semibold text-gray-900 dark:text-white">
-            Graphic Designer
-          </dd>
+          <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">Role</dt>
+          <dd className="text-sm font-semibold text-gray-900 dark:text-white">Graphic Designer</dd>
         </div>
         <div>
-          <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
-            Department
-          </dt>
-          <dd className="text-sm font-semibold text-gray-900 dark:text-white">
-            Marketing
-          </dd>
+          <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">Department</dt>
+          <dd className="text-sm font-semibold text-gray-900 dark:text-white">Marketing</dd>
         </div>
         <div>
-          <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
-            Birthday
-          </dt>
-          <dd className="text-sm font-semibold text-gray-900 dark:text-white">
-            15-08-1990
-          </dd>
+          <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">Birthday</dt>
+          <dd className="text-sm font-semibold text-gray-900 dark:text-white">15-08-1990</dd>
         </div>
       </dl>
     </div>
@@ -457,53 +348,37 @@ const ProgressBars: FC = function () {
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-16 lg:gap-8 2xl:gap-24">
         <div className="space-y-6">
           <div>
-            <div className="mb-1 text-base font-medium text-gray-500 dark:text-gray-400">
-              Figma
-            </div>
+            <div className="mb-1 text-base font-medium text-gray-500 dark:text-gray-400">Figma</div>
             <Progress progress={95} color="dark" />
           </div>
           <div>
-            <div className="mb-1 text-base font-medium text-gray-500 dark:text-gray-400">
-              Php
-            </div>
+            <div className="mb-1 text-base font-medium text-gray-500 dark:text-gray-400">Php</div>
             <Progress progress={55} color="dark" />
           </div>
           <div>
-            <div className="mb-1 text-base font-medium text-gray-500 dark:text-gray-400">
-              HTML
-            </div>
+            <div className="mb-1 text-base font-medium text-gray-500 dark:text-gray-400">HTML</div>
             <Progress progress={85} color="dark" />
           </div>
           <div>
-            <div className="mb-1 text-base font-medium text-gray-500 dark:text-gray-400">
-              React
-            </div>
+            <div className="mb-1 text-base font-medium text-gray-500 dark:text-gray-400">React</div>
             <Progress progress={65} color="dark" />
           </div>
         </div>
         <div className="space-y-6">
           <div>
-            <div className="mb-1 text-base font-medium text-gray-500 dark:text-gray-400">
-              Vue
-            </div>
+            <div className="mb-1 text-base font-medium text-gray-500 dark:text-gray-400">Vue</div>
             <Progress progress={45} color="dark" />
           </div>
           <div>
-            <div className="mb-1 text-base font-medium text-gray-500 dark:text-gray-400">
-              Marketing
-            </div>
+            <div className="mb-1 text-base font-medium text-gray-500 dark:text-gray-400">Marketing</div>
             <Progress progress={90} color="dark" />
           </div>
           <div>
-            <div className="mb-1 text-base font-medium text-gray-500 dark:text-gray-400">
-              Product Design
-            </div>
+            <div className="mb-1 text-base font-medium text-gray-500 dark:text-gray-400">Product Design</div>
             <Progress progress={99} color="dark" />
           </div>
           <div>
-            <div className="mb-1 text-base font-medium text-gray-500 dark:text-gray-400">
-              Angular
-            </div>
+            <div className="mb-1 text-base font-medium text-gray-500 dark:text-gray-400">Angular</div>
             <Progress progress={45} color="dark" />
           </div>
         </div>

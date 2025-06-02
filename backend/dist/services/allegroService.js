@@ -27,10 +27,7 @@ class AllegroService {
         return crypto_1.default.randomBytes(64).toString("base64url");
     }
     generateCodeChallenge(verifier) {
-        return crypto_1.default
-            .createHash("sha256")
-            .update(verifier)
-            .digest("base64url");
+        return crypto_1.default.createHash("sha256").update(verifier).digest("base64url");
     }
     getBasicAuthHeader() {
         return Buffer.from(`${config_1.config.allegroClientId}:${config_1.config.allegroClientSecret}`).toString("base64");
@@ -135,7 +132,8 @@ class AllegroService {
         loginUrl.searchParams.set("response_type", "code");
         loginUrl.searchParams.set("client_id", config_1.config.allegroClientId);
         loginUrl.searchParams.set("redirect_uri", config_1.config.allegroRedirectUri);
-        if (config_1.config.allegroScope) { // Dodajemy scope tylko jeśli jest zdefiniowany
+        if (config_1.config.allegroScope) {
+            // Dodajemy scope tylko jeśli jest zdefiniowany
             loginUrl.searchParams.set("scope", config_1.config.allegroScope);
         }
         loginUrl.searchParams.set("state", state);

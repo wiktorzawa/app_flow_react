@@ -49,9 +49,7 @@ const KanbanPage: FC = function () {
           <div className="mb-6 flex items-start justify-start space-x-4 px-4">
             {list.map((board) => (
               <div key={board.id}>
-                <div className="py-4 text-base font-semibold text-gray-900 dark:text-gray-300">
-                  {board.title}
-                </div>
+                <div className="py-4 text-base font-semibold text-gray-900 dark:text-gray-300">{board.title}</div>
                 <div className="mb-6 space-y-4">
                   <ReactSortable
                     animation={100}
@@ -61,9 +59,7 @@ const KanbanPage: FC = function () {
                     setList={(tasks) =>
                       setList((list) => {
                         const newList = [...list];
-                        const index = newList.findIndex(
-                          (item) => item.id === board.id
-                        );
+                        const index = newList.findIndex((item) => item.id === board.id);
                         newList[index]!.tasks = tasks;
                         return newList;
                       })
@@ -75,21 +71,13 @@ const KanbanPage: FC = function () {
                         className="mb-4 w-[28rem] cursor-grab rounded-lg bg-white p-4 shadow-md dark:bg-gray-800"
                       >
                         <div className="flex items-center justify-between pb-4">
-                          <div className="text-base font-semibold text-gray-900 dark:text-white">
-                            {task.name}
-                          </div>
+                          <div className="text-base font-semibold text-gray-900 dark:text-white">{task.name}</div>
                           <div className="w-8">
                             <EditCardModal />
                           </div>
                         </div>
                         <div className="flex flex-col">
-                          {task.attachment && (
-                            <img
-                              alt=""
-                              src={task.attachment}
-                              className="mb-3 rounded-lg"
-                            />
-                          )}
+                          {task.attachment && <img alt="" src={task.attachment} className="mb-3 rounded-lg" />}
                           <div className="pb-4 text-sm font-normal text-gray-700 dark:text-gray-400">
                             {task.description}
                           </div>
@@ -171,11 +159,7 @@ const EditCardModal: FC = function () {
             </div>
             <div className="flex flex-row flex-wrap">
               <div className="flex items-center justify-start">
-                <a
-                  href="#"
-                  data-tooltip-target="bonnie-tooltip"
-                  className="-mr-3"
-                >
+                <a href="#" data-tooltip-target="bonnie-tooltip" className="-mr-3">
                   <img
                     className="h-7 w-7 rounded-full border-2 border-white dark:border-gray-800"
                     src="../images/users/bonnie-green.png"
@@ -189,11 +173,7 @@ const EditCardModal: FC = function () {
                 >
                   Bonnie Green
                 </div>
-                <a
-                  href="#"
-                  data-tooltip-target="roberta-tooltip"
-                  className="-mr-3"
-                >
+                <a href="#" data-tooltip-target="roberta-tooltip" className="-mr-3">
                   <img
                     className="h-7 w-7 rounded-full border-2 border-white dark:border-gray-800"
                     src="../images/users/roberta-casas.png"
@@ -207,11 +187,7 @@ const EditCardModal: FC = function () {
                 >
                   Roberta Casas
                 </div>
-                <a
-                  href="#"
-                  data-tooltip-target="michael-tooltip"
-                  className="-mr-3"
-                >
+                <a href="#" data-tooltip-target="michael-tooltip" className="-mr-3">
                   <img
                     className="h-7 w-7 rounded-full border-2 border-white dark:border-gray-800"
                     src="../images/users/michael-gough.png"
@@ -226,19 +202,13 @@ const EditCardModal: FC = function () {
                   Michael Gough
                 </div>
               </div>
-              <Button
-                color="gray"
-                className="ml-5 font-bold dark:bg-gray-600 [&>*]:py-1"
-              >
+              <Button color="gray" className="ml-5 font-bold dark:bg-gray-600 [&>*]:py-1">
                 <div className="flex items-center gap-x-2 text-xs">
                   <HiPlus />
                   Join
                 </div>
               </Button>
-              <Button
-                color="gray"
-                className="ml-3 font-bold dark:bg-gray-600 [&>*]:py-1"
-              >
+              <Button color="gray" className="ml-3 font-bold dark:bg-gray-600 [&>*]:py-1">
                 <div className="flex items-center gap-x-2 text-xs">
                   <HiPaperClip />
                   Attachment
@@ -247,12 +217,7 @@ const EditCardModal: FC = function () {
             </div>
           </div>
           <div className="mb-2 inline-flex items-center text-center text-lg font-semibold text-gray-900 dark:text-white">
-            <svg
-              className="mr-1 h-5 w-5"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+            <svg className="mr-1 h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
               <path
                 fillRule="evenodd"
                 d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z"
@@ -263,16 +228,13 @@ const EditCardModal: FC = function () {
           </div>
           <div className="mb-4 space-y-2 text-base text-gray-500 dark:text-gray-400">
             <p>
-              I made some wireframes that we would like you to follow since we
-              are building it in Google’s Material Design (Please learn more
-              about this and see how to improve standard material design into
-              something beautiful). But besides that, you can just do it how you
-              like.
+              I made some wireframes that we would like you to follow since we are building it in Google’s Material
+              Design (Please learn more about this and see how to improve standard material design into something
+              beautiful). But besides that, you can just do it how you like.
             </p>
             <p>
-              Next Friday should be done. Next Monday we should deliver the
-              first iteration. Make sure, we have a good result to be delivered
-              by the day.
+              Next Friday should be done. Next Monday we should deliver the first iteration. Make sure, we have a good
+              result to be delivered by the day.
             </p>
             <div className="w-max cursor-pointer text-sm font-semibold text-primary-700 hover:underline dark:text-primary-500">
               Show Full Description
@@ -315,12 +277,7 @@ const EditCardModal: FC = function () {
                   href="#"
                   className="inline-flex cursor-pointer justify-center rounded p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
                 >
-                  <svg
-                    className="h-6 w-6"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
+                  <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                     <path
                       fillRule="evenodd"
                       d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z"
@@ -353,41 +310,26 @@ const EditCardModal: FC = function () {
           <div className="flex flex-col space-y-2">
             <div className="flex items-center space-x-3">
               <a href="#" className="shrink-0">
-                <img
-                  className="h-7 w-7 rounded-full"
-                  src="../images/users/michael-gough.png"
-                  alt="Micheal Gough"
-                />
+                <img className="h-7 w-7 rounded-full" src="../images/users/michael-gough.png" alt="Micheal Gough" />
               </a>
               <div className="min-w-0 flex-1">
-                <p className="truncate text-sm font-semibold text-gray-900 dark:text-white">
-                  Micheal Gough
-                </p>
-                <p className="truncate text-sm font-normal text-gray-500 dark:text-gray-400">
-                  Product Manager
-                </p>
+                <p className="truncate text-sm font-semibold text-gray-900 dark:text-white">Micheal Gough</p>
+                <p className="truncate text-sm font-normal text-gray-500 dark:text-gray-400">Product Manager</p>
               </div>
               <a
                 href="#"
                 className="rounded-lg p-1 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
               >
-                <svg
-                  className="h-4 w-4"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
+                <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                   <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"></path>
                 </svg>
               </a>
             </div>
             <ul className="list-outside list-disc pl-6 text-xs text-gray-500 dark:text-gray-400">
               <li>
-                Latest clicks/conversions. Where you currently have the logo for
-                merchant, we should instead have a logo that represent the
-                referring traffic sources (ex. Google or Facebook). So we’re
-                actually missing a column that should say “Source”. And there
-                should be no icon for the merchants.
+                Latest clicks/conversions. Where you currently have the logo for merchant, we should instead have a logo
+                that represent the referring traffic sources (ex. Google or Facebook). So we’re actually missing a
+                column that should say “Source”. And there should be no icon for the merchants.
               </li>
             </ul>
           </div>
@@ -440,12 +382,7 @@ const AddAnotherCardModal: FC = function () {
         onClick={() => setOpen(true)}
         className="flex w-full items-center justify-center whitespace-nowrap rounded-lg border-2 border-dashed border-gray-200 px-5 py-2 font-semibold text-gray-500 hover:border-gray-300 hover:bg-gray-100 hover:text-gray-900 dark:border-gray-800 dark:hover:border-gray-700 dark:hover:bg-gray-800 dark:hover:text-white"
       >
-        <svg
-          className="h-6 w-6"
-          fill="currentColor"
-          viewBox="0 0 20 20"
-          xmlns="http://www.w3.org/2000/svg"
-        >
+        <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
           <path
             fillRule="evenodd"
             d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
@@ -462,20 +399,11 @@ const AddAnotherCardModal: FC = function () {
           <form>
             <div className="mb-4 grid grid-cols-1 gap-y-2">
               <Label htmlFor="taskName">Task name</Label>
-              <TextInput
-                id="taskName"
-                name="taskName"
-                placeholder="Redesign homepage"
-              />
+              <TextInput id="taskName" name="taskName" placeholder="Redesign homepage" />
             </div>
             <div className="mb-4 grid grid-cols-1 gap-y-2">
               <Label htmlFor="description">Enter a description</Label>
-              <Textarea
-                id="description"
-                name="description"
-                placeholder="On line 672 you ..."
-                rows={6}
-              />
+              <Textarea id="description" name="description" placeholder="On line 672 you ..." rows={6} />
             </div>
             <div className="flex w-full items-center justify-center">
               <label className="flex h-32 w-full cursor-pointer items-center justify-center rounded-lg border-2 border-dashed border-gray-300 text-gray-500 hover:border-gray-300 hover:bg-gray-100 hover:text-gray-900 dark:border-gray-700 dark:hover:border-gray-600 dark:hover:bg-gray-700 dark:hover:text-white">

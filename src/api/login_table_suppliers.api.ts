@@ -93,10 +93,7 @@ export const dodajDostawce = async (dostawca: NowyDostawca): Promise<Dostawca | 
  * @param dane Dane do aktualizacji
  * @returns Zaktualizowane dane dostawcy lub null w przypadku błędu
  */
-export const aktualizujDostawce = async (
-  id: string,
-  dane: AktualizacjaDostawcy
-): Promise<Dostawca | null> => {
+export const aktualizujDostawce = async (id: string, dane: AktualizacjaDostawcy): Promise<Dostawca | null> => {
   try {
     const response = await axiosInstance.put(`/suppliers/${id}`, dane);
     return response.data;
@@ -127,7 +124,9 @@ export const usunDostawce = async (id: string): Promise<boolean> => {
  * @param dostawca Dane nowego dostawcy (bez ID)
  * @returns Dane utworzonego dostawcy wraz z wygenerowanym hasłem lub null w przypadku błędu
  */
-export const dodajDostawceZHaslem = async (dostawca: NowyDostawcaBezId): Promise<(Dostawca & { password: string }) | null> => {
+export const dodajDostawceZHaslem = async (
+  dostawca: NowyDostawcaBezId
+): Promise<(Dostawca & { password: string }) | null> => {
   try {
     const response = await axiosInstance.post("/suppliers/with-password", dostawca);
     return response.data;
@@ -135,4 +134,4 @@ export const dodajDostawceZHaslem = async (dostawca: NowyDostawcaBezId): Promise
     console.error("Błąd podczas dodawania dostawcy z hasłem:", error);
     return null;
   }
-}; 
+};

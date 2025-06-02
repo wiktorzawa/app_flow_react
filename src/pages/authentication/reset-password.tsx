@@ -6,14 +6,8 @@ const ResetPasswordPage: FC = function () {
   return (
     <div className="flex flex-col items-center justify-center px-6 lg:h-screen lg:gap-y-12">
       <a href="/" className="my-6 flex items-center gap-x-1 lg:my-0">
-        <img
-          alt="Flowbite logo"
-          src="https://flowbite.com/docs/images/logo.svg"
-          className="mr-3 h-10"
-        />
-        <span className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">
-          Flowbite
-        </span>
+        <img alt="Flowbite logo" src="https://flowbite.com/docs/images/logo.svg" className="mr-3 h-10" />
+        <span className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">Flowbite</span>
       </a>
       <Card
         horizontal
@@ -21,36 +15,19 @@ const ResetPasswordPage: FC = function () {
         imgAlt=""
         className="w-full md:max-w-[1024px] md:[&>*]:w-full md:[&>*]:p-16 [&>img]:hidden md:[&>img]:w-96 md:[&>img]:p-0 lg:[&>img]:block"
       >
-        <h1 className="mb-3 text-2xl font-bold dark:text-white md:text-3xl">
-          Reset your password
-        </h1>
+        <h1 className="mb-3 text-2xl font-bold dark:text-white md:text-3xl">Reset your password</h1>
         <form>
           <div className="mb-6 flex flex-col gap-y-3">
             <Label htmlFor="email">Your email</Label>
-            <TextInput
-              id="email"
-              name="email"
-              placeholder="name@company.com"
-              type="email"
-            />
+            <TextInput id="email" name="email" placeholder="name@company.com" type="email" />
           </div>
           <div className="mb-6 flex flex-col gap-y-3">
             <Label htmlFor="newPassword">New password</Label>
-            <TextInput
-              id="newPassword"
-              name="newPassword"
-              placeholder="••••••••"
-              type="password"
-            />
+            <TextInput id="newPassword" name="newPassword" placeholder="••••••••" type="password" />
           </div>
           <div className="mb-6 flex flex-col gap-y-3">
             <Label htmlFor="confirmNewPassword">Confirm New Password</Label>
-            <TextInput
-              id="confirmNewPassword"
-              name="confirmNewPassword"
-              placeholder="••••••••"
-              type="password"
-            />
+            <TextInput id="confirmNewPassword" name="confirmNewPassword" placeholder="••••••••" type="password" />
           </div>
           <div className="mb-6 flex items-center gap-x-3">
             <Checkbox id="acceptTerms" name="acceptTerms" />

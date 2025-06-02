@@ -2,21 +2,21 @@ import { Sequelize } from "sequelize";
 import { config } from "./config";
 
 export const sequelize = new Sequelize({
-  dialect: "mysql",
-  host: config.database.host,
-  port: config.database.port,
-  username: config.database.username,
-  password: config.database.password,
-  database: config.database.name,
+  dialect: config.dbDialect as any,
+  host: config.dbHost,
+  port: config.dbPort,
+  username: config.dbUsername,
+  password: config.dbPassword,
+  database: config.dbName,
   logging: false,
   pool: {
     max: 5,
     min: 0,
     acquire: 30000,
-    idle: 10000
+    idle: 10000,
   },
   define: {
     timestamps: true,
-    underscored: true
-  }
-}); 
+    underscored: true,
+  },
+});

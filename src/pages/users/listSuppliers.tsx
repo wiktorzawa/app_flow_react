@@ -1,14 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState, useEffect } from "react";
-import {
-  Breadcrumb,
-  Button,
-  Checkbox,
-  Label,
-  Modal,
-  Table,
-  TextInput
-} from "flowbite-react";
+import { Breadcrumb, Button, Checkbox, Label, Modal, Table, TextInput } from "flowbite-react";
 import type { FC } from "react";
 import {
   HiChevronLeft,
@@ -19,7 +11,7 @@ import {
   HiHome,
   HiOutlinePencilAlt,
   HiPlus,
-  HiTrash
+  HiTrash,
 } from "react-icons/hi";
 import NavbarSidebarLayout from "../../layouts/navbar-sidebar";
 import {
@@ -48,11 +40,11 @@ interface AddSupplierModalProps {
 
 export const SupplierListPage: FC = function () {
   const [refreshTrigger, setRefreshTrigger] = useState(0);
-  
+
   const handleSuccess = () => {
     setRefreshTrigger(refreshTrigger + 1);
   };
-  
+
   return (
     <NavbarSidebarLayout isFooter={false}>
       <div className="p-4 bg-white block sm:flex items-center justify-between border-b border-gray-200 lg:mt-1.5 dark:bg-gray-800 dark:border-gray-700">
@@ -67,9 +59,7 @@ export const SupplierListPage: FC = function () {
               </Breadcrumb.Item>
               <Breadcrumb.Item>Wszyscy dostawcy</Breadcrumb.Item>
             </Breadcrumb>
-            <h1 className="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">
-              Wszyscy dostawcy
-            </h1>
+            <h1 className="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">Wszyscy dostawcy</h1>
           </div>
           <div className="sm:flex">
             <div className="items-center hidden mb-3 sm:flex sm:divide-x sm:divide-gray-100 sm:mb-0 dark:divide-gray-700">
@@ -180,7 +170,7 @@ export const AddSupplierModal: FC<AddSupplierModalProps> = function ({ refresh }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ 
+    setFormData((prev) => ({
       ...prev,
       [name]: value === "" && (name === "website" || name === "address_apartment") ? null : value,
     }));
@@ -189,7 +179,7 @@ export const AddSupplierModal: FC<AddSupplierModalProps> = function ({ refresh }
   const handleSubmit = async () => {
     setIsSubmitting(true);
     setError(null);
-    
+
     try {
       const supplierData: NowyDostawcaBezId = {
         company_name: formData.name,
@@ -204,9 +194,9 @@ export const AddSupplierModal: FC<AddSupplierModalProps> = function ({ refresh }
         address_apartment: null,
         address_city: "",
         address_postal_code: "",
-        address_country: "Polska"
+        address_country: "Polska",
       };
-      
+
       const result = await dodajDostawceZHaslem(supplierData);
       if (result) {
         setAddedSupplier(result);
@@ -241,8 +231,17 @@ export const AddSupplierModal: FC<AddSupplierModalProps> = function ({ refresh }
         <Modal.Header className="border-b border-gray-200 !p-6 bg-green-100 dark:bg-green-800 dark:border-gray-700">
           <div className="flex items-center gap-2">
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-green-100 dark:bg-green-800">
-              <svg className="h-5 w-5 text-green-700 dark:text-green-300" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
+              <svg
+                className="h-5 w-5 text-green-700 dark:text-green-300"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                  clipRule="evenodd"
+                ></path>
               </svg>
             </div>
             <strong>Dodano nowego dostawcę</strong>
@@ -253,145 +252,208 @@ export const AddSupplierModal: FC<AddSupplierModalProps> = function ({ refresh }
             <div className="mb-1 font-medium">Dostawca został pomyślnie dodany do systemu</div>
             <p className="text-sm">Poniżej znajdują się wszystkie dane dostawcy oraz dane do logowania.</p>
           </div>
-          
+
           {addedSupplier && (
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-            <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800">
-              <h4 className="mb-3 text-lg font-medium text-gray-900 dark:text-white flex items-center">
-                <svg className="mr-2 h-5 w-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                  <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd"></path>
-                </svg>
-                Dane podstawowe
-              </h4>
-              <div className="space-y-2">
-                <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
-                  <div className="text-sm font-medium text-gray-500 dark:text-gray-400">ID dostawcy:</div>
-                  <div className="text-sm font-semibold text-gray-900 dark:text-white">{addedSupplier.id_supplier}</div>
-                </div>
-                <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
-                  <div className="text-sm font-medium text-gray-500 dark:text-gray-400">Nazwa firmy:</div>
-                  <div className="text-sm font-semibold text-gray-900 dark:text-white">{addedSupplier.company_name}</div>
-                </div>
-                <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
-                  <div className="text-sm font-medium text-gray-500 dark:text-gray-400">Osoba kontaktowa:</div>
-                  <div className="text-sm font-semibold text-gray-900 dark:text-white">
-                    {addedSupplier.first_name} {addedSupplier.last_name}
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+              <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+                <h4 className="mb-3 text-lg font-medium text-gray-900 dark:text-white flex items-center">
+                  <svg
+                    className="mr-2 h-5 w-5 text-gray-500 dark:text-gray-400"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                      clipRule="evenodd"
+                    ></path>
+                  </svg>
+                  Dane podstawowe
+                </h4>
+                <div className="space-y-2">
+                  <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
+                    <div className="text-sm font-medium text-gray-500 dark:text-gray-400">ID dostawcy:</div>
+                    <div className="text-sm font-semibold text-gray-900 dark:text-white">
+                      {addedSupplier.id_supplier}
+                    </div>
                   </div>
-                </div>
-                <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
-                  <div className="text-sm font-medium text-gray-500 dark:text-gray-400">NIP:</div>
-                  <div className="text-sm font-semibold text-gray-900 dark:text-white">{addedSupplier.nip}</div>
-                </div>
-                <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
-                  <div className="text-sm font-medium text-gray-500 dark:text-gray-400">Email:</div>
-                  <div className="text-sm font-semibold text-gray-900 dark:text-white">{addedSupplier.email}</div>
-                </div>
-                <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
-                  <div className="text-sm font-medium text-gray-500 dark:text-gray-400">Telefon:</div>
-                  <div className="text-sm font-semibold text-gray-900 dark:text-white">{addedSupplier.phone}</div>
-                </div>
-                <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
-                  <div className="text-sm font-medium text-gray-500 dark:text-gray-400">Strona WWW:</div>
-                  <div className="text-sm font-semibold text-gray-900 dark:text-white">{addedSupplier.website || "-"}</div>
-                </div>
-              </div>
-            </div>
-            
-            <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800">
-              <h4 className="mb-3 text-lg font-medium text-gray-900 dark:text-white flex items-center">
-                <svg className="mr-2 h-5 w-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                  <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd"></path>
-                </svg>
-                Dane adresowe
-              </h4>
-              <div className="space-y-2">
-                <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
-                  <div className="text-sm font-medium text-gray-500 dark:text-gray-400">Ulica:</div>
-                  <div className="text-sm font-semibold text-gray-900 dark:text-white">{addedSupplier.address_street}</div>
-                </div>
-                <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
-                  <div className="text-sm font-medium text-gray-500 dark:text-gray-400">Nr budynku:</div>
-                  <div className="text-sm font-semibold text-gray-900 dark:text-white">{addedSupplier.address_building}</div>
-                </div>
-                <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
-                  <div className="text-sm font-medium text-gray-500 dark:text-gray-400">Nr lokalu:</div>
-                  <div className="text-sm font-semibold text-gray-900 dark:text-white">{addedSupplier.address_apartment || "-"}</div>
-                </div>
-                <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
-                  <div className="text-sm font-medium text-gray-500 dark:text-gray-400">Miasto:</div>
-                  <div className="text-sm font-semibold text-gray-900 dark:text-white">{addedSupplier.address_city}</div>
-                </div>
-                <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
-                  <div className="text-sm font-medium text-gray-500 dark:text-gray-400">Kod pocztowy:</div>
-                  <div className="text-sm font-semibold text-gray-900 dark:text-white">{addedSupplier.address_postal_code}</div>
-                </div>
-                <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
-                  <div className="text-sm font-medium text-gray-500 dark:text-gray-400">Kraj:</div>
-                  <div className="text-sm font-semibold text-gray-900 dark:text-white">{addedSupplier.address_country}</div>
-                </div>
-              </div>
-            </div>
-            
-            <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800">
-              <h4 className="mb-3 text-lg font-medium text-gray-900 dark:text-white flex items-center">
-                <svg className="mr-2 h-5 w-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                  <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd"></path>
-                </svg>
-                Dane logowania
-              </h4>
-              <div className="space-y-2">
-                <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
-                  <div className="text-sm font-medium text-gray-500 dark:text-gray-400">ID logowania:</div>
-                  <div className="text-sm font-semibold text-gray-900 dark:text-white">{addedSupplier.id_supplier}/LOG</div>
-                </div>
-                <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
-                  <div className="text-sm font-medium text-gray-500 dark:text-gray-400">Login:</div>
-                  <div className="text-sm font-semibold text-gray-900 dark:text-white">{addedSupplier.email}</div>
-                </div>
-                <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
-                  <div className="text-sm font-medium text-gray-500 dark:text-gray-400">Hasło:</div>
-                  <div className="text-sm font-semibold text-gray-900 dark:text-white">
-                    <div className="flex items-center">
-                      <span className="mr-2">{generatedPassword}</span>
-                      <Button
-                        size="xs"
-                        color="light"
-                        onClick={() => {
-                          navigator.clipboard.writeText(generatedPassword);
-                          alert("Hasło skopiowane do schowka");
-                        }}
-                      >
-                        <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
-                          <path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"></path>
-                        </svg>
-                      </Button>
+                  <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
+                    <div className="text-sm font-medium text-gray-500 dark:text-gray-400">Nazwa firmy:</div>
+                    <div className="text-sm font-semibold text-gray-900 dark:text-white">
+                      {addedSupplier.company_name}
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
+                    <div className="text-sm font-medium text-gray-500 dark:text-gray-400">Osoba kontaktowa:</div>
+                    <div className="text-sm font-semibold text-gray-900 dark:text-white">
+                      {addedSupplier.first_name} {addedSupplier.last_name}
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
+                    <div className="text-sm font-medium text-gray-500 dark:text-gray-400">NIP:</div>
+                    <div className="text-sm font-semibold text-gray-900 dark:text-white">{addedSupplier.nip}</div>
+                  </div>
+                  <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
+                    <div className="text-sm font-medium text-gray-500 dark:text-gray-400">Email:</div>
+                    <div className="text-sm font-semibold text-gray-900 dark:text-white">{addedSupplier.email}</div>
+                  </div>
+                  <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
+                    <div className="text-sm font-medium text-gray-500 dark:text-gray-400">Telefon:</div>
+                    <div className="text-sm font-semibold text-gray-900 dark:text-white">{addedSupplier.phone}</div>
+                  </div>
+                  <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
+                    <div className="text-sm font-medium text-gray-500 dark:text-gray-400">Strona WWW:</div>
+                    <div className="text-sm font-semibold text-gray-900 dark:text-white">
+                      {addedSupplier.website || "-"}
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="mt-3 p-3 bg-yellow-50 text-yellow-800 rounded-lg text-sm dark:bg-yellow-900 dark:text-yellow-300">
-                <div className="flex">
-                  <svg className="mr-2 h-5 w-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd"></path>
+
+              <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+                <h4 className="mb-3 text-lg font-medium text-gray-900 dark:text-white flex items-center">
+                  <svg
+                    className="mr-2 h-5 w-5 text-gray-500 dark:text-gray-400"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                      clipRule="evenodd"
+                    ></path>
                   </svg>
-                  <div>
-                    Prosimy o zapisanie hasła i przekazanie go dostawcy. Ze względów bezpieczeństwa hasło nie zostanie wyświetlone ponownie.
+                  Dane adresowe
+                </h4>
+                <div className="space-y-2">
+                  <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
+                    <div className="text-sm font-medium text-gray-500 dark:text-gray-400">Ulica:</div>
+                    <div className="text-sm font-semibold text-gray-900 dark:text-white">
+                      {addedSupplier.address_street}
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
+                    <div className="text-sm font-medium text-gray-500 dark:text-gray-400">Nr budynku:</div>
+                    <div className="text-sm font-semibold text-gray-900 dark:text-white">
+                      {addedSupplier.address_building}
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
+                    <div className="text-sm font-medium text-gray-500 dark:text-gray-400">Nr lokalu:</div>
+                    <div className="text-sm font-semibold text-gray-900 dark:text-white">
+                      {addedSupplier.address_apartment || "-"}
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
+                    <div className="text-sm font-medium text-gray-500 dark:text-gray-400">Miasto:</div>
+                    <div className="text-sm font-semibold text-gray-900 dark:text-white">
+                      {addedSupplier.address_city}
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
+                    <div className="text-sm font-medium text-gray-500 dark:text-gray-400">Kod pocztowy:</div>
+                    <div className="text-sm font-semibold text-gray-900 dark:text-white">
+                      {addedSupplier.address_postal_code}
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
+                    <div className="text-sm font-medium text-gray-500 dark:text-gray-400">Kraj:</div>
+                    <div className="text-sm font-semibold text-gray-900 dark:text-white">
+                      {addedSupplier.address_country}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+                <h4 className="mb-3 text-lg font-medium text-gray-900 dark:text-white flex items-center">
+                  <svg
+                    className="mr-2 h-5 w-5 text-gray-500 dark:text-gray-400"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                      clipRule="evenodd"
+                    ></path>
+                  </svg>
+                  Dane logowania
+                </h4>
+                <div className="space-y-2">
+                  <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
+                    <div className="text-sm font-medium text-gray-500 dark:text-gray-400">ID logowania:</div>
+                    <div className="text-sm font-semibold text-gray-900 dark:text-white">
+                      {addedSupplier.id_supplier}/LOG
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
+                    <div className="text-sm font-medium text-gray-500 dark:text-gray-400">Login:</div>
+                    <div className="text-sm font-semibold text-gray-900 dark:text-white">{addedSupplier.email}</div>
+                  </div>
+                  <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
+                    <div className="text-sm font-medium text-gray-500 dark:text-gray-400">Hasło:</div>
+                    <div className="text-sm font-semibold text-gray-900 dark:text-white">
+                      <div className="flex items-center">
+                        <span className="mr-2">{generatedPassword}</span>
+                        <Button
+                          size="xs"
+                          color="light"
+                          onClick={() => {
+                            navigator.clipboard.writeText(generatedPassword);
+                            alert("Hasło skopiowane do schowka");
+                          }}
+                        >
+                          <svg
+                            className="h-3.5 w-3.5"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+                            <path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"></path>
+                          </svg>
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-3 p-3 bg-yellow-50 text-yellow-800 rounded-lg text-sm dark:bg-yellow-900 dark:text-yellow-300">
+                  <div className="flex">
+                    <svg
+                      className="mr-2 h-5 w-5 flex-shrink-0"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                        clipRule="evenodd"
+                      ></path>
+                    </svg>
+                    <div>
+                      Prosimy o zapisanie hasła i przekazanie go dostawcy. Ze względów bezpieczeństwa hasło nie zostanie
+                      wyświetlone ponownie.
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
           )}
         </Modal.Body>
         <Modal.Footer>
-          <Button 
-            color="primary" 
-            onClick={handleCloseSuccessView}
-          >
+          <Button color="primary" onClick={handleCloseSuccessView}>
             <div className="flex items-center gap-x-2">
               <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
+                <path
+                  fillRule="evenodd"
+                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                  clipRule="evenodd"
+                ></path>
               </svg>
               Zamknij
             </div>
@@ -402,7 +464,10 @@ export const AddSupplierModal: FC<AddSupplierModalProps> = function ({ refresh }
   );
 };
 
-const AllSuppliersTable: FC<{ onSuccess: () => void, refreshTrigger: number }> = function ({ onSuccess, refreshTrigger }) {
+const AllSuppliersTable: FC<{ onSuccess: () => void; refreshTrigger: number }> = function ({
+  onSuccess,
+  refreshTrigger,
+}) {
   const [dostawcy, setDostawcy] = useState<Dostawca[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -484,12 +549,8 @@ const AllSuppliersTable: FC<{ onSuccess: () => void, refreshTrigger: number }> =
                   </span>
                 </div>
                 <div className="text-base font-semibold text-gray-900 dark:text-white ml-3">
-                  <div>
-                    {dostawca.company_name}
-                  </div>
-                  <div className="text-sm font-normal text-gray-500 dark:text-gray-400">
-                    ID: {dostawca.id_supplier}
-                  </div>
+                  <div>{dostawca.company_name}</div>
+                  <div className="text-sm font-normal text-gray-500 dark:text-gray-400">ID: {dostawca.id_supplier}</div>
                 </div>
               </div>
             </Table.Cell>
@@ -527,7 +588,7 @@ const AllSuppliersTable: FC<{ onSuccess: () => void, refreshTrigger: number }> =
   );
 };
 
-const EditSupplierModal: FC<{ 
+const EditSupplierModal: FC<{
   dostawca: Dostawca;
   onSuccess: () => void;
 }> = function ({ dostawca, onSuccess }) {
@@ -572,7 +633,7 @@ const EditSupplierModal: FC<{
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ 
+    setFormData((prev) => ({
       ...prev,
       [name]: value === "" && (name === "website" || name === "address_apartment") ? null : value,
     }));
@@ -581,7 +642,7 @@ const EditSupplierModal: FC<{
   const handleSubmit = async () => {
     setIsSubmitting(true);
     setError(null);
-    
+
     try {
       const result = await aktualizujDostawce(dostawca.id_supplier, formData);
       if (result) {
@@ -604,16 +665,9 @@ const EditSupplierModal: FC<{
         <HiOutlinePencilAlt className="mr-1" />
         <span>Edytuj</span>
       </Button>
-      <Modal
-        show={isOpen}
-        onClose={() => setOpen(false)}
-        size="xl"
-        popup={true}
-      >
+      <Modal show={isOpen} onClose={() => setOpen(false)} size="xl" popup={true}>
         <Modal.Header className="border-b border-gray-200 dark:border-gray-700">
-          <h3 className="text-xl font-medium text-gray-900 dark:text-white">
-            Edytuj dostawcę
-          </h3>
+          <h3 className="text-xl font-medium text-gray-900 dark:text-white">Edytuj dostawcę</h3>
         </Modal.Header>
         <Modal.Body>
           {error && (
@@ -625,7 +679,9 @@ const EditSupplierModal: FC<{
             </div>
           )}
           <div className="mb-4">
-            <p className="text-gray-600">ID dostawcy: <strong>{dostawca.id_supplier}</strong></p>
+            <p className="text-gray-600">
+              ID dostawcy: <strong>{dostawca.id_supplier}</strong>
+            </p>
           </div>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
             <div>
@@ -663,14 +719,7 @@ const EditSupplierModal: FC<{
             </div>
             <div>
               <Label htmlFor="nip">NIP</Label>
-              <TextInput
-                id="nip"
-                name="nip"
-                required
-                className="mt-1"
-                value={formData.nip}
-                onChange={handleChange}
-              />
+              <TextInput id="nip" name="nip" required className="mt-1" value={formData.nip} onChange={handleChange} />
             </div>
             <div>
               <Label htmlFor="email">Email</Label>
@@ -792,13 +841,9 @@ const Pagination: FC = function () {
       <div className="mb-4 flex items-center sm:mb-0">
         <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
           Wyświetlono&nbsp;
-          <span className="font-semibold text-gray-900 dark:text-white">
-            1-20
-          </span>
+          <span className="font-semibold text-gray-900 dark:text-white">1-20</span>
           &nbsp;z&nbsp;
-          <span className="font-semibold text-gray-900 dark:text-white">
-            wszystkich
-          </span>
+          <span className="font-semibold text-gray-900 dark:text-white">wszystkich</span>
         </span>
       </div>
       <div className="flex items-center space-x-3">
@@ -819,4 +864,4 @@ const Pagination: FC = function () {
   );
 };
 
-export default SupplierListPage; 
+export default SupplierListPage;

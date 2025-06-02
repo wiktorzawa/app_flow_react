@@ -14,11 +14,7 @@ const SidebarContext = createContext<SidebarContextProps>(undefined!);
 
 export function SidebarProvider({ children }: PropsWithChildren) {
   const location = isBrowser() ? window.location.pathname : "/";
-  const [isOpen, setOpen] = useState(
-    isBrowser()
-      ? window.localStorage.getItem("isSidebarOpen") === "true"
-      : false
-  );
+  const [isOpen, setOpen] = useState(isBrowser() ? window.localStorage.getItem("isSidebarOpen") === "true" : false);
 
   // Save latest state to localStorage
   useEffect(() => {
@@ -66,9 +62,7 @@ export function useSidebarContext(): SidebarContextProps {
   const context = useContext(SidebarContext);
 
   if (typeof context === "undefined") {
-    throw new Error(
-      "useSidebarContext should be used within the SidebarContext provider!"
-    );
+    throw new Error("useSidebarContext should be used within the SidebarContext provider!");
   }
 
   return context;

@@ -55,7 +55,7 @@ interface AmazonProductAttributes {
   badge: string[] | null;
   images: string[] | null;
   country_of_origin: string | null;
-  product_details: Array<{ title: string; value: string; }> | null;
+  product_details: Array<{ title: string; value: string }> | null;
   prices_breakdown: Record<string, any> | null;
   unit_price: string | null;
   other_sellers_prices: number[] | null;
@@ -74,8 +74,10 @@ interface AmazonProductAttributes {
 // Atrybuty używane podczas tworzenia nowego produktu
 interface AmazonProductCreationAttributes extends Optional<AmazonProductAttributes, "id"> {}
 
-class AmazonProduct extends Model<AmazonProductAttributes, AmazonProductCreationAttributes> 
-  implements AmazonProductAttributes {
+class AmazonProduct
+  extends Model<AmazonProductAttributes, AmazonProductCreationAttributes>
+  implements AmazonProductAttributes
+{
   public id!: number;
   public title!: string;
   public seller_name!: string | null;
@@ -129,7 +131,7 @@ class AmazonProduct extends Model<AmazonProductAttributes, AmazonProductCreation
   public badge!: string[] | null;
   public images!: string[] | null;
   public country_of_origin!: string | null;
-  public product_details!: Array<{ title: string; value: string; }> | null;
+  public product_details!: Array<{ title: string; value: string }> | null;
   public prices_breakdown!: Record<string, any> | null;
   public unit_price!: string | null;
   public other_sellers_prices!: number[] | null;
@@ -160,20 +162,20 @@ class AmazonProduct extends Model<AmazonProductAttributes, AmazonProductCreation
   static async findRecentlyScraped(hours: number = 24): Promise<AmazonProduct[]> {
     const date = new Date();
     date.setHours(date.getHours() - hours);
-    
+
     return AmazonProduct.findAll({
       where: {
         lastScraped: {
-          [Op.gte]: date
-        }
-      }
+          [Op.gte]: date,
+        },
+      },
     });
   }
 
   // Sprawdza czy produkt wymaga ponownego scrapowania
   needsRescraping(maxAge: number = 24): boolean {
     if (!this.lastScraped) return true;
-    
+
     const hours = (new Date().getTime() - this.lastScraped.getTime()) / (1000 * 60 * 60);
     return hours >= maxAge;
   }
@@ -477,4 +479,4 @@ AmazonProduct.init(
       },
     ],
   }
-); 
+);

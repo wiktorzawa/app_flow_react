@@ -67,10 +67,7 @@ class AllegroService {
   }
 
   private generateCodeChallenge(verifier: string): string {
-    return crypto
-      .createHash("sha256")
-      .update(verifier)
-      .digest("base64url");
+    return crypto.createHash("sha256").update(verifier).digest("base64url");
   }
 
   private getBasicAuthHeader(): string {
@@ -93,16 +90,12 @@ class AllegroService {
     console.log("App Token Request body:", requestBody);
 
     try {
-      const response = await axios.post<AllegroAppTokenResponse>(
-        tokenUrl,
-        requestBody,
-        {
-          headers: {
-            Authorization: `Basic ${this.getBasicAuthHeader()}`,
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
-        }
-      );
+      const response = await axios.post<AllegroAppTokenResponse>(tokenUrl, requestBody, {
+        headers: {
+          Authorization: `Basic ${this.getBasicAuthHeader()}`,
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      });
       this.appAccessToken = response.data.access_token;
       this.appTokenExpiryTime = Date.now() + (response.data.expires_in - 60) * 1000;
       console.log("Token dostępu aplikacji (Client Credentials) został odświeżony.");
@@ -191,7 +184,8 @@ class AllegroService {
     loginUrl.searchParams.set("response_type", "code");
     loginUrl.searchParams.set("client_id", config.allegroClientId);
     loginUrl.searchParams.set("redirect_uri", config.allegroRedirectUri);
-    if (config.allegroScope) { // Dodajemy scope tylko jeśli jest zdefiniowany
+    if (config.allegroScope) {
+      // Dodajemy scope tylko jeśli jest zdefiniowany
       loginUrl.searchParams.set("scope", config.allegroScope);
     }
     loginUrl.searchParams.set("state", state);
@@ -242,26 +236,26 @@ class AllegroService {
       refresh_token: refreshToken,
       redirect_uri: config.allegroRedirectUri, // redirect_uri jest często wymagany także przy odświeżaniu
     }).toString();
-    
+
     try {
-        const { data } = await axios.post<TokenData>(config.allegroAuthTokenUrl, body, {
-            headers: {
-            Authorization: `Basic ${this.getBasicAuthHeader()}`,
-            "Content-Type": "application/x-www-form-urlencoded",
-            },
-        });
-        console.log("Successfully refreshed user token.");
-        return { ...data, obtained_at: Date.now() };
+      const { data } = await axios.post<TokenData>(config.allegroAuthTokenUrl, body, {
+        headers: {
+          Authorization: `Basic ${this.getBasicAuthHeader()}`,
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      });
+      console.log("Successfully refreshed user token.");
+      return { ...data, obtained_at: Date.now() };
     } catch (error) {
-        const axiosError = error as AxiosError;
-        console.error(
-            "Błąd podczas odświeżania tokenu użytkownika:",
-            `URL: ${config.allegroAuthTokenUrl}`,
-            axiosError.response?.status,
-            axiosError.response?.data || axiosError.message,
-            `Request body: ${body}`
-        );
-        throw new Error(`Nie udało się odświeżyć tokenu użytkownika: ${axiosError.message}`);
+      const axiosError = error as AxiosError;
+      console.error(
+        "Błąd podczas odświeżania tokenu użytkownika:",
+        `URL: ${config.allegroAuthTokenUrl}`,
+        axiosError.response?.status,
+        axiosError.response?.data || axiosError.message,
+        `Request body: ${body}`
+      );
+      throw new Error(`Nie udało się odświeżyć tokenu użytkownika: ${axiosError.message}`);
     }
   }
 }

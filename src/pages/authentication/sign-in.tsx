@@ -50,14 +50,8 @@ const SignInPage: FC = function () {
   return (
     <div className="flex flex-col items-center justify-center px-6 lg:h-screen lg:gap-y-12">
       <a href="/" className="my-6 flex items-center gap-x-1 lg:my-0">
-        <img
-          alt="Flowbite logo"
-          src="https://flowbite.com/docs/images/logo.svg"
-          className="mr-3 h-10"
-        />
-        <span className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">
-          Flowbite
-        </span>
+        <img alt="Flowbite logo" src="https://flowbite.com/docs/images/logo.svg" className="mr-3 h-10" />
+        <span className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">Flowbite</span>
       </a>
       <Card
         horizontal
@@ -65,9 +59,7 @@ const SignInPage: FC = function () {
         imgAlt=""
         className="w-full md:max-w-[1024px] md:[&>*]:w-full md:[&>*]:p-16 [&>img]:hidden md:[&>img]:w-96 md:[&>img]:p-0 lg:[&>img]:block"
       >
-        <h1 className="mb-3 text-2xl font-bold dark:text-white md:text-3xl">
-          Zaloguj się do platformy
-        </h1>
+        <h1 className="mb-3 text-2xl font-bold dark:text-white md:text-3xl">Zaloguj się do platformy</h1>
         {error && (
           <div className="mb-4 rounded-lg bg-red-50 p-4 text-sm text-red-800 dark:bg-red-900 dark:text-red-200">
             {error}

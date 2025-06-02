@@ -1,14 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import {
-  Badge,
-  Breadcrumb,
-  Button,
-  Card,
-  Label,
-  Table,
-  Textarea,
-  TextInput,
-} from "flowbite-react";
+import { Badge, Breadcrumb, Button, Card, Label, Table, Textarea, TextInput } from "flowbite-react";
 import type { FC } from "react";
 import { HiHome } from "react-icons/hi";
 import NavbarSidebarLayout from "../../layouts/navbar-sidebar";
@@ -25,14 +16,10 @@ const EcommerceBillingPage: FC = function () {
                 <span className="dark:text-white">Home</span>
               </div>
             </Breadcrumb.Item>
-            <Breadcrumb.Item href="/e-commerce/products">
-              E-commerce
-            </Breadcrumb.Item>
+            <Breadcrumb.Item href="/e-commerce/products">E-commerce</Breadcrumb.Item>
             <Breadcrumb.Item>Billing</Breadcrumb.Item>
           </Breadcrumb>
-          <h1 className="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">
-            Billing
-          </h1>
+          <h1 className="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">Billing</h1>
         </div>
         <IntroCard />
         <OrderHistoryCard />
@@ -48,17 +35,13 @@ const EcommerceBillingPage: FC = function () {
 const IntroCard: FC = function () {
   return (
     <Card>
-      <a
-        href="#"
-        className="flex items-center text-2xl font-bold dark:text-white"
-      >
+      <a href="#" className="flex items-center text-2xl font-bold dark:text-white">
         <img alt="" src="../../images/logo.svg" className="mr-4 h-11" />
         <span>Flowbite</span>
       </a>
       <p className="text-base font-normal text-gray-500 dark:text-gray-400">
-        Switch your subscription to a different type, such as a monthly plan,
-        annual plan, or student plan. And see a list of subscription plans that
-        Flowbite offers.
+        Switch your subscription to a different type, such as a monthly plan, annual plan, or student plan. And see a
+        list of subscription plans that Flowbite offers.
       </p>
       <p className="text-sm font-semibold text-gray-900 dark:text-white">
         Next payment of $36 (yearly) occurs on August 13, 2020.
@@ -101,9 +84,7 @@ const OrderHistoryCard: FC = function () {
   return (
     <Card>
       <div className="mb-4 flex items-center justify-between">
-        <h3 className="text-xl font-bold text-gray-900 dark:text-white">
-          Order History
-        </h3>
+        <h3 className="text-xl font-bold text-gray-900 dark:text-white">Order History</h3>
         <div className="shrink-0">
           <a
             className="rounded-lg p-2 text-sm font-medium text-primary-700 hover:bg-gray-100 dark:text-primary-500 dark:hover:bg-gray-700"
@@ -183,95 +164,48 @@ const OrderHistoryCard: FC = function () {
 const GeneralInfoCard: FC = function () {
   return (
     <Card>
-      <h3 className="mb-4 text-xl font-bold dark:text-white">
-        General Information
-      </h3>
+      <h3 className="mb-4 text-xl font-bold dark:text-white">General Information</h3>
       <form>
         <div className="mb-6 grid grid-cols-1 gap-6 md:grid-cols-3">
           <div className="col-span-1 grid grid-cols-1 gap-y-3">
             <div className="grid grid-cols-1 gap-y-2">
               <Label htmlFor="first-name">First Name</Label>
-              <TextInput
-                id="first-name"
-                name="first-name"
-                placeholder="Bonnie"
-                required
-              />
+              <TextInput id="first-name" name="first-name" placeholder="Bonnie" required />
             </div>
             <div className="grid grid-cols-1 gap-y-2">
               <Label htmlFor="organization">Organization</Label>
-              <TextInput
-                id="organization"
-                name="organization"
-                placeholder="Company name"
-                required
-              />
+              <TextInput id="organization" name="organization" placeholder="Company name" required />
             </div>
             <div className="grid grid-cols-1 gap-y-2">
               <Label htmlFor="department">Department</Label>
-              <TextInput
-                id="department"
-                name="department"
-                placeholder="Development"
-                required
-              />
+              <TextInput id="department" name="department" placeholder="Development" required />
             </div>
             <div className="grid grid-cols-1 gap-y-2">
               <Label htmlFor="city">City</Label>
-              <TextInput
-                id="city"
-                name="city"
-                placeholder="eg., San Francisco"
-                required
-              />
+              <TextInput id="city" name="city" placeholder="eg., San Francisco" required />
             </div>
           </div>
           <div className="col-span-1 grid grid-cols-1 gap-y-3">
             <div className="grid grid-cols-1 gap-y-2">
               <Label htmlFor="last-name">Last name</Label>
-              <TextInput
-                id="last-name"
-                name="last-name"
-                placeholder="Green"
-                required
-              />
+              <TextInput id="last-name" name="last-name" placeholder="Green" required />
             </div>
             <div className="grid grid-cols-1 gap-y-2">
               <Label htmlFor="role">Role</Label>
-              <TextInput
-                id="role"
-                name="role"
-                placeholder="React Developer"
-                required
-              />
+              <TextInput id="role" name="role" placeholder="React Developer" required />
             </div>
             <div className="grid grid-cols-1 gap-y-2">
               <Label htmlFor="country">Country</Label>
-              <TextInput
-                id="country"
-                name="country"
-                placeholder="United States"
-                required
-              />
+              <TextInput id="country" name="country" placeholder="United States" required />
             </div>
             <div className="grid grid-cols-1 gap-y-2">
               <Label htmlFor="email">Email</Label>
-              <TextInput
-                id="email"
-                name="email"
-                placeholder="example@company.com"
-                required
-              />
+              <TextInput id="email" name="email" placeholder="example@company.com" required />
             </div>
           </div>
           <div className="col-span-1 grid grid-cols-1 gap-y-2">
             <Label htmlFor="info">Info</Label>
-            <Textarea
-              id="info"
-              name="info"
-              placeholder="Receipt Info (optional)"
-              rows={12}
-            />
+            <Textarea id="info" name="info" placeholder="Receipt Info (optional)" rows={12} />
           </div>
         </div>
         <Button type="submit">Update</Button>
@@ -288,21 +222,11 @@ const CardDetailsCard: FC = function () {
         <div className="mb-6 grid grid-cols-1 gap-6 sm:grid-cols-2">
           <div className="grid grid-cols-1 gap-y-2">
             <Label htmlFor="full-name">(Full name as displayed on card)*</Label>
-            <TextInput
-              id="full-name"
-              name="full-name"
-              placeholder="Enter your name"
-              required
-            />
+            <TextInput id="full-name" name="full-name" placeholder="Enter your name" required />
           </div>
           <div className="grid grid-cols-1 gap-y-2">
             <Label htmlFor="card-number">Card Number *</Label>
-            <TextInput
-              id="card-number"
-              name="card-number"
-              placeholder="xxxx-xxxx-xxxx-xxxx"
-              required
-            />
+            <TextInput id="card-number" name="card-number" placeholder="xxxx-xxxx-xxxx-xxxx" required />
           </div>
           <div className="grid grid-cols-1 gap-y-2">
             <Label htmlFor="cvc">CVC *</Label>

@@ -101,10 +101,7 @@ export const dodajPracownika = async (pracownik: NowyPracownik): Promise<Pracown
  * @param dane Dane do aktualizacji
  * @returns Zaktualizowane dane pracownika lub null w przypadku błędu
  */
-export const aktualizujPracownika = async (
-  id: string,
-  dane: AktualizacjaPracownika
-): Promise<Pracownik | null> => {
+export const aktualizujPracownika = async (id: string, dane: AktualizacjaPracownika): Promise<Pracownik | null> => {
   try {
     const response = await axiosInstance.put(`/staff/${id}`, dane);
     return response.data;
@@ -129,4 +126,4 @@ export const usunPracownika = async (id: string): Promise<boolean> => {
     console.error(`Błąd podczas usuwania pracownika o ID ${id}:`, error);
     return false;
   }
-}; 
+};

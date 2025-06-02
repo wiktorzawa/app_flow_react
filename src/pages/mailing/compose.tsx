@@ -70,22 +70,13 @@ const MailingComposePage: FC = function () {
             <Label htmlFor="message-subject" className="sr-only">
               Subject
             </Label>
-            <TextInput
-              id="message-subject"
-              name="message-subject"
-              placeholder="Subject"
-            />
+            <TextInput id="message-subject" name="message-subject" placeholder="Subject" />
           </div>
           <div>
             <Label htmlFor="reply-mail" className="sr-only">
               Your message
             </Label>
-            <Textarea
-              id="reply-mail"
-              name="reply-mail"
-              placeholder="Write text here ..."
-              rows={24}
-            />
+            <Textarea id="reply-mail" name="reply-mail" placeholder="Write text here ..." rows={24} />
           </div>
         </div>
         <div className="items-center dark:divide-gray-700 sm:flex sm:divide-x sm:divide-gray-100 lg:pl-4">

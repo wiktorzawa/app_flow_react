@@ -1,14 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import {
-  Breadcrumb,
-  Button,
-  Checkbox,
-  Label,
-  Modal,
-  Table,
-  Textarea,
-  TextInput,
-} from "flowbite-react";
+import { Breadcrumb, Button, Checkbox, Label, Modal, Table, Textarea, TextInput } from "flowbite-react";
 import type { FC } from "react";
 import { useState } from "react";
 import { FaPlus } from "react-icons/fa";
@@ -38,14 +29,10 @@ const EcommerceProductsPage: FC = function () {
                   <span className="dark:text-white">Home</span>
                 </div>
               </Breadcrumb.Item>
-              <Breadcrumb.Item href="/e-commerce/products">
-                E-commerce
-              </Breadcrumb.Item>
+              <Breadcrumb.Item href="/e-commerce/products">E-commerce</Breadcrumb.Item>
               <Breadcrumb.Item>Products</Breadcrumb.Item>
             </Breadcrumb>
-            <h1 className="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">
-              All products
-            </h1>
+            <h1 className="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">All products</h1>
           </div>
           <div className="block items-center sm:flex">
             <SearchForProducts />
@@ -106,11 +93,7 @@ const SearchForProducts: FC = function () {
         Search
       </Label>
       <div className="relative mt-1 lg:w-64 xl:w-96">
-        <TextInput
-          id="products-search"
-          name="products-search"
-          placeholder="Search for products"
-        />
+        <TextInput id="products-search" name="products-search" placeholder="Search for products" />
       </div>
     </form>
   );
@@ -134,40 +117,19 @@ const AddProductModal: FC = function () {
             <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
               <div>
                 <Label htmlFor="productName">Product name</Label>
-                <TextInput
-                  id="productName"
-                  name="productName"
-                  placeholder='Apple iMac 27"'
-                  className="mt-1"
-                />
+                <TextInput id="productName" name="productName" placeholder='Apple iMac 27"' className="mt-1" />
               </div>
               <div>
                 <Label htmlFor="category">Category</Label>
-                <TextInput
-                  id="category"
-                  name="category"
-                  placeholder="Electronics"
-                  className="mt-1"
-                />
+                <TextInput id="category" name="category" placeholder="Electronics" className="mt-1" />
               </div>
               <div>
                 <Label htmlFor="brand">Brand</Label>
-                <TextInput
-                  id="brand"
-                  name="brand"
-                  placeholder="Apple"
-                  className="mt-1"
-                />
+                <TextInput id="brand" name="brand" placeholder="Apple" className="mt-1" />
               </div>
               <div>
                 <Label htmlFor="price">Price</Label>
-                <TextInput
-                  id="price"
-                  name="price"
-                  type="number"
-                  placeholder="$2300"
-                  className="mt-1"
-                />
+                <TextInput id="price" name="price" type="number" placeholder="$2300" className="mt-1" />
               </div>
               <div className="lg:col-span-2">
                 <Label htmlFor="producTable.Celletails">Product details</Label>
@@ -184,12 +146,8 @@ const AddProductModal: FC = function () {
                   <label className="flex h-32 w-full cursor-pointer flex-col rounded border-2 border-dashed border-gray-300 hover:bg-gray-50 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-700">
                     <div className="flex flex-col items-center justify-center pb-6 pt-5">
                       <HiUpload className="text-4xl text-gray-300" />
-                      <p className="py-1 text-sm text-gray-600 dark:text-gray-500">
-                        Upload a file or drag and drop
-                      </p>
-                      <p className="text-xs text-gray-500 dark:text-gray-400">
-                        PNG, JPG, GIF up to 10MB
-                      </p>
+                      <p className="py-1 text-sm text-gray-600 dark:text-gray-500">Upload a file or drag and drop</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">PNG, JPG, GIF up to 10MB</p>
                     </div>
                     <input type="file" className="hidden" />
                   </label>
@@ -226,40 +184,19 @@ const EditProductModal: FC = function () {
             <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
               <div>
                 <Label htmlFor="productName">Product name</Label>
-                <TextInput
-                  id="productName"
-                  name="productName"
-                  placeholder='Apple iMac 27"'
-                  className="mt-1"
-                />
+                <TextInput id="productName" name="productName" placeholder='Apple iMac 27"' className="mt-1" />
               </div>
               <div>
                 <Label htmlFor="category">Category</Label>
-                <TextInput
-                  id="category"
-                  name="category"
-                  placeholder="Electronics"
-                  className="mt-1"
-                />
+                <TextInput id="category" name="category" placeholder="Electronics" className="mt-1" />
               </div>
               <div>
                 <Label htmlFor="brand">Brand</Label>
-                <TextInput
-                  id="brand"
-                  name="brand"
-                  placeholder="Apple"
-                  className="mt-1"
-                />
+                <TextInput id="brand" name="brand" placeholder="Apple" className="mt-1" />
               </div>
               <div>
                 <Label htmlFor="price">Price</Label>
-                <TextInput
-                  id="price"
-                  name="price"
-                  type="number"
-                  placeholder="$2300"
-                  className="mt-1"
-                />
+                <TextInput id="price" name="price" type="number" placeholder="$2300" className="mt-1" />
               </div>
               <div className="lg:col-span-2">
                 <Label htmlFor="productDetails">Product details</Label>
@@ -273,33 +210,21 @@ const EditProductModal: FC = function () {
               </div>
               <div className="flex space-x-5">
                 <div>
-                  <img
-                    alt="Apple iMac 1"
-                    src="../../images/products/apple-imac-1.png"
-                    className="h-24"
-                  />
+                  <img alt="Apple iMac 1" src="../../images/products/apple-imac-1.png" className="h-24" />
                   <a href="#" className="cursor-pointer">
                     <span className="sr-only">Delete</span>
                     <HiTrash className="-mt-5 text-2xl text-red-600" />
                   </a>
                 </div>
                 <div>
-                  <img
-                    alt="Apple iMac 2"
-                    src="../../images/products/apple-imac-2.png"
-                    className="h-24"
-                  />
+                  <img alt="Apple iMac 2" src="../../images/products/apple-imac-2.png" className="h-24" />
                   <a href="#" className="cursor-pointer">
                     <span className="sr-only">Delete</span>
                     <HiTrash className="-mt-5 text-2xl text-red-600" />
                   </a>
                 </div>
                 <div>
-                  <img
-                    alt="Apple iMac 3"
-                    src="../../images/products/apple-imac-3.png"
-                    className="h-24"
-                  />
+                  <img alt="Apple iMac 3" src="../../images/products/apple-imac-3.png" className="h-24" />
                   <a href="#" className="cursor-pointer">
                     <span className="sr-only">Delete</span>
                     <HiTrash className="-mt-5 text-2xl text-red-600" />
@@ -311,12 +236,8 @@ const EditProductModal: FC = function () {
                   <label className="flex h-32 w-full cursor-pointer flex-col rounded border-2 border-dashed border-gray-300 hover:bg-gray-50 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-700">
                     <div className="flex flex-col items-center justify-center pb-6 pt-5">
                       <HiUpload className="text-4xl text-gray-300" />
-                      <p className="py-1 text-sm text-gray-600 dark:text-gray-500">
-                        Upload a file or drag and drop
-                      </p>
-                      <p className="text-xs text-gray-500 dark:text-gray-400">
-                        PNG, JPG, GIF up to 10MB
-                      </p>
+                      <p className="py-1 text-sm text-gray-600 dark:text-gray-500">Upload a file or drag and drop</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">PNG, JPG, GIF up to 10MB</p>
                     </div>
                     <input type="file" className="hidden" />
                   </label>
@@ -351,9 +272,7 @@ const DeleteProductModal: FC = function () {
         <Modal.Body className="px-6 pb-6 pt-0">
           <div className="flex flex-col items-center gap-y-6 text-center">
             <HiOutlineExclamationCircle className="text-7xl text-red-600" />
-            <p className="text-lg text-gray-500 dark:text-gray-300">
-              Are you sure you want to delete this product?
-            </p>
+            <p className="text-lg text-gray-500 dark:text-gray-300">Are you sure you want to delete this product?</p>
             <div className="flex items-center gap-x-3">
               <Button color="failure" onClick={() => setOpen(false)}>
                 Yes, I'm sure
@@ -389,12 +308,8 @@ const ProductsTable: FC = function () {
             <Checkbox />
           </Table.Cell>
           <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
-            <div className="text-base font-semibold text-gray-900 dark:text-white">
-              Education Dashboard
-            </div>
-            <div className="text-sm font-normal text-gray-500 dark:text-gray-400">
-              Html templates
-            </div>
+            <div className="text-base font-semibold text-gray-900 dark:text-white">Education Dashboard</div>
+            <div className="text-sm font-normal text-gray-500 dark:text-gray-400">Html templates</div>
           </Table.Cell>
           <Table.Cell className="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
             Angular
@@ -417,12 +332,8 @@ const ProductsTable: FC = function () {
             <Checkbox />
           </Table.Cell>
           <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
-            <div className="text-base font-semibold text-gray-900 dark:text-white">
-              React UI Kit
-            </div>
-            <div className="text-sm font-normal text-gray-500 dark:text-gray-400">
-              Html templates
-            </div>
+            <div className="text-base font-semibold text-gray-900 dark:text-white">React UI Kit</div>
+            <div className="text-sm font-normal text-gray-500 dark:text-gray-400">Html templates</div>
           </Table.Cell>
           <Table.Cell className="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
             React JS
@@ -445,12 +356,8 @@ const ProductsTable: FC = function () {
             <Checkbox />
           </Table.Cell>
           <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
-            <div className="text-base font-semibold text-gray-900 dark:text-white">
-              Education Dashboard
-            </div>
-            <div className="text-sm font-normal text-gray-500 dark:text-gray-400">
-              Html templates
-            </div>
+            <div className="text-base font-semibold text-gray-900 dark:text-white">Education Dashboard</div>
+            <div className="text-sm font-normal text-gray-500 dark:text-gray-400">Html templates</div>
           </Table.Cell>
           <Table.Cell className="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
             Angular
@@ -473,12 +380,8 @@ const ProductsTable: FC = function () {
             <Checkbox />
           </Table.Cell>
           <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
-            <div className="text-base font-semibold text-gray-900 dark:text-white">
-              React UI Kit
-            </div>
-            <div className="text-sm font-normal text-gray-500 dark:text-gray-400">
-              Html templates
-            </div>
+            <div className="text-base font-semibold text-gray-900 dark:text-white">React UI Kit</div>
+            <div className="text-sm font-normal text-gray-500 dark:text-gray-400">Html templates</div>
           </Table.Cell>
           <Table.Cell className="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
             React JS
@@ -501,12 +404,8 @@ const ProductsTable: FC = function () {
             <Checkbox />
           </Table.Cell>
           <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
-            <div className="text-base font-semibold text-gray-900 dark:text-white">
-              Education Dashboard
-            </div>
-            <div className="text-sm font-normal text-gray-500 dark:text-gray-400">
-              Html templates
-            </div>
+            <div className="text-base font-semibold text-gray-900 dark:text-white">Education Dashboard</div>
+            <div className="text-sm font-normal text-gray-500 dark:text-gray-400">Html templates</div>
           </Table.Cell>
           <Table.Cell className="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
             Angular
@@ -529,12 +428,8 @@ const ProductsTable: FC = function () {
             <Checkbox />
           </Table.Cell>
           <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
-            <div className="text-base font-semibold text-gray-900 dark:text-white">
-              Education Dashboard
-            </div>
-            <div className="text-sm font-normal text-gray-500 dark:text-gray-400">
-              Html templates
-            </div>
+            <div className="text-base font-semibold text-gray-900 dark:text-white">Education Dashboard</div>
+            <div className="text-sm font-normal text-gray-500 dark:text-gray-400">Html templates</div>
           </Table.Cell>
           <Table.Cell className="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
             Angular
@@ -557,12 +452,8 @@ const ProductsTable: FC = function () {
             <Checkbox />
           </Table.Cell>
           <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
-            <div className="text-base font-semibold text-gray-900 dark:text-white">
-              React UI Kit
-            </div>
-            <div className="text-sm font-normal text-gray-500 dark:text-gray-400">
-              Html templates
-            </div>
+            <div className="text-base font-semibold text-gray-900 dark:text-white">React UI Kit</div>
+            <div className="text-sm font-normal text-gray-500 dark:text-gray-400">Html templates</div>
           </Table.Cell>
           <Table.Cell className="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
             React JS
@@ -585,12 +476,8 @@ const ProductsTable: FC = function () {
             <Checkbox />
           </Table.Cell>
           <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
-            <div className="text-base font-semibold text-gray-900 dark:text-white">
-              Education Dashboard
-            </div>
-            <div className="text-sm font-normal text-gray-500 dark:text-gray-400">
-              Html templates
-            </div>
+            <div className="text-base font-semibold text-gray-900 dark:text-white">Education Dashboard</div>
+            <div className="text-sm font-normal text-gray-500 dark:text-gray-400">Html templates</div>
           </Table.Cell>
           <Table.Cell className="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
             Angular
@@ -613,12 +500,8 @@ const ProductsTable: FC = function () {
             <Checkbox />
           </Table.Cell>
           <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
-            <div className="text-base font-semibold text-gray-900 dark:text-white">
-              React UI Kit
-            </div>
-            <div className="text-sm font-normal text-gray-500 dark:text-gray-400">
-              Html templates
-            </div>
+            <div className="text-base font-semibold text-gray-900 dark:text-white">React UI Kit</div>
+            <div className="text-sm font-normal text-gray-500 dark:text-gray-400">Html templates</div>
           </Table.Cell>
           <Table.Cell className="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
             React JS
@@ -641,12 +524,8 @@ const ProductsTable: FC = function () {
             <Checkbox />
           </Table.Cell>
           <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
-            <div className="text-base font-semibold text-gray-900 dark:text-white">
-              Education Dashboard
-            </div>
-            <div className="text-sm font-normal text-gray-500 dark:text-gray-400">
-              Html templates
-            </div>
+            <div className="text-base font-semibold text-gray-900 dark:text-white">Education Dashboard</div>
+            <div className="text-sm font-normal text-gray-500 dark:text-gray-400">Html templates</div>
           </Table.Cell>
           <Table.Cell className="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
             Angular
@@ -669,12 +548,8 @@ const ProductsTable: FC = function () {
             <Checkbox />
           </Table.Cell>
           <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
-            <div className="text-base font-semibold text-gray-900 dark:text-white">
-              Education Dashboard
-            </div>
-            <div className="text-sm font-normal text-gray-500 dark:text-gray-400">
-              Html templates
-            </div>
+            <div className="text-base font-semibold text-gray-900 dark:text-white">Education Dashboard</div>
+            <div className="text-sm font-normal text-gray-500 dark:text-gray-400">Html templates</div>
           </Table.Cell>
           <Table.Cell className="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
             Angular
@@ -697,12 +572,8 @@ const ProductsTable: FC = function () {
             <Checkbox />
           </Table.Cell>
           <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
-            <div className="text-base font-semibold text-gray-900 dark:text-white">
-              React UI Kit
-            </div>
-            <div className="text-sm font-normal text-gray-500 dark:text-gray-400">
-              Html templates
-            </div>
+            <div className="text-base font-semibold text-gray-900 dark:text-white">React UI Kit</div>
+            <div className="text-sm font-normal text-gray-500 dark:text-gray-400">Html templates</div>
           </Table.Cell>
           <Table.Cell className="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
             React JS
@@ -725,12 +596,8 @@ const ProductsTable: FC = function () {
             <Checkbox />
           </Table.Cell>
           <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
-            <div className="text-base font-semibold text-gray-900 dark:text-white">
-              Education Dashboard
-            </div>
-            <div className="text-sm font-normal text-gray-500 dark:text-gray-400">
-              Html templates
-            </div>
+            <div className="text-base font-semibold text-gray-900 dark:text-white">Education Dashboard</div>
+            <div className="text-sm font-normal text-gray-500 dark:text-gray-400">Html templates</div>
           </Table.Cell>
           <Table.Cell className="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
             Angular
@@ -753,12 +620,8 @@ const ProductsTable: FC = function () {
             <Checkbox />
           </Table.Cell>
           <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
-            <div className="text-base font-semibold text-gray-900 dark:text-white">
-              React UI Kit
-            </div>
-            <div className="text-sm font-normal text-gray-500 dark:text-gray-400">
-              Html templates
-            </div>
+            <div className="text-base font-semibold text-gray-900 dark:text-white">React UI Kit</div>
+            <div className="text-sm font-normal text-gray-500 dark:text-gray-400">Html templates</div>
           </Table.Cell>
           <Table.Cell className="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
             React JS
@@ -781,12 +644,8 @@ const ProductsTable: FC = function () {
             <Checkbox />
           </Table.Cell>
           <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
-            <div className="text-base font-semibold text-gray-900 dark:text-white">
-              Education Dashboard
-            </div>
-            <div className="text-sm font-normal text-gray-500 dark:text-gray-400">
-              Html templates
-            </div>
+            <div className="text-base font-semibold text-gray-900 dark:text-white">Education Dashboard</div>
+            <div className="text-sm font-normal text-gray-500 dark:text-gray-400">Html templates</div>
           </Table.Cell>
           <Table.Cell className="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
             Angular
@@ -809,12 +668,8 @@ const ProductsTable: FC = function () {
             <Checkbox />
           </Table.Cell>
           <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
-            <div className="text-base font-semibold text-gray-900 dark:text-white">
-              Education Dashboard
-            </div>
-            <div className="text-sm font-normal text-gray-500 dark:text-gray-400">
-              Html templates
-            </div>
+            <div className="text-base font-semibold text-gray-900 dark:text-white">Education Dashboard</div>
+            <div className="text-sm font-normal text-gray-500 dark:text-gray-400">Html templates</div>
           </Table.Cell>
           <Table.Cell className="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
             Angular
@@ -837,12 +692,8 @@ const ProductsTable: FC = function () {
             <Checkbox />
           </Table.Cell>
           <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
-            <div className="text-base font-semibold text-gray-900 dark:text-white">
-              React UI Kit
-            </div>
-            <div className="text-sm font-normal text-gray-500 dark:text-gray-400">
-              Html templates
-            </div>
+            <div className="text-base font-semibold text-gray-900 dark:text-white">React UI Kit</div>
+            <div className="text-sm font-normal text-gray-500 dark:text-gray-400">Html templates</div>
           </Table.Cell>
           <Table.Cell className="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
             React JS
@@ -865,12 +716,8 @@ const ProductsTable: FC = function () {
             <Checkbox />
           </Table.Cell>
           <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
-            <div className="text-base font-semibold text-gray-900 dark:text-white">
-              Education Dashboard
-            </div>
-            <div className="text-sm font-normal text-gray-500 dark:text-gray-400">
-              Html templates
-            </div>
+            <div className="text-base font-semibold text-gray-900 dark:text-white">Education Dashboard</div>
+            <div className="text-sm font-normal text-gray-500 dark:text-gray-400">Html templates</div>
           </Table.Cell>
           <Table.Cell className="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
             Angular
@@ -893,12 +740,8 @@ const ProductsTable: FC = function () {
             <Checkbox />
           </Table.Cell>
           <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
-            <div className="text-base font-semibold text-gray-900 dark:text-white">
-              React UI Kit
-            </div>
-            <div className="text-sm font-normal text-gray-500 dark:text-gray-400">
-              Html templates
-            </div>
+            <div className="text-base font-semibold text-gray-900 dark:text-white">React UI Kit</div>
+            <div className="text-sm font-normal text-gray-500 dark:text-gray-400">Html templates</div>
           </Table.Cell>
           <Table.Cell className="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
             React JS
@@ -921,12 +764,8 @@ const ProductsTable: FC = function () {
             <Checkbox />
           </Table.Cell>
           <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
-            <div className="text-base font-semibold text-gray-900 dark:text-white">
-              Education Dashboard
-            </div>
-            <div className="text-sm font-normal text-gray-500 dark:text-gray-400">
-              Html templates
-            </div>
+            <div className="text-base font-semibold text-gray-900 dark:text-white">Education Dashboard</div>
+            <div className="text-sm font-normal text-gray-500 dark:text-gray-400">Html templates</div>
           </Table.Cell>
           <Table.Cell className="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
             Angular

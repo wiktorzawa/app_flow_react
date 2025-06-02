@@ -40,17 +40,17 @@ const express_1 = __importDefault(require("express"));
 const staffController = __importStar(require("../controllers/login_table_staff.controller"));
 const router = express_1.default.Router();
 // Pobieranie wszystkich pracowników
-router.get('/', staffController.getAllStaff);
+router.get("/", staffController.getAllStaff);
 // Dodaj trasę dla generowania ID pracownika
-router.get('/generate-id', staffController.generateStaffId);
+router.get("/generate-id", staffController.generateStaffId);
 // Pobieranie pracownika po ID
-router.get('/:id', staffController.getStaffById);
+router.get("/:id", staffController.getStaffById);
 // Dodawanie nowego pracownika
-router.post('/', staffController.createStaff);
+router.post("/", staffController.createStaff);
 // Aktualizacja pracownika
-router.put('/:id', staffController.updateStaff);
+router.put("/:id", staffController.updateStaff);
 // Usunięcie pracownika
-router.delete('/:id', staffController.deleteStaff);
+router.delete("/:id", staffController.deleteStaff);
 // Dodaj trasę dla tworzenia pracownika z automatycznym ID i hasłem
-router.post('/with-password', staffController.createStaffWithPassword);
+router.post("/with-password", staffController.createStaffWithPassword);
 exports.default = router;

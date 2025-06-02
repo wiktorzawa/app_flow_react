@@ -23,8 +23,7 @@ import { useSidebarContext } from "../context/SidebarContext";
 import isSmallScreen from "../helpers/is-small-screen";
 
 const ExampleSidebar: FC = function () {
-  const { isOpenOnSmallScreens: isSidebarOpenOnSmallScreens } =
-    useSidebarContext();
+  const { isOpenOnSmallScreens: isSidebarOpenOnSmallScreens } = useSidebarContext();
 
   const [currentPage, setCurrentPage] = useState("");
   const [isEcommerceOpen, setEcommerceOpen] = useState(true);
@@ -51,33 +50,30 @@ const ExampleSidebar: FC = function () {
         <div className="flex h-full flex-col justify-between py-2">
           <div>
             <form className="pb-3 md:hidden">
-              <TextInput
-                icon={HiSearch}
-                type="search"
-                placeholder="Search"
-                required
-                size={32}
-              />
+              <TextInput icon={HiSearch} type="search" placeholder="Search" required size={32} />
             </form>
             <Sidebar.Items>
               <Sidebar.ItemGroup>
                 <Sidebar.Item
                   href="/"
                   icon={HiChartPie}
-                  className={
-                    "/" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""
-                  }
+                  className={"/" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}
                 >
                   Dashboard
                 </Sidebar.Item>
+                {localStorage.getItem("userRole") === "admin" && (
+                  <Sidebar.Item
+                    href="/admin/AdsPowerDashboard"
+                    icon={HiAdjustments}
+                    className={"/admin/AdsPowerDashboard" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}
+                  >
+                    Profile AdsPower
+                  </Sidebar.Item>
+                )}
                 <Sidebar.Item
                   href="/kanban"
                   icon={HiViewGrid}
-                  className={
-                    "/kanban" === currentPage
-                      ? "bg-gray-100 dark:bg-gray-700"
-                      : ""
-                  }
+                  className={"/kanban" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}
                 >
                   Kanban
                 </Sidebar.Item>
@@ -85,63 +81,35 @@ const ExampleSidebar: FC = function () {
                   href="/mailing/inbox"
                   icon={HiInboxIn}
                   label="3"
-                  className={
-                    "/mailing/inbox" === currentPage
-                      ? "bg-gray-100 dark:bg-gray-700"
-                      : ""
-                  }
+                  className={"/mailing/inbox" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}
                 >
                   Inbox
                 </Sidebar.Item>
-                <Sidebar.Collapse
-                  icon={HiShoppingBag}
-                  label="E-commerce"
-                  open={isEcommerceOpen}
-                >
+                <Sidebar.Collapse icon={HiShoppingBag} label="E-commerce" open={isEcommerceOpen}>
                   <Sidebar.Item
                     href="/e-commerce/products"
-                    className={
-                      "/e-commerce/products" === currentPage
-                        ? "bg-gray-100 dark:bg-gray-700"
-                        : ""
-                    }
+                    className={"/e-commerce/products" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}
                   >
                     Products
                   </Sidebar.Item>
                   <Sidebar.Item
                     href="/e-commerce/billing"
-                    className={
-                      "/e-commerce/billing" === currentPage
-                        ? "bg-gray-100 dark:bg-gray-700"
-                        : ""
-                    }
+                    className={"/e-commerce/billing" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}
                   >
                     Billing
                   </Sidebar.Item>
                   <Sidebar.Item
                     href="/e-commerce/invoice"
-                    className={
-                      "/e-commerce/invoice" === currentPage
-                        ? "bg-gray-100 dark:bg-gray-700"
-                        : ""
-                    }
+                    className={"/e-commerce/invoice" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}
                   >
                     Invoice
                   </Sidebar.Item>
                 </Sidebar.Collapse>
-                <Sidebar.Collapse
-                  icon={HiUsers}
-                  label="Users"
-                  open={isUsersOpen}
-                >
+                <Sidebar.Collapse icon={HiUsers} label="Users" open={isUsersOpen}>
                   {localStorage.getItem("userRole") === "admin" && (
                     <Sidebar.Item
                       href="/users/list"
-                      className={
-                        "/users/list" === currentPage
-                          ? "bg-gray-100 dark:bg-gray-700"
-                          : ""
-                      }
+                      className={"/users/list" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}
                     >
                       Users list
                     </Sidebar.Item>
@@ -149,93 +117,54 @@ const ExampleSidebar: FC = function () {
                   {localStorage.getItem("userRole") === "admin" && (
                     <Sidebar.Item
                       href="/users/listSuppliers"
-                      className={
-                        "/users/listSuppliers" === currentPage
-                          ? "bg-gray-100 dark:bg-gray-700"
-                          : ""
-                      }
+                      className={"/users/listSuppliers" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}
                     >
                       Suppliers list
                     </Sidebar.Item>
                   )}
                   <Sidebar.Item
                     href="/users/profile"
-                    className={
-                      "/users/profile" === currentPage
-                        ? "bg-gray-100 dark:bg-gray-700"
-                        : ""
-                    }
+                    className={"/users/profile" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}
                   >
                     Profile
                   </Sidebar.Item>
                   {localStorage.getItem("userRole") === "admin" && (
                     <Sidebar.Item
                       href="/users/feed"
-                      className={
-                        "/users/feed" === currentPage
-                          ? "bg-gray-100 dark:bg-gray-700"
-                          : ""
-                      }
+                      className={"/users/feed" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}
                     >
                       Feed
                     </Sidebar.Item>
                   )}
                   <Sidebar.Item
                     href="/users/settings"
-                    className={
-                      "/users/settings" === currentPage
-                        ? "bg-gray-100 dark:bg-gray-700"
-                        : ""
-                    }
+                    className={"/users/settings" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}
                   >
                     Settings
                   </Sidebar.Item>
                 </Sidebar.Collapse>
                 <Sidebar.Collapse icon={HiChartSquareBar} label="Pages">
                   <Sidebar.Item href="/pages/pricing">Pricing</Sidebar.Item>
-                  <Sidebar.Item href="/pages/maintenance">
-                    Maintenace
-                  </Sidebar.Item>
+                  <Sidebar.Item href="/pages/maintenance">Maintenace</Sidebar.Item>
                   <Sidebar.Item href="/pages/404">404 not found</Sidebar.Item>
-                  <Sidebar.Item href="/pages/500">
-                    500 server error
-                  </Sidebar.Item>
+                  <Sidebar.Item href="/pages/500">500 server error</Sidebar.Item>
                 </Sidebar.Collapse>
                 <Sidebar.Collapse icon={HiLockClosed} label="Authentication">
-                  <Sidebar.Item href="/authentication/sign-in">
-                    Sign in
-                  </Sidebar.Item>
-                  <Sidebar.Item href="/authentication/sign-up">
-                    Sign up
-                  </Sidebar.Item>
-                  <Sidebar.Item href="/authentication/forgot-password">
-                    Forgot password
-                  </Sidebar.Item>
-                  <Sidebar.Item href="/authentication/reset-password">
-                    Reset password
-                  </Sidebar.Item>
-                  <Sidebar.Item href="/authentication/profile-lock">
-                    Profile lock
-                  </Sidebar.Item>
+                  <Sidebar.Item href="/authentication/sign-in">Sign in</Sidebar.Item>
+                  <Sidebar.Item href="/authentication/sign-up">Sign up</Sidebar.Item>
+                  <Sidebar.Item href="/authentication/forgot-password">Forgot password</Sidebar.Item>
+                  <Sidebar.Item href="/authentication/reset-password">Reset password</Sidebar.Item>
+                  <Sidebar.Item href="/authentication/profile-lock">Profile lock</Sidebar.Item>
                 </Sidebar.Collapse>
               </Sidebar.ItemGroup>
               <Sidebar.ItemGroup>
-                <Sidebar.Item
-                  href="https://github.com/themesberg/flowbite-react/"
-                  icon={HiClipboard}
-                >
+                <Sidebar.Item href="https://github.com/themesberg/flowbite-react/" icon={HiClipboard}>
                   Docs
                 </Sidebar.Item>
-                <Sidebar.Item
-                  href="https://flowbite-react.com/"
-                  icon={HiCollection}
-                >
+                <Sidebar.Item href="https://flowbite-react.com/" icon={HiCollection}>
                   Components
                 </Sidebar.Item>
-                <Sidebar.Item
-                  href="https://github.com/themesberg/flowbite-react/issues"
-                  icon={HiInformationCircle}
-                >
+                <Sidebar.Item href="https://github.com/themesberg/flowbite-react/issues" icon={HiInformationCircle}>
                   Help
                 </Sidebar.Item>
               </Sidebar.ItemGroup>
@@ -288,21 +217,14 @@ const LanguageDropdown: FC = function () {
             className="h-5 w-5 rounded-full"
           >
             <path fill="#b22234" d="M0 0h7410v3900H0z"></path>
-            <path
-              d="M0 450h7410m0 600H0m0 600h7410m0 600H0m0 600h7410m0 600H0"
-              stroke="#fff"
-              strokeWidth="300"
-            ></path>
+            <path d="M0 450h7410m0 600H0m0 600h7410m0 600H0m0 600h7410m0 600H0" stroke="#fff" strokeWidth="300"></path>
             <path fill="#3c3b6e" d="M0 0h2964v2100H0z"></path>
             <g fill="#fff">
               <g id="d">
                 <g id="c">
                   <g id="e">
                     <g id="b">
-                      <path
-                        id="a"
-                        d="M247 90l70.534 217.082-184.66-134.164h228.253L176.466 307.082z"
-                      ></path>
+                      <path id="a" d="M247 90l70.534 217.082-184.66-134.164h228.253L176.466 307.082z"></path>
                       <use xlinkHref="#a" y="420"></use>
                       <use xlinkHref="#a" y="840"></use>
                       <use xlinkHref="#a" y="1260"></use>
@@ -334,27 +256,23 @@ const LanguageDropdown: FC = function () {
                 id="flag-icon-css-us"
                 viewBox="0 0 512 512"
               >
-                <g fillRule="evenodd">
+                <g fillRule="evenodd" strokeWidth="1pt">
                   <g strokeWidth="1pt">
                     <path
                       fill="#bd3d44"
-                      d="M0 0h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0z"
+                      d="M0 0h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0z"
                       transform="scale(3.9385)"
                     />
                     <path
                       fill="#fff"
-                      d="M0 10h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0z"
+                      d="M0 10h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0z"
                       transform="scale(3.9385)"
                     />
                   </g>
-                  <path
-                    fill="#192f5d"
-                    d="M0 0h98.8v70H0z"
-                    transform="scale(3.9385)"
-                  />
+                  <path fill="#192f5d" d="M0 0h98.8v70H0z" transform="scale(3.9385)" />
                   <path
                     fill="#fff"
-                    d="M8.2 3l1 2.8H12L9.7 7.5l.9 2.7-2.4-1.7L6 10.2l.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7H65zm16.4 0l1 2.8H86l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm-74.1 7l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7H65zm16.4 0l1 2.8H86l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm-74 7l.8 2.8h3l-2.4 1.7.9 2.7-2.4-1.7L6 24.2l.9-2.7-2.4-1.7h3zm16.4 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8H45l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9L92 21.5l1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm-74.1 7l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7H65zm16.4 0l1 2.8H86l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm-74 7l.8 2.8h3l-2.4 1.7.9 2.7-2.4-1.7L6 38.2l.9-2.7-2.4-1.7h3zm16.4 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8H45l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9L92 35.5l1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm-74.1 7l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7H65zm16.4 0l1 2.8H86l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm-74 7l.8 2.8h3l-2.4 1.7.9 2.7-2.4-1.7L6 52.2l.9-2.7-2.4-1.7h3zm16.4 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8H45l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9L92 49.5l1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm-74.1 7l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7H65zm16.4 0l1 2.8H86l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm-74 7l.8 2.8h3l-2.4 1.7.9 2.7-2.4-1.7L6 66.2l.9-2.7-2.4-1.7h3zm16.4 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8H45l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9L92 63.5l1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9z"
+                    d="M8.2 3l1 2.8H12L9.7 7.5l.9 2.7-2.4-1.7L6 10.2l.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7H65zm16.4 0l1 2.8H86l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm-74.1 7l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7H65zm16.4 0l1 2.8H86l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm-74 7l.8 2.8h3l-2.4 1.7.9 2.7-2.4-1.7L6 24.2l.9-2.7-2.4-1.7h3zm16.4 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8H45l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9L92 35.5l1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm-74.1 7l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7H65zm16.4 0l1 2.8H86l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm-74 7l.8 2.8h3l-2.4 1.7.9 2.7-2.4-1.7L6 52.2l.9-2.7-2.4-1.7h3zm16.4 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8H45l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9L92 49.5l1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm-74.1 7l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7H65zm16.4 0l1 2.8H86l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm-74 7l.8 2.8h3l-2.4 1.7.9 2.7-2.4-1.7L6 66.2l.9-2.7-2.4-1.7h3zm16.4 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8H45l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9L92 63.5l1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm-74.1 7l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7H65zm16.4 0l1 2.8H86l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm-74 7l.8 2.8h3l-2.4 1.7.9 2.7-2.4-1.7L6 78.2l.9-2.7-2.4-1.7h3zm16.4 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8H45l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9L92 87.5l1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9z"
                     transform="scale(3.9385)"
                   />
                 </g>
@@ -422,36 +340,11 @@ const LanguageDropdown: FC = function () {
                   <path id="a" fill="#ffde00" d="M1-.3L-.7.8 0-1 .6.8-1-.3z" />
                 </defs>
                 <path fill="#de2910" d="M0 0h512v512H0z" />
-                <use
-                  width="30"
-                  height="20"
-                  transform="matrix(76.8 0 0 76.8 128 128)"
-                  xlinkHref="#a"
-                />
-                <use
-                  width="30"
-                  height="20"
-                  transform="rotate(-121 142.6 -47) scale(25.5827)"
-                  xlinkHref="#a"
-                />
-                <use
-                  width="30"
-                  height="20"
-                  transform="rotate(-98.1 198 -82) scale(25.6)"
-                  xlinkHref="#a"
-                />
-                <use
-                  width="30"
-                  height="20"
-                  transform="rotate(-74 272.4 -114) scale(25.6137)"
-                  xlinkHref="#a"
-                />
-                <use
-                  width="30"
-                  height="20"
-                  transform="matrix(16 -19.968 19.968 16 256 230.4)"
-                  xlinkHref="#a"
-                />
+                <use width="30" height="20" transform="matrix(76.8 0 0 76.8 128 128)" xlinkHref="#a" />
+                <use width="30" height="20" transform="rotate(-121 142.6 -47) scale(25.5827)" xlinkHref="#a" />
+                <use width="30" height="20" transform="rotate(-98.1 198 -82) scale(25.6)" xlinkHref="#a" />
+                <use width="30" height="20" transform="rotate(-74 272.4 -114) scale(25.6137)" xlinkHref="#a" />
+                <use width="30" height="20" transform="matrix(16 -19.968 19.968 16 256 230.4)" xlinkHref="#a" />
               </svg>
               <span className="whitespace-nowrap">中文 (繁體)</span>
             </div>

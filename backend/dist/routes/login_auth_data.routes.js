@@ -40,5 +40,5 @@ const express_1 = __importDefault(require("express"));
 const authController = __importStar(require("../controllers/login_auth_data.controller"));
 const router = express_1.default.Router();
 // Trasa do logowania
-router.post('/login', authController.login);
+router.post("/login", authController.login);
 exports.default = router;

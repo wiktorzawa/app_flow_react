@@ -23,13 +23,13 @@ const bcrypt_1 = __importDefault(require("bcrypt"));
 const generateStaffId = (role) => __awaiter(void 0, void 0, void 0, function* () {
     const connection = yield db_1.default.getConnection();
     try {
-        const prefix = role === 'admin' ? 'ADM/' : 'STF/';
+        const prefix = role === "admin" ? "ADM/" : "STF/";
         // Pobierz wszystkie ID pracowników z określonym prefixem
-        const [rows] = yield connection.query('SELECT id_staff FROM login_table_staff WHERE id_staff LIKE ?', [`${prefix}%`]);
+        const [rows] = yield connection.query("SELECT id_staff FROM login_table_staff WHERE id_staff LIKE ?", [`${prefix}%`]);
         // Znajdź największy numer
         let maxNumber = 0;
         rows.forEach((row) => {
-            const idParts = row.id_staff.split('/');
+            const idParts = row.id_staff.split("/");
             if (idParts.length === 2) {
                 const numStr = idParts[1];
                 const num = parseInt(numStr, 10);
@@ -40,15 +40,15 @@ const generateStaffId = (role) => __awaiter(void 0, void 0, void 0, function* ()
         });
         // Wygeneruj nowe ID
         const nextNumber = maxNumber + 1;
-        const paddedNumber = nextNumber.toString().padStart(5, '0');
+        const paddedNumber = nextNumber.toString().padStart(5, "0");
         const newId = `${prefix}${paddedNumber}`;
         console.log(`Wygenerowano nowe ID: ${newId} dla roli: ${role}`);
         return newId;
     }
     catch (error) {
-        console.error('Błąd podczas generowania ID pracownika:', error);
+        console.error("Błąd podczas generowania ID pracownika:", error);
         // Wygeneruj domyślne ID w przypadku błędu
-        const defaultId = role === 'admin' ? 'ADM/00001' : 'STF/00001';
+        const defaultId = role === "admin" ? "ADM/00001" : "STF/00001";
         console.log(`Błąd generowania ID, zwracam domyślne: ${defaultId}`);
         return defaultId;
     }
@@ -83,16 +83,16 @@ const createStaffWithPassword = (staff) => __awaiter(void 0, void 0, void 0, fun
         const plainPassword = (0, exports.generatePassword)(id_staff);
         const hashedPassword = yield bcrypt_1.default.hash(plainPassword, 10);
         // Utwórz nowego pracownika
-        yield connection.execute('INSERT INTO login_table_staff (id_staff, first_name, last_name, role, email, phone) VALUES (?, ?, ?, ?, ?, ?)', [id_staff, staff.first_name, staff.last_name, staff.role, staff.email, staff.phone]);
+        yield connection.execute("INSERT INTO login_table_staff (id_staff, first_name, last_name, role, email, phone) VALUES (?, ?, ?, ?, ?, ?)", [id_staff, staff.first_name, staff.last_name, staff.role, staff.email, staff.phone]);
         // Utwórz dane uwierzytelniające
         const id_login = `${id_staff}/LOG`;
-        yield connection.execute('INSERT INTO login_auth_data (id_login, related_id, email, password_hash, role, failed_login_attempts) VALUES (?, ?, ?, ?, ?, ?)', [id_login, id_staff, staff.email, hashedPassword, staff.role, 0]);
+        yield connection.execute("INSERT INTO login_auth_data (id_login, related_id, email, password_hash, role, failed_login_attempts) VALUES (?, ?, ?, ?, ?, ?)", [id_login, id_staff, staff.email, hashedPassword, staff.role, 0]);
         yield connection.commit();
         return yield (0, exports.getStaffById)(id_staff);
     }
     catch (error) {
         yield connection.rollback();
-        console.error('Błąd podczas tworzenia pracownika z hasłem:', error);
+        console.error("Błąd podczas tworzenia pracownika z hasłem:", error);
         throw error;
     }
     finally {
@@ -107,7 +107,7 @@ exports.createStaffWithPassword = createStaffWithPassword;
 const getAllStaff = () => __awaiter(void 0, void 0, void 0, function* () {
     const connection = yield db_1.default.getConnection();
     try {
-        const [rows] = yield connection.query('SELECT * FROM login_table_staff');
+        const [rows] = yield connection.query("SELECT * FROM login_table_staff");
         return rows;
     }
     finally {
@@ -123,7 +123,9 @@ exports.getAllStaff = getAllStaff;
 const getStaffById = (id_staff) => __awaiter(void 0, void 0, void 0, function* () {
     const connection = yield db_1.default.getConnection();
     try {
-        const [rows] = yield connection.query('SELECT * FROM login_table_staff WHERE id_staff = ?', [id_staff]);
+        const [rows] = yield connection.query("SELECT * FROM login_table_staff WHERE id_staff = ?", [
+            id_staff,
+        ]);
         return rows.length > 0 ? rows[0] : null;
     }
     finally {
@@ -139,7 +141,7 @@ exports.getStaffById = getStaffById;
 const getStaffByEmail = (email) => __awaiter(void 0, void 0, void 0, function* () {
     const connection = yield db_1.default.getConnection();
     try {
-        const [rows] = yield connection.query('SELECT * FROM login_table_staff WHERE email = ?', [email]);
+        const [rows] = yield connection.query("SELECT * FROM login_table_staff WHERE email = ?", [email]);
         return rows.length > 0 ? rows[0] : null;
     }
     finally {
@@ -155,7 +157,7 @@ exports.getStaffByEmail = getStaffByEmail;
 const createStaff = (staff) => __awaiter(void 0, void 0, void 0, function* () {
     const connection = yield db_1.default.getConnection();
     try {
-        yield connection.execute('INSERT INTO login_table_staff (id_staff, first_name, last_name, role, email, phone) VALUES (?, ?, ?, ?, ?, ?)', [staff.id_staff, staff.first_name, staff.last_name, staff.role, staff.email, staff.phone]);
+        yield connection.execute("INSERT INTO login_table_staff (id_staff, first_name, last_name, role, email, phone) VALUES (?, ?, ?, ?, ?, ?)", [staff.id_staff, staff.first_name, staff.last_name, staff.role, staff.email, staff.phone]);
         return yield (0, exports.getStaffById)(staff.id_staff);
     }
     finally {
@@ -175,30 +177,30 @@ const updateStaff = (id_staff, staff) => __awaiter(void 0, void 0, void 0, funct
         const updates = [];
         const values = [];
         if (staff.first_name !== undefined) {
-            updates.push('first_name = ?');
+            updates.push("first_name = ?");
             values.push(staff.first_name);
         }
         if (staff.last_name !== undefined) {
-            updates.push('last_name = ?');
+            updates.push("last_name = ?");
             values.push(staff.last_name);
         }
         if (staff.role !== undefined) {
-            updates.push('role = ?');
+            updates.push("role = ?");
             values.push(staff.role);
         }
         if (staff.email !== undefined) {
-            updates.push('email = ?');
+            updates.push("email = ?");
             values.push(staff.email);
         }
         if (staff.phone !== undefined) {
-            updates.push('phone = ?');
+            updates.push("phone = ?");
             values.push(staff.phone);
         }
         if (updates.length === 0) {
             return yield (0, exports.getStaffById)(id_staff);
         }
         values.push(id_staff);
-        yield connection.execute(`UPDATE login_table_staff SET ${updates.join(', ')} WHERE id_staff = ?`, values);
+        yield connection.execute(`UPDATE login_table_staff SET ${updates.join(", ")} WHERE id_staff = ?`, values);
         return yield (0, exports.getStaffById)(id_staff);
     }
     finally {
@@ -217,9 +219,11 @@ const deleteStaff = (id_staff) => __awaiter(void 0, void 0, void 0, function* ()
         yield connection.beginTransaction();
         // Usuń powiązane dane logowania
         const id_login = `${id_staff}/LOG`;
-        yield connection.execute('DELETE FROM login_auth_data WHERE id_login = ? OR related_id = ?', [id_login, id_staff]);
+        yield connection.execute("DELETE FROM login_auth_data WHERE id_login = ? OR related_id = ?", [id_login, id_staff]);
         // Usuń pracownika
-        const [result] = yield connection.execute('DELETE FROM login_table_staff WHERE id_staff = ?', [id_staff]);
+        const [result] = yield connection.execute("DELETE FROM login_table_staff WHERE id_staff = ?", [
+            id_staff,
+        ]);
         yield connection.commit();
         return result.affectedRows > 0;
     }

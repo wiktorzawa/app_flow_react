@@ -26,4 +26,4 @@ export interface SupplierProductInput {
   waga_dostawcy?: string | number | null;
   wymiary_dostawcy?: string | null;
   raw_supplier_row?: Record<string, any> | null;
-} 
+}

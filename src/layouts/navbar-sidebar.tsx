@@ -11,23 +11,19 @@ interface NavbarSidebarLayoutProps {
   isFooter?: boolean;
 }
 
-const NavbarSidebarLayout: FC<PropsWithChildren<NavbarSidebarLayoutProps>> =
-  function ({ children, isFooter = true }) {
-    return (
-      <SidebarProvider>
-        <Navbar />
-        <div className="flex items-start pt-16">
-          <Sidebar />
-          <MainContent isFooter={isFooter}>{children}</MainContent>
-        </div>
-      </SidebarProvider>
-    );
-  };
+const NavbarSidebarLayout: FC<PropsWithChildren<NavbarSidebarLayoutProps>> = function ({ children, isFooter = true }) {
+  return (
+    <SidebarProvider>
+      <Navbar />
+      <div className="flex items-start pt-16">
+        <Sidebar />
+        <MainContent isFooter={isFooter}>{children}</MainContent>
+      </div>
+    </SidebarProvider>
+  );
+};
 
-const MainContent: FC<PropsWithChildren<NavbarSidebarLayoutProps>> = function ({
-  children,
-  isFooter,
-}) {
+const MainContent: FC<PropsWithChildren<NavbarSidebarLayoutProps>> = function ({ children, isFooter }) {
   const { isOpenOnSmallScreens: isSidebarOpen } = useSidebarContext();
 
   return (
@@ -69,34 +65,19 @@ const MainContentFooter: FC = function () {
           </Footer.LinkGroup>
           <Footer.LinkGroup>
             <div className="flex gap-4 md:gap-0">
-              <Footer.Link
-                href="#"
-                className="hover:[&>*]:text-black dark:hover:[&>*]:text-gray-300"
-              >
+              <Footer.Link href="#" className="hover:[&>*]:text-black dark:hover:[&>*]:text-gray-300">
                 <MdFacebook className="text-lg" />
               </Footer.Link>
-              <Footer.Link
-                href="#"
-                className="hover:[&>*]:text-black dark:hover:[&>*]:text-gray-300"
-              >
+              <Footer.Link href="#" className="hover:[&>*]:text-black dark:hover:[&>*]:text-gray-300">
                 <FaInstagram className="text-lg" />
               </Footer.Link>
-              <Footer.Link
-                href="#"
-                className="hover:[&>*]:text-black dark:hover:[&>*]:text-gray-300"
-              >
+              <Footer.Link href="#" className="hover:[&>*]:text-black dark:hover:[&>*]:text-gray-300">
                 <FaTwitter className="text-lg" />
               </Footer.Link>
-              <Footer.Link
-                href="#"
-                className="hover:[&>*]:text-black dark:hover:[&>*]:text-gray-300"
-              >
+              <Footer.Link href="#" className="hover:[&>*]:text-black dark:hover:[&>*]:text-gray-300">
                 <FaGithub className="text-lg" />
               </Footer.Link>
-              <Footer.Link
-                href="#"
-                className="hover:[&>*]:text-black dark:hover:[&>*]:text-gray-300"
-              >
+              <Footer.Link href="#" className="hover:[&>*]:text-black dark:hover:[&>*]:text-gray-300">
                 <FaDribbble className="text-lg" />
               </Footer.Link>
             </div>

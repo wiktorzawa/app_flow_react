@@ -31,7 +31,7 @@ export const s3Service = {
     // Tymczasowo usunięto funkcjonalność AWS S3
     console.log("Funkcja uploadFile tymczasowo wyłączona");
     return { status: "mock", key };
-    
+
     /*
     const command = new PutObjectCommand({
       Bucket: s3Config.bucketName,
@@ -53,7 +53,7 @@ export const s3Service = {
     // Tymczasowo usunięto funkcjonalność AWS S3
     console.log("Funkcja getFile tymczasowo wyłączona");
     return { status: "mock", key };
-    
+
     /*
     const command = new GetObjectCommand({
       Bucket: s3Config.bucketName,
