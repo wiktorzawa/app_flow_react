@@ -228,7 +228,7 @@ export const AddSupplierModal: FC<AddSupplierModalProps> = function ({ refresh }
         </div>
       </Button>
       <Modal onClose={handleCloseSuccessView} show={modalState}>
-        <Modal.Header className="border-b border-gray-200 !p-6 bg-green-100 dark:bg-green-800 dark:border-gray-700">
+        <div className="modal-header" className="border-b border-gray-200 !p-6 bg-green-100 dark:bg-green-800 dark:border-gray-700">
           <div className="flex items-center gap-2">
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-green-100 dark:bg-green-800">
               <svg
@@ -246,7 +246,7 @@ export const AddSupplierModal: FC<AddSupplierModalProps> = function ({ refresh }
             </div>
             <strong>Dodano nowego dostawcę</strong>
           </div>
-        </Modal.Header>
+        </div>
         <Modal.Body>
           <div className="mb-4 rounded-lg bg-green-50 p-4 text-green-800 dark:bg-gray-800 dark:text-green-300">
             <div className="mb-1 font-medium">Dostawca został pomyślnie dodany do systemu</div>
@@ -666,9 +666,9 @@ const EditSupplierModal: FC<{
         <span>Edytuj</span>
       </Button>
       <Modal show={isOpen} onClose={() => setOpen(false)} size="xl" popup={true}>
-        <Modal.Header className="border-b border-gray-200 dark:border-gray-700">
+        <div className="modal-header" className="border-b border-gray-200 dark:border-gray-700">
           <h3 className="text-xl font-medium text-gray-900 dark:text-white">Edytuj dostawcę</h3>
-        </Modal.Header>
+        </div>
         <Modal.Body>
           {error && (
             <div className="mb-4 rounded-lg bg-red-50 p-4 text-sm text-red-800 dark:bg-red-900 dark:text-red-300">

@@ -1,5 +1,58 @@
 import type { CustomFlowbiteTheme } from "flowbite-react";
+const fs = require("fs");
+const path = require("path");
 
+// Lista plików do migracji (dodaj kolejne wg potrzeb)
+const files = [
+  "src/pages/users/delete-user-modal.tsx",
+  "src/pages/users/list.tsx",
+  "src/pages/users/listSuppliers.tsx",
+  "src/pages/users/profile.tsx",
+  "src/pages/users/settings.tsx",
+  "src/pages/kanban.tsx",
+  "src/pages/e-commerce/products.tsx",
+  "src/pages/e-commerce/billing.tsx",
+  "src/pages/e-commerce/invoice.tsx",
+  "src/pages/admin/AdsPowerDashboardPage.tsx",
+  "src/pages/admin/AdsPowerDashboardPageori.tsx",
+  // Dodaj kolejne pliki wg potrzeb
+];
+
+const replacements = [
+  // Modal
+  { from: /<Modal\.Header([^>]*)>/g, to: '<div className="modal-header"$1>' },
+  { from: /<\/Modal\.Header>/g, to: '</div>' },
+  { from: /<Modal\.Body([^>]*)>/g, to: '<div className="modal-body"$1>' },
+  { from: /<\/Modal\.Body>/g, to: '</div>' },
+  { from: /<Modal\.Footer([^>]*)>/g, to: '<div className="modal-footer"$1>' },
+  { from: /<\/Modal\.Footer>/g, to: '</div>' },
+  // Breadcrumb
+  { from: /<Breadcrumb\.Item([^>]*)>/g, to: '<a className="breadcrumb-item"$1>' },
+  { from: /<\/Breadcrumb\.Item>/g, to: '</a>' },
+  // Table
+  { from: /<Table\.Head([^>]*)>/g, to: '<thead$1>' },
+  { from: /<\/Table\.Head>/g, to: '</thead>' },
+  { from: /<Table\.HeadCell([^>]*)>/g, to: '<th$1>' },
+  { from: /<\/Table\.HeadCell>/g, to: '</th>' },
+  { from: /<Table\.Body([^>]*)>/g, to: '<tbody$1>' },
+  { from: /<\/Table\.Body>/g, to: '</tbody>' },
+  { from: /<Table\.Row([^>]*)>/g, to: '<tr$1>' },
+  { from: /<\/Table\.Row>/g, to: '</tr>' },
+  { from: /<Table\.Cell([^>]*)>/g, to: '<td$1>' },
+  { from: /<\/Table\.Cell>/g, to: '</td>' },
+];
+
+files.forEach((file) => {
+  const filePath = path.resolve(file);
+  let content = fs.readFileSync(filePath, "utf8");
+  replacements.forEach(({ from, to }) => {
+    content = content.replace(from, to);
+  });
+  fs.writeFileSync(filePath, content, "utf8");
+  console.log(`Zmieniono: ${file}`);
+});
+
+console.log("Automatyczna migracja zakończona! Sprawdź pliki i przetestuj aplikację.");
 const flowbiteTheme: CustomFlowbiteTheme = {
   badge: {
     root: {

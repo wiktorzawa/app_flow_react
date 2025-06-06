@@ -1,43 +1,39 @@
-require('dotenv').config({ path: require('path').resolve(__dirname, '../../../.env') });
+require('dotenv').config();
 
 module.exports = {
   development: {
-    username: 'admin',
-    password: '1Nieporet!',
-    database: 'msbox_db',
-    host: 'flask-app-msbox.chqqwymic43o.us-east-1.rds.amazonaws.com',
-    port: 3306,
+    username: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT || 3306,
     dialect: 'mysql',
-    dialectOptions: {
-      ssl: {
-        rejectUnauthorized: false
-      }
+    logging: console.log,
+    define: {
+      charset: 'utf8mb4',
+      collate: 'utf8mb4_unicode_ci'
     }
   },
   test: {
-    username: 'admin',
-    password: '1Nieporet!',
-    database: 'msbox_db',
-    host: 'flask-app-msbox.chqqwymic43o.us-east-1.rds.amazonaws.com',
-    port: 3306,
+    username: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME + '_test',
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT || 3306,
     dialect: 'mysql',
-    dialectOptions: {
-      ssl: {
-        rejectUnauthorized: false
-      }
-    }
+    logging: false
   },
   production: {
-    username: 'admin',
-    password: '1Nieporet!',
-    database: 'msbox_db',
-    host: 'flask-app-msbox.chqqwymic43o.us-east-1.rds.amazonaws.com',
-    port: 3306,
+    username: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT || 3306,
     dialect: 'mysql',
-    dialectOptions: {
-      ssl: {
-        rejectUnauthorized: false
-      }
+    logging: false,
+    define: {
+      charset: 'utf8mb4',
+      collate: 'utf8mb4_unicode_ci'
     }
   }
 }; 

@@ -1,0 +1,22 @@
+[
+  {
+    "palletNumber": "AM38160_90029531567",
+    "itemDescription": "Catit Pixi Smart Feeder automatique pour chats, contrôlé par une application, pour 1,2 kg",
+    "ean": "15561013666",
+    "asin": "B093MF7X18",
+    "lpn": "LPNHE919225404",
+    "quantity": 1,
+    "unitRetail": 98.24,
+    "value": 98.24,
+    "department": "Pet Products",
+    "glDescription": "gl_pet_products",
+    "categoryCode": "19900200",
+    "category": "Habitats & Supplies",
+    "subcatCode": "19900219",
+    "subcategory": "Feeders",
+    "totalValue": "3 269,46 €",
+    "vatPercentage": "18,00%",
+    "sourceFile": "Dostawa magazyn Wiktor 16.05.2025r drobne artykuły kuchenne AM38160_90029531567.csv",
+    "fileType": "kitchen_items"
+  }
+] 

@@ -109,9 +109,9 @@ const AddProductModal: FC = function () {
         Add product
       </Button>
       <Modal onClose={() => setOpen(false)} show={isOpen}>
-        <Modal.Header className="border-b border-gray-200 !p-6 dark:border-gray-700">
+        <div className="modal-header" className="border-b border-gray-200 !p-6 dark:border-gray-700">
           <strong>Add product</strong>
-        </Modal.Header>
+        </div>
         <Modal.Body>
           <form>
             <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
@@ -176,9 +176,9 @@ const EditProductModal: FC = function () {
         Edit item
       </Button>
       <Modal onClose={() => setOpen(false)} show={isOpen}>
-        <Modal.Header className="border-b border-gray-200 !p-6 dark:border-gray-700">
+        <div className="modal-header" className="border-b border-gray-200 !p-6 dark:border-gray-700">
           <strong>Edit product</strong>
-        </Modal.Header>
+        </div>
         <Modal.Body>
           <form>
             <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
@@ -266,9 +266,9 @@ const DeleteProductModal: FC = function () {
         Delete item
       </Button>
       <Modal onClose={() => setOpen(false)} show={isOpen} size="md">
-        <Modal.Header className="px-3 pb-0 pt-3">
+        <div className="modal-header" className="px-3 pb-0 pt-3">
           <span className="sr-only">Delete product</span>
-        </Modal.Header>
+        </div>
         <Modal.Body className="px-6 pb-6 pt-0">
           <div className="flex flex-col items-center gap-y-6 text-center">
             <HiOutlineExclamationCircle className="text-7xl text-red-600" />

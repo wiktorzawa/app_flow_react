@@ -84,16 +84,18 @@ export class BrightDataService {
       };
 
       console.log("DEBUG - Fetching active Bright Data zones...");
-      const activeZonesResponse = await axios.get<ActiveZoneInfo[]>(
-        `${BRIGHTDATA_API_URL}/zone/get_active_zones`,
-        { headers }
-      );
+      const activeZonesResponse = await axios.get<ActiveZoneInfo[]>(`${BRIGHTDATA_API_URL}/zone/get_active_zones`, {
+        headers,
+      });
 
       if (!activeZonesResponse.data || !Array.isArray(activeZonesResponse.data)) {
         console.log("No active Bright Data zones found or unexpected format.");
         return [];
       }
-      console.log(`Found ${activeZonesResponse.data.length} active zones:`, activeZonesResponse.data.map(z => z.name));
+      console.log(
+        `Found ${activeZonesResponse.data.length} active zones:`,
+        activeZonesResponse.data.map((z) => z.name)
+      );
 
       const detailedProxies: BrightDataProxy[] = [];
 
@@ -104,14 +106,13 @@ export class BrightDataService {
             `${BRIGHTDATA_API_URL}/zone?zone=${activeZone.name}`,
             { headers }
           );
-          
+
           const details = zoneDetailsResp.data;
           // Dodano bardziej szczegółowe logowanie odpowiedzi z detali
           console.log(`DEBUG - Details for ${activeZone.name}:`, JSON.stringify(details, null, 2));
 
-
           detailedProxies.push({
-            zone: activeZone.name, 
+            zone: activeZone.name,
             proxy_type: details.plan.product || activeZone.type,
             password: details.password && details.password.length > 0 ? details.password[0] : undefined,
             created_at: details.created,
@@ -123,12 +124,12 @@ export class BrightDataService {
               product: details.plan.product,
               smart_resi: details.plan.smart_resi, // Upewnij się, że to pole istnieje w ZoneDetailsResponse
             },
-            country: details.plan.country, 
+            country: details.plan.country,
             permissions: details.perm,
             customer_id: this.customerID,
-            status: "active", 
-            port: 0, 
-            whitelist_ips: [], 
+            status: "active",
+            port: 0,
+            whitelist_ips: [],
             // listen_port, test_url, gb_cost, mobile, unblock, preset, city - te pola nie są bezpośrednio mapowane z odpowiedzi API
             // Możesz je dodać, jeśli mają być ustawiane na jakieś wartości domyślne lub pobierane z innego miejsca
           });
@@ -136,7 +137,10 @@ export class BrightDataService {
           console.error(`Error fetching details for zone ${activeZone.name}:`, detailError.message);
           if (axios.isAxiosError(detailError) && detailError.response) {
             // Dodano bardziej szczegółowe logowanie błędu
-            console.error(`Bright Data API Error for zone ${activeZone.name} details (status ${detailError.response.status}):`, JSON.stringify(detailError.response.data, null, 2));
+            console.error(
+              `Bright Data API Error for zone ${activeZone.name} details (status ${detailError.response.status}):`,
+              JSON.stringify(detailError.response.data, null, 2)
+            );
           }
           detailedProxies.push({
             zone: activeZone.name,
@@ -150,7 +154,6 @@ export class BrightDataService {
       }
       console.log("Successfully fetched detailed Bright Data proxies");
       return detailedProxies;
-
     } catch (error: any) {
       console.error("Error in listProxies general execution:", error.message);
       if (axios.isAxiosError(error) && error.response) {

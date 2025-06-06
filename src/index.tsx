@@ -13,6 +13,6 @@ const root = createRoot(container);
 
 root.render(
   // <StrictMode>
-  <App />
+    <App />
   // </StrictMode>
 );

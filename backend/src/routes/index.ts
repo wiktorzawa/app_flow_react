@@ -5,6 +5,8 @@ import supplierRoutes from "./login_table_suppliers.routes";
 import allegroRoutes from "./allegroRoutes";
 import adsPowerRoutes from "./adsPowerRoutes";
 import brightDataRoutes from "./brightDataRoutes";
+import profileGenerationRoutes from "./profileGenerationRoutes";
+import amazonScraperRoutes from "./amazonScraperRoutes";
 
 const router = express.Router();
 
@@ -25,5 +27,10 @@ router.use("/adspower", adsPowerRoutes);
 
 // Trasy dla Bright Data
 router.use("/brightdata", brightDataRoutes);
+
+router.use("/profile-generation", profileGenerationRoutes);
+
+// Trasy dla Amazon Scraper
+router.use("/amazon-scraper", amazonScraperRoutes);
 
 export default router;

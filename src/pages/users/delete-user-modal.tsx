@@ -28,7 +28,7 @@ export function DeleteUserModal({ isOpen, onClose, pracownikId, onSuccess }: Del
 
   return (
     <Modal show={isOpen} size="md" onClose={onClose} popup>
-      <Modal.Header />
+      <div className="modal-header" />
       <Modal.Body>
         <div className="text-center">
           <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">

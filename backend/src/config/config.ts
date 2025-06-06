@@ -32,6 +32,9 @@ export interface Config {
   dbDialect: string;
   brightDataCustomerID: string;
   brightDataApiToken: string;
+  brightDataScraperUsername: string;
+  brightDataScraperPassword: string;
+  brightDataScraperZone: string;
 }
 
 const isSandbox = process.env.ALLEGRO_ENV === "sandbox";
@@ -55,6 +58,10 @@ export const config: Config = {
   dbDialect: process.env.DB_DIALECT || "mysql",
   brightDataCustomerID: process.env.BRIGHT_DATA_CUSTOMER_ID || "",
   brightDataApiToken: process.env.BRIGHT_DATA_API_TOKEN || "",
+  brightDataScraperUsername:
+    process.env.BRIGHT_DATA_SCRAPER_USERNAME || "brd-customer-hl_bb79b125-zone-scraping_browser3",
+  brightDataScraperPassword: process.env.BRIGHT_DATA_SCRAPER_PASSWORD || "t8918ifuazsr",
+  brightDataScraperZone: process.env.BRIGHT_DATA_SCRAPER_ZONE || "scraping_browser3",
 };
 
 // Walidacja kluczowych zmiennych Allegro

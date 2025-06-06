@@ -32,10 +32,57 @@ export interface UserProxyConfigInput {
 export interface FingerprintConfigInput {
   ua?: string;
   automatic_timezone?: "0" | "1";
+  timezone?: string;
   language?: string[];
+  language_switch?: "0" | "1";
+  page_language_switch?: "0" | "1";
+  page_language?: string;
   flash?: "allow" | "block" | "ask";
   webrtc?: "forward" | "proxy" | "local" | "disabled";
-  // Można dodać więcej pól
+  location?: "ask" | "allow" | "block";
+  location_switch?: "0" | "1";
+  longitude?: string;
+  latitude?: string;
+  accuracy?: string;
+  screen_resolution?: string;
+  fonts?: string[];
+  canvas?: "0" | "1";
+  webgl_image?: "0" | "1";
+  webgl?: "0" | "1" | "2" | "3";
+  webgl_config?: {
+    unmasked_vendor?: string;
+    unmasked_renderer?: string;
+    webgpu?: {
+      webgpu_switch?: "0" | "1" | "2";
+    };
+  };
+  audio?: "0" | "1";
+  do_not_track?: "default" | "true" | "false";
+  hardware_concurrency?: string;
+  device_memory?: string;
+  scan_port_type?: "0" | "1";
+  allow_scan_ports?: string[];
+  media_devices?: "0" | "1" | "2";
+  media_devices_num?: {
+    audioinput_num?: string;
+    videoinput_num?: string;
+    audiooutput_num?: string;
+  };
+  client_rects?: "0" | "1";
+  device_name_switch?: "0" | "1" | "2";
+  device_name?: string;
+  speech_switch?: "0" | "1";
+  mac_address_config?: {
+    model?: "0" | "1" | "2";
+    address?: string;
+  };
+  browser_kernel_config?: {
+    version?: string;
+    type?: "chrome" | "firefox";
+  };
+  gpu?: "0" | "1" | "2";
+  tls_switch?: "'0'" | "'1'";
+  tls?: string;
 }
 
 export interface CreateProfilePayload {

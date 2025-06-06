@@ -1,0 +1,104 @@
+Jak skonfigurować API przeglądarki
+Dowiedz się, jak skonfigurować i skonfigurować interfejs API przeglądarki Bright Data przy użyciu swoich danych uwierzytelniających, uruchomić przykładowe skrypty i nawigować po sesjach przeglądarki na żywo. Zapewnij wydajne scrapowanie sieci dzięki naszym szczegółowym instrukcjom.
+
+Aby rozpocząć, zdobądź swoje dane uwierzytelniające — nazwę użytkownika i hasło, których będziesz używać w swoim narzędziu do automatyzacji sieci. Znajdziesz je w strefie API przeglądarki, którą właśnie utworzyłeś, na karcie „Overview”. Zakładamy, że masz już zainstalowane preferowane narzędzie do automatyzacji sieci. Jeśli nie, zainstaluj je.
+
+​
+Przykładowy kod
+Uruchom poniższe podstawowe przykłady, aby sprawdzić, czy interfejs API Twojej przeglądarki działa (pamiętaj, aby zamienić swoje dane uwierzytelniające i docelowy adres URL):
+
+
+NodeJS
+
+
+Kopia
+const puppeteer = require('puppeteer-core');  
+// Enter your zone name and password below
+const AUTH = 'SBR_ZONE_FULL_USERNAME:SBR_ZONE_PASSWORD';  
+const SBR_WS_ENDPOINT = `wss://${AUTH}@brd.superproxy.io:9222`;  
+  
+async function main() {  
+    console.log('Connecting to Browser API...');  
+    const browser = await puppeteer.connect({  
+        browserWSEndpoint: SBR_WS_ENDPOINT,  
+   });  
+    try {  
+        console.log('Connected! Navigating...');  
+        const page = await browser.newPage();  
+        // Enter your test URL below
+        await page.goto('https://example.com', { timeout: 2 * 60 * 1000 });  
+        console.log('Taking screenshot to page.png');  
+        await page.screenshot({ path: './page.png', fullPage: true });  
+   console.log('Navigated! Scraping page content...');  
+ const html = await page.content();  
+ console.log(html)  
+ // CAPTCHA solving: If you know you are likely to encounter a CAPTCHA on your target page, add the following few lines of code to get the status of Browser API's automatic CAPTCHA solver   
+ // Note 1: If no captcha was found it will return not_detected status after detectTimeout   
+ // Note 2: Once a CAPTCHA is solved, if there is a form to submit, it will be submitted by default   
+ // const client = await page.target().createCDPSession();  
+ // const {status} = await client.send('Captcha.solve', {detectTimeout: 30*1000});   
+ // console.log(`Captcha solve status: ${status}`)   
+    } finally {  
+        await browser.close();  
+   }  
+}  
+  
+if (require.main === module) {  
+    main().catch(err => {  
+        console.error(err.stack || err);  
+        process.exit(1);  
+   });  
+}
+​
+Uruchom skrypt
+
+NodeJS
+
+Pyton
+
+C#
+Zapisz powyższy kod jako script.js(nie zapomnij podać swoich danych logowania!) i uruchom go za pomocą tego polecenia:
+
+
+Kopia
+node script.js
+​
+Wyświetl sesję przeglądarki na żywo
+Debuger interfejsu API przeglądarki umożliwia programistom inspekcję, analizę i dostrajanie kodu wraz z narzędziami Chrome Dev Tools, co zapewnia lepszą kontrolę, widoczność i wydajność. Możesz zintegrować następujący fragment kodu, aby automatycznie uruchamiać narzędzia deweloperskie dla każdej sesji:
+
+
+Kopia
+// Node.js Puppeteer - launch devtools locally  
+  
+const { exec } = require('child_process');  
+const chromeExecutable = 'google-chrome';  
+  
+const delay = ms => new Promise(resolve => setTimeout(resolve, ms));  
+const openDevtools = async (page, client) => {  
+    // get current frameId  
+    const frameId = page.mainFrame()._id;  
+    // get URL for devtools from Browser API  
+    const { url: inspectUrl } = await client.send('Page.inspect', { frameId });  
+    // open devtools URL in local chrome  
+    exec(`"${chromeExecutable}" "${inspectUrl}"`, error => {  
+        if (error)  
+            throw new Error('Unable to open devtools: ' + error);  
+    });  
+    // wait for devtools ui to load  
+    await delay(5000);  
+};  
+  
+const page = await browser.newPage();  
+const client = await page.target().createCDPSession();  
+await openDevtools(page, client);  
+await page.goto('http://example.com');
+​
+Pojedyncza nawigacja na sesję
+Sesje interfejsu API przeglądarki są tak skonstruowane, aby umożliwić jedną początkową nawigację na sesję. Ta początkowa nawigacja odnosi się do pierwszego wystąpienia załadowania witryny docelowej, z której mają zostać wyodrębnione dane. Następnie użytkownicy mogą swobodnie poruszać się po witrynie za pomocą kliknięć, przewijania i innych interaktywnych działań w ramach tej samej sesji. Jednak aby rozpocząć nowe zadanie scrapowania, na tej samej lub innej stronie, od etapu początkowej nawigacji, konieczne jest rozpoczęcie nowej sesji.
+
+​
+Limity czasu sesji
+Interfejs API przeglądarki ma dwa rodzaje limitów czasu, które mają chronić naszych klientów przed niekontrolowanym korzystaniem.
+
+Limit czasu bezczynności sesji: jeśli sesja przeglądarki pozostaje otwarta przez 5 minut lub dłużej w trybie bezczynności, co oznacza, że ​​nie jest w niej wykonywane żadne działanie, interfejs API przeglądarki automatycznie wyłączy sesję.
+Maksymalny limit czasu sesji: Sesja API przeglądarki może trwać do 30 minut. Po osiągnięciu maksymalnego czasu sesji sesja automatycznie się wyczerpie.

@@ -142,9 +142,9 @@ const EditCardModal: FC = function () {
         <HiPencilAlt className="text-lg" />
       </button>
       <Modal onClose={() => setOpen(false)} show={isOpen}>
-        <Modal.Header className="border-b border-gray-200 !p-6 dark:border-gray-700">
+        <div className="modal-header" className="border-b border-gray-200 !p-6 dark:border-gray-700">
           <strong>Edit task</strong>
-        </Modal.Header>
+        </div>
         <Modal.Body>
           <div className="mb-3 text-2xl font-semibold leading-none text-gray-900 dark:text-white">
             Redesign Themesberg Homepage
@@ -392,9 +392,9 @@ const AddAnotherCardModal: FC = function () {
         Add another card
       </button>
       <Modal onClose={() => setOpen(false)} show={isOpen}>
-        <Modal.Header className="border-b border-gray-200 !p-6 dark:border-gray-700">
+        <div className="modal-header" className="border-b border-gray-200 !p-6 dark:border-gray-700">
           <strong>Add new task</strong>
-        </Modal.Header>
+        </div>
         <Modal.Body>
           <form>
             <div className="mb-4 grid grid-cols-1 gap-y-2">

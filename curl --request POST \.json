@@ -1,0 +1,300 @@
+curl --request POST \
+  --url https://api.brightdata.com/zones \
+  --header "Authorization: Bearer 7ada0b30-d83d-4f00-8ff9-526fb647ec49" \
+  --header "Content-Type: application/json" \
+  --data '{
+  "zone": {
+    "name": "profile_pl_RESIDENTIAL",
+    "type": "residential",
+  },
+    "plan": {
+      "type": "residential",
+      "ips": 0,
+      "country": "pl"
+    }
+  }'
+
+
+
+  curl --request POST \
+  --url https://api.brightdata.com/zones \
+  --header "Authorization: Bearer   curl --request POST \
+  --url https://api.brightdata.com/zones \
+  --header "Authorization: Bearer /Applications/AdsPower Global.app/Contents/MacOS/AdsPower Global --args --headless=true --api-key=20c3c1b1f6c9355cecef162594ec116a --api-port=50325" \
+  --header "Content-Type: application/json" \
+  --data '{
+  "zone": {
+    "name": "zone-profile-pl-residential",
+    "type": "resident",
+  },
+  "plan": {
+    "type": "resident",
+    "ips": 0,
+    "country": "pl"
+  }
+}'
+  --header "Content-Type: application/json" \
+  --data '{
+  "zone": {
+    "name": "zone-profile-pl-residential",
+    "type": "resident",
+  },
+  "plan": {
+    "type": "resident",
+    "ips": 0,
+    "country": "pl"
+  }
+}'
+
+
+
+
+  Jasne, przygotuję dla Ciebie gotową komendę curl.
+
+  Najpierw jednak zdecydowanie zalecam zapisanie konfiguracji JSON do pliku. Jest to znacznie czytelniejsze i mniej podatne na błędy związane ze znakami specjalnymi w terminalu, zwłaszcza przy tak dużej konfiguracji.
+  
+  Krok 1: Zapisz konfigurację JSON do pliku
+  
+  Otwórz edytor tekstu (np. Notatnik, VS Code, Sublime Text, nano, vim).
+  
+  Wklej poniższą konfigurację JSON do edytora:
+  
+  JSON
+  
+  {
+    "name": "Mój Nowy Profil Warszawa PL",
+    "group_id": "0",
+    "profile_remark": "Profil z proxy BrightData i fingerprintem dla Warszawy",
+    "user_proxy_config": {
+      "proxy_soft": "brightdata",
+      "proxy_type": "http",
+      "proxy_host": "brd.superproxy.io",
+      "proxy_port": "33335",
+      "proxy_user": "brd-customer-hl_bb79b125-zone-bd_residential_profile_pl",
+      "proxy_password": "b55oqq7qyq12",
+      "proxy_ip_check_url": "http://api.ipify.org/",
+      "proxy_dns_auto_close": "0"
+    },
+    "fingerprint_config": {
+      "automatic_timezone": "0",
+      "timezone": "Europe/Warsaw",
+      "webrtc": "forward",
+      "location": "block",
+      "location_switch": "0",
+      "longitude": "21.0122",
+      "latitude": "52.2297",
+      "accuracy": "100",
+      "language_switch": "0",
+      "languagelist": ["pl-PL", "pl", "en-US", "en"],
+      "page_language_switch": "1",
+      "uatext": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
+      "screen_resolution": "1920_1080",
+      "fontslist": ["Arial", "Verdana", "Times New Roman", "Calibri", "Segoe UI"],
+      "canvas": "1",
+      "webgl_imagetext": "1",
+      "webgl": "1",
+      "audiotext": "1",
+      "do_not_track": "true",
+      "hardware_concurrency": "8",
+      "device_memory": "16",
+      "flashtext": "block",
+      "scan_port_type": "1",
+      "allow_scan_ports": ["80", "443"],
+      "media_devicestext": "1",
+      "client_rectstext": "1",
+      "device_name_switch": "1",
+      "mac_address_config": {
+        "model": "1",
+        "address": ""
+      },
+      "browser_kernel_config": {
+        "type": "chrome",
+        "version": "ua_auto"
+      },
+      "gputext": "1",
+      "tls_switch": "0"
+    },
+    "country": "PL"
+  }
+  Zapisz plik pod nazwą profile_config.json w miejscu, z którego będziesz uruchamiał(a) curl (np. w swoim folderze domowym lub folderze projektu).
+  
+  Krok 2: Użyj komendy curl
+  
+  Otwórz terminal (Command Prompt, PowerShell, Terminal na macOS/Linux) i upewnij się, że jesteś w tym samym folderze, w którym zapisałeś(aś) plik profile_config.json, lub podaj pełną ścieżkę do pliku.
+  
+  Następnie wpisz i wykonaj następującą komendę:
+  
+  Bash
+  
+  curl -X POST -H "Content-Type: application/json" -d @profile_config.json http://127.0.0.1:50325/api/v1/user/create
+  Wyjaśnienie komendy:
+  
+  curl: Narzędzie do przesyłania danych z lub na serwer.
+  -X POST: Określa metodę HTTP jako POST.
+  -H "Content-Type: application/json": Ustawia nagłówek Content-Type na application/json, informując serwer, że wysyłamy dane w formacie JSON.
+  -d @profile_config.json: Określa dane do wysłania. Znak @ przed nazwą pliku oznacza, że curl ma odczytać dane z pliku profile_config.json.
+  http://127.0.0.1:50325/api/v1/user/create: To jest standardowy adres lokalnego API AdsPower do tworzenia profili. Jeśli Twoja konfiguracja AdsPower używa innego portu lub endpointu, zmień go odpowiednio.
+  Zanim uruchomisz:
+  
+  Upewnij się, że aplikacja AdsPower jest uruchomiona na Twoim komputerze.
+  Jeśli zapisałeś(aś) plik profile_config.json w innym miejscu, zmień @profile_config.json na @sciezka/do/twojego/pliku/profile_config.json.
+  Pamiętaj, że dane proxy (proxy_user, proxy_password itp.) w pliku profile_config.json powinny być Twoimi rzeczywistymi danymi z Bright Data.
+  Po wykonaniu komendy, jeśli wszystko pójdzie dobrze, powinieneś otrzymać odpowiedź JSON od API AdsPower, która zazwyczaj zawiera informacje o nowo utworzonym profilu, w tym jego ID. Jeśli wystąpi błąd, odpowiedź powinna zawierać informacje o przyczynie problemu.
+
+
+
+
+
+  {
+  "name": "Mój Nowy Profil Warszawa PL",
+  "group_id": "0",
+  "profile_remark": "Profil z proxy BrightData i fingerprintem dla Warszawy",
+  "user_proxy_config": {
+    "proxy_soft": "brightdata",
+    "proxy_type": "http",
+    "proxy_host": "brd.superproxy.io",
+    "proxy_port": "33335",
+    "proxy_user": "brd-customer-hl_bb79b125-zone-bd_residential_profile_pl",
+    "proxy_password": "b55oqq7qyq12",
+    "proxy_ip_check_url": "http://api.ipify.org/",
+    "proxy_dns_auto_close": "0"
+  },
+  "fingerprint_config": {
+    "automatic_timezone": "0",
+    "timezone": "Europe/Warsaw",
+    "webrtc": "forward",
+    "location": "block",
+    "location_switch": "0",
+    "longitude": "21.0122",
+    "latitude": "52.2297",
+    "accuracy": "100",
+    "language_switch": "0",
+    "languagelist": ["pl-PL", "pl", "en-US", "en"],
+    "page_language_switch": "1",
+    "uatext": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
+    "screen_resolution": "1920_1080",
+    "fontslist": ["Arial", "Verdana", "Times New Roman", "Calibri", "Segoe UI"],
+    "canvas": "1",
+    "webgl_imagetext": "1",
+    "webgl": "1",
+    "audiotext": "1",
+    "do_not_track": "true",
+    "hardware_concurrency": "8",
+    "device_memory": "16",
+    "flashtext": "block",
+    "scan_port_type": "1",
+    "allow_scan_ports": ["80", "443"],
+    "media_devicestext": "1",
+    "client_rectstext": "1",
+    "device_name_switch": "1",
+    "mac_address_config": {
+      "model": "1",
+      "address": ""
+    },
+    "browser_kernel_config": {
+      "type": "chrome",
+      "version": "ua_auto"
+    },
+    "gputext": "1",
+    "tls_switch": "0"
+  },
+  "country": "PL"
+}
+
+
+
+
+
+/Applications/AdsPower Global.app/Contents/MacOS/AdsPower Global --args --headless=true --api-key=20c3c1b1f6c9355cecef162594ec116a --api-port=50325
+
+/Users/Wiktor/TESTPROG BOX/app_flow_react/profile_config.json
+"/Applications/AdsPower Global.app/Contents/MacOS/AdsPower Global" --args --headless=true --api-key=18a23ddca23bcef226ad096b2cc852d5 --api-port=50325
+
+"/Applications/AdsPower Global.app/Contents/MacOS/AdsPower Global" --api-key=18a23ddca23bcef226ad096b2cc852d5 --api-port=50325
+
+<<<<BRIGHT DATA>>>>
+
+curl -i -k -x socks5h://brd.superproxy.io:22228 --proxy-user brd-customer-hl_bb79b125-zone-resi_proxy_pl-country-pl-city-krakow:8ts4taps5iph https://geo.brdtest.com/welcome.txt
+HTTP/1.1 200 OK
+server: nginx
+date: Tue, 03 Jun 2025 20:48:13 GMT
+content-type: text/plain; charset=utf-8
+cache-control: no-store
+access-control-allow-origin: *
+Connection: keep-alive
+Keep-Alive: timeout=5
+Transfer-Encoding: chunked
+
+
+Welcome to Bright Data! Here are your proxy details
+Country: PL
+City: Krakow
+Region: 12
+Postal Code: 30-430
+Latitude: 50.0255
+Longitude: 19.9153
+Timezone: Europe/Warsaw
+ASN number: 5617
+ASN Organization name: Orange Polska Spolka Akcyjna
+IP version: IPv4
+
+Common usage examples:
+
+[USERNAME]-country-us:[PASSWORD]  // US based Proxy
+[USERNAME]-country-us-state-ny:[PASSWORD]  // US proxy from NY
+[USERNAME]-asn-56386:[PASSWORD]  // proxy from ASN 56386
+[USERNAME]-ip-1.1.1.1.1:[PASSWORD]  // proxy from dedicated pool
+
+To get a simple JSON response, use https://geo.brdtest.com/mygeo.json .
+
+More examples on https://docs.brightdata.com/api-reference/introduction
+
+{BD PROXY HTTPS DLA MIAST W ZONE resi_proxy_pl}
+<<<<WARSZAWA>>>>
+
+[scieka do certyfikatu CA.CART:]
+"/Users/Wiktor/Desktop/33335/BdSslCa_33335.crt"
+[Requestdla https z certyfikatem]
+curl -i -x https://brd.superproxy.io:33335 \
+  --proxy-user brd-customer-hl_bb79b125-zone-resi_proxy_pl-country-pl-city-warsaw-session-warsaw123-const:8ts4taps5iph \
+  --cacert "/Users/Wiktor/Desktop/33335/BdSslCa_33335.crt" \
+  https://geo.brdtest.com/mygeo.json -v
+
+
+<<<<KRAKOW>>>>
+
+[scieka do certyfikatu CA.CART:]
+"/Users/Wiktor/Desktop/33335/BdSslCa_33335.crt"
+[Requestdla https z certyfikatem]
+curl -i -x https://brd.superproxy.io:33335 \
+  --proxy-user brd-customer-hl_bb79b125-zone-resi_proxy_pl-country-pl-city-krakow-session-krakow123-const:8ts4taps5iph \
+  --cacert "/Users/Wiktor/Desktop/33335/BdSslCa_33335.crt" \
+  https://geo.brdtest.com/mygeo.json -v
+
+
+  <<<<GDANSK>>>>
+
+  [scieka do certyfikatu CA.CART:]
+  "/Users/Wiktor/Desktop/33335/BdSslCa_33335.crt"
+  [Requestdla https z certyfikatem]
+  curl -i -x https://brd.superproxy.io:33335 \
+    --proxy-user : brd-customer-hl_bb79b125-zone-isp_proxy_pl-country-pl-city-warsaw-session-warsawISP1-const:hezg9k54ai3x https://geo.brdtest.com/mygeo.json -v
+
+
+
+    curl -i --proxy brd.superproxy.io:33335 --proxy-user brd-customer-hl_bb79b125-zone-isp_proxy_pl:hezg9k54al3x "https://geo.brdtest.com/welcome.txt?product=isp&method=native"
+  <<<<GDANSK>>>>
+  
+  curl -i --proxy https://brd.superproxy.io:443 \
+  --proxy-user brd-customer-hl_bb79b125-zone-isp_proxy_pl-country-pl-session-test2:hezg9k54al3x \
+  "https://geo.brdtest.com/mygeo.json" -v
+
+
+  curl -i --proxy https://brd.superproxy.io:33335 \
+  --proxy-user brd-customer-hl_bb79b125-zone-isp_proxy_pl-country-pl-session-test1:hezg9k54al3x \
+  "https://geo.brdtest.com/mygeo.json" -v
+
+
+
+
+  curl -i --proxy brd.superproxy.io:33335 \

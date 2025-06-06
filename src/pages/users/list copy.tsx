@@ -217,7 +217,7 @@ const AddUserModal: FC<{ onSuccess: () => void }> = function ({ onSuccess }) {
   if (showSuccess && addedUser) {
     return (
       <Modal onClose={handleCloseSuccessView} show={isOpen}>
-        <Modal.Header className="border-b border-gray-200 !p-6 bg-green-100 dark:bg-green-800 dark:border-gray-700">
+        <div className="modal-header" className="border-b border-gray-200 !p-6 bg-green-100 dark:bg-green-800 dark:border-gray-700">
           <div className="flex items-center gap-2">
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-green-100 dark:bg-green-800">
               <svg
@@ -235,7 +235,7 @@ const AddUserModal: FC<{ onSuccess: () => void }> = function ({ onSuccess }) {
             </div>
             <strong>Dodano nowego pracownika</strong>
           </div>
-        </Modal.Header>
+        </div>
         <Modal.Body>
           <div className="mb-4 rounded-lg bg-green-50 p-4 text-green-800 dark:bg-gray-800 dark:text-green-300">
             <div className="mb-1 font-medium">Pracownik został pomyślnie dodany do systemu</div>
@@ -397,9 +397,9 @@ const AddUserModal: FC<{ onSuccess: () => void }> = function ({ onSuccess }) {
         </div>
       </Button>
       <Modal onClose={() => setOpen(false)} show={isOpen}>
-        <Modal.Header className="border-b border-gray-200 !p-6 dark:border-gray-700">
+        <div className="modal-header" className="border-b border-gray-200 !p-6 dark:border-gray-700">
           <strong>Dodaj nowego pracownika</strong>
-        </Modal.Header>
+        </div>
         <Modal.Body>
           {error && (
             <div className="mb-4 rounded-lg bg-red-50 p-4 text-sm text-red-800 dark:bg-red-900 dark:text-red-200">
@@ -675,9 +675,9 @@ const EditUserModal: FC<{
         <HiOutlinePencilAlt className="text-lg" />
       </Button>
       <Modal onClose={() => setOpen(false)} show={isOpen}>
-        <Modal.Header className="border-b border-gray-200 !p-6 dark:border-gray-700">
+        <div className="modal-header" className="border-b border-gray-200 !p-6 dark:border-gray-700">
           <strong>Edytuj pracownika</strong>
-        </Modal.Header>
+        </div>
         <Modal.Body>
           {error && (
             <div className="mb-4 rounded-lg bg-red-50 p-4 text-sm text-red-800 dark:bg-red-900 dark:text-red-200">
@@ -769,9 +769,9 @@ const DeleteUserModal: FC = function () {
         </div>
       </Button>
       <Modal onClose={() => setOpen(false)} show={isOpen} size="md">
-        <Modal.Header className="px-6 pb-0 pt-6">
+        <div className="modal-header" className="px-6 pb-0 pt-6">
           <span className="sr-only">Delete user</span>
-        </Modal.Header>
+        </div>
         <Modal.Body className="px-6 pb-6 pt-0">
           <div className="flex flex-col items-center gap-y-6 text-center">
             <HiOutlineExclamationCircle className="text-7xl text-red-500" />

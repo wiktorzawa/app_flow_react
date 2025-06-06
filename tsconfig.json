@@ -11,10 +11,18 @@
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "noEmit": true,
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "baseUrl": ".",
+    "paths": {
+      "@shared-types/*": ["./shared-types/*"],
+      "@/*": ["./src/*"]
+    }
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "server"],
+  "include": [
+    "src/**/*",
+    "shared-types/**/*"
+  ],
+  "exclude": ["node_modules", "backend", "dist"],
   "references": [
     { "path": "./tsconfig.node.json" }
   ]
