@@ -28,11 +28,7 @@ const port = process.env.PORT || 3001;
 // CORS - Zezwalaj na żądania z frontendu (dostosuj origin w razie potrzeby)
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173", 
-      "http://localhost:5174",
-      "http://localhost:3000"
-    ], // Obsługa różnych portów development
+    origin: ["http://localhost:5173", "http://localhost:5174", "http://localhost:3000"], // Obsługa różnych portów development
     credentials: true,
   })
 );

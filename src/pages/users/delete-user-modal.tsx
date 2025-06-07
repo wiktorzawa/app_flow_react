@@ -1,4 +1,4 @@
-import { Button, Modal } from "flowbite-react";
+import { Button, Modal, ModalBody } from "flowbite-react";
 import { usunPracownika } from "../../api/login_table_staff.api";
 import { useState } from "react";
 
@@ -29,7 +29,7 @@ export function DeleteUserModal({ isOpen, onClose, pracownikId, onSuccess }: Del
   return (
     <Modal show={isOpen} size="md" onClose={onClose} popup>
       <div className="modal-header" />
-      <Modal.Body>
+      <ModalBody>
         <div className="text-center">
           <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
             Czy na pewno chcesz usunąć tego pracownika?
@@ -43,7 +43,7 @@ export function DeleteUserModal({ isOpen, onClose, pracownikId, onSuccess }: Del
             </Button>
           </div>
         </div>
-      </Modal.Body>
+      </ModalBody>
     </Modal>
   );
 }

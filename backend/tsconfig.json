@@ -16,10 +16,6 @@
     "typeRoots": ["./node_modules/@types", "../node_modules/@types"],
     "allowJs": true
   },
-  "include": [
-    "src/**/*",
-    "../shared-types/**/*",
-    "src/**/*.js"
-  ],
+  "include": ["src/**/*", "../shared-types/**/*", "src/**/*.js"],
   "exclude": ["node_modules", "dist"]
 }

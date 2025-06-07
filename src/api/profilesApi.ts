@@ -26,7 +26,7 @@ class ProfilesApiService {
   private async fetchApi<T>(endpoint: string, options?: RequestInit): Promise<T> {
     const response = await fetch(`${API_BASE_URL}${endpoint}`, {
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         ...options?.headers,
       },
       ...options,
@@ -42,9 +42,9 @@ class ProfilesApiService {
   // Pobierz listę profili z filtrowaniem i paginacją
   async getProfiles(filters: ProfileFilters = {}): Promise<ProfilesResponse> {
     const params = new URLSearchParams();
-    
+
     Object.entries(filters).forEach(([key, value]) => {
-      if (value !== undefined && value !== '') {
+      if (value !== undefined && value !== "") {
         params.append(key, value.toString());
       }
     });
@@ -54,13 +54,13 @@ class ProfilesApiService {
 
   // Pobierz statystyki dashboard
   async getDashboardStats() {
-    return this.fetchApi<any>('/profiles/stats');
+    return this.fetchApi<any>("/profiles/stats");
   }
 
   // Generuj nowe profile
   async generateProfiles(count: number, options?: any) {
-    return this.fetchApi<{ success: boolean; generated: number }>('/profiles/generate', {
-      method: 'POST',
+    return this.fetchApi<{ success: boolean; generated: number }>("/profiles/generate", {
+      method: "POST",
       body: JSON.stringify({ count, options }),
     });
   }
@@ -68,14 +68,14 @@ class ProfilesApiService {
   // Usuń profil
   async deleteProfile(profileId: string): Promise<{ success: boolean }> {
     return this.fetchApi<{ success: boolean }>(`/profiles/${profileId}`, {
-      method: 'DELETE',
+      method: "DELETE",
     });
   }
 
   // Usuń wiele profili
   async deleteMultipleProfiles(profileIds: string[]): Promise<{ success: boolean; deleted: number }> {
-    return this.fetchApi<{ success: boolean; deleted: number }>('/profiles/bulk-delete', {
-      method: 'POST',
+    return this.fetchApi<{ success: boolean; deleted: number }>("/profiles/bulk-delete", {
+      method: "POST",
       body: JSON.stringify({ profileIds }),
     });
   }
@@ -88,7 +88,7 @@ class ProfilesApiService {
   // Aktualizuj profil
   async updateProfile(profileId: string, updates: Partial<UserProfile>): Promise<UserProfile> {
     return this.fetchApi<UserProfile>(`/profiles/${profileId}`, {
-      method: 'PUT',
+      method: "PUT",
       body: JSON.stringify(updates),
     });
   }

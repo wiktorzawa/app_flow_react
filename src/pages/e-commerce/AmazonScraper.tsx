@@ -1,6 +1,20 @@
 import type { FC } from "react";
 import { useState } from "react";
-import { Button, Card, Label, TextInput, Table, Badge, Spinner, Alert } from "flowbite-react";
+import {
+  Alert,
+  Badge,
+  Button,
+  Card,
+  Label,
+  Spinner,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeadCell,
+  TableRow,
+  TextInput,
+} from "flowbite-react";
 import { HiDownload, HiEye } from "react-icons/hi";
 import axiosInstance from "../../api/axios";
 
@@ -132,19 +146,19 @@ const AmazonScraper: FC = () => {
 
         <div className="overflow-x-auto">
           <Table hoverable>
-            <Table.Head>
-              <Table.HeadCell>Obraz</Table.HeadCell>
-              <Table.HeadCell>Tytuł</Table.HeadCell>
-              <Table.HeadCell>ASIN</Table.HeadCell>
-              <Table.HeadCell>Marka</Table.HeadCell>
-              <Table.HeadCell>Cena</Table.HeadCell>
-              <Table.HeadCell>Kategorie</Table.HeadCell>
-              <Table.HeadCell>Akcje</Table.HeadCell>
-            </Table.Head>
-            <Table.Body className="divide-y">
+            <TableHead>
+              <TableHeadCell>Obraz</TableHeadCell>
+              <TableHeadCell>Tytuł</TableHeadCell>
+              <TableHeadCell>ASIN</TableHeadCell>
+              <TableHeadCell>Marka</TableHeadCell>
+              <TableHeadCell>Cena</TableHeadCell>
+              <TableHeadCell>Kategorie</TableHeadCell>
+              <TableHeadCell>Akcje</TableHeadCell>
+            </TableHead>
+            <TableBody className="divide-y">
               {products.map((product) => (
-                <Table.Row key={product.id} className="bg-white dark:border-gray-700 dark:bg-gray-800">
-                  <Table.Cell>
+                <TableRow key={product.id} className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                  <TableCell>
                     {product.image_url ? (
                       <img src={product.image_url} alt={product.title} className="h-16 w-16 object-cover rounded" />
                     ) : (
@@ -152,15 +166,15 @@ const AmazonScraper: FC = () => {
                         <span className="text-gray-400">Brak</span>
                       </div>
                     )}
-                  </Table.Cell>
-                  <Table.Cell className="max-w-xs">
+                  </TableCell>
+                  <TableCell className="max-w-xs">
                     <div className="truncate font-medium text-gray-900 dark:text-white">{product.title}</div>
-                  </Table.Cell>
-                  <Table.Cell>
+                  </TableCell>
+                  <TableCell>
                     <Badge color="info">{product.asin}</Badge>
-                  </Table.Cell>
-                  <Table.Cell>{product.brand || "-"}</Table.Cell>
-                  <Table.Cell>
+                  </TableCell>
+                  <TableCell>{product.brand || "-"}</TableCell>
+                  <TableCell>
                     {product.final_price ? (
                       <span className="font-semibold">
                         {product.final_price} {product.currency || "EUR"}
@@ -168,8 +182,8 @@ const AmazonScraper: FC = () => {
                     ) : (
                       "-"
                     )}
-                  </Table.Cell>
-                  <Table.Cell>
+                  </TableCell>
+                  <TableCell>
                     {product.categories && product.categories.length > 0 ? (
                       <div className="flex flex-wrap gap-1">
                         {product.categories.slice(0, 2).map((cat, idx) => (
@@ -186,17 +200,17 @@ const AmazonScraper: FC = () => {
                     ) : (
                       "-"
                     )}
-                  </Table.Cell>
-                  <Table.Cell>
+                  </TableCell>
+                  <TableCell>
                     <div className="flex gap-2">
                       <Button size="xs" color="gray" href={product.url} target="_blank">
                         <HiEye className="h-4 w-4" />
                       </Button>
                     </div>
-                  </Table.Cell>
-                </Table.Row>
+                  </TableCell>
+                </TableRow>
               ))}
-            </Table.Body>
+            </TableBody>
           </Table>
 
           {products.length === 0 && <div className="text-center py-8 text-gray-500">Brak zescrapowanych produktów</div>}

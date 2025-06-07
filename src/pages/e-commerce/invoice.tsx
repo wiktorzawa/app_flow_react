@@ -1,5 +1,16 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { Breadcrumb, Label, Table, TextInput } from "flowbite-react";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  Label,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeadCell,
+  TableRow,
+  TextInput,
+} from "flowbite-react";
 import type { FC } from "react";
 import { HiCog, HiDotsVertical, HiDownload, HiHome, HiPrinter } from "react-icons/hi";
 import NavbarSidebarLayout from "../../layouts/navbar-sidebar";
@@ -11,14 +22,14 @@ const EcommerceInvoicePage: FC = function () {
       <div className="grid grid-cols-12 gap-4">
         <div className="col-span-full m-4 md:mx-6 md:mt-6 xl:mb-2">
           <Breadcrumb className="mb-4">
-            <Breadcrumb.Item href="#">
+            <BreadcrumbItem href="#">
               <div className="flex items-center gap-x-3">
                 <HiHome className="text-xl" />
                 <span className="dark:text-white">Home</span>
               </div>
-            </Breadcrumb.Item>
-            <Breadcrumb.Item href="/e-commerce/products">E-commerce</Breadcrumb.Item>
-            <Breadcrumb.Item>Invoice</Breadcrumb.Item>
+            </BreadcrumbItem>
+            <BreadcrumbItem href="/e-commerce/products">E-commerce</BreadcrumbItem>
+            <BreadcrumbItem>Invoice</BreadcrumbItem>
           </Breadcrumb>
           <h1 className="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">Invoice</h1>
         </div>
@@ -150,71 +161,71 @@ const Invoice: FC = function () {
           <div className="inline-block min-w-full align-middle">
             <div className="overflow-hidden shadow">
               <Table className="min-w-full text-gray-900">
-                <Table.Head>
-                  <Table.HeadCell>Item</Table.HeadCell>
-                  <Table.HeadCell>Price</Table.HeadCell>
-                  <Table.HeadCell>Qty</Table.HeadCell>
-                  <Table.HeadCell>Off</Table.HeadCell>
-                  <Table.HeadCell>Total</Table.HeadCell>
-                </Table.Head>
-                <Table.Body>
-                  <Table.Row>
-                    <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal">
+                <TableHead>
+                  <TableHeadCell>Item</TableHeadCell>
+                  <TableHeadCell>Price</TableHeadCell>
+                  <TableHeadCell>Qty</TableHeadCell>
+                  <TableHeadCell>Off</TableHeadCell>
+                  <TableHeadCell>Total</TableHeadCell>
+                </TableHead>
+                <TableBody>
+                  <TableRow>
+                    <TableCell className="whitespace-nowrap p-4 text-sm font-normal">
                       <div className="text-base font-semibold">Pixel Design System</div>
                       <div className="text-sm font-normal text-gray-500 dark:text-gray-400">Html components</div>
-                    </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap p-4 text-base font-normal text-gray-500 dark:text-gray-400">
+                    </TableCell>
+                    <TableCell className="whitespace-nowrap p-4 text-base font-normal text-gray-500 dark:text-gray-400">
                       $128.00
-                    </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap p-4 text-base font-semibold text-gray-900 dark:text-white">
+                    </TableCell>
+                    <TableCell className="whitespace-nowrap p-4 text-base font-semibold text-gray-900 dark:text-white">
                       1
-                    </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap p-4 text-base font-normal">50%</Table.Cell>
-                    <Table.Cell className="whitespace-nowrap p-4 text-base font-semibold">$64.00</Table.Cell>
-                  </Table.Row>
-                  <Table.Row>
-                    <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal">
+                    </TableCell>
+                    <TableCell className="whitespace-nowrap p-4 text-base font-normal">50%</TableCell>
+                    <TableCell className="whitespace-nowrap p-4 text-base font-semibold">$64.00</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="whitespace-nowrap p-4 text-sm font-normal">
                       <div className="text-base font-semibold">Volt Dashboard Template</div>
                       <div className="text-sm font-normal text-gray-500 dark:text-gray-400">Tailwind template</div>
-                    </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap p-4 text-base font-normal text-gray-500 dark:text-gray-400">
+                    </TableCell>
+                    <TableCell className="whitespace-nowrap p-4 text-base font-normal text-gray-500 dark:text-gray-400">
                       $69.00
-                    </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap p-4 text-base font-semibold text-gray-900 dark:text-white">
+                    </TableCell>
+                    <TableCell className="whitespace-nowrap p-4 text-base font-semibold text-gray-900 dark:text-white">
                       1
-                    </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap p-4 text-base font-normal">0%</Table.Cell>
-                    <Table.Cell className="whitespace-nowrap p-4 text-base font-semibold">$69.00</Table.Cell>
-                  </Table.Row>
-                  <Table.Row>
-                    <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal">
+                    </TableCell>
+                    <TableCell className="whitespace-nowrap p-4 text-base font-normal">0%</TableCell>
+                    <TableCell className="whitespace-nowrap p-4 text-base font-semibold">$69.00</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="whitespace-nowrap p-4 text-sm font-normal">
                       <div className="text-base font-semibold">Neumorphism UI</div>
                       <div className="text-sm font-normal text-gray-500 dark:text-gray-400">Html template</div>
-                    </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap p-4 text-base font-normal text-gray-500 dark:text-gray-400">
+                    </TableCell>
+                    <TableCell className="whitespace-nowrap p-4 text-base font-normal text-gray-500 dark:text-gray-400">
                       $69.00
-                    </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap p-4 text-base font-semibold text-gray-900 dark:text-white">
+                    </TableCell>
+                    <TableCell className="whitespace-nowrap p-4 text-base font-semibold text-gray-900 dark:text-white">
                       1
-                    </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap p-4 text-base font-normal">0%</Table.Cell>
-                    <Table.Cell className="whitespace-nowrap p-4 text-base font-semibold">$69.00</Table.Cell>
-                  </Table.Row>
-                  <Table.Row>
-                    <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal">
+                    </TableCell>
+                    <TableCell className="whitespace-nowrap p-4 text-base font-normal">0%</TableCell>
+                    <TableCell className="whitespace-nowrap p-4 text-base font-semibold">$69.00</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="whitespace-nowrap p-4 text-sm font-normal">
                       <div className="text-base font-semibold">Glassmorphism UI</div>
                       <div className="text-sm font-normal text-gray-500 dark:text-gray-400">Figma template</div>
-                    </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap p-4 text-base font-normal text-gray-500 dark:text-gray-400">
+                    </TableCell>
+                    <TableCell className="whitespace-nowrap p-4 text-base font-normal text-gray-500 dark:text-gray-400">
                       $149.00
-                    </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap p-4 text-base font-semibold text-gray-900 dark:text-white">
+                    </TableCell>
+                    <TableCell className="whitespace-nowrap p-4 text-base font-semibold text-gray-900 dark:text-white">
                       1
-                    </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap p-4 text-base font-normal">0%</Table.Cell>
-                    <Table.Cell className="whitespace-nowrap p-4 text-base font-semibold">$149.00</Table.Cell>
-                  </Table.Row>
-                </Table.Body>
+                    </TableCell>
+                    <TableCell className="whitespace-nowrap p-4 text-base font-normal">0%</TableCell>
+                    <TableCell className="whitespace-nowrap p-4 text-base font-semibold">$149.00</TableCell>
+                  </TableRow>
+                </TableBody>
               </Table>
             </div>
           </div>

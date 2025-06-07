@@ -1,5 +1,14 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { Breadcrumb, Button, Card, Label, Select, TextInput, ToggleSwitch } from "flowbite-react";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  Button,
+  Card,
+  Label,
+  Select,
+  TextInput,
+  ToggleSwitch,
+} from "flowbite-react";
 import type { FC } from "react";
 import { useState } from "react";
 import { FaDribbble, FaFacebookF, FaGithub, FaTwitter } from "react-icons/fa";
@@ -13,14 +22,14 @@ const UserSettingsPage: FC = function () {
         <div className="grid grid-cols-1 gap-y-6 px-4 pt-6 dark:bg-gray-900 xl:grid-cols-3 xl:gap-4">
           <div className="col-span-full">
             <Breadcrumb className="mb-4">
-              <Breadcrumb.Item href="#">
+              <BreadcrumbItem href="#">
                 <div className="flex items-center gap-x-3">
                   <HiHome className="text-xl" />
                   <span className="dark:text-white">Home</span>
                 </div>
-              </Breadcrumb.Item>
-              <Breadcrumb.Item href="/users/list">Users</Breadcrumb.Item>
-              <Breadcrumb.Item>Settings</Breadcrumb.Item>
+              </BreadcrumbItem>
+              <BreadcrumbItem href="/users/list">Users</BreadcrumbItem>
+              <BreadcrumbItem>Settings</BreadcrumbItem>
             </Breadcrumb>
             <h1 className="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">User settings</h1>
           </div>

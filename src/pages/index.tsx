@@ -1,5 +1,15 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { Badge, Dropdown, Table, useTheme } from "flowbite-react";
+import { Badge, Dropdown, Table } from "flowbite-react";
+import {
+  DropdownDivider,
+  DropdownItem,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeadCell,
+  TableRow,
+  useThemeMode,
+} from "flowbite-react";
 import type { FC } from "react";
 import { useEffect } from "react";
 import Chart from "react-apexcharts";
@@ -75,7 +85,7 @@ const SalesThisWeek: FC = function () {
 };
 
 const SalesChart: FC = function () {
-  const { mode } = useTheme();
+  const { mode } = useThemeMode();
   const isDarkTheme = mode === "dark";
 
   const borderColor = isDarkTheme ? "#374151" : "#F3F4F6";
@@ -210,17 +220,17 @@ const Datepicker: FC = function () {
   return (
     <span className="text-sm text-gray-600">
       <Dropdown inline label="Last 7 days">
-        <Dropdown.Item>
+        <DropdownItem>
           <strong>Sep 16, 2021 - Sep 22, 2021</strong>
-        </Dropdown.Item>
-        <Dropdown.Divider />
-        <Dropdown.Item>Yesterday</Dropdown.Item>
-        <Dropdown.Item>Today</Dropdown.Item>
-        <Dropdown.Item>Last 7 days</Dropdown.Item>
-        <Dropdown.Item>Last 30 days</Dropdown.Item>
-        <Dropdown.Item>Last 90 days</Dropdown.Item>
-        <Dropdown.Divider />
-        <Dropdown.Item>Custom...</Dropdown.Item>
+        </DropdownItem>
+        <DropdownDivider />
+        <DropdownItem>Yesterday</DropdownItem>
+        <DropdownItem>Today</DropdownItem>
+        <DropdownItem>Last 7 days</DropdownItem>
+        <DropdownItem>Last 30 days</DropdownItem>
+        <DropdownItem>Last 90 days</DropdownItem>
+        <DropdownDivider />
+        <DropdownItem>Custom...</DropdownItem>
       </Dropdown>
     </span>
   );
@@ -411,7 +421,7 @@ const VisitorsThisWeek: FC = function () {
 };
 
 const VisitorsChart: FC = function () {
-  const { mode } = useTheme();
+  const { mode } = useThemeMode();
   const isDarkTheme = mode === "dark";
 
   const fillGradientShade = isDarkTheme ? "dark" : "light";
@@ -508,7 +518,7 @@ const UserSignupsThisWeek: FC = function () {
 };
 
 const UserSignupsChart: FC = function () {
-  const { mode } = useTheme();
+  const { mode } = useThemeMode();
   const isDarkTheme = mode === "dark";
 
   const backgroundBarColors = isDarkTheme
@@ -1041,7 +1051,7 @@ const SessionsByCountry: FC = function () {
 };
 
 const SessionsByCountryMap: FC = function () {
-  const { mode } = useTheme();
+  const { mode } = useThemeMode();
 
   const isDarkTheme = mode === "dark";
 
@@ -1209,26 +1219,26 @@ const AcquisitionOverview: FC = function () {
           <div className="inline-block min-w-full align-middle">
             <div className="overflow-hidden shadow sm:rounded-lg">
               <Table className="min-w-full table-fixed">
-                <Table.Head>
-                  <Table.HeadCell className="whitespace-nowrap rounded-l border-x-0 bg-gray-50 py-3 px-4 text-left align-middle text-xs font-semibold uppercase text-gray-700 dark:bg-gray-700 dark:text-white">
+                <TableHead>
+                  <TableHeadCell className="whitespace-nowrap rounded-l border-x-0 bg-gray-50 py-3 px-4 text-left align-middle text-xs font-semibold uppercase text-gray-700 dark:bg-gray-700 dark:text-white">
                     Top Channels
-                  </Table.HeadCell>
-                  <Table.HeadCell className="whitespace-nowrap border-x-0 bg-gray-50 py-3 px-4 text-left align-middle text-xs font-semibold uppercase text-gray-700 dark:bg-gray-700 dark:text-white">
+                  </TableHeadCell>
+                  <TableHeadCell className="whitespace-nowrap border-x-0 bg-gray-50 py-3 px-4 text-left align-middle text-xs font-semibold uppercase text-gray-700 dark:bg-gray-700 dark:text-white">
                     Users
-                  </Table.HeadCell>
-                  <Table.HeadCell className="min-w-[140px] whitespace-nowrap rounded-r border-x-0 bg-gray-50 py-3 px-4 text-left align-middle text-xs font-semibold uppercase text-gray-700 dark:bg-gray-700 dark:text-white">
+                  </TableHeadCell>
+                  <TableHeadCell className="min-w-[140px] whitespace-nowrap rounded-r border-x-0 bg-gray-50 py-3 px-4 text-left align-middle text-xs font-semibold uppercase text-gray-700 dark:bg-gray-700 dark:text-white">
                     Acquisition
-                  </Table.HeadCell>
-                </Table.Head>
-                <Table.Body className="divide-y divide-gray-100 dark:divide-gray-700">
-                  <Table.Row className="text-gray-500 dark:text-gray-400">
-                    <Table.Cell className="whitespace-nowrap border-t-0 p-4 text-left align-middle text-sm font-normal">
+                  </TableHeadCell>
+                </TableHead>
+                <TableBody className="divide-y divide-gray-100 dark:divide-gray-700">
+                  <TableRow className="text-gray-500 dark:text-gray-400">
+                    <TableCell className="whitespace-nowrap border-t-0 p-4 text-left align-middle text-sm font-normal">
                       Organic Search
-                    </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap border-t-0 p-4 align-middle text-xs font-medium text-gray-900 dark:text-white">
+                    </TableCell>
+                    <TableCell className="whitespace-nowrap border-t-0 p-4 align-middle text-xs font-medium text-gray-900 dark:text-white">
                       5,649
-                    </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap border-t-0 p-4 align-middle text-xs">
+                    </TableCell>
+                    <TableCell className="whitespace-nowrap border-t-0 p-4 align-middle text-xs">
                       <div className="flex items-center">
                         <span className="mr-2 text-xs font-medium">30%</span>
                         <div className="relative w-full">
@@ -1237,16 +1247,16 @@ const AcquisitionOverview: FC = function () {
                           </div>
                         </div>
                       </div>
-                    </Table.Cell>
-                  </Table.Row>
-                  <Table.Row className="text-gray-500 dark:text-gray-400">
-                    <Table.Cell className="whitespace-nowrap border-t-0 p-4 text-left align-middle text-sm font-normal">
+                    </TableCell>
+                  </TableRow>
+                  <TableRow className="text-gray-500 dark:text-gray-400">
+                    <TableCell className="whitespace-nowrap border-t-0 p-4 text-left align-middle text-sm font-normal">
                       Referral
-                    </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap border-t-0 p-4 align-middle text-xs font-medium text-gray-900 dark:text-white">
+                    </TableCell>
+                    <TableCell className="whitespace-nowrap border-t-0 p-4 align-middle text-xs font-medium text-gray-900 dark:text-white">
                       4,025
-                    </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap border-t-0 p-4 align-middle text-xs">
+                    </TableCell>
+                    <TableCell className="whitespace-nowrap border-t-0 p-4 align-middle text-xs">
                       <div className="flex items-center">
                         <span className="mr-2 text-xs font-medium">24%</span>
                         <div className="relative w-full">
@@ -1255,16 +1265,16 @@ const AcquisitionOverview: FC = function () {
                           </div>
                         </div>
                       </div>
-                    </Table.Cell>
-                  </Table.Row>
-                  <Table.Row className="text-gray-500 dark:text-gray-400">
-                    <Table.Cell className="whitespace-nowrap border-t-0 p-4 text-left align-middle text-sm font-normal">
+                    </TableCell>
+                  </TableRow>
+                  <TableRow className="text-gray-500 dark:text-gray-400">
+                    <TableCell className="whitespace-nowrap border-t-0 p-4 text-left align-middle text-sm font-normal">
                       Direct
-                    </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap border-t-0 p-4 align-middle text-xs font-medium text-gray-900 dark:text-white">
+                    </TableCell>
+                    <TableCell className="whitespace-nowrap border-t-0 p-4 align-middle text-xs font-medium text-gray-900 dark:text-white">
                       3,105
-                    </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap border-t-0 p-4 align-middle text-xs">
+                    </TableCell>
+                    <TableCell className="whitespace-nowrap border-t-0 p-4 align-middle text-xs">
                       <div className="flex items-center">
                         <span className="mr-2 text-xs font-medium">18%</span>
                         <div className="relative w-full">
@@ -1273,16 +1283,16 @@ const AcquisitionOverview: FC = function () {
                           </div>
                         </div>
                       </div>
-                    </Table.Cell>
-                  </Table.Row>
-                  <Table.Row className="text-gray-500 dark:text-gray-400">
-                    <Table.Cell className="whitespace-nowrap border-t-0 p-4 text-left align-middle text-sm font-normal">
+                    </TableCell>
+                  </TableRow>
+                  <TableRow className="text-gray-500 dark:text-gray-400">
+                    <TableCell className="whitespace-nowrap border-t-0 p-4 text-left align-middle text-sm font-normal">
                       Social
-                    </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap border-t-0 p-4 align-middle text-xs font-medium text-gray-900 dark:text-white">
+                    </TableCell>
+                    <TableCell className="whitespace-nowrap border-t-0 p-4 align-middle text-xs font-medium text-gray-900 dark:text-white">
                       1251
-                    </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap border-t-0 p-4 align-middle text-xs">
+                    </TableCell>
+                    <TableCell className="whitespace-nowrap border-t-0 p-4 align-middle text-xs">
                       <div className="flex items-center">
                         <span className="mr-2 text-xs font-medium">12%</span>
                         <div className="relative w-full">
@@ -1291,16 +1301,16 @@ const AcquisitionOverview: FC = function () {
                           </div>
                         </div>
                       </div>
-                    </Table.Cell>
-                  </Table.Row>
-                  <Table.Row className="text-gray-500 dark:text-gray-400">
-                    <Table.Cell className="whitespace-nowrap border-t-0 p-4 text-left align-middle text-sm font-normal">
+                    </TableCell>
+                  </TableRow>
+                  <TableRow className="text-gray-500 dark:text-gray-400">
+                    <TableCell className="whitespace-nowrap border-t-0 p-4 text-left align-middle text-sm font-normal">
                       Other
-                    </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap border-t-0 p-4 align-middle text-xs font-medium text-gray-900 dark:text-white">
+                    </TableCell>
+                    <TableCell className="whitespace-nowrap border-t-0 p-4 align-middle text-xs font-medium text-gray-900 dark:text-white">
                       734
-                    </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap border-t-0 p-4 align-middle text-xs">
+                    </TableCell>
+                    <TableCell className="whitespace-nowrap border-t-0 p-4 align-middle text-xs">
                       <div className="flex items-center">
                         <span className="mr-2 text-xs font-medium">9%</span>
                         <div className="relative w-full">
@@ -1309,16 +1319,16 @@ const AcquisitionOverview: FC = function () {
                           </div>
                         </div>
                       </div>
-                    </Table.Cell>
-                  </Table.Row>
-                  <Table.Row className="text-gray-500 dark:text-gray-400">
-                    <Table.Cell className="whitespace-nowrap border-t-0 p-4 text-left align-middle text-sm font-normal">
+                    </TableCell>
+                  </TableRow>
+                  <TableRow className="text-gray-500 dark:text-gray-400">
+                    <TableCell className="whitespace-nowrap border-t-0 p-4 text-left align-middle text-sm font-normal">
                       Email
-                    </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap border-t-0 p-4 align-middle text-xs font-medium text-gray-900 dark:text-white">
+                    </TableCell>
+                    <TableCell className="whitespace-nowrap border-t-0 p-4 align-middle text-xs font-medium text-gray-900 dark:text-white">
                       456
-                    </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap border-t-0 p-4 align-middle text-xs">
+                    </TableCell>
+                    <TableCell className="whitespace-nowrap border-t-0 p-4 align-middle text-xs">
                       <div className="flex items-center">
                         <span className="mr-2 text-xs font-medium">7%</span>
                         <div className="relative w-full">
@@ -1327,9 +1337,9 @@ const AcquisitionOverview: FC = function () {
                           </div>
                         </div>
                       </div>
-                    </Table.Cell>
-                  </Table.Row>
-                </Table.Body>
+                    </TableCell>
+                  </TableRow>
+                </TableBody>
               </Table>
             </div>
           </div>
@@ -1360,7 +1370,7 @@ const AcquisitionOverview: FC = function () {
 };
 
 const AcquisitionChart: FC = function () {
-  const { mode } = useTheme();
+  const { mode } = useThemeMode();
   const isDarkTheme = mode === "dark";
 
   const options: ApexCharts.ApexOptions = {
@@ -1450,158 +1460,158 @@ const Transactions: FC = function () {
           <div className="inline-block min-w-full align-middle">
             <div className="overflow-hidden shadow sm:rounded-lg">
               <Table striped className="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
-                <Table.Head className="bg-gray-50 dark:bg-gray-700">
-                  <Table.HeadCell>Transaction</Table.HeadCell>
-                  <Table.HeadCell>Date &amp; Time</Table.HeadCell>
-                  <Table.HeadCell>Amount</Table.HeadCell>
-                  <Table.HeadCell>Status</Table.HeadCell>
-                </Table.Head>
-                <Table.Body className="bg-white dark:bg-gray-800">
-                  <Table.Row>
-                    <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-900 dark:text-white">
+                <TableHead className="bg-gray-50 dark:bg-gray-700">
+                  <TableHeadCell>Transaction</TableHeadCell>
+                  <TableHeadCell>Date &amp; Time</TableHeadCell>
+                  <TableHeadCell>Amount</TableHeadCell>
+                  <TableHeadCell>Status</TableHeadCell>
+                </TableHead>
+                <TableBody className="bg-white dark:bg-gray-800">
+                  <TableRow>
+                    <TableCell className="whitespace-nowrap p-4 text-sm font-normal text-gray-900 dark:text-white">
                       Payment from <span className="font-semibold">Bonnie Green</span>
-                    </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
+                    </TableCell>
+                    <TableCell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
                       Apr 23, 2021
-                    </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap p-4 text-sm font-semibold text-gray-900 dark:text-white">
+                    </TableCell>
+                    <TableCell className="whitespace-nowrap p-4 text-sm font-semibold text-gray-900 dark:text-white">
                       $2300
-                    </Table.Cell>
-                    <Table.Cell className="flex whitespace-nowrap p-4">
+                    </TableCell>
+                    <TableCell className="flex whitespace-nowrap p-4">
                       <Badge color="success">Completed</Badge>
-                    </Table.Cell>
-                  </Table.Row>
-                  <Table.Row>
-                    <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-900 dark:text-white">
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="whitespace-nowrap p-4 text-sm font-normal text-gray-900 dark:text-white">
                       Payment refund to <span className="font-semibold">#00910</span>
-                    </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
+                    </TableCell>
+                    <TableCell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
                       Apr 23, 2021
-                    </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap p-4 text-sm font-semibold text-gray-900 dark:text-white">
+                    </TableCell>
+                    <TableCell className="whitespace-nowrap p-4 text-sm font-semibold text-gray-900 dark:text-white">
                       -$670
-                    </Table.Cell>
-                    <Table.Cell className="flex whitespace-nowrap p-4">
+                    </TableCell>
+                    <TableCell className="flex whitespace-nowrap p-4">
                       <Badge color="success">Completed</Badge>
-                    </Table.Cell>
-                  </Table.Row>
-                  <Table.Row>
-                    <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-900 dark:text-white">
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="whitespace-nowrap p-4 text-sm font-normal text-gray-900 dark:text-white">
                       Payment failed from <span className="font-semibold">#087651</span>
-                    </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
+                    </TableCell>
+                    <TableCell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
                       Apr 18, 2021
-                    </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap p-4 text-sm font-semibold text-gray-900 dark:text-white">
+                    </TableCell>
+                    <TableCell className="whitespace-nowrap p-4 text-sm font-semibold text-gray-900 dark:text-white">
                       $234
-                    </Table.Cell>
-                    <Table.Cell className="flex whitespace-nowrap p-4">
+                    </TableCell>
+                    <TableCell className="flex whitespace-nowrap p-4">
                       <Badge color="failure">Cancelled</Badge>
-                    </Table.Cell>
-                  </Table.Row>
-                  <Table.Row>
-                    <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-900 dark:text-white">
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="whitespace-nowrap p-4 text-sm font-normal text-gray-900 dark:text-white">
                       Payment from <span className="font-semibold">Lana Byrd</span>
-                    </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
+                    </TableCell>
+                    <TableCell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
                       Apr 15, 2021
-                    </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap p-4 text-sm font-semibold text-gray-900 dark:text-white">
+                    </TableCell>
+                    <TableCell className="whitespace-nowrap p-4 text-sm font-semibold text-gray-900 dark:text-white">
                       $5000
-                    </Table.Cell>
-                    <Table.Cell className="flex whitespace-nowrap p-4">
+                    </TableCell>
+                    <TableCell className="flex whitespace-nowrap p-4">
                       <span className="mr-2 rounded-md bg-purple-100 py-0.5 px-2.5 text-xs font-medium text-purple-800 dark:bg-purple-200">
                         In progress
                       </span>
-                    </Table.Cell>
-                  </Table.Row>
-                  <Table.Row>
-                    <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-900 dark:text-white">
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="whitespace-nowrap p-4 text-sm font-normal text-gray-900 dark:text-white">
                       Payment from <span className="font-semibold">Jese Leos</span>
-                    </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
+                    </TableCell>
+                    <TableCell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
                       Apr 15, 2021
-                    </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap p-4 text-sm font-semibold text-gray-900 dark:text-white">
+                    </TableCell>
+                    <TableCell className="whitespace-nowrap p-4 text-sm font-semibold text-gray-900 dark:text-white">
                       $2300
-                    </Table.Cell>
-                    <Table.Cell className="flex whitespace-nowrap p-4">
+                    </TableCell>
+                    <TableCell className="flex whitespace-nowrap p-4">
                       <Badge color="success">Completed</Badge>
-                    </Table.Cell>
-                  </Table.Row>
-                  <Table.Row>
-                    <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-900 dark:text-white">
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="whitespace-nowrap p-4 text-sm font-normal text-gray-900 dark:text-white">
                       Payment from <span className="font-semibold">THEMESBERG LLC</span>
-                    </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
+                    </TableCell>
+                    <TableCell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
                       Apr 11, 2021
-                    </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap p-4 text-sm font-semibold text-gray-900 dark:text-white">
+                    </TableCell>
+                    <TableCell className="whitespace-nowrap p-4 text-sm font-semibold text-gray-900 dark:text-white">
                       $560
-                    </Table.Cell>
-                    <Table.Cell className="flex whitespace-nowrap p-4">
+                    </TableCell>
+                    <TableCell className="flex whitespace-nowrap p-4">
                       <Badge color="success">Completed</Badge>
-                    </Table.Cell>
-                  </Table.Row>
-                  <Table.Row>
-                    <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-900 dark:text-white">
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="whitespace-nowrap p-4 text-sm font-normal text-gray-900 dark:text-white">
                       Payment from <span className="font-semibold">Lana Lysle</span>
-                    </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
+                    </TableCell>
+                    <TableCell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
                       Apr 6, 2021
-                    </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap p-4 text-sm font-semibold text-gray-900 dark:text-white">
+                    </TableCell>
+                    <TableCell className="whitespace-nowrap p-4 text-sm font-semibold text-gray-900 dark:text-white">
                       $1437
-                    </Table.Cell>
-                    <Table.Cell className="flex whitespace-nowrap p-4">
+                    </TableCell>
+                    <TableCell className="flex whitespace-nowrap p-4">
                       <Badge color="success">Completed</Badge>
-                    </Table.Cell>
-                  </Table.Row>
-                  <Table.Row>
-                    <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-900 dark:text-white">
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="whitespace-nowrap p-4 text-sm font-normal text-gray-900 dark:text-white">
                       Payment to <span className="font-semibold">Joseph Mcfall</span>
-                    </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
+                    </TableCell>
+                    <TableCell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
                       Apr 1, 2021
-                    </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap p-4 text-sm font-semibold text-gray-900 dark:text-white">
+                    </TableCell>
+                    <TableCell className="whitespace-nowrap p-4 text-sm font-semibold text-gray-900 dark:text-white">
                       $980
-                    </Table.Cell>
-                    <Table.Cell className="flex whitespace-nowrap p-4">
+                    </TableCell>
+                    <TableCell className="flex whitespace-nowrap p-4">
                       <Badge color="success">Completed</Badge>
-                    </Table.Cell>
-                  </Table.Row>
-                  <Table.Row>
-                    <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-900 dark:text-white">
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="whitespace-nowrap p-4 text-sm font-normal text-gray-900 dark:text-white">
                       Payment from <span className="font-semibold">Alphabet LLC</span>
-                    </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
+                    </TableCell>
+                    <TableCell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
                       Mar 23, 2021
-                    </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap p-4 text-sm font-semibold text-gray-900 dark:text-white">
+                    </TableCell>
+                    <TableCell className="whitespace-nowrap p-4 text-sm font-semibold text-gray-900 dark:text-white">
                       $11,436
-                    </Table.Cell>
-                    <Table.Cell className="flex whitespace-nowrap p-4">
+                    </TableCell>
+                    <TableCell className="flex whitespace-nowrap p-4">
                       <span className="mr-2 rounded-md bg-purple-100 py-0.5 px-2.5 text-xs font-medium text-purple-800 dark:bg-purple-200">
                         In progress
                       </span>
-                    </Table.Cell>
-                  </Table.Row>
-                  <Table.Row>
-                    <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-900 dark:text-white">
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="whitespace-nowrap p-4 text-sm font-normal text-gray-900 dark:text-white">
                       Payment from <span className="font-semibold">Bonnie Green</span>
-                    </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
+                    </TableCell>
+                    <TableCell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
                       Mar 23, 2021
-                    </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap p-4 text-sm font-semibold text-gray-900 dark:text-white">
+                    </TableCell>
+                    <TableCell className="whitespace-nowrap p-4 text-sm font-semibold text-gray-900 dark:text-white">
                       $560
-                    </Table.Cell>
-                    <Table.Cell className="flex whitespace-nowrap p-4">
+                    </TableCell>
+                    <TableCell className="flex whitespace-nowrap p-4">
                       <Badge color="success">Completed</Badge>
-                    </Table.Cell>
-                  </Table.Row>
-                </Table.Body>
+                    </TableCell>
+                  </TableRow>
+                </TableBody>
               </Table>
             </div>
           </div>

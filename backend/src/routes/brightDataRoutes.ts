@@ -4,8 +4,7 @@ import { brightDataController } from "../controllers/brightDataController";
 
 const router = express.Router();
 
-router.route("/proxies")
-  .get(brightDataController.listBrightDataProxies); // Można dodać protect, jeśli endpoint ma być chroniony
+router.route("/proxies").get(brightDataController.listBrightDataProxies); // Można dodać protect, jeśli endpoint ma być chroniony
 // .get(protect, brightDataController.listBrightDataProxies); // Przykład z autoryzacją
 
-export default router; 
+export default router;

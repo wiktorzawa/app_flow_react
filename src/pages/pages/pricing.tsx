@@ -1,5 +1,20 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { Button, Footer, Label, Navbar, ToggleSwitch } from "flowbite-react";
+import {
+  Button,
+  Footer,
+  FooterCopyright,
+  FooterDivider,
+  FooterLink,
+  FooterLinkGroup,
+  FooterTitle,
+  Label,
+  Navbar,
+  NavbarBrand,
+  NavbarCollapse,
+  NavbarLink,
+  NavbarToggle,
+  ToggleSwitch,
+} from "flowbite-react";
 import type { FC } from "react";
 import { useState } from "react";
 import { HiOutlineLogin } from "react-icons/hi";
@@ -1363,24 +1378,24 @@ const ExampleNavbar: FC = function () {
   return (
     <Navbar fluid className="p-6">
       <div className="flex items-center gap-x-9">
-        <Navbar.Brand href="/">
+        <NavbarBrand href="/">
           <img alt="" src="/images/logo.svg" className="mr-3 h-6 sm:h-9" />
           <span className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">Flowbite</span>
-        </Navbar.Brand>
-        <Navbar.Collapse>
-          <Navbar.Link href="/" active>
+        </NavbarBrand>
+        <NavbarCollapse>
+          <NavbarLink href="/" active>
             Home
-          </Navbar.Link>
-          <Navbar.Link href="#">Team</Navbar.Link>
-          <Navbar.Link href="#">Pricing</Navbar.Link>
-          <Navbar.Link href="#">Contact</Navbar.Link>
-        </Navbar.Collapse>
+          </NavbarLink>
+          <NavbarLink href="#">Team</NavbarLink>
+          <NavbarLink href="#">Pricing</NavbarLink>
+          <NavbarLink href="#">Contact</NavbarLink>
+        </NavbarCollapse>
       </div>
       <div className="flex">
         <Button>
           <HiOutlineLogin className="mr-3 text-lg" /> Login/Register
         </Button>
-        <Navbar.Toggle />
+        <NavbarToggle />
       </div>
     </Navbar>
   );
@@ -1402,45 +1417,45 @@ const ExampleFooter: FC = function () {
             </p>
           </div>
           <div>
-            <Footer.Title title="Resources" />
-            <Footer.LinkGroup col>
-              <Footer.Link href="#">Themesberg</Footer.Link>
-              <Footer.Link href="#">Figma</Footer.Link>
-              <Footer.Link href="#">Tailwind CSS</Footer.Link>
-              <Footer.Link href="#">Blog</Footer.Link>
-              <Footer.Link href="#">Affiliate program</Footer.Link>
-            </Footer.LinkGroup>
+            <FooterTitle title="Resources" />
+            <FooterLinkGroup col>
+              <FooterLink href="#">Themesberg</FooterLink>
+              <FooterLink href="#">Figma</FooterLink>
+              <FooterLink href="#">Tailwind CSS</FooterLink>
+              <FooterLink href="#">Blog</FooterLink>
+              <FooterLink href="#">Affiliate program</FooterLink>
+            </FooterLinkGroup>
           </div>
           <div>
-            <Footer.Title title="Help and Support" />
-            <Footer.LinkGroup col>
-              <Footer.Link href="#">Contact us</Footer.Link>
-              <Footer.Link href="#">Knowledge Center</Footer.Link>
-            </Footer.LinkGroup>
+            <FooterTitle title="Help and Support" />
+            <FooterLinkGroup col>
+              <FooterLink href="#">Contact us</FooterLink>
+              <FooterLink href="#">Knowledge Center</FooterLink>
+            </FooterLinkGroup>
           </div>
           <div>
-            <Footer.Title title="Follow Us" />
-            <Footer.LinkGroup col>
-              <Footer.Link href="#">Github</Footer.Link>
-              <Footer.Link href="#">Twitter</Footer.Link>
-              <Footer.Link href="#">Facebook</Footer.Link>
-              <Footer.Link href="#">LinkedIn</Footer.Link>
-            </Footer.LinkGroup>
+            <FooterTitle title="Follow Us" />
+            <FooterLinkGroup col>
+              <FooterLink href="#">Github</FooterLink>
+              <FooterLink href="#">Twitter</FooterLink>
+              <FooterLink href="#">Facebook</FooterLink>
+              <FooterLink href="#">LinkedIn</FooterLink>
+            </FooterLinkGroup>
           </div>
           <div>
-            <Footer.Title title="Legal" />
-            <Footer.LinkGroup col>
-              <Footer.Link href="#">Privacy policy</Footer.Link>
-              <Footer.Link href="#">Terms &amp; Conditions</Footer.Link>
-              <Footer.Link href="#">EULA</Footer.Link>
-            </Footer.LinkGroup>
+            <FooterTitle title="Legal" />
+            <FooterLinkGroup col>
+              <FooterLink href="#">Privacy policy</FooterLink>
+              <FooterLink href="#">Terms &amp; Conditions</FooterLink>
+              <FooterLink href="#">EULA</FooterLink>
+            </FooterLinkGroup>
           </div>
         </div>
         <div className="flex items-center">
-          <Footer.Divider />
+          <FooterDivider />
         </div>
         <div className="w-full px-4 pb-24 sm:flex sm:items-center sm:justify-center">
-          <Footer.Copyright by="Themesberg. All Rights Reserved." href="#" year={2022} />
+          <FooterCopyright by="Themesberg. All Rights Reserved." href="#" year={2022} />
         </div>
       </div>
     </Footer>

@@ -1,17 +1,6 @@
 import type { FC } from "react";
 import { useState } from "react";
-import {
-  Card,
-  Button,
-  TextInput,
-  Select,
-  Label,
-  Checkbox,
-  Progress,
-  Badge,
-  Spinner,
-  Breadcrumb,
-} from "flowbite-react";
+import { Card, Button, TextInput, Select, Label, Checkbox, Progress, Badge, Spinner, Breadcrumb } from "flowbite-react";
 import {
   HiUser,
   HiUsers,
@@ -181,28 +170,33 @@ const InkubatorProfilowy: FC = () => {
                   AI Asystent - Ekspert od Kontentu i Fotografii
                 </h4>
                 <p className="text-sm text-purple-700 dark:text-purple-200 mb-3">
-                  {aiAssistant.currentAdvice || "Witaj! Pomogę Ci stworzyć naturalny i spójny profil. Zacznij od wyboru liczby profili."}
+                  {aiAssistant.currentAdvice ||
+                    "Witaj! Pomogę Ci stworzyć naturalny i spójny profil. Zacznij od wyboru liczby profili."}
                 </p>
-                
+
                 {aiAssistant.suggestions.length > 0 && (
                   <div className="space-y-1">
                     <p className="text-xs font-medium text-green-700 dark:text-green-300">💡 Sugestie:</p>
                     {aiAssistant.suggestions.map((suggestion, i) => (
-                      <p key={i} className="text-xs text-green-600 dark:text-green-300">• {suggestion}</p>
+                      <p key={i} className="text-xs text-green-600 dark:text-green-300">
+                        • {suggestion}
+                      </p>
                     ))}
                   </div>
                 )}
-                
+
                 {aiAssistant.warnings.length > 0 && (
                   <div className="space-y-1 mt-2">
                     <p className="text-xs font-medium text-amber-700 dark:text-amber-300">⚠️ Ostrzeżenia:</p>
                     {aiAssistant.warnings.map((warning, i) => (
-                      <p key={i} className="text-xs text-amber-600 dark:text-amber-300">• {warning}</p>
+                      <p key={i} className="text-xs text-amber-600 dark:text-amber-300">
+                        • {warning}
+                      </p>
                     ))}
                   </div>
                 )}
               </div>
-              
+
               <div className="text-center">
                 <div className="text-2xl font-bold text-purple-600 dark:text-purple-300">
                   {aiAssistant.profileScore}%
@@ -214,10 +208,8 @@ const InkubatorProfilowy: FC = () => {
 
           {/* CARD 1: COMPACT PROFILE CONFIG */}
           <Card>
-            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-3">
-              🎯 Konfiguracja Profili
-            </h3>
-            
+            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-3">🎯 Konfiguracja Profili</h3>
+
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <Label value="Liczba profili" className="text-sm" />
@@ -228,17 +220,17 @@ const InkubatorProfilowy: FC = () => {
                   value={generatorConfig.count}
                   onChange={(e) => {
                     const count = parseInt(e.target.value);
-                    setGeneratorConfig({ 
-                      ...generatorConfig, 
+                    setGeneratorConfig({
+                      ...generatorConfig,
                       count,
-                      manualConfig: count === 1 
+                      manualConfig: count === 1,
                     });
                     updateAIAdvice(count);
                   }}
                   className="mt-1"
                 />
               </div>
-              
+
               {generatorConfig.count === 1 && (
                 <div className="flex items-center">
                   <Checkbox
@@ -246,7 +238,9 @@ const InkubatorProfilowy: FC = () => {
                     checked={generatorConfig.manualConfig}
                     onChange={(e) => setGeneratorConfig({ ...generatorConfig, manualConfig: e.target.checked })}
                   />
-                  <Label htmlFor="manualConfig" className="ml-2 text-sm">Ręczna konfiguracja</Label>
+                  <Label htmlFor="manualConfig" className="ml-2 text-sm">
+                    Ręczna konfiguracja
+                  </Label>
                 </div>
               )}
             </div>
@@ -255,22 +249,43 @@ const InkubatorProfilowy: FC = () => {
             {generatorConfig.count === 1 && generatorConfig.manualConfig && (
               <div className="mt-4 p-3 border rounded-lg bg-gray-50 dark:bg-gray-800">
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                  <TextInput placeholder="Imię" value={manualProfileData.UP_Imie} 
-                    onChange={(e) => setManualProfileData({ ...manualProfileData, UP_Imie: e.target.value })} />
-                  <TextInput placeholder="Nazwisko" value={manualProfileData.UP_Nazwisko}
-                    onChange={(e) => setManualProfileData({ ...manualProfileData, UP_Nazwisko: e.target.value })} />
-                  <Select value={manualProfileData.UP_Plec}
-                    onChange={(e) => setManualProfileData({ ...manualProfileData, UP_Plec: e.target.value })}>
+                  <TextInput
+                    placeholder="Imię"
+                    value={manualProfileData.UP_Imie}
+                    onChange={(e) => setManualProfileData({ ...manualProfileData, UP_Imie: e.target.value })}
+                  />
+                  <TextInput
+                    placeholder="Nazwisko"
+                    value={manualProfileData.UP_Nazwisko}
+                    onChange={(e) => setManualProfileData({ ...manualProfileData, UP_Nazwisko: e.target.value })}
+                  />
+                  <Select
+                    value={manualProfileData.UP_Plec}
+                    onChange={(e) => setManualProfileData({ ...manualProfileData, UP_Plec: e.target.value })}
+                  >
                     <option value="">Płeć</option>
                     <option value="kobieta">Kobieta</option>
                     <option value="mężczyzna">Mężczyzna</option>
                   </Select>
-                  <TextInput type="date" value={manualProfileData.UP_DataUrodzenia}
-                    onChange={(e) => setManualProfileData({ ...manualProfileData, UP_DataUrodzenia: e.target.value })} />
-                  <TextInput placeholder="Email" value={manualProfileData.UP_AdresEmail_Glowny}
-                    onChange={(e) => setManualProfileData({ ...manualProfileData, UP_AdresEmail_Glowny: e.target.value })} />
-                  <TextInput placeholder="Zawód" value={manualProfileData.UP_StanowiskoPracy_Zawod}
-                    onChange={(e) => setManualProfileData({ ...manualProfileData, UP_StanowiskoPracy_Zawod: e.target.value })} />
+                  <TextInput
+                    type="date"
+                    value={manualProfileData.UP_DataUrodzenia}
+                    onChange={(e) => setManualProfileData({ ...manualProfileData, UP_DataUrodzenia: e.target.value })}
+                  />
+                  <TextInput
+                    placeholder="Email"
+                    value={manualProfileData.UP_AdresEmail_Glowny}
+                    onChange={(e) =>
+                      setManualProfileData({ ...manualProfileData, UP_AdresEmail_Glowny: e.target.value })
+                    }
+                  />
+                  <TextInput
+                    placeholder="Zawód"
+                    value={manualProfileData.UP_StanowiskoPracy_Zawod}
+                    onChange={(e) =>
+                      setManualProfileData({ ...manualProfileData, UP_StanowiskoPracy_Zawod: e.target.value })
+                    }
+                  />
                 </div>
               </div>
             )}
@@ -278,18 +293,18 @@ const InkubatorProfilowy: FC = () => {
 
           {/* CARD 2: SMART PHOTO EDITOR */}
           <Card>
-            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-3">
-              📸 Inteligentny Edytor Zdjęć
-            </h3>
-            
+            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-3">📸 Inteligentny Edytor Zdjęć</h3>
+
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               {/* Left: Settings */}
               <div className="space-y-3">
                 <div className="grid grid-cols-2 gap-2">
                   <div>
                     <Label value="Liczba zdjęć" className="text-sm" />
-                    <Select value={photoConfig.photoCount}
-                      onChange={(e) => setPhotoConfig({ ...photoConfig, photoCount: parseInt(e.target.value) })}>
+                    <Select
+                      value={photoConfig.photoCount}
+                      onChange={(e) => setPhotoConfig({ ...photoConfig, photoCount: parseInt(e.target.value) })}
+                    >
                       <option value="1">1</option>
                       <option value="3">3</option>
                       <option value="5">5</option>
@@ -297,29 +312,31 @@ const InkubatorProfilowy: FC = () => {
                   </div>
                   <div>
                     <Label value="Styl" className="text-sm" />
-                    <Select value={photoConfig.style}
+                    <Select
+                      value={photoConfig.style}
                       onChange={(e) => {
                         setPhotoConfig({ ...photoConfig, style: e.target.value });
                         updatePhotoStyleBasedOnInterests(e.target.value);
-                      }}>
+                      }}
+                    >
                       <option value="professional">Profesjonalny</option>
                       <option value="casual">Casualowy</option>
                       <option value="lifestyle">Lifestyle</option>
                     </Select>
                   </div>
                 </div>
-                
+
                 <div className="flex gap-2">
                   <Button onClick={generateSmartPhotos} className="flex-1">
                     🎲 Generuj na podstawie zainteresowań
                   </Button>
                 </div>
-                
+
                 <div className="text-xs text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 p-2 rounded">
                   💡 AI automatycznie dobierze styl zdjęć do wybranych zainteresowań
                 </div>
               </div>
-              
+
               {/* Right: Square Photo Grid */}
               <div>
                 <div className="grid grid-cols-3 gap-2">
@@ -327,7 +344,9 @@ const InkubatorProfilowy: FC = () => {
                     <div
                       key={index}
                       className={`aspect-square relative cursor-pointer group border-2 rounded-lg overflow-hidden ${
-                        index === photoConfig.mainPhotoIndex ? "border-blue-500" : "border-gray-300 dark:border-gray-600"
+                        index === photoConfig.mainPhotoIndex
+                          ? "border-blue-500"
+                          : "border-gray-300 dark:border-gray-600"
                       }`}
                       onClick={() => {
                         setPhotoConfig({ ...photoConfig, mainPhotoIndex: index });
@@ -335,13 +354,15 @@ const InkubatorProfilowy: FC = () => {
                           setPhotoModal({
                             isOpen: true,
                             photoUrl: photoConfig.selectedPhotos[index],
-                            photoIndex: index
+                            photoIndex: index,
                           });
                         }
                       }}
                     >
                       <img
-                        src={photoConfig.selectedPhotos[index] || `https://via.placeholder.com/200x200?text=${index + 1}`}
+                        src={
+                          photoConfig.selectedPhotos[index] || `https://via.placeholder.com/200x200?text=${index + 1}`
+                        }
                         alt={`Zdjęcie ${index + 1}`}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform"
                       />
@@ -351,7 +372,9 @@ const InkubatorProfilowy: FC = () => {
                         </div>
                       )}
                       <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-opacity flex items-center justify-center">
-                        <span className="text-white text-xs opacity-0 group-hover:opacity-100">Kliknij aby powiększyć</span>
+                        <span className="text-white text-xs opacity-0 group-hover:opacity-100">
+                          Kliknij aby powiększyć
+                        </span>
                       </div>
                     </div>
                   ))}
@@ -362,16 +385,29 @@ const InkubatorProfilowy: FC = () => {
 
           {/* CARD 3: COMPACT CONTENT GENERATOR */}
           <Card>
-            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-3">
-              🧠 Generator Treści
-            </h3>
-            
+            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-3">🧠 Generator Treści</h3>
+
             <div className="space-y-3">
               {/* Interests Selection */}
               <div>
                 <Label value="Zainteresowania (wpłyną na styl zdjęć)" className="text-sm font-medium" />
                 <div className="grid grid-cols-4 md:grid-cols-7 gap-1 mt-1">
-                  {["Sport", "Muzyka", "Podróże", "Fotografia", "Kulinaria", "Technologia", "Książki", "Filmy", "Gry", "Sztuka", "Moda", "Fitness", "Natura", "Historia"].map((interest) => (
+                  {[
+                    "Sport",
+                    "Muzyka",
+                    "Podróże",
+                    "Fotografia",
+                    "Kulinaria",
+                    "Technologia",
+                    "Książki",
+                    "Filmy",
+                    "Gry",
+                    "Sztuka",
+                    "Moda",
+                    "Fitness",
+                    "Natura",
+                    "Historia",
+                  ].map((interest) => (
                     <label key={interest} className="flex items-center space-x-1 text-xs cursor-pointer">
                       <Checkbox
                         checked={contentConfig.interests.includes(interest)}
@@ -380,7 +416,7 @@ const InkubatorProfilowy: FC = () => {
                           if (e.target.checked) {
                             newInterests = [...contentConfig.interests, interest];
                           } else {
-                            newInterests = contentConfig.interests.filter(i => i !== interest);
+                            newInterests = contentConfig.interests.filter((i) => i !== interest);
                           }
                           setContentConfig({ ...contentConfig, interests: newInterests });
                           updateAIAnalysis(newInterests);
@@ -391,7 +427,7 @@ const InkubatorProfilowy: FC = () => {
                   ))}
                 </div>
               </div>
-              
+
               {/* Content Fields */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <div>
@@ -401,7 +437,9 @@ const InkubatorProfilowy: FC = () => {
                     value={contentConfig.bioText}
                     onChange={(e) => setContentConfig({ ...contentConfig, bioText: e.target.value })}
                   />
-                  <Button onClick={generateBio} className="mt-1">🔄 Generuj</Button>
+                  <Button onClick={generateBio} className="mt-1">
+                    🔄 Generuj
+                  </Button>
                 </div>
                 <div>
                   <Label value="Linki zainteresowań" className="text-sm" />
@@ -414,7 +452,9 @@ const InkubatorProfilowy: FC = () => {
                       setContentConfig({ ...contentConfig, interestLinks: newLinks });
                     }}
                   />
-                  <Button onClick={generateInterestLinks} className="mt-1">🔄 Generuj</Button>
+                  <Button onClick={generateInterestLinks} className="mt-1">
+                    🔄 Generuj
+                  </Button>
                 </div>
               </div>
             </div>
@@ -443,10 +483,13 @@ const InkubatorProfilowy: FC = () => {
         /* MODUŁ USTAWIEŃ BOTÓW */
         <BotSettingsModule onBack={() => setShowProfilesModule(false)} />
       )}
-      
+
       {/* PHOTO ENLARGEMENT MODAL */}
       {photoModal.isOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50" onClick={() => setPhotoModal({ ...photoModal, isOpen: false })}>
+        <div
+          className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50"
+          onClick={() => setPhotoModal({ ...photoModal, isOpen: false })}
+        >
           <div className="max-w-2xl max-h-[90vh] relative">
             <img
               src={photoModal.photoUrl}
@@ -471,9 +514,7 @@ const InkubatorProfilowy: FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* ADSPOWER CONFIGURATION */}
         <Card>
-          <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
-            🖥️ Konfiguracja AdsPower
-          </h3>
+          <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">🖥️ Konfiguracja AdsPower</h3>
           <div className="space-y-4">
             <div>
               <Label value="Browser Version" />
@@ -508,9 +549,7 @@ const InkubatorProfilowy: FC = () => {
 
         {/* BRIGHT DATA PROXY */}
         <Card>
-          <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
-            🌐 Konfiguracja Bright Data Proxy
-          </h3>
+          <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">🌐 Konfiguracja Bright Data Proxy</h3>
           <div className="space-y-4">
             <div>
               <Label value="Lokalizacja Proxy" />
@@ -546,9 +585,7 @@ const InkubatorProfilowy: FC = () => {
 
       {/* PROFILE ASSIGNMENT */}
       <Card>
-        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
-          🔗 Przypisanie do Profili
-        </h3>
+        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">🔗 Przypisanie do Profili</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {generatedProfiles.map((profile) => (
             <div key={profile.id} className="border border-gray-200 dark:border-gray-600 rounded-lg p-4">
@@ -593,9 +630,7 @@ const InkubatorProfilowy: FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* ANONYMITY TESTING */}
         <Card>
-          <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
-            🛡️ Testy Anonimowości
-          </h3>
+          <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">🛡️ Testy Anonimowości</h3>
           <div className="space-y-4">
             <div className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
               <span className="text-gray-900 dark:text-white">Fingerprint Test</span>
@@ -622,9 +657,7 @@ const InkubatorProfilowy: FC = () => {
 
         {/* AUTOMATION SCHEDULE */}
         <Card>
-          <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
-            🕒 Harmonogram Automatyzacji
-          </h3>
+          <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">🕒 Harmonogram Automatyzacji</h3>
           <div className="space-y-4">
             <div>
               <Label value="Aktywność dzienna (godz.)" />
@@ -668,9 +701,7 @@ const InkubatorProfilowy: FC = () => {
 
       {/* PROFILE ANALYTICS */}
       <Card>
-        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
-          📊 Analityka Profili
-        </h3>
+        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">📊 Analityka Profili</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {generatedProfiles.map((profile) => (
             <div key={profile.id} className="border border-gray-200 dark:border-gray-600 rounded-lg p-4">
@@ -729,20 +760,45 @@ const InkubatorProfilowy: FC = () => {
       const newProfiles: GeneratedProfile[] = Array.from({ length: generatorConfig.count }, (_, i) => {
         // Use manual data if configured, otherwise generate random
         const useManualData = generatorConfig.manualConfig && generatorConfig.count === 1;
-        
-        const genderChoice = useManualData 
-          ? (manualProfileData.UP_Plec === "kobieta" ? Gender.FEMALE : Gender.MALE)
+
+        const genderChoice = useManualData
+          ? manualProfileData.UP_Plec === "kobieta"
+            ? Gender.FEMALE
+            : Gender.MALE
           : [Gender.MALE, Gender.FEMALE][i % 2];
 
-        const age = useManualData 
-          ? (new Date().getFullYear() - new Date(manualProfileData.UP_DataUrodzenia).getFullYear())
+        const age = useManualData
+          ? new Date().getFullYear() - new Date(manualProfileData.UP_DataUrodzenia).getFullYear()
           : Math.floor(Math.random() * 30) + 25;
 
-        const firstNames = genderChoice === Gender.FEMALE
-          ? ["Anna", "Maria", "Katarzyna", "Agnieszka", "Barbara", "Ewa", "Krystyna", "Elżbieta", "Joanna", "Magdalena"]
-          : ["Jan", "Piotr", "Krzysztof", "Stanisław", "Tomasz", "Paweł", "Józef", "Marcin", "Marek", "Michał"];
+        const firstNames =
+          genderChoice === Gender.FEMALE
+            ? [
+                "Anna",
+                "Maria",
+                "Katarzyna",
+                "Agnieszka",
+                "Barbara",
+                "Ewa",
+                "Krystyna",
+                "Elżbieta",
+                "Joanna",
+                "Magdalena",
+              ]
+            : ["Jan", "Piotr", "Krzysztof", "Stanisław", "Tomasz", "Paweł", "Józef", "Marcin", "Marek", "Michał"];
 
-        const lastNames = ["Kowalski", "Nowak", "Wiśniewski", "Dąbrowski", "Lewandowski", "Wójcik", "Kowalczyk", "Kamiński", "Kwiatkowski", "Szymański"];
+        const lastNames = [
+          "Kowalski",
+          "Nowak",
+          "Wiśniewski",
+          "Dąbrowski",
+          "Lewandowski",
+          "Wójcik",
+          "Kowalczyk",
+          "Kamiński",
+          "Kwiatkowski",
+          "Szymański",
+        ];
 
         const firstName = useManualData ? manualProfileData.UP_Imie : firstNames[i % firstNames.length];
         const lastName = useManualData ? manualProfileData.UP_Nazwisko : lastNames[i % lastNames.length];
@@ -755,41 +811,50 @@ const InkubatorProfilowy: FC = () => {
           full_name: `${firstName} ${lastName}`,
           gender: genderChoice,
           age,
-          date_of_birth: useManualData 
+          date_of_birth: useManualData
             ? new Date(manualProfileData.UP_DataUrodzenia)
-            : new Date(new Date().getFullYear() - age, Math.floor(Math.random() * 12), Math.floor(Math.random() * 28) + 1),
+            : new Date(
+                new Date().getFullYear() - age,
+                Math.floor(Math.random() * 12),
+                Math.floor(Math.random() * 28) + 1
+              ),
           nationality: "Polska",
           city: useManualData ? "Warszawa" : cities[i % cities.length],
           region: "Mazowieckie",
           country: "Polska",
           country_code: "PL",
           postal_code: `${Math.floor(Math.random() * 90000) + 10000}`,
-          primary_email: useManualData 
+          primary_email: useManualData
             ? manualProfileData.UP_AdresEmail_Glowny
             : `${firstName.toLowerCase()}.${lastName.toLowerCase()}${Math.floor(Math.random() * 999)}@${["gmail.com", "wp.pl", "onet.pl", "yahoo.com"][i % 4]}`,
           primary_email_password: useManualData ? manualProfileData.UP_Haslo_Email_Glowny : "",
-          phone_number: useManualData ? manualProfileData.UP_NumerTelefonu : `+48${Math.floor(Math.random() * 900000000) + 100000000}`,
+          phone_number: useManualData
+            ? manualProfileData.UP_NumerTelefonu
+            : `+48${Math.floor(Math.random() * 900000000) + 100000000}`,
           phone_country_code: "+48",
           avatar_url: `https://i.pravatar.cc/150?img=${i + 10}`,
           status: ProfileStatus.ACTIVE,
           created_at: new Date(),
           updated_at: new Date(),
-          interests: useManualData 
-            ? manualProfileData.UP_Zainteresowania_Hobby.split(",").map(s => s.trim())
-            : contentConfig.interests.length > 0 ? contentConfig.interests : generateInterests(genderChoice, age),
-          education_level: useManualData 
+          interests: useManualData
+            ? manualProfileData.UP_Zainteresowania_Hobby.split(",").map((s) => s.trim())
+            : contentConfig.interests.length > 0
+              ? contentConfig.interests
+              : generateInterests(genderChoice, age),
+          education_level: useManualData
             ? (manualProfileData.UP_Wyksztalcenie as EducationLevel) || "bachelor"
-            : "bachelor" as EducationLevel,
+            : ("bachelor" as EducationLevel),
           primary_language: useManualData ? manualProfileData.UP_JezykUzytkownika : "pl",
           secondary_languages: [],
           timezone: "Europe/Warsaw",
           locale: "pl_PL",
           username_preferences: [],
           photos: [],
-          profilePhotos: photoConfig.selectedPhotos.length > 0 
-            ? photoConfig.selectedPhotos 
-            : generatePhotoPaths(i, photoConfig.photoCount),
-          data_source: useManualData ? "manual" as any : "ai_generated" as any,
+          profilePhotos:
+            photoConfig.selectedPhotos.length > 0
+              ? photoConfig.selectedPhotos
+              : generatePhotoPaths(i, photoConfig.photoCount),
+          data_source: useManualData ? ("manual" as any) : ("ai_generated" as any),
           verification_status: "unverified" as any,
           risk_level: "low" as any,
           notes: useManualData ? manualProfileData.UP_Notatki_Ogolne_Persona : "",
@@ -808,18 +873,20 @@ const InkubatorProfilowy: FC = () => {
 
   const generateInterests = (gender: Gender, age: number): string[] => {
     const baseInterests = ["Sport", "Muzyka", "Podróże", "Kultura", "Technologia"];
-    const ageSpecific = age < 30 
-      ? ["Gaming", "Social Media", "Festiwale", "Fitness"]
-      : age > 50 
-      ? ["Ogrodnictwo", "Czytanie", "Historia", "Kulinaria"]
-      : ["Kariera", "Inwestycje", "Dom", "Rodzina"];
-    
+    const ageSpecific =
+      age < 30
+        ? ["Gaming", "Social Media", "Festiwale", "Fitness"]
+        : age > 50
+          ? ["Ogrodnictwo", "Czytanie", "Historia", "Kulinaria"]
+          : ["Kariera", "Inwestycje", "Dom", "Rodzina"];
+
     return [...baseInterests.slice(0, 3), ...ageSpecific.slice(0, 2)];
   };
 
   const generatePhotoPaths = (index: number, count: number): string[] => {
-    return Array.from({ length: count }, (_, photoIndex) => 
-      `https://i.pravatar.cc/300?img=${index * 10 + photoIndex + 10}`
+    return Array.from(
+      { length: count },
+      (_, photoIndex) => `https://i.pravatar.cc/300?img=${index * 10 + photoIndex + 10}`
     );
   };
 
@@ -829,13 +896,14 @@ const InkubatorProfilowy: FC = () => {
   };
 
   const deleteProfile = (profileId: string) => {
-    setGeneratedProfiles(prev => prev.filter(p => p.id !== profileId));
+    setGeneratedProfiles((prev) => prev.filter((p) => p.id !== profileId));
   };
 
   // Helper functions for content generation
   const generateSamplePhotos = () => {
-    const samplePhotos = Array.from({ length: photoConfig.photoCount }, (_, i) => 
-      `https://i.pravatar.cc/300?img=${Math.floor(Math.random() * 70) + 1}`
+    const samplePhotos = Array.from(
+      { length: photoConfig.photoCount },
+      (_, i) => `https://i.pravatar.cc/300?img=${Math.floor(Math.random() * 70) + 1}`
     );
     setPhotoConfig({ ...photoConfig, selectedPhotos: samplePhotos });
   };
@@ -846,9 +914,9 @@ const InkubatorProfilowy: FC = () => {
       "Entuzjasta technologii i innowacji. Pracuję w branży IT, ale po godzinach oddaję się gotowaniu i eksperymentowaniu w kuchni.",
       "Miłośniczka sztuki i muzyki. Spędzam weekendy w galeriach i na koncertach. Interesuję się także modą i designem.",
     ];
-    setContentConfig({ 
-      ...contentConfig, 
-      bioText: bios[Math.floor(Math.random() * bios.length)]
+    setContentConfig({
+      ...contentConfig,
+      bioText: bios[Math.floor(Math.random() * bios.length)],
     });
   };
 
@@ -869,27 +937,27 @@ const InkubatorProfilowy: FC = () => {
       "https://www.instagram.com/travel",
       "https://www.pinterest.com/photography",
     ];
-    setContentConfig({ 
-      ...contentConfig, 
-      interestLinks: baseLinks.slice(0, Math.min(5, contentConfig.interests.length))
+    setContentConfig({
+      ...contentConfig,
+      interestLinks: baseLinks.slice(0, Math.min(5, contentConfig.interests.length)),
     });
   };
 
   // AI Assistant Functions
   const updateAIAdvice = (profileCount: number) => {
     if (profileCount === 1) {
-      setAiAssistant(prev => ({
+      setAiAssistant((prev) => ({
         ...prev,
         currentAdvice: "Świetny wybór! Dla 1 profilu polecam ręczną konfigurację - będzie bardziej naturalny.",
         suggestions: ["Włącz ręczną konfigurację", "Wybierz zainteresowania przed generowaniem zdjęć"],
-        profileScore: 60
+        profileScore: 60,
       }));
     } else {
-      setAiAssistant(prev => ({
+      setAiAssistant((prev) => ({
         ...prev,
         currentAdvice: `Generuję ${profileCount} profili automatycznie. Zainteresowania wpłyną na styl zdjęć.`,
         suggestions: ["Wybierz różnorodne zainteresowania", "AI dobierze style zdjęć automatycznie"],
-        profileScore: 75
+        profileScore: 75,
       }));
     }
   };
@@ -911,51 +979,52 @@ const InkubatorProfilowy: FC = () => {
     }
 
     // Check interest coherence
-    const hasOutdoor = interests.some(i => ["Sport", "Podróże", "Natura"].includes(i));
-    const hasIndoor = interests.some(i => ["Książki", "Gry", "Technologia"].includes(i));
-    
+    const hasOutdoor = interests.some((i) => ["Sport", "Podróże", "Natura"].includes(i));
+    const hasIndoor = interests.some((i) => ["Książki", "Gry", "Technologia"].includes(i));
+
     if (hasOutdoor && hasIndoor) {
       suggestions.push("Zbalansowane zainteresowania - profil będzie wyglądał naturalnie");
       score += 5;
     }
 
-    setAiAssistant(prev => ({
+    setAiAssistant((prev) => ({
       ...prev,
       suggestions,
       warnings,
       profileScore: Math.min(100, score),
-      currentAdvice: interests.length > 0 
-        ? `Zainteresowania: ${interests.join(", ")}. Dobiorę odpowiedni styl zdjęć.`
-        : "Wybierz zainteresowania, a ja dopasuję styl zdjęć do profilu."
+      currentAdvice:
+        interests.length > 0
+          ? `Zainteresowania: ${interests.join(", ")}. Dobiorę odpowiedni styl zdjęć.`
+          : "Wybierz zainteresowania, a ja dopasuję styl zdjęć do profilu.",
     }));
   };
 
   const updatePhotoStyleBasedOnInterests = (style: string) => {
     const interests = contentConfig.interests;
     const suggestions: string[] = [];
-    
+
     if (interests.includes("Sport") || interests.includes("Fitness")) {
       if (style !== "casual") {
         suggestions.push("Dla zainteresowań sportowych polecam styl 'casualowy'");
       }
     }
-    
+
     if (interests.includes("Technologia") || interests.includes("Książki")) {
       if (style !== "professional") {
         suggestions.push("Dla zainteresowań intelektualnych polecam styl 'profesjonalny'");
       }
     }
 
-    setAiAssistant(prev => ({
+    setAiAssistant((prev) => ({
       ...prev,
-      suggestions: suggestions.length > 0 ? suggestions : ["Styl zdjęć pasuje do zainteresowań"]
+      suggestions: suggestions.length > 0 ? suggestions : ["Styl zdjęć pasuje do zainteresowań"],
     }));
   };
 
   const generateSmartPhotos = () => {
     const interests = contentConfig.interests;
     let baseStyle = photoConfig.style;
-    
+
     // Smart style selection based on interests
     if (interests.includes("Sport") || interests.includes("Fitness") || interests.includes("Natura")) {
       baseStyle = "casual";
@@ -968,16 +1037,16 @@ const InkubatorProfilowy: FC = () => {
     // Generate photos with smart seed based on interests
     const seedModifier = interests.length * 7 + interests.join("").length;
     const samplePhotos = Array.from({ length: photoConfig.photoCount }, (_, i) => {
-      const seed = (seedModifier + i * 13) % 70 + 1;
+      const seed = ((seedModifier + i * 13) % 70) + 1;
       return `https://i.pravatar.cc/300?img=${seed}`;
     });
-    
+
     setPhotoConfig({ ...photoConfig, selectedPhotos: samplePhotos, style: baseStyle });
-    
-    setAiAssistant(prev => ({
+
+    setAiAssistant((prev) => ({
       ...prev,
       currentAdvice: `Wygenerowałem zdjęcia w stylu '${baseStyle}' dopasowane do zainteresowań: ${interests.slice(0, 3).join(", ")}`,
-      profileScore: Math.min(100, prev.profileScore + 15)
+      profileScore: Math.min(100, prev.profileScore + 15),
     }));
   };
 
@@ -1025,11 +1094,7 @@ const InkubatorProfilowy: FC = () => {
                       : "border-gray-300 dark:border-gray-600"
                   }`}
                 >
-                  {currentStage > index ? (
-                    <HiCheckCircle className="w-6 h-6" />
-                  ) : (
-                    <stage.icon className="w-5 h-5" />
-                  )}
+                  {currentStage > index ? <HiCheckCircle className="w-6 h-6" /> : <stage.icon className="w-5 h-5" />}
                 </div>
                 <span className="font-medium text-lg">{stage.title}</span>
                 {index < stages.length - 1 && <div className="w-20 h-px bg-gray-300 dark:bg-gray-600 ml-4" />}
@@ -1056,10 +1121,7 @@ const InkubatorProfilowy: FC = () => {
           ← Poprzedni Etap
         </Button>
 
-        <Button
-          onClick={() => setCurrentStage(Math.min(2, currentStage + 1))}
-          disabled={currentStage === 2}
-        >
+        <Button onClick={() => setCurrentStage(Math.min(2, currentStage + 1))} disabled={currentStage === 2}>
           Następny Etap →
         </Button>
       </div>
@@ -1175,14 +1237,15 @@ const BotSettingsModule: FC<{ onBack: () => void }> = ({ onBack }) => (
     <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6">
       🖥️ Ustawienia Botów - Konfiguracja Wygenerowanych Profili
     </h3>
-    
+
     <div className="space-y-6">
       <div className="bg-green-50 dark:bg-green-900 p-4 rounded-lg">
         <p className="text-green-800 dark:text-green-200">
-          ✅ <strong>Profile zostały wygenerowane!</strong> Teraz możesz skonfigurować ustawienia botów dla każdego profilu.
+          ✅ <strong>Profile zostały wygenerowane!</strong> Teraz możesz skonfigurować ustawienia botów dla każdego
+          profilu.
         </p>
       </div>
-      
+
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* AdsPower Configuration */}
         <div>
@@ -1210,7 +1273,7 @@ const BotSettingsModule: FC<{ onBack: () => void }> = ({ onBack }) => (
             </Button>
           </div>
         </div>
-        
+
         {/* Proxy Configuration */}
         <div>
           <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">🌐 Konfiguracja Proxy</h4>
@@ -1238,17 +1301,15 @@ const BotSettingsModule: FC<{ onBack: () => void }> = ({ onBack }) => (
           </div>
         </div>
       </div>
-      
+
       <div className="text-center space-y-4">
         <Button onClick={onBack} color="gray">
           ← Powrót do generatora
         </Button>
-        <Button color="blue">
-          Przejdź do następnego etapu →
-        </Button>
+        <Button color="blue">Przejdź do następnego etapu →</Button>
       </div>
     </div>
   </Card>
 );
 
-export default InkubatorProfilowy; 
+export default InkubatorProfilowy;

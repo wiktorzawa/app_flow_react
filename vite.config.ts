@@ -1,14 +1,14 @@
 import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
 import path from "path";
 import flowbiteReact from "flowbite-react/plugin/vite";
+import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
-  plugins: [react(), flowbiteReact()],
+  plugins: [flowbiteReact(), tailwindcss()],
   resolve: {
     alias: {
-      "@shared-types": path.resolve(__dirname, "./shared-types"),
       "@": path.resolve(__dirname, "./src"),
+      "@shared-types": path.resolve(__dirname, "shared-types"),
     },
   },
 });

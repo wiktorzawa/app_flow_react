@@ -1,14 +1,15 @@
-import { Flowbite, useThemeMode } from "flowbite-react";
+import { useThemeMode } from "flowbite-react";
+import { Flowbite } from "flowbite-react";
 import type { FC } from "react";
 import { useEffect } from "react";
 import { Outlet } from "react-router";
 import theme from "../flowbite-theme";
 
 const FlowbiteWrapper: FC = function () {
-  const dark = localStorage.getItem("theme") === "dark";
+  const isDark = localStorage.getItem("theme") === "dark";
 
   return (
-    <Flowbite theme={{ dark, theme }}>
+    <Flowbite theme={{ theme }}>
       <PersistFlowbiteThemeToLocalStorage />
       <Outlet />
     </Flowbite>
@@ -16,11 +17,11 @@ const FlowbiteWrapper: FC = function () {
 };
 
 const PersistFlowbiteThemeToLocalStorage: FC = function () {
-  const [themeMode] = useThemeMode();
+  const themeMode = useThemeMode();
 
   useEffect(() => {
-    localStorage.setItem("theme", themeMode);
-  }, [themeMode]);
+    localStorage.setItem("theme", themeMode.mode);
+  }, [themeMode.mode]);
 
   return <></>;
 };

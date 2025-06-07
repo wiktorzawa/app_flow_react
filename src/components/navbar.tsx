@@ -1,6 +1,17 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import type { FC } from "react";
-import { Avatar, DarkThemeToggle, Dropdown, Label, Navbar, TextInput } from "flowbite-react";
+import {
+  Avatar,
+  DarkThemeToggle,
+  Dropdown,
+  DropdownDivider,
+  DropdownHeader,
+  DropdownItem,
+  Label,
+  Navbar,
+  NavbarBrand,
+  TextInput,
+} from "flowbite-react";
 import {
   HiArchive,
   HiBell,
@@ -42,10 +53,10 @@ const ExampleNavbar: FC = function () {
                 )}
               </button>
             )}
-            <Navbar.Brand href="/">
+            <NavbarBrand href="/">
               <img alt="" src="https://flowbite.com/docs/images/logo.svg" className="mr-3 h-6 sm:h-8" />
               <span className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">Flowbite</span>
-            </Navbar.Brand>
+            </NavbarBrand>
             <form className="ml-16 hidden md:block">
               <Label htmlFor="search" className="sr-only">
                 Search
@@ -329,15 +340,15 @@ const UserDropdown: FC = function () {
         </span>
       }
     >
-      <Dropdown.Header>
+      <DropdownHeader>
         <span className="block text-sm font-bold">{userRole || "Użytkownik"}</span>
         <span className="block truncate text-sm font-medium">{userEmail}</span>
-      </Dropdown.Header>
-      <Dropdown.Item href="/">Dashboard</Dropdown.Item>
-      <Dropdown.Item href="/users/settings">Ustawienia</Dropdown.Item>
-      {userRole === "admin" && <Dropdown.Item href="/users/list">Zarządzaj użytkownikami</Dropdown.Item>}
-      <Dropdown.Divider />
-      <Dropdown.Item onClick={handleLogout}>Wyloguj</Dropdown.Item>
+      </DropdownHeader>
+      <DropdownItem href="/">Dashboard</DropdownItem>
+      <DropdownItem href="/users/settings">Ustawienia</DropdownItem>
+      {userRole === "admin" && <DropdownItem href="/users/list">Zarządzaj użytkownikami</DropdownItem>}
+      <DropdownDivider />
+      <DropdownItem onClick={handleLogout}>Wyloguj</DropdownItem>
     </Dropdown>
   );
 };

@@ -1,7 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { AdsPowerProfile, fetchAdsPowerProfiles } from "../../api/adsPowerApi";
 import { BrightDataProxy, fetchBrightDataProxies } from "../../api/brightDataApi";
-import { Alert, Spinner, Button, Table, Badge } from "flowbite-react";
+import {
+  Alert,
+  Badge,
+  Button,
+  Spinner,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeadCell,
+  TableRow,
+} from "flowbite-react";
 import NavbarSidebarLayout from "../../layouts/navbar-sidebar";
 import {
   HiOutlinePlus,
@@ -182,8 +193,8 @@ const AdsPowerDashboardPage: React.FC = () => {
                 </div>
               ) : (
                 <Table>
-                  <Table.Head>
-                    <Table.HeadCell className="p-4">
+                  <TableHead>
+                    <TableHeadCell className="p-4">
                       <div className="flex items-center">
                         <input
                           id="checkbox-all-adspower"
@@ -191,21 +202,21 @@ const AdsPowerDashboardPage: React.FC = () => {
                           className="w-4 h-4 text-primary-600 bg-gray-100 rounded border-gray-300 focus:ring-primary-500"
                         />
                       </div>
-                    </Table.HeadCell>
-                    <Table.HeadCell>Rozwiń</Table.HeadCell>
-                    <Table.HeadCell>Nazwa profilu</Table.HeadCell>
-                    <Table.HeadCell>ID profilu</Table.HeadCell>
-                    <Table.HeadCell>Grupa</Table.HeadCell>
-                    <Table.HeadCell>Kraj/IP</Table.HeadCell>
-                    <Table.HeadCell>Status</Table.HeadCell>
-                    <Table.HeadCell>Ostatnie użycie</Table.HeadCell>
-                    <Table.HeadCell>Akcje</Table.HeadCell>
-                  </Table.Head>
-                  <Table.Body>
+                    </TableHeadCell>
+                    <TableHeadCell>Rozwiń</TableHeadCell>
+                    <TableHeadCell>Nazwa profilu</TableHeadCell>
+                    <TableHeadCell>ID profilu</TableHeadCell>
+                    <TableHeadCell>Grupa</TableHeadCell>
+                    <TableHeadCell>Kraj/IP</TableHeadCell>
+                    <TableHeadCell>Status</TableHeadCell>
+                    <TableHeadCell>Ostatnie użycie</TableHeadCell>
+                    <TableHeadCell>Akcje</TableHeadCell>
+                  </TableHead>
+                  <TableBody>
                     {profiles.map((profile: AdsPowerProfile) => (
                       <React.Fragment key={profile.user_id}>
-                        <Table.Row className="hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer">
-                          <Table.Cell className="p-4">
+                        <TableRow className="hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer">
+                          <TableCell className="p-4">
                             <div className="flex items-center">
                               <input
                                 type="checkbox"
@@ -213,31 +224,31 @@ const AdsPowerDashboardPage: React.FC = () => {
                                 onClick={(e) => e.stopPropagation()}
                               />
                             </div>
-                          </Table.Cell>
-                          <Table.Cell onClick={() => handleAdsPowerRowExpand(profile.user_id)}>
+                          </TableCell>
+                          <TableCell onClick={() => handleAdsPowerRowExpand(profile.user_id)}>
                             {expandedAdsPowerRows.has(profile.user_id) ? (
                               <HiChevronUp className="w-6 h-6" />
                             ) : (
                               <HiChevronDown className="w-6 h-6" />
                             )}
-                          </Table.Cell>
-                          <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+                          </TableCell>
+                          <TableCell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
                             {profile.name}
-                          </Table.Cell>
-                          <Table.Cell>{profile.user_id}</Table.Cell>
-                          <Table.Cell>{profile.group_name}</Table.Cell>
-                          <Table.Cell>{profile.ip_country || profile.ip || "N/A"}</Table.Cell>
-                          <Table.Cell>
+                          </TableCell>
+                          <TableCell>{profile.user_id}</TableCell>
+                          <TableCell>{profile.group_name}</TableCell>
+                          <TableCell>{profile.ip_country || profile.ip || "N/A"}</TableCell>
+                          <TableCell>
                             <Badge color={profile.status === "active" ? "success" : "warning"}>
                               {profile.status || "Nieaktywny"}
                             </Badge>
-                          </Table.Cell>
-                          <Table.Cell>
+                          </TableCell>
+                          <TableCell>
                             {profile.last_open_time
                               ? new Date(profile.last_open_time * 1000).toLocaleString()
                               : "Nigdy"}
-                          </Table.Cell>
-                          <Table.Cell>
+                          </TableCell>
+                          <TableCell>
                             <div className="flex items-center space-x-2">
                               {savedProfiles.has(profile.user_id) ? (
                                 <Button size="xs" color="success" disabled>
@@ -280,11 +291,11 @@ const AdsPowerDashboardPage: React.FC = () => {
                                 Usuń
                               </Button>
                             </div>
-                          </Table.Cell>
-                        </Table.Row>
+                          </TableCell>
+                        </TableRow>
                         {expandedAdsPowerRows.has(profile.user_id) && (
-                          <Table.Row>
-                            <Table.Cell colSpan={9}>
+                          <TableRow>
+                            <TableCell colSpan={9}>
                               <div className="p-4">
                                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                                   <div className="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
@@ -326,12 +337,12 @@ const AdsPowerDashboardPage: React.FC = () => {
                                   </div>
                                 </div>
                               </div>
-                            </Table.Cell>
-                          </Table.Row>
+                            </TableCell>
+                          </TableRow>
                         )}
                       </React.Fragment>
                     ))}
-                  </Table.Body>
+                  </TableBody>
                 </Table>
               )}
             </div>
@@ -366,8 +377,8 @@ const AdsPowerDashboardPage: React.FC = () => {
                   </div>
                 ) : (
                   <Table>
-                    <Table.Head>
-                      <Table.HeadCell className="p-4">
+                    <TableHead>
+                      <TableHeadCell className="p-4">
                         <div className="flex items-center">
                           <input
                             id="checkbox-all-brightdata"
@@ -375,21 +386,21 @@ const AdsPowerDashboardPage: React.FC = () => {
                             className="w-4 h-4 text-primary-600 bg-gray-100 rounded border-gray-300 focus:ring-primary-500"
                           />
                         </div>
-                      </Table.HeadCell>
-                      <Table.HeadCell>Rozwiń</Table.HeadCell>
-                      <Table.HeadCell>Nazwa Strefy</Table.HeadCell>
-                      <Table.HeadCell>Typ Produktu</Table.HeadCell>
-                      <Table.HeadCell>Kraj</Table.HeadCell>
-                      <Table.HeadCell>Hasło</Table.HeadCell>
-                      <Table.HeadCell>Status</Table.HeadCell>
-                      <Table.HeadCell>Utworzono</Table.HeadCell>
-                      <Table.HeadCell>Akcje</Table.HeadCell>
-                    </Table.Head>
-                    <Table.Body>
+                      </TableHeadCell>
+                      <TableHeadCell>Rozwiń</TableHeadCell>
+                      <TableHeadCell>Nazwa Strefy</TableHeadCell>
+                      <TableHeadCell>Typ Produktu</TableHeadCell>
+                      <TableHeadCell>Kraj</TableHeadCell>
+                      <TableHeadCell>Hasło</TableHeadCell>
+                      <TableHeadCell>Status</TableHeadCell>
+                      <TableHeadCell>Utworzono</TableHeadCell>
+                      <TableHeadCell>Akcje</TableHeadCell>
+                    </TableHead>
+                    <TableBody>
                       {brightDataZones.map((zone: BrightDataProxy) => (
                         <React.Fragment key={zone.zone}>
-                          <Table.Row className="hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer">
-                            <Table.Cell className="p-4">
+                          <TableRow className="hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer">
+                            <TableCell className="p-4">
                               <div className="flex items-center">
                                 <input
                                   type="checkbox"
@@ -397,21 +408,21 @@ const AdsPowerDashboardPage: React.FC = () => {
                                   onClick={(e) => e.stopPropagation()}
                                 />
                               </div>
-                            </Table.Cell>
-                            <Table.Cell onClick={() => handleBrightDataRowExpand(zone.zone)}>
+                            </TableCell>
+                            <TableCell onClick={() => handleBrightDataRowExpand(zone.zone)}>
                               {expandedBrightDataRows.has(zone.zone) ? (
                                 <HiChevronUp className="w-6 h-6" />
                               ) : (
                                 <HiChevronDown className="w-6 h-6" />
                               )}
-                            </Table.Cell>
-                            <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+                            </TableCell>
+                            <TableCell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
                               {zone.zone}
-                            </Table.Cell>
-                            <Table.Cell>{zone.plan_details?.product || zone.proxy_type || "N/A"}</Table.Cell>
-                            <Table.Cell>{zone.country || "Wszystkie"}</Table.Cell>
-                            <Table.Cell>{zone.password ? `${zone.password.substring(0, 3)}...` : "N/A"}</Table.Cell>
-                            <Table.Cell>
+                            </TableCell>
+                            <TableCell>{zone.plan_details?.product || zone.proxy_type || "N/A"}</TableCell>
+                            <TableCell>{zone.country || "Wszystkie"}</TableCell>
+                            <TableCell>{zone.password ? `${zone.password.substring(0, 3)}...` : "N/A"}</TableCell>
+                            <TableCell>
                               <Badge
                                 color={
                                   zone.status === "active"
@@ -423,11 +434,11 @@ const AdsPowerDashboardPage: React.FC = () => {
                               >
                                 {zone.status || "Nieznany"}
                               </Badge>
-                            </Table.Cell>
-                            <Table.Cell>
+                            </TableCell>
+                            <TableCell>
                               {zone.created_at ? new Date(zone.created_at).toLocaleDateString() : "N/A"}
-                            </Table.Cell>
-                            <Table.Cell>
+                            </TableCell>
+                            <TableCell>
                               <div className="flex items-center space-x-2">
                                 <Button
                                   size="xs"
@@ -452,11 +463,11 @@ const AdsPowerDashboardPage: React.FC = () => {
                                   Usuń
                                 </Button>
                               </div>
-                            </Table.Cell>
-                          </Table.Row>
+                            </TableCell>
+                          </TableRow>
                           {expandedBrightDataRows.has(zone.zone) && (
-                            <Table.Row>
-                              <Table.Cell colSpan={9}>
+                            <TableRow>
+                              <TableCell colSpan={9}>
                                 <div className="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
                                   <h6 className="font-semibold text-gray-900 dark:text-white mb-2">
                                     Szczegóły Strefy: {zone.zone}
@@ -519,12 +530,12 @@ const AdsPowerDashboardPage: React.FC = () => {
                                     </div>
                                   </div>
                                 </div>
-                              </Table.Cell>
-                            </Table.Row>
+                              </TableCell>
+                            </TableRow>
                           )}
                         </React.Fragment>
                       ))}
-                    </Table.Body>
+                    </TableBody>
                   </Table>
                 )}
               </div>

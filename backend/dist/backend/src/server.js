@@ -34,11 +34,7 @@ const port = process.env.PORT || 3001;
 // --- Middleware ---
 // CORS - Zezwalaj na żądania z frontendu (dostosuj origin w razie potrzeby)
 app.use((0, cors_1.default)({
-    origin: [
-        "http://localhost:5173",
-        "http://localhost:5174",
-        "http://localhost:3000"
-    ], // Obsługa różnych portów development
+    origin: ["http://localhost:5173", "http://localhost:5174", "http://localhost:3000"], // Obsługa różnych portów development
     credentials: true,
 }));
 // Parser JSON - aby Express rozumiał ciało żądania w formacie JSON

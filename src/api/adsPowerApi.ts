@@ -432,7 +432,7 @@ export const stopAdsPowerBrowser = async (userId: string): Promise<{ success: bo
 export const checkAdsPowerBrowserStatus = async (userId: string): Promise<{ status: string }> => {
   try {
     const response = await axiosInstance.get(`/adspower/profiles/${userId}/browser-status`, {
-      params: { user_id: userId }
+      params: { user_id: userId },
     });
     if (response.data && response.data.success && response.data.data) {
       return response.data.data;

@@ -1,15 +1,7 @@
 import type { FC } from "react";
 import { useState, useEffect } from "react";
 import { Card, Button, Progress, Badge, Table } from "flowbite-react";
-import {
-  HiUsers,
-  HiPhotograph,
-  HiChartPie,
-  HiTrendingUp,
-  HiEye,
-  HiDownload,
-  HiRefresh,
-} from "react-icons/hi";
+import { HiUsers, HiPhotograph, HiChartPie, HiTrendingUp, HiEye, HiDownload, HiRefresh } from "react-icons/hi";
 import DashboardLayout from "../layouts/DashboardLayout";
 import { UserProfile, ProfileStatus } from "@shared-types/UserProfile";
 import { useNavigate } from "react-router-dom";
@@ -123,12 +115,8 @@ const DashboardPage: FC = () => {
       {/* HEADER ACTIONS */}
       <div className="flex justify-between items-center mb-6">
         <div>
-          <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
-            Przegląd systemu
-          </h2>
-          <p className="text-gray-600 dark:text-gray-400">
-            Ostatnia aktualizacja: {new Date().toLocaleString()}
-          </p>
+          <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Przegląd systemu</h2>
+          <p className="text-gray-600 dark:text-gray-400">Ostatnia aktualizacja: {new Date().toLocaleString()}</p>
         </div>
         <div className="flex gap-2">
           <Button color="gray" onClick={loadDashboardData}>
@@ -165,21 +153,14 @@ const DashboardPage: FC = () => {
           trend="+15% w tym miesiącu"
           color="purple"
         />
-        <StatCard
-          title="Wygenerowane dzisiaj"
-          value={stats.generatedToday}
-          icon={HiTrendingUp}
-          color="yellow"
-        />
+        <StatCard title="Wygenerowane dzisiaj" value={stats.generatedToday} icon={HiTrendingUp} color="yellow" />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
         {/* POPULAR CITIES */}
         <Card className="lg:col-span-1">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-              Najpopularniejsze miasta
-            </h3>
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Najpopularniejsze miasta</h3>
             <Badge color="blue">{stats.popularCities.length} miast</Badge>
           </div>
           <div className="space-y-4">
@@ -191,9 +172,7 @@ const DashboardPage: FC = () => {
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-sm text-gray-600 dark:text-gray-400">
-                    {city.count.toLocaleString()}
-                  </span>
+                  <span className="text-sm text-gray-600 dark:text-gray-400">{city.count.toLocaleString()}</span>
                   <Progress
                     progress={(city.count / stats.totalProfiles) * 100}
                     size="sm"
@@ -209,9 +188,7 @@ const DashboardPage: FC = () => {
         {/* GENDER DISTRIBUTION */}
         <Card className="lg:col-span-1">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-              Rozkład płci
-            </h3>
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Rozkład płci</h3>
             <HiChartPie className="h-5 w-5 text-gray-400" />
           </div>
           <div className="space-y-4">
@@ -263,9 +240,7 @@ const DashboardPage: FC = () => {
         {/* AGE DISTRIBUTION */}
         <Card className="lg:col-span-1">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-              Rozkład wieku
-            </h3>
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Rozkład wieku</h3>
             <Badge color="gray">5 grup</Badge>
           </div>
           <div className="space-y-4">
@@ -273,15 +248,8 @@ const DashboardPage: FC = () => {
               <div key={age.range} className="flex items-center justify-between">
                 <span className="text-sm font-medium">{age.range} lat</span>
                 <div className="flex items-center gap-2">
-                  <span className="text-sm text-gray-600 dark:text-gray-400">
-                    {age.percentage}%
-                  </span>
-                  <Progress
-                    progress={age.percentage}
-                    size="sm"
-                    color="green"
-                    className="w-16"
-                  />
+                  <span className="text-sm text-gray-600 dark:text-gray-400">{age.percentage}%</span>
+                  <Progress progress={age.percentage} size="sm" color="green" className="w-16" />
                 </div>
               </div>
             ))}
@@ -292,34 +260,23 @@ const DashboardPage: FC = () => {
       {/* QUICK ACTIONS */}
       <Card>
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-            Szybkie akcje
-          </h3>
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Szybkie akcje</h3>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <Button 
-            size="lg" 
-            className="h-20 flex-col"
-            onClick={() => navigate('/profiles/generator')}
-          >
+          <Button size="lg" className="h-20 flex-col" onClick={() => navigate("/profiles/generator")}>
             <HiUsers className="h-8 w-8 mb-2" />
             Wygeneruj nowe profile
           </Button>
-          <Button 
-            size="lg" 
-            color="purple" 
+          <Button
+            size="lg"
+            color="purple"
             className="h-20 flex-col"
-            onClick={() => navigate('/profiles/advanced-generator')}
+            onClick={() => navigate("/profiles/advanced-generator")}
           >
             <HiPhotograph className="h-8 w-8 mb-2" />
             Generator zaawansowany
           </Button>
-          <Button 
-            size="lg" 
-            color="gray" 
-            className="h-20 flex-col"
-            onClick={() => navigate('/profiles')}
-          >
+          <Button size="lg" color="gray" className="h-20 flex-col" onClick={() => navigate("/profiles")}>
             <HiEye className="h-8 w-8 mb-2" />
             Przeglądaj profile
           </Button>
@@ -329,4 +286,4 @@ const DashboardPage: FC = () => {
   );
 };
 
-export default DashboardPage; 
+export default DashboardPage;

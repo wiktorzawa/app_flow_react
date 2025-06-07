@@ -8,16 +8,24 @@ import {
 } from "../../api/adsPowerApi";
 import {
   Alert,
-  Spinner,
-  Button,
-  Table,
   Badge,
-  Toast,
-  Modal,
+  Button,
   Label,
-  TextInput,
+  Modal,
+  ModalBody,
+  ModalFooter,
   Select,
+  Spinner,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeadCell,
+  TableRow,
   Textarea,
+  TextInput,
+  Toast,
+  ToastToggle,
   Tooltip,
 } from "flowbite-react";
 import NavbarSidebarLayout from "../../layouts/navbar-sidebar";
@@ -194,7 +202,7 @@ const AdsPowerDashboardPage: React.FC = () => {
                 <HiCheck className="h-5 w-5" />
               </div>
               <div className="ml-3 text-sm font-normal">{prepareBatchSuccess}</div>
-              <Toast.Toggle onDismiss={() => setPrepareBatchSuccess(null)} />
+              <ToastToggle onDismiss={() => setPrepareBatchSuccess(null)} />
             </Toast>
           )}
           {prepareBatchError && (
@@ -203,7 +211,7 @@ const AdsPowerDashboardPage: React.FC = () => {
                 <HiInformationCircle className="h-5 w-5" />
               </div>
               <div className="ml-3 text-sm font-normal">{prepareBatchError}</div>
-              <Toast.Toggle onDismiss={() => setPrepareBatchError(null)} />
+              <ToastToggle onDismiss={() => setPrepareBatchError(null)} />
             </Toast>
           )}
 
@@ -239,8 +247,8 @@ const AdsPowerDashboardPage: React.FC = () => {
                 renderAdsPowerError()
               ) : (
                 <Table>
-                  <Table.Head>
-                    <Table.HeadCell className="p-4">
+                  <TableHead>
+                    <TableHeadCell className="p-4">
                       <div className="flex items-center">
                         <input
                           id="checkbox-all-adspower"
@@ -248,21 +256,21 @@ const AdsPowerDashboardPage: React.FC = () => {
                           className="w-4 h-4 text-primary-600 bg-gray-100 rounded border-gray-300 focus:ring-primary-500"
                         />
                       </div>
-                    </Table.HeadCell>
-                    <Table.HeadCell>Rozwiń</Table.HeadCell>
-                    <Table.HeadCell>Nazwa profilu</Table.HeadCell>
-                    <Table.HeadCell>ID profilu</Table.HeadCell>
-                    <Table.HeadCell>Grupa</Table.HeadCell>
-                    <Table.HeadCell>Kraj/IP</Table.HeadCell>
-                    <Table.HeadCell>Status</Table.HeadCell>
-                    <Table.HeadCell>Ostatnie użycie</Table.HeadCell>
-                    <Table.HeadCell>Akcje</Table.HeadCell>
-                  </Table.Head>
-                  <Table.Body>
+                    </TableHeadCell>
+                    <TableHeadCell>Rozwiń</TableHeadCell>
+                    <TableHeadCell>Nazwa profilu</TableHeadCell>
+                    <TableHeadCell>ID profilu</TableHeadCell>
+                    <TableHeadCell>Grupa</TableHeadCell>
+                    <TableHeadCell>Kraj/IP</TableHeadCell>
+                    <TableHeadCell>Status</TableHeadCell>
+                    <TableHeadCell>Ostatnie użycie</TableHeadCell>
+                    <TableHeadCell>Akcje</TableHeadCell>
+                  </TableHead>
+                  <TableBody>
                     {profiles.map((profile: AdsPowerProfile) => (
                       <React.Fragment key={profile.user_id}>
-                        <Table.Row className="hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer">
-                          <Table.Cell className="p-4">
+                        <TableRow className="hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer">
+                          <TableCell className="p-4">
                             <div className="flex items-center">
                               <input
                                 type="checkbox"
@@ -270,31 +278,31 @@ const AdsPowerDashboardPage: React.FC = () => {
                                 onClick={(e) => e.stopPropagation()}
                               />
                             </div>
-                          </Table.Cell>
-                          <Table.Cell onClick={() => handleAdsPowerRowExpand(profile.user_id)}>
+                          </TableCell>
+                          <TableCell onClick={() => handleAdsPowerRowExpand(profile.user_id)}>
                             {expandedAdsPowerRows.has(profile.user_id) ? (
                               <HiChevronUp className="w-6 h-6" />
                             ) : (
                               <HiChevronDown className="w-6 h-6" />
                             )}
-                          </Table.Cell>
-                          <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+                          </TableCell>
+                          <TableCell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
                             {profile.name}
-                          </Table.Cell>
-                          <Table.Cell>{profile.user_id}</Table.Cell>
-                          <Table.Cell>{profile.group_name}</Table.Cell>
-                          <Table.Cell>{profile.ip_country || profile.ip || "N/A"}</Table.Cell>
-                          <Table.Cell>
+                          </TableCell>
+                          <TableCell>{profile.user_id}</TableCell>
+                          <TableCell>{profile.group_name}</TableCell>
+                          <TableCell>{profile.ip_country || profile.ip || "N/A"}</TableCell>
+                          <TableCell>
                             <Badge color={profile.status === "active" ? "success" : "warning"}>
                               {profile.status || "Nieaktywny"}
                             </Badge>
-                          </Table.Cell>
-                          <Table.Cell>
+                          </TableCell>
+                          <TableCell>
                             {profile.last_open_time
                               ? new Date(profile.last_open_time * 1000).toLocaleString()
                               : "Nigdy"}
-                          </Table.Cell>
-                          <Table.Cell>
+                          </TableCell>
+                          <TableCell>
                             <div className="flex items-center space-x-2">
                               {savedProfiles.has(profile.user_id) ? (
                                 <Button size="xs" color="success" disabled>
@@ -337,11 +345,11 @@ const AdsPowerDashboardPage: React.FC = () => {
                                 Usuń
                               </Button>
                             </div>
-                          </Table.Cell>
-                        </Table.Row>
+                          </TableCell>
+                        </TableRow>
                         {expandedAdsPowerRows.has(profile.user_id) && (
-                          <Table.Row>
-                            <Table.Cell colSpan={9}>
+                          <TableRow>
+                            <TableCell colSpan={9}>
                               <div className="p-4">
                                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                                   <div className="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
@@ -390,12 +398,12 @@ const AdsPowerDashboardPage: React.FC = () => {
                                   </div>
                                 </div>
                               </div>
-                            </Table.Cell>
-                          </Table.Row>
+                            </TableCell>
+                          </TableRow>
                         )}
                       </React.Fragment>
                     ))}
-                  </Table.Body>
+                  </TableBody>
                 </Table>
               )}
             </div>
@@ -417,8 +425,8 @@ const AdsPowerDashboardPage: React.FC = () => {
               </div>
               <div className="overflow-x-auto">
                 <Table>
-                  <Table.Head>
-                    <Table.HeadCell className="p-4">
+                  <TableHead>
+                    <TableHeadCell className="p-4">
                       <div className="flex items-center">
                         <input
                           id="checkbox-all-prepared"
@@ -426,23 +434,23 @@ const AdsPowerDashboardPage: React.FC = () => {
                           className="w-4 h-4 text-primary-600 bg-gray-100 rounded border-gray-300 focus:ring-primary-500"
                         />
                       </div>
-                    </Table.HeadCell>
-                    <Table.HeadCell>Rozwiń</Table.HeadCell>
-                    <Table.HeadCell>Nazwa profilu</Table.HeadCell>
-                    <Table.HeadCell>ID profilu</Table.HeadCell>
-                    <Table.HeadCell>Grupa</Table.HeadCell>
-                    <Table.HeadCell>Miasto</Table.HeadCell>
-                    <Table.HeadCell>Kod pocztowy</Table.HeadCell>
-                    <Table.HeadCell>Kraj/IP</Table.HeadCell>
-                    <Table.HeadCell>Status</Table.HeadCell>
-                    <Table.HeadCell>Ostatnie użycie</Table.HeadCell>
-                    <Table.HeadCell>Akcje</Table.HeadCell>
-                  </Table.Head>
-                  <Table.Body>
+                    </TableHeadCell>
+                    <TableHeadCell>Rozwiń</TableHeadCell>
+                    <TableHeadCell>Nazwa profilu</TableHeadCell>
+                    <TableHeadCell>ID profilu</TableHeadCell>
+                    <TableHeadCell>Grupa</TableHeadCell>
+                    <TableHeadCell>Miasto</TableHeadCell>
+                    <TableHeadCell>Kod pocztowy</TableHeadCell>
+                    <TableHeadCell>Kraj/IP</TableHeadCell>
+                    <TableHeadCell>Status</TableHeadCell>
+                    <TableHeadCell>Ostatnie użycie</TableHeadCell>
+                    <TableHeadCell>Akcje</TableHeadCell>
+                  </TableHead>
+                  <TableBody>
                     {preparedProfilesList.map((profile, index) => (
                       <React.Fragment key={profile.name}>
-                        <Table.Row className="hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer">
-                          <Table.Cell className="p-4">
+                        <TableRow className="hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer">
+                          <TableCell className="p-4">
                             <div className="flex items-center">
                               <input
                                 type="checkbox"
@@ -450,27 +458,27 @@ const AdsPowerDashboardPage: React.FC = () => {
                                 onClick={(e) => e.stopPropagation()}
                               />
                             </div>
-                          </Table.Cell>
-                          <Table.Cell onClick={() => handlePreparedRowExpand(profile.name)}>
+                          </TableCell>
+                          <TableCell onClick={() => handlePreparedRowExpand(profile.name)}>
                             {expandedPreparedRows.has(profile.name) ? (
                               <HiChevronUp className="w-6 h-6" />
                             ) : (
                               <HiChevronDown className="w-6 h-6" />
                             )}
-                          </Table.Cell>
-                          <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+                          </TableCell>
+                          <TableCell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
                             {profile.name}
-                          </Table.Cell>
-                          <Table.Cell>PREP_{String(index + 1).padStart(5, "0")}</Table.Cell>
-                          <Table.Cell>{profile.group_id || "0"}</Table.Cell>
-                          <Table.Cell>{profile.locationData?.L_Miasto_Docelowe || "N/A"}</Table.Cell>
-                          <Table.Cell>{profile.locationData?.L_KodPocztowy_Docelowy_Przyklad || "N/A"}</Table.Cell>
-                          <Table.Cell>{profile.locationData?.L_Kraj_Docelowy || "PL"}</Table.Cell>
-                          <Table.Cell>
+                          </TableCell>
+                          <TableCell>PREP_{String(index + 1).padStart(5, "0")}</TableCell>
+                          <TableCell>{profile.group_id || "0"}</TableCell>
+                          <TableCell>{profile.locationData?.L_Miasto_Docelowe || "N/A"}</TableCell>
+                          <TableCell>{profile.locationData?.L_KodPocztowy_Docelowy_Przyklad || "N/A"}</TableCell>
+                          <TableCell>{profile.locationData?.L_Kraj_Docelowy || "PL"}</TableCell>
+                          <TableCell>
                             <Badge color="info">Przygotowane</Badge>
-                          </Table.Cell>
-                          <Table.Cell>{new Date().toLocaleString()}</Table.Cell>
-                          <Table.Cell>
+                          </TableCell>
+                          <TableCell>{new Date().toLocaleString()}</TableCell>
+                          <TableCell>
                             <div className="flex items-center space-x-2">
                               <Button
                                 size="xs"
@@ -506,11 +514,11 @@ const AdsPowerDashboardPage: React.FC = () => {
                                 Usuń
                               </Button>
                             </div>
-                          </Table.Cell>
-                        </Table.Row>
+                          </TableCell>
+                        </TableRow>
                         {expandedPreparedRows.has(profile.name) && (
-                          <Table.Row>
-                            <Table.Cell colSpan={9}>
+                          <TableRow>
+                            <TableCell colSpan={9}>
                               <div className="p-4">
                                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                                   <div className="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
@@ -556,12 +564,12 @@ const AdsPowerDashboardPage: React.FC = () => {
                                   </div>
                                 </div>
                               </div>
-                            </Table.Cell>
-                          </Table.Row>
+                            </TableCell>
+                          </TableRow>
                         )}
                       </React.Fragment>
                     ))}
-                  </Table.Body>
+                  </TableBody>
                 </Table>
               </div>
             </div>
@@ -571,7 +579,7 @@ const AdsPowerDashboardPage: React.FC = () => {
 
       <Modal show={showCreateProfileModal} onClose={handleCloseCreateModal} size="xl">
         <div className="modal-header">Edytuj Konfigurację</div>
-        <Modal.Body>
+        <ModalBody>
           <div className="space-y-6">
             {/* Informacja o domyślnych ustawieniach */}
             <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
@@ -656,15 +664,15 @@ const AdsPowerDashboardPage: React.FC = () => {
               </div>
             </div>
           </div>
-        </Modal.Body>
-        <Modal.Footer>
+        </ModalBody>
+        <ModalFooter>
           <Button color="primary" onClick={handleSaveProfileConfig}>
             Zapisz
           </Button>
           <Button color="gray" onClick={handleCloseCreateModal}>
             Anuluj
           </Button>
-        </Modal.Footer>
+        </ModalFooter>
       </Modal>
     </NavbarSidebarLayout>
   );

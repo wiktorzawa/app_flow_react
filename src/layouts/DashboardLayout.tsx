@@ -18,4 +18,4 @@ const DashboardLayout: FC<PropsWithChildren<DashboardLayoutProps>> = ({ children
   );
 };
 
-export default DashboardLayout; 
+export default DashboardLayout;

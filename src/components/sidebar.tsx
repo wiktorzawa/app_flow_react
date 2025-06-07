@@ -1,6 +1,15 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import classNames from "classnames";
-import { Dropdown, Sidebar, TextInput, Tooltip } from "flowbite-react";
+import {
+  Dropdown,
+  Sidebar,
+  SidebarCollapse,
+  SidebarItem,
+  SidebarItemGroup,
+  SidebarItems,
+  TextInput,
+  Tooltip,
+} from "flowbite-react";
 import type { FC } from "react";
 import { useEffect, useState } from "react";
 import {
@@ -55,148 +64,148 @@ const ExampleSidebar: FC = function () {
             <form className="pb-3 md:hidden">
               <TextInput icon={HiSearch} type="search" placeholder="Search" required size={32} />
             </form>
-            <Sidebar.Items>
-              <Sidebar.ItemGroup>
-                <Sidebar.Item
+            <SidebarItems>
+              <SidebarItemGroup>
+                <SidebarItem
                   href="/"
                   icon={HiChartPie}
                   className={"/" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}
                 >
                   Dashboard
-                </Sidebar.Item>
+                </SidebarItem>
                 {localStorage.getItem("userRole") === "admin" && (
-                  <Sidebar.Item
+                  <SidebarItem
                     href="/admin/AdsPowerDashboard"
                     icon={HiAdjustments}
                     className={"/admin/AdsPowerDashboard" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}
                   >
                     Profile AdsPower
-                  </Sidebar.Item>
+                  </SidebarItem>
                 )}
 
                 {/* PROFILE MANAGEMENT SECTION */}
                 {localStorage.getItem("userRole") === "admin" && (
-                  <Sidebar.Collapse icon={HiDesktopComputer} label="Boty" open={isBotyOpen}>
-                    <Sidebar.Item
+                  <SidebarCollapse icon={HiDesktopComputer} label="Boty" open={isBotyOpen}>
+                    <SidebarItem
                       href="/boty/inkubator"
                       className={"/boty/inkubator" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}
                     >
                       🚀 Inkubator Profilowy
-                    </Sidebar.Item>
-                    <Sidebar.Item
+                    </SidebarItem>
+                    <SidebarItem
                       href="/boty/settings"
                       className={"/boty/settings" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}
                     >
                       ⚙️ Ustawienia Botów
-                    </Sidebar.Item>
-                  </Sidebar.Collapse>
+                    </SidebarItem>
+                  </SidebarCollapse>
                 )}
 
-                <Sidebar.Item
+                <SidebarItem
                   href="/kanban"
                   icon={HiViewGrid}
                   className={"/kanban" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}
                 >
                   Kanban
-                </Sidebar.Item>
-                <Sidebar.Item
+                </SidebarItem>
+                <SidebarItem
                   href="/mailing/inbox"
                   icon={HiInboxIn}
                   label="3"
                   className={"/mailing/inbox" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}
                 >
                   Inbox
-                </Sidebar.Item>
-                <Sidebar.Collapse icon={HiShoppingBag} label="E-commerce" open={isEcommerceOpen}>
-                  <Sidebar.Item
+                </SidebarItem>
+                <SidebarCollapse icon={HiShoppingBag} label="E-commerce" open={isEcommerceOpen}>
+                  <SidebarItem
                     href="/e-commerce/products"
                     className={"/e-commerce/products" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}
                   >
                     Products
-                  </Sidebar.Item>
-                  <Sidebar.Item
+                  </SidebarItem>
+                  <SidebarItem
                     href="/e-commerce/amazon-scraper"
                     className={"/e-commerce/amazon-scraper" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}
                   >
                     Amazon Scraper
-                  </Sidebar.Item>
-                  <Sidebar.Item
+                  </SidebarItem>
+                  <SidebarItem
                     href="/e-commerce/billing"
                     className={"/e-commerce/billing" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}
                   >
                     Billing
-                  </Sidebar.Item>
-                  <Sidebar.Item
+                  </SidebarItem>
+                  <SidebarItem
                     href="/e-commerce/invoice"
                     className={"/e-commerce/invoice" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}
                   >
                     Invoice
-                  </Sidebar.Item>
-                </Sidebar.Collapse>
-                <Sidebar.Collapse icon={HiUsers} label="Users" open={isUsersOpen}>
+                  </SidebarItem>
+                </SidebarCollapse>
+                <SidebarCollapse icon={HiUsers} label="Users" open={isUsersOpen}>
                   {localStorage.getItem("userRole") === "admin" && (
-                    <Sidebar.Item
+                    <SidebarItem
                       href="/users/list"
                       className={"/users/list" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}
                     >
                       Users list
-                    </Sidebar.Item>
+                    </SidebarItem>
                   )}
                   {localStorage.getItem("userRole") === "admin" && (
-                    <Sidebar.Item
+                    <SidebarItem
                       href="/users/listSuppliers"
                       className={"/users/listSuppliers" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}
                     >
                       Suppliers list
-                    </Sidebar.Item>
+                    </SidebarItem>
                   )}
-                  <Sidebar.Item
+                  <SidebarItem
                     href="/users/profile"
                     className={"/users/profile" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}
                   >
                     Profile
-                  </Sidebar.Item>
+                  </SidebarItem>
                   {localStorage.getItem("userRole") === "admin" && (
-                    <Sidebar.Item
+                    <SidebarItem
                       href="/users/feed"
                       className={"/users/feed" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}
                     >
                       Feed
-                    </Sidebar.Item>
+                    </SidebarItem>
                   )}
-                  <Sidebar.Item
+                  <SidebarItem
                     href="/users/settings"
                     className={"/users/settings" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}
                   >
                     Settings
-                  </Sidebar.Item>
-                </Sidebar.Collapse>
-                <Sidebar.Collapse icon={HiChartSquareBar} label="Pages">
-                  <Sidebar.Item href="/pages/pricing">Pricing</Sidebar.Item>
-                  <Sidebar.Item href="/pages/maintenance">Maintenace</Sidebar.Item>
-                  <Sidebar.Item href="/pages/404">404 not found</Sidebar.Item>
-                  <Sidebar.Item href="/pages/500">500 server error</Sidebar.Item>
-                </Sidebar.Collapse>
-                <Sidebar.Collapse icon={HiLockClosed} label="Authentication">
-                  <Sidebar.Item href="/authentication/sign-in">Sign in</Sidebar.Item>
-                  <Sidebar.Item href="/authentication/sign-up">Sign up</Sidebar.Item>
-                  <Sidebar.Item href="/authentication/forgot-password">Forgot password</Sidebar.Item>
-                  <Sidebar.Item href="/authentication/reset-password">Reset password</Sidebar.Item>
-                  <Sidebar.Item href="/authentication/profile-lock">Profile lock</Sidebar.Item>
-                </Sidebar.Collapse>
-              </Sidebar.ItemGroup>
-              <Sidebar.ItemGroup>
-                <Sidebar.Item href="https://github.com/themesberg/flowbite-react/" icon={HiClipboard}>
+                  </SidebarItem>
+                </SidebarCollapse>
+                <SidebarCollapse icon={HiChartSquareBar} label="Pages">
+                  <SidebarItem href="/pages/pricing">Pricing</SidebarItem>
+                  <SidebarItem href="/pages/maintenance">Maintenace</SidebarItem>
+                  <SidebarItem href="/pages/404">404 not found</SidebarItem>
+                  <SidebarItem href="/pages/500">500 server error</SidebarItem>
+                </SidebarCollapse>
+                <SidebarCollapse icon={HiLockClosed} label="Authentication">
+                  <SidebarItem href="/authentication/sign-in">Sign in</SidebarItem>
+                  <SidebarItem href="/authentication/sign-up">Sign up</SidebarItem>
+                  <SidebarItem href="/authentication/forgot-password">Forgot password</SidebarItem>
+                  <SidebarItem href="/authentication/reset-password">Reset password</SidebarItem>
+                  <SidebarItem href="/authentication/profile-lock">Profile lock</SidebarItem>
+                </SidebarCollapse>
+              </SidebarItemGroup>
+              <SidebarItemGroup>
+                <SidebarItem href="https://github.com/themesberg/flowbite-react/" icon={HiClipboard}>
                   Docs
-                </Sidebar.Item>
-                <Sidebar.Item href="https://flowbite-react.com/" icon={HiCollection}>
+                </SidebarItem>
+                <SidebarItem href="https://flowbite-react.com/" icon={HiCollection}>
                   Components
-                </Sidebar.Item>
-                <Sidebar.Item href="https://github.com/themesberg/flowbite-react/issues" icon={HiInformationCircle}>
+                </SidebarItem>
+                <SidebarItem href="https://github.com/themesberg/flowbite-react/issues" icon={HiInformationCircle}>
                   Help
-                </Sidebar.Item>
-              </Sidebar.ItemGroup>
-            </Sidebar.Items>
+                </SidebarItem>
+              </SidebarItemGroup>
+            </SidebarItems>
           </div>
           <BottomMenu />
         </div>

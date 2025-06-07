@@ -1,5 +1,20 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { Badge, Breadcrumb, Button, Card, Label, Table, Textarea, TextInput } from "flowbite-react";
+import {
+  Badge,
+  Breadcrumb,
+  BreadcrumbItem,
+  Button,
+  Card,
+  Label,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeadCell,
+  TableRow,
+  Textarea,
+  TextInput,
+} from "flowbite-react";
 import type { FC } from "react";
 import { HiHome } from "react-icons/hi";
 import NavbarSidebarLayout from "../../layouts/navbar-sidebar";
@@ -10,14 +25,14 @@ const EcommerceBillingPage: FC = function () {
       <div className="mb-6 grid grid-cols-1 gap-y-6 px-4 pt-6 dark:border-gray-700 dark:bg-gray-900 xl:grid-cols-2 xl:gap-4">
         <div className="col-span-full">
           <Breadcrumb className="mb-4">
-            <Breadcrumb.Item href="#">
+            <BreadcrumbItem href="#">
               <div className="flex items-center gap-x-3">
                 <HiHome className="text-xl" />
                 <span className="dark:text-white">Home</span>
               </div>
-            </Breadcrumb.Item>
-            <Breadcrumb.Item href="/e-commerce/products">E-commerce</Breadcrumb.Item>
-            <Breadcrumb.Item>Billing</Breadcrumb.Item>
+            </BreadcrumbItem>
+            <BreadcrumbItem href="/e-commerce/products">E-commerce</BreadcrumbItem>
+            <BreadcrumbItem>Billing</BreadcrumbItem>
           </Breadcrumb>
           <h1 className="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">Billing</h1>
         </div>
@@ -99,59 +114,59 @@ const OrderHistoryCard: FC = function () {
           <div className="inline-block min-w-full align-middle">
             <div className="overflow-hidden shadow sm:rounded-lg">
               <Table>
-                <Table.Head>
-                  <Table.HeadCell>Transaction</Table.HeadCell>
-                  <Table.HeadCell>Date &amp; Time</Table.HeadCell>
-                  <Table.HeadCell>Amount</Table.HeadCell>
-                  <Table.HeadCell>Status</Table.HeadCell>
-                </Table.Head>
-                <Table.Body>
-                  <Table.Row>
-                    <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-900 dark:text-white">
+                <TableHead>
+                  <TableHeadCell>Transaction</TableHeadCell>
+                  <TableHeadCell>Date &amp; Time</TableHeadCell>
+                  <TableHeadCell>Amount</TableHeadCell>
+                  <TableHeadCell>Status</TableHeadCell>
+                </TableHead>
+                <TableBody>
+                  <TableRow>
+                    <TableCell className="whitespace-nowrap p-4 text-sm font-normal text-gray-900 dark:text-white">
                       Payment from&nbsp;
                       <span className="font-semibold">Bonnie Green</span>
-                    </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
+                    </TableCell>
+                    <TableCell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
                       Apr 23 ,2021
-                    </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap p-4 text-sm font-semibold text-gray-900 dark:text-white">
+                    </TableCell>
+                    <TableCell className="whitespace-nowrap p-4 text-sm font-semibold text-gray-900 dark:text-white">
                       $2300
-                    </Table.Cell>
-                    <Table.Cell className="flex whitespace-nowrap p-4">
+                    </TableCell>
+                    <TableCell className="flex whitespace-nowrap p-4">
                       <Badge color="success">Completed</Badge>
-                    </Table.Cell>
-                  </Table.Row>
-                  <Table.Row className="bg-gray-50 dark:bg-gray-700">
-                    <Table.Cell className="whitespace-nowrap rounded-l-lg p-4 text-sm font-normal text-gray-900 dark:text-white">
+                    </TableCell>
+                  </TableRow>
+                  <TableRow className="bg-gray-50 dark:bg-gray-700">
+                    <TableCell className="whitespace-nowrap rounded-l-lg p-4 text-sm font-normal text-gray-900 dark:text-white">
                       Payment refund to&nbsp;
                       <span className="font-semibold">#00910</span>
-                    </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
+                    </TableCell>
+                    <TableCell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
                       Apr 23 ,2021
-                    </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap p-4 text-sm font-semibold text-gray-900 dark:text-white">
+                    </TableCell>
+                    <TableCell className="whitespace-nowrap p-4 text-sm font-semibold text-gray-900 dark:text-white">
                       -$670
-                    </Table.Cell>
-                    <Table.Cell className="flex whitespace-nowrap rounded-r-lg p-4">
+                    </TableCell>
+                    <TableCell className="flex whitespace-nowrap rounded-r-lg p-4">
                       <Badge color="success">Completed</Badge>
-                    </Table.Cell>
-                  </Table.Row>
-                  <Table.Row>
-                    <Table.Cell className="whitespace-nowrap p-4 pb-0 text-sm font-normal text-gray-900 dark:text-white">
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="whitespace-nowrap p-4 pb-0 text-sm font-normal text-gray-900 dark:text-white">
                       Payment failed from&nbsp;
                       <span className="font-semibold">#087651</span>
-                    </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap p-4 pb-0 text-sm font-normal text-gray-500 dark:text-gray-400">
+                    </TableCell>
+                    <TableCell className="whitespace-nowrap p-4 pb-0 text-sm font-normal text-gray-500 dark:text-gray-400">
                       Apr 18, 2021
-                    </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap p-4 pb-0 text-sm font-semibold text-gray-900 dark:text-white">
+                    </TableCell>
+                    <TableCell className="whitespace-nowrap p-4 pb-0 text-sm font-semibold text-gray-900 dark:text-white">
                       $234
-                    </Table.Cell>
-                    <Table.Cell className="flex whitespace-nowrap p-4 pb-0">
+                    </TableCell>
+                    <TableCell className="flex whitespace-nowrap p-4 pb-0">
                       <Badge color="failure">Cancelled</Badge>
-                    </Table.Cell>
-                  </Table.Row>
-                </Table.Body>
+                    </TableCell>
+                  </TableRow>
+                </TableBody>
               </Table>
             </div>
           </div>

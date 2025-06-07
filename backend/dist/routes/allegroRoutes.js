@@ -12,13 +12,12 @@ exports.allegroRouter.get("/categories", allegroController_1.allegroController.g
 // --- Nowe trasy dla Authorization Code + PKCE ---
 // 1 · LOGIN - Inicjuje proces logowania przez Allegro
 exports.allegroRouter.get("/login", (req, res, next) => {
-    try {
-        // initLogin nie jest asyncHandler, więc obsługujemy błędy bezpośrednio lub przekazujemy
-        allegroController_1.allegroController.initLogin(req, res);
-    }
-    catch (error) {
-        next(error); // Przekaż błąd do globalnego error handlera Express
-    }
+  try {
+    // initLogin nie jest asyncHandler, więc obsługujemy błędy bezpośrednio lub przekazujemy
+    allegroController_1.allegroController.initLogin(req, res);
+  } catch (error) {
+    next(error); // Przekaż błąd do globalnego error handlera Express
+  }
 });
 // 2 · CALLBACK - Obsługuje przekierowanie powrotne z Allegro po zalogowaniu
 // Metoda handleCallback w kontrolerze jest już opakowana w asyncHandler

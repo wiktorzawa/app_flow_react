@@ -73,7 +73,7 @@ const DatabaseViewer: React.FC = () => {
     <NavbarSidebarLayout>
       <div className="p-6 max-w-7xl mx-auto">
         <h1 className="text-3xl font-bold mb-6">Przeglądarka bazy danych - Proxy Manager</h1>
-        
+
         {error && <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">{error}</div>}
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
@@ -142,4 +142,4 @@ const DatabaseViewer: React.FC = () => {
   );
 };
 
-export default DatabaseViewer; 
+export default DatabaseViewer;

@@ -1,8 +1,7 @@
-import { Flowbite, theme } from "flowbite-react";
-import type { PropsWithChildren } from "react";
-import { twMerge } from "tailwind-merge";
+import { Flowbite } from "flowbite-react/lib/esm/components/Flowbite";
+import type { FC, PropsWithChildren } from "react";
 
-export function CustomTheme({ children }: PropsWithChildren) {
+export const CustomTheme: FC<PropsWithChildren> = ({ children }) => {
   return (
     <Flowbite
       theme={{
@@ -42,8 +41,7 @@ export function CustomTheme({ children }: PropsWithChildren) {
             color: {
               info: "border-blue-500 bg-blue-50 text-blue-700 dark:bg-blue-900 dark:text-blue-800",
               gray: "border-gray-500 bg-gray-50 text-gray-700 dark:bg-gray-700 dark:text-gray-300",
-              green:
-                "border-gray-600 bg-green-50 text-green-700 dark:bg-gray-700 dark:text-gray-300",
+              green: "border-gray-600 bg-green-50 text-green-700 dark:bg-gray-700 dark:text-gray-300",
             },
           },
           badge: {
@@ -72,8 +70,7 @@ export function CustomTheme({ children }: PropsWithChildren) {
             root: {
               base: "h-4 w-4 rounded border border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600",
               color: {
-                default:
-                  "text-blue-600 focus:ring-blue-600 dark:ring-offset-blue-600 dark:focus:ring-blue-600",
+                default: "text-blue-600 focus:ring-blue-600 dark:ring-offset-blue-600 dark:focus:ring-blue-600",
               },
             },
           },
@@ -82,8 +79,7 @@ export function CustomTheme({ children }: PropsWithChildren) {
               footer: {
                 button: {
                   base: "w-full rounded-lg px-5 py-2 text-center text-sm font-medium focus:ring-4 focus:ring-blue-300",
-                  today:
-                    "bg-blue-700 text-white hover:bg-blue-800 dark:bg-blue-600 dark:hover:bg-blue-700",
+                  today: "bg-blue-700 text-white hover:bg-blue-800 dark:bg-blue-600 dark:hover:bg-blue-700",
                 },
               },
             },
@@ -118,59 +114,12 @@ export function CustomTheme({ children }: PropsWithChildren) {
               },
             },
           },
-          drawer: {
-            root: {
-              base: twMerge(
-                theme.drawer.root.base,
-                "[&>div:first-child]:flex [&>div:first-child]:items-center [&>div:first-child]:justify-between",
-              ),
-            },
-            header: {
-              inner: {
-                closeButton: twMerge(
-                  theme.drawer.header.inner.closeButton,
-                  "static",
-                ),
-                closeIcon: twMerge(
-                  theme.drawer.header.inner.closeIcon,
-                  "h-5 w-5",
-                ),
-                titleText: twMerge(theme.drawer.header.inner.titleText, "mb-0"),
-              },
-            },
-          },
-          megaMenu: {
-            link: {
-              active: {
-                on: twMerge(
-                  theme.megaMenu.link.active.on,
-                  "bg-blue-700 md:text-blue-700",
-                ),
-                off: twMerge(
-                  theme.megaMenu.link.active.off,
-                  "md:hover:text-blue-700",
-                ),
-              },
-            },
-            dropdown: {
-              toggle: {
-                inlineWrapper:
-                  "block border-b border-gray-100 py-2 pl-3 pr-4 font-medium text-gray-700 hover:bg-gray-50 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-white",
-              },
-            },
-            dropdownToggle: {
-              base: twMerge(
-                theme.megaMenu.dropdownToggle.base,
-                "border-0 text-sm font-medium dark:text-white md:hover:text-blue-700",
-              ),
-            },
-          },
           pagination: {
             pages: {
               selector: {
                 active: twMerge(
                   theme.pagination.pages.selector.active,
-                  "bg-blue-50 text-blue-600 hover:bg-blue-100 hover:text-blue-700",
+                  "bg-blue-50 text-blue-600 hover:bg-blue-100 hover:text-blue-700"
                 ),
               },
             },
@@ -198,8 +147,9 @@ export function CustomTheme({ children }: PropsWithChildren) {
             tablist: {
               tabitem: {
                 base: "flex items-center justify-center rounded-t-lg p-4 text-sm font-medium first:ml-0 focus:outline-none focus:ring-4 focus:ring-blue-300 disabled:cursor-not-allowed disabled:text-gray-400 disabled:dark:text-gray-500",
-                variant: {
+                styles: {
                   default: {
+                    base: "",
                     active: {
                       on: "bg-gray-100 text-blue-600 dark:bg-gray-800 dark:text-blue-500",
                     },
@@ -246,10 +196,7 @@ export function CustomTheme({ children }: PropsWithChildren) {
           },
           toggleSwitch: {
             toggle: {
-              base: twMerge(
-                theme.toggleSwitch.toggle.base,
-                "group-focus:ring-blue-500/25",
-              ),
+              base: twMerge(theme.toggleSwitch.toggle.base, "group-focus:ring-blue-500/25"),
               checked: {
                 color: {
                   blue: "border-blue-700 bg-blue-700",
@@ -266,4 +213,4 @@ export function CustomTheme({ children }: PropsWithChildren) {
       {children}
     </Flowbite>
   );
-}
+};

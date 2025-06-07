@@ -5,7 +5,7 @@ import { useState } from "react";
 import NavbarSidebarLayout from "../layouts/navbar-sidebar";
 import kanbanBoards from "../data/kanban.json";
 import { ReactSortable } from "react-sortablejs";
-import { Button, Label, Modal, Textarea, TextInput } from "flowbite-react";
+import { Button, Label, Modal, ModalBody, ModalFooter, Textarea, TextInput } from "flowbite-react";
 import {
   HiArrowsExpand,
   HiClipboard,
@@ -142,10 +142,10 @@ const EditCardModal: FC = function () {
         <HiPencilAlt className="text-lg" />
       </button>
       <Modal onClose={() => setOpen(false)} show={isOpen}>
-        <div className="modal-header" className="border-b border-gray-200 !p-6 dark:border-gray-700">
+        <div className="border-b border-gray-200 !p-6 dark:border-gray-700">
           <strong>Edit task</strong>
         </div>
-        <Modal.Body>
+        <ModalBody>
           <div className="mb-3 text-2xl font-semibold leading-none text-gray-900 dark:text-white">
             Redesign Themesberg Homepage
           </div>
@@ -228,7 +228,7 @@ const EditCardModal: FC = function () {
           </div>
           <div className="mb-4 space-y-2 text-base text-gray-500 dark:text-gray-400">
             <p>
-              I made some wireframes that we would like you to follow since we are building it in Google’s Material
+              I made some wireframes that we would like you to follow since we are building it in Google's Material
               Design (Please learn more about this and see how to improve standard material design into something
               beautiful). But besides that, you can just do it how you like.
             </p>
@@ -328,13 +328,13 @@ const EditCardModal: FC = function () {
             <ul className="list-outside list-disc pl-6 text-xs text-gray-500 dark:text-gray-400">
               <li>
                 Latest clicks/conversions. Where you currently have the logo for merchant, we should instead have a logo
-                that represent the referring traffic sources (ex. Google or Facebook). So we’re actually missing a
-                column that should say “Source”. And there should be no icon for the merchants.
+                that represent the referring traffic sources (ex. Google or Facebook). So we're actually missing a
+                column that should say "Source". And there should be no icon for the merchants.
               </li>
             </ul>
           </div>
-        </Modal.Body>
-        <Modal.Footer>
+        </ModalBody>
+        <ModalFooter>
           <div className="grid w-full grid-cols-2 items-center gap-3 sm:grid-cols-5">
             <Button color="primary" onClick={() => setOpen(false)}>
               <div className="flex items-center gap-x-2">
@@ -367,7 +367,7 @@ const EditCardModal: FC = function () {
               </div>
             </Button>
           </div>
-        </Modal.Footer>
+        </ModalFooter>
       </Modal>
     </>
   );
@@ -392,10 +392,10 @@ const AddAnotherCardModal: FC = function () {
         Add another card
       </button>
       <Modal onClose={() => setOpen(false)} show={isOpen}>
-        <div className="modal-header" className="border-b border-gray-200 !p-6 dark:border-gray-700">
+        <div className="border-b border-gray-200 !p-6 dark:border-gray-700">
           <strong>Add new task</strong>
         </div>
-        <Modal.Body>
+        <ModalBody>
           <form>
             <div className="mb-4 grid grid-cols-1 gap-y-2">
               <Label htmlFor="taskName">Task name</Label>
@@ -428,8 +428,8 @@ const AddAnotherCardModal: FC = function () {
               </label>
             </div>
           </form>
-        </Modal.Body>
-        <Modal.Footer>
+        </ModalBody>
+        <ModalFooter>
           <div className="flex items-center gap-x-3">
             <Button color="primary" onClick={() => setOpen(false)}>
               <div className="flex items-center gap-x-2">
@@ -441,7 +441,7 @@ const AddAnotherCardModal: FC = function () {
               Close
             </Button>
           </div>
-        </Modal.Footer>
+        </ModalFooter>
       </Modal>
     </>
   );

@@ -1,6 +1,22 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState, useEffect } from "react";
-import { Breadcrumb, Button, Checkbox, Label, Modal, Table, TextInput } from "flowbite-react";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  Button,
+  Checkbox,
+  Label,
+  Modal,
+  ModalBody,
+  ModalFooter,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeadCell,
+  TableRow,
+  TextInput,
+} from "flowbite-react";
 import type { FC } from "react";
 import {
   HiChevronLeft,
@@ -51,13 +67,13 @@ export const SupplierListPage: FC = function () {
         <div className="w-full mb-1">
           <div className="mb-4">
             <Breadcrumb className="mb-4">
-              <Breadcrumb.Item href="/">
+              <BreadcrumbItem href="/">
                 <div className="flex items-center gap-x-3">
                   <HiHome className="text-xl" />
                   <span className="dark:text-white">Home</span>
                 </div>
-              </Breadcrumb.Item>
-              <Breadcrumb.Item>Wszyscy dostawcy</Breadcrumb.Item>
+              </BreadcrumbItem>
+              <BreadcrumbItem>Wszyscy dostawcy</BreadcrumbItem>
             </Breadcrumb>
             <h1 className="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">Wszyscy dostawcy</h1>
           </div>
@@ -228,7 +244,7 @@ export const AddSupplierModal: FC<AddSupplierModalProps> = function ({ refresh }
         </div>
       </Button>
       <Modal onClose={handleCloseSuccessView} show={modalState}>
-        <div className="modal-header" className="border-b border-gray-200 !p-6 bg-green-100 dark:bg-green-800 dark:border-gray-700">
+        <div className="modal-header border-b border-gray-200 !p-6 bg-green-100 dark:bg-green-800 dark:border-gray-700">
           <div className="flex items-center gap-2">
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-green-100 dark:bg-green-800">
               <svg
@@ -247,7 +263,7 @@ export const AddSupplierModal: FC<AddSupplierModalProps> = function ({ refresh }
             <strong>Dodano nowego dostawcę</strong>
           </div>
         </div>
-        <Modal.Body>
+        <ModalBody>
           <div className="mb-4 rounded-lg bg-green-50 p-4 text-green-800 dark:bg-gray-800 dark:text-green-300">
             <div className="mb-1 font-medium">Dostawca został pomyślnie dodany do systemu</div>
             <p className="text-sm">Poniżej znajdują się wszystkie dane dostawcy oraz dane do logowania.</p>
@@ -444,8 +460,8 @@ export const AddSupplierModal: FC<AddSupplierModalProps> = function ({ refresh }
               </div>
             </div>
           )}
-        </Modal.Body>
-        <Modal.Footer>
+        </ModalBody>
+        <ModalFooter>
           <Button color="primary" onClick={handleCloseSuccessView}>
             <div className="flex items-center gap-x-2">
               <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -458,7 +474,7 @@ export const AddSupplierModal: FC<AddSupplierModalProps> = function ({ refresh }
               Zamknij
             </div>
           </Button>
-        </Modal.Footer>
+        </ModalFooter>
       </Modal>
     </>
   );
@@ -511,37 +527,37 @@ const AllSuppliersTable: FC<{ onSuccess: () => void; refreshTrigger: number }> =
 
   return (
     <Table className="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
-      <Table.Head className="bg-gray-100 dark:bg-gray-700">
-        <Table.HeadCell className="p-4">
+      <TableHead className="bg-gray-100 dark:bg-gray-700">
+        <TableHeadCell className="p-4">
           <div className="flex items-center">
             <Checkbox aria-label="Select all" />
             <Label htmlFor="select-all" className="sr-only">
               Select all
             </Label>
           </div>
-        </Table.HeadCell>
-        <Table.HeadCell>Nazwa firmy</Table.HeadCell>
-        <Table.HeadCell>Osoba kontaktowa</Table.HeadCell>
-        <Table.HeadCell>NIP</Table.HeadCell>
-        <Table.HeadCell>Email</Table.HeadCell>
-        <Table.HeadCell>Telefon</Table.HeadCell>
-        <Table.HeadCell>Status</Table.HeadCell>
-        <Table.HeadCell>
+        </TableHeadCell>
+        <TableHeadCell>Nazwa firmy</TableHeadCell>
+        <TableHeadCell>Osoba kontaktowa</TableHeadCell>
+        <TableHeadCell>NIP</TableHeadCell>
+        <TableHeadCell>Email</TableHeadCell>
+        <TableHeadCell>Telefon</TableHeadCell>
+        <TableHeadCell>Status</TableHeadCell>
+        <TableHeadCell>
           <span className="sr-only">Akcje</span>
-        </Table.HeadCell>
-      </Table.Head>
-      <Table.Body className="divide-y divide-gray-200 bg-white dark:divide-gray-700 dark:bg-gray-800">
+        </TableHeadCell>
+      </TableHead>
+      <TableBody className="divide-y divide-gray-200 bg-white dark:divide-gray-700 dark:bg-gray-800">
         {dostawcy.map((dostawca) => (
-          <Table.Row key={dostawca.id_supplier} className="hover:bg-gray-100 dark:hover:bg-gray-700">
-            <Table.Cell className="w-4 p-4">
+          <TableRow key={dostawca.id_supplier} className="hover:bg-gray-100 dark:hover:bg-gray-700">
+            <TableCell className="w-4 p-4">
               <div className="flex items-center">
                 <Checkbox aria-label="Select row" />
                 <Label htmlFor="checkbox-table-search-1" className="sr-only">
                   Select row
                 </Label>
               </div>
-            </Table.Cell>
-            <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
+            </TableCell>
+            <TableCell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
               <div className="flex items-center">
                 <div className="h-10 w-10 rounded-full bg-gray-200 flex items-center justify-center">
                   <span className="text-lg font-bold text-gray-600">
@@ -553,26 +569,26 @@ const AllSuppliersTable: FC<{ onSuccess: () => void; refreshTrigger: number }> =
                   <div className="text-sm font-normal text-gray-500 dark:text-gray-400">ID: {dostawca.id_supplier}</div>
                 </div>
               </div>
-            </Table.Cell>
-            <Table.Cell className="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
+            </TableCell>
+            <TableCell className="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
               {dostawca.first_name} {dostawca.last_name}
-            </Table.Cell>
-            <Table.Cell className="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
+            </TableCell>
+            <TableCell className="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
               {dostawca.nip}
-            </Table.Cell>
-            <Table.Cell className="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
+            </TableCell>
+            <TableCell className="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
               {dostawca.email}
-            </Table.Cell>
-            <Table.Cell className="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
+            </TableCell>
+            <TableCell className="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
               {dostawca.phone}
-            </Table.Cell>
-            <Table.Cell className="whitespace-nowrap p-4 text-base font-normal text-gray-900 dark:text-white">
+            </TableCell>
+            <TableCell className="whitespace-nowrap p-4 text-base font-normal text-gray-900 dark:text-white">
               <div className="flex items-center">
                 <div className="mr-2 h-2.5 w-2.5 rounded-full bg-green-400"></div>
                 Aktywny
               </div>
-            </Table.Cell>
-            <Table.Cell>
+            </TableCell>
+            <TableCell>
               <div className="flex items-center gap-x-3">
                 <EditSupplierModal dostawca={dostawca} onSuccess={onSuccess} />
                 <Button color="failure" size="sm" onClick={() => handleDelete(dostawca.id_supplier)}>
@@ -580,10 +596,10 @@ const AllSuppliersTable: FC<{ onSuccess: () => void; refreshTrigger: number }> =
                   <span>Usuń</span>
                 </Button>
               </div>
-            </Table.Cell>
-          </Table.Row>
+            </TableCell>
+          </TableRow>
         ))}
-      </Table.Body>
+      </TableBody>
     </Table>
   );
 };
@@ -666,10 +682,10 @@ const EditSupplierModal: FC<{
         <span>Edytuj</span>
       </Button>
       <Modal show={isOpen} onClose={() => setOpen(false)} size="xl" popup={true}>
-        <div className="modal-header" className="border-b border-gray-200 dark:border-gray-700">
+        <div className="modal-header border-b border-gray-200 dark:border-gray-700">
           <h3 className="text-xl font-medium text-gray-900 dark:text-white">Edytuj dostawcę</h3>
         </div>
-        <Modal.Body>
+        <ModalBody>
           {error && (
             <div className="mb-4 rounded-lg bg-red-50 p-4 text-sm text-red-800 dark:bg-red-900 dark:text-red-300">
               <div className="flex items-center">
@@ -821,15 +837,15 @@ const EditSupplierModal: FC<{
               />
             </div>
           </div>
-        </Modal.Body>
-        <Modal.Footer>
+        </ModalBody>
+        <ModalFooter>
           <Button color="primary" onClick={handleSubmit} disabled={isSubmitting}>
             {isSubmitting ? "Zapisywanie..." : "Zapisz zmiany"}
           </Button>
           <Button color="gray" onClick={() => setOpen(false)}>
             Anuluj
           </Button>
-        </Modal.Footer>
+        </ModalFooter>
       </Modal>
     </>
   );

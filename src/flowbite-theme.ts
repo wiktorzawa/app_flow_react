@@ -21,25 +21,25 @@ const files = [
 const replacements = [
   // Modal
   { from: /<Modal\.Header([^>]*)>/g, to: '<div className="modal-header"$1>' },
-  { from: /<\/Modal\.Header>/g, to: '</div>' },
+  { from: /<\/Modal\.Header>/g, to: "</div>" },
   { from: /<Modal\.Body([^>]*)>/g, to: '<div className="modal-body"$1>' },
-  { from: /<\/Modal\.Body>/g, to: '</div>' },
+  { from: /<\/Modal\.Body>/g, to: "</div>" },
   { from: /<Modal\.Footer([^>]*)>/g, to: '<div className="modal-footer"$1>' },
-  { from: /<\/Modal\.Footer>/g, to: '</div>' },
+  { from: /<\/Modal\.Footer>/g, to: "</div>" },
   // Breadcrumb
   { from: /<Breadcrumb\.Item([^>]*)>/g, to: '<a className="breadcrumb-item"$1>' },
-  { from: /<\/Breadcrumb\.Item>/g, to: '</a>' },
+  { from: /<\/Breadcrumb\.Item>/g, to: "</a>" },
   // Table
-  { from: /<Table\.Head([^>]*)>/g, to: '<thead$1>' },
-  { from: /<\/Table\.Head>/g, to: '</thead>' },
-  { from: /<Table\.HeadCell([^>]*)>/g, to: '<th$1>' },
-  { from: /<\/Table\.HeadCell>/g, to: '</th>' },
-  { from: /<Table\.Body([^>]*)>/g, to: '<tbody$1>' },
-  { from: /<\/Table\.Body>/g, to: '</tbody>' },
-  { from: /<Table\.Row([^>]*)>/g, to: '<tr$1>' },
-  { from: /<\/Table\.Row>/g, to: '</tr>' },
-  { from: /<Table\.Cell([^>]*)>/g, to: '<td$1>' },
-  { from: /<\/Table\.Cell>/g, to: '</td>' },
+  { from: /<Table\.Head([^>]*)>/g, to: "<thead$1>" },
+  { from: /<\/Table\.Head>/g, to: "</thead>" },
+  { from: /<Table\.HeadCell([^>]*)>/g, to: "<th$1>" },
+  { from: /<\/Table\.HeadCell>/g, to: "</th>" },
+  { from: /<Table\.Body([^>]*)>/g, to: "<tbody$1>" },
+  { from: /<\/Table\.Body>/g, to: "</tbody>" },
+  { from: /<Table\.Row([^>]*)>/g, to: "<tr$1>" },
+  { from: /<\/Table\.Row>/g, to: "</tr>" },
+  { from: /<Table\.Cell([^>]*)>/g, to: "<td$1>" },
+  { from: /<\/Table\.Cell>/g, to: "</td>" },
 ];
 
 files.forEach((file) => {

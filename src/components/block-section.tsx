@@ -8,24 +8,15 @@ export interface BlockSectionProps extends PropsWithChildren {
   title: string;
 }
 
-export function BlockSection({
-  children,
-  description,
-  githubLink,
-  title,
-}: BlockSectionProps) {
+export function BlockSection({ children, description, githubLink, title }: BlockSectionProps) {
   return (
     <section className="mx-auto mb-12 max-w-screen-2xl">
       <div className="mx-4 mb-6 flex flex-col items-center gap-3 pb-4 md:flex-row md:justify-between md:space-x-4">
         <div>
           <header>
-            <h2 className="mb-1 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
-              {title}
-            </h2>
+            <h2 className="mb-1 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">{title}</h2>
           </header>
-          <p className="max-w-2xl text-lg text-gray-500 dark:text-gray-400 lg:mb-0">
-            {description}
-          </p>
+          <p className="max-w-2xl text-lg text-gray-500 dark:text-gray-400 lg:mb-0">{description}</p>
         </div>
         <Button
           href={githubLink}
