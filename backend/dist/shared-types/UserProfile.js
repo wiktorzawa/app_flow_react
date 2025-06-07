@@ -119,3 +119,4 @@ exports.VALIDATION_RULES = {
     phone_number: { pattern: /^\+?[1-9]\d{1,14}$/ },
     postal_code: { pattern: /^\d{2}-\d{3}$/ }, // Polish format
 };
+// Dodaj tu inne typy, których używasz w projekcie
