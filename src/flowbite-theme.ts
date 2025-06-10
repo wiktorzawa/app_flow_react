@@ -1,6 +1,6 @@
-import type { CustomFlowbiteTheme } from "flowbite-react";
+import { createTheme } from "flowbite-react";
 
-const flowbiteTheme: CustomFlowbiteTheme = {
+const flowbiteTheme = createTheme({
   badge: {
     root: {
       color: {
@@ -38,7 +38,9 @@ const flowbiteTheme: CustomFlowbiteTheme = {
       content: "rounded-xl text-sm text-gray-700 dark:text-gray-200",
       target: "w-fit dark:text-white",
     },
-    content: "",
+    // W nowszych wersjach 'content' może nie być bezpośrednim propem, a być częścią 'floating.content'
+    // Jeśli ten błąd się pojawi, trzeba będzie sprawdzić dokumentację Dropdown.
+    // content: "", // Usuń tę linię, jeśli powoduje błąd po zmianie importu
   },
   modal: {
     content: {
@@ -89,6 +91,6 @@ const flowbiteTheme: CustomFlowbiteTheme = {
       },
     },
   },
-};
+});
 
 export default flowbiteTheme;
