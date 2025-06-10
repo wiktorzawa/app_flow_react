@@ -1,0 +1,17 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/" # lokalizacja package.json w katalogu głównym
+    schedule:
+      interval: "daily" # sprawdzanie co tydzień (możesz zmienić na daily/monthly)
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "dep"
+      prefix-development: "dep"
+    labels:
+      - "dependencies"
+    commit-message:
+      prefix: "dep"
+      prefix-development: "dep"
+    labels:
+      - "dependencies"
