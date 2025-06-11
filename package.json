@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "@types/bcrypt": "^5.0.2",
-    "apexcharts": "^4.0.0",
+    "apexcharts": "^4.7.0",
     "axios": "^1.9.0",
     "bcrypt": "^6.0.0",
     "classnames": "^2.3.2",
