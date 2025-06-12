@@ -1,0 +1,216 @@
+---
+title: Use with Parcel - Flowbite React
+description: Learn how to install Flowbite React for your Parcel project and start developing modern web applications with interactive components
+---
+
+This guide provides three ways to integrate Flowbite React with Parcel:
+
+1. [Quick Start](#quick-start): Create a new project with everything pre-configured
+2. [Add to Existing Project](#add-to-existing-project): Add Flowbite React to an existing Parcel project
+3. [Manual Setup](#manual-setup): Set up everything from scratch manually
+
+<TextDivider>Quick Start (Recommended)</TextDivider>
+
+## Quick Start
+
+The fastest way to get started is using our project creation CLI, which sets up a new Parcel project with Flowbite React, Tailwind CSS, and all necessary configurations:
+
+```bash
+npx create-flowbite-react@latest -t parcel
+```
+
+This will:
+
+- Create a new Parcel project
+- Install and configure Tailwind CSS
+- Set up Flowbite React with all required dependencies
+- Configure dark mode support
+- Set up example components
+
+<TextDivider>Add to Existing Project</TextDivider>
+
+## Add to Existing Project
+
+If you already have a Parcel project and want to add Flowbite React, you can use our initialization CLI:
+
+```bash
+npx flowbite-react@latest init
+```
+
+This will automatically:
+
+- Install Flowbite React and its dependencies
+- Configure Tailwind CSS to include Flowbite React plugin
+- Set up necessary configurations
+
+> **Note:** Make sure you have a `.parcelrc` file in your project root. This file is required for proper bundler/plugin detection to work with Flowbite React.
+
+<TextDivider>Manual Setup</TextDivider>
+
+## Manual Setup
+
+If you prefer to set everything up manually or need more control over the configuration, follow these steps:
+
+### 1. Create Project with React
+
+Create a new Parcel project:
+
+```bash
+mkdir flowbite-react-parcel
+cd flowbite-react-parcel
+npm init -y
+```
+
+Install Parcel and React:
+
+```bash
+npm install react react-dom
+npm install -D parcel @types/react @types/react-dom
+```
+
+Configure `package.json` file and update `scripts` with `start` and `build` steps:
+
+```json {6,7}
+{
+  "name": "flowbite-react-parcel",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "start": "parcel src/index.html",
+    "build": "parcel build src/index.html"
+  }
+}
+```
+
+Create a `.parcelrc` file:
+
+```json
+{
+  "extends": ["@parcel/config-default"]
+}
+```
+
+Create a `tsconfig.json` file in the root of your project:
+
+```json
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": ["src"]
+}
+```
+
+Create `src/index.html` file:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flowbite React Parcel</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="./index.tsx"></script>
+  </body>
+</html>
+```
+
+Create `src/index.tsx` file:
+
+```tsx
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import App from "./app";
+
+import "./index.css";
+
+const root = createRoot(document.getElementById("root")!);
+root.render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+);
+```
+
+Create `src/app.tsx` file:
+
+```tsx
+export default function App() {
+  return <h1>Hello world!</h1>;
+}
+```
+
+### 2. Configure Tailwind CSS
+
+Install Tailwind CSS and PostCSS:
+
+```bash
+npm install -D tailwindcss @tailwindcss/postcss
+```
+
+Create `.postcssrc` file and enable the tailwindcss plugin:
+
+```json
+{
+  "plugins": {
+    "@tailwindcss/postcss": {}
+  }
+}
+```
+
+Create a `src/index.css` file and import Tailwind CSS:
+
+```css
+@import "tailwindcss";
+```
+
+### 3. Install Flowbite React
+
+Install Flowbite React:
+
+```bash
+npx flowbite-react@latest init
+```
+
+This will:
+
+- Install Flowbite React and its dependencies
+- Configure Tailwind CSS to include Flowbite React plugin
+- Configure Vite to include Flowbite React plugin
+
+## Try it out
+
+Now that you have successfully installed Flowbite React you can start using the components from the library:
+
+```tsx
+// src/app.tsx
+import { Button } from "flowbite-react";
+
+export default function App() {
+  return <Button>Click me</Button>;
+}
+```
+
+<hr />
+
+## Templates
+
+- [Github](https://github.com/themesberg/flowbite-react-template-parcel)
+- [StackBlitz](https://stackblitz.com/edit/flowbite-react-template-parcel)

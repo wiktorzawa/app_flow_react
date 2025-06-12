@@ -1,0 +1,71 @@
+{
+  "name": "create-flowbite-react",
+  "version": "1.1.1",
+  "description": "Quickly scaffold Flowbite React application",
+  "keywords": [
+    "create-flowbite-react",
+    "flowbite-react-templates",
+    "flowbite-react-template",
+    "flowbite-react",
+    "flowbite",
+    "react",
+    "tailwind",
+    "template"
+  ],
+  "homepage": "https://flowbite-react.com",
+  "bugs": "https://github.com/themesberg/flowbite-react/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/themesberg/flowbite-react.git",
+    "directory": "packages/cli"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Sutu Sebastian",
+    "email": "sebastian.sutu@stainless-code.com",
+    "url": "https://github.com/SutuSebastian"
+  },
+  "type": "module",
+  "bin": {
+    "create-flowbite-react": "./dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "clean": "git clean -xdf",
+    "dev": "tsup --watch",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check",
+    "prepack": "clean-package",
+    "prepublishOnly": "bun run build",
+    "start": "bun run dist/index.js",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@clack/prompts": "0.8.2",
+    "arg": "5.0.2",
+    "execa": "9.5.2",
+    "ora": "8.1.1",
+    "picocolors": "1.1.1"
+  },
+  "devDependencies": {
+    "tsup": "8.3.5",
+    "typescript": "5.6.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "clean-package": {
+    "remove": [
+      "devDependencies",
+      "clean-package"
+    ],
+    "replace": {
+      "scripts": {
+        "postpublish": "clean-package restore"
+      }
+    }
+  }
+}

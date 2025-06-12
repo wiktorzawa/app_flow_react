@@ -1,0 +1,49 @@
+{
+  "name": "root",
+  "version": "0.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "turbo build",
+    "build:cli": "turbo build --filter=create-flowbite-react",
+    "build:storybook": "turbo build --filter=@/storybook",
+    "build:ui": "turbo build --filter=flowbite-react",
+    "build:web": "turbo build --filter=@/web",
+    "check-updates": "npm-check-updates --deep -i",
+    "clean": "git clean -xdf",
+    "dev": "turbo dev",
+    "dev:cli": "turbo dev --filter=create-flowbite-react",
+    "dev:storybook": "turbo dev --filter=@/storybook",
+    "dev:ui": "turbo dev --filter=flowbite-react",
+    "dev:web": "turbo dev --filter=@/web",
+    "format": "turbo format",
+    "format:check": "turbo format:check",
+    "lint": "turbo lint",
+    "lint:fix": "turbo lint:fix",
+    "release": "changeset publish",
+    "test": "turbo test",
+    "test:coverage": "turbo test:coverage",
+    "typecheck": "turbo typecheck",
+    "version": "changeset version"
+  },
+  "devDependencies": {
+    "@changesets/changelog-github": "0.5.1",
+    "@changesets/cli": "2.28.1",
+    "@ianvs/prettier-plugin-sort-imports": "4.4.0",
+    "@types/bun": "1.2.4",
+    "@types/web": "0.0.208",
+    "clean-package": "2.2.0",
+    "eslint": "8.57.0",
+    "eslint-config-prettier": "9.1.0",
+    "eslint-plugin-tailwindcss": "3.17.5",
+    "npm-check-updates": "17.1.15",
+    "prettier": "3.5.3",
+    "prettier-plugin-packagejson": "2.5.10",
+    "prettier-plugin-tailwindcss": "0.6.11",
+    "turbo": "2.4.4"
+  },
+  "packageManager": "bun@1.2.4"
+}
