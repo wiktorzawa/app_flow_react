@@ -1,13 +1,13 @@
 {
-	"folders": [
-		{
-			"path": "../../.."
-		},
-		{
-			"path": "../../../../../Downloads/localAPI-main 4"
-		}
-	],
-	"settings": {
-		"liveServer.settings.multiRootWorkspaceName": "app_flow_react"
-	}
+  "folders": [
+    {
+      "path": "../../..",
+    },
+    {
+      "path": "../../../../../Downloads/localAPI-main 4",
+    },
+  ],
+  "settings": {
+    "liveServer.settings.multiRootWorkspaceName": "app_flow_react",
+  },
 }

@@ -1,7 +1,25 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { Breadcrumb, Button, Checkbox, Label, Modal, Table, TextInput, Select } from "flowbite-react";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  Button,
+  Checkbox,
+  Label,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Table,
+  TableHead,
+  TableHeadCell,
+  TableBody,
+  TableRow,
+  TableCell,
+  TextInput,
+  Select,
+} from "flowbite-react";
 import type { FC } from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import {
   HiChevronLeft,
   HiChevronRight,
@@ -40,14 +58,14 @@ const UserListPage: FC = function () {
         <div className="mb-1 w-full">
           <div className="mb-4">
             <Breadcrumb className="mb-4">
-              <Breadcrumb.Item href="#">
+              <BreadcrumbItem href="#">
                 <div className="flex items-center gap-x-3">
                   <HiHome className="text-xl" />
                   <span className="dark:text-white">Home</span>
                 </div>
-              </Breadcrumb.Item>
-              <Breadcrumb.Item href="/users/list">Użytkownicy</Breadcrumb.Item>
-              <Breadcrumb.Item>Lista</Breadcrumb.Item>
+              </BreadcrumbItem>
+              <BreadcrumbItem href="/users/list">Użytkownicy</BreadcrumbItem>
+              <BreadcrumbItem>Lista</BreadcrumbItem>
             </Breadcrumb>
             <h1 className="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">Wszyscy pracownicy</h1>
           </div>
@@ -217,7 +235,7 @@ const AddUserModal: FC<{ onSuccess: () => void }> = function ({ onSuccess }) {
   if (showSuccess && addedUser) {
     return (
       <Modal onClose={handleCloseSuccessView} show={isOpen}>
-        <Modal.Header className="border-b border-gray-200 !p-6 bg-green-100 dark:bg-green-800 dark:border-gray-700">
+        <ModalHeader className="border-b border-gray-200 !p-6 bg-green-100 dark:bg-green-800 dark:border-gray-700">
           <div className="flex items-center gap-2">
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-green-100 dark:bg-green-800">
               <svg
@@ -235,8 +253,8 @@ const AddUserModal: FC<{ onSuccess: () => void }> = function ({ onSuccess }) {
             </div>
             <strong>Dodano nowego pracownika</strong>
           </div>
-        </Modal.Header>
-        <Modal.Body>
+        </ModalHeader>
+        <ModalBody>
           <div className="mb-4 rounded-lg bg-green-50 p-4 text-green-800 dark:bg-gray-800 dark:text-green-300">
             <div className="mb-1 font-medium">Pracownik został pomyślnie dodany do systemu</div>
             <p className="text-sm">Poniżej znajdują się wszystkie dane pracownika oraz dane do logowania.</p>
@@ -274,11 +292,10 @@ const AddUserModal: FC<{ onSuccess: () => void }> = function ({ onSuccess }) {
                   <div className="text-sm font-medium text-gray-500 dark:text-gray-400">Rola:</div>
                   <div className="text-sm font-semibold text-gray-900 dark:text-white">
                     <span
-                      className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${
-                        addedUser.role === "admin"
-                          ? "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300"
-                          : "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300"
-                      }`}
+                      className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${addedUser.role === "admin"
+                        ? "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300"
+                        : "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300"
+                        }`}
                     >
                       {addedUser.role === "admin" ? "Administrator" : "Pracownik"}
                     </span>
@@ -369,8 +386,8 @@ const AddUserModal: FC<{ onSuccess: () => void }> = function ({ onSuccess }) {
               </div>
             </div>
           </div>
-        </Modal.Body>
-        <Modal.Footer>
+        </ModalBody>
+        <ModalFooter>
           <Button color="primary" onClick={handleCloseSuccessView}>
             <div className="flex items-center gap-x-2">
               <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -383,7 +400,7 @@ const AddUserModal: FC<{ onSuccess: () => void }> = function ({ onSuccess }) {
               Zamknij
             </div>
           </Button>
-        </Modal.Footer>
+        </ModalFooter>
       </Modal>
     );
   }
@@ -397,10 +414,10 @@ const AddUserModal: FC<{ onSuccess: () => void }> = function ({ onSuccess }) {
         </div>
       </Button>
       <Modal onClose={() => setOpen(false)} show={isOpen}>
-        <Modal.Header className="border-b border-gray-200 !p-6 dark:border-gray-700">
+        <ModalHeader className="border-b border-gray-200 !p-6 dark:border-gray-700">
           <strong>Dodaj nowego pracownika</strong>
-        </Modal.Header>
-        <Modal.Body>
+        </ModalHeader>
+        <ModalBody>
           {error && (
             <div className="mb-4 rounded-lg bg-red-50 p-4 text-sm text-red-800 dark:bg-red-900 dark:text-red-200">
               {error}
@@ -480,8 +497,8 @@ const AddUserModal: FC<{ onSuccess: () => void }> = function ({ onSuccess }) {
               />
             </div>
           </div>
-        </Modal.Body>
-        <Modal.Footer>
+        </ModalBody>
+        <ModalFooter>
           <Button
             color="primary"
             onClick={handleSubmit}
@@ -499,7 +516,7 @@ const AddUserModal: FC<{ onSuccess: () => void }> = function ({ onSuccess }) {
           <Button color="gray" onClick={() => setOpen(false)}>
             Anuluj
           </Button>
-        </Modal.Footer>
+        </ModalFooter>
       </Modal>
     </>
   );
@@ -548,32 +565,34 @@ const AllUsersTable: FC<{ onSuccess: () => void }> = function ({ onSuccess }) {
 
   return (
     <Table className="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
-      <Table.Head className="bg-gray-100 dark:bg-gray-700">
-        <Table.HeadCell>
-          <Label htmlFor="select-all" className="sr-only">
-            Zaznacz wszystko
-          </Label>
-          <Checkbox id="select-all" name="select-all" />
-        </Table.HeadCell>
-        <Table.HeadCell>Imię i Nazwisko</Table.HeadCell>
-        <Table.HeadCell>Rola</Table.HeadCell>
-        <Table.HeadCell>Email</Table.HeadCell>
-        <Table.HeadCell>Telefon</Table.HeadCell>
-        <Table.HeadCell>Status</Table.HeadCell>
-        <Table.HeadCell>Akcje</Table.HeadCell>
-      </Table.Head>
-      <Table.Body className="divide-y divide-gray-200 bg-white dark:divide-gray-700 dark:bg-gray-800">
+      <TableHead className="bg-gray-100 dark:bg-gray-700">
+        <TableRow>
+          <TableHeadCell>
+            <Label htmlFor="select-all" className="sr-only">
+              Zaznacz wszystko
+            </Label>
+            <Checkbox id="select-all" name="select-all" />
+          </TableHeadCell>
+          <TableHeadCell>Imię i Nazwisko</TableHeadCell>
+          <TableHeadCell>Rola</TableHeadCell>
+          <TableHeadCell>Email</TableHeadCell>
+          <TableHeadCell>Telefon</TableHeadCell>
+          <TableHeadCell>Status</TableHeadCell>
+          <TableHeadCell>Akcje</TableHeadCell>
+        </TableRow>
+      </TableHead>
+      <TableBody className="divide-y divide-gray-200 bg-white dark:divide-gray-700 dark:bg-gray-800">
         {pracownicy.map((pracownik) => (
-          <Table.Row key={pracownik.id_staff} className="hover:bg-gray-100 dark:hover:bg-gray-700">
-            <Table.Cell className="w-4 p-4">
+          <TableRow key={pracownik.id_staff} className="hover:bg-gray-100 dark:hover:bg-gray-700">
+            <TableCell className="w-4 p-4">
               <div className="flex items-center">
                 <Checkbox aria-describedby={`checkbox-${pracownik.id_staff}`} id={`checkbox-${pracownik.id_staff}`} />
                 <label htmlFor={`checkbox-${pracownik.id_staff}`} className="sr-only">
                   checkbox
                 </label>
               </div>
-            </Table.Cell>
-            <Table.Cell className="mr-12 flex items-center space-x-6 whitespace-nowrap p-4 lg:mr-0">
+            </TableCell>
+            <TableCell className="mr-12 flex items-center space-x-6 whitespace-nowrap p-4 lg:mr-0">
               <div className="h-10 w-10 rounded-full bg-gray-200 flex items-center justify-center">
                 <span className="text-lg font-bold text-gray-600">
                   {pracownik.first_name[0]}
@@ -586,32 +605,30 @@ const AllUsersTable: FC<{ onSuccess: () => void }> = function ({ onSuccess }) {
                 </div>
                 <div className="text-sm font-normal text-gray-500 dark:text-gray-400">ID: {pracownik.id_staff}</div>
               </div>
-            </Table.Cell>
-            <Table.Cell className="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
+            </TableCell>
+            <TableCell className="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
               {pracownik.role === "admin" ? "Administrator" : "Pracownik"}
-            </Table.Cell>
-            <Table.Cell className="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
+            </TableCell>
+            <TableCell className="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
               {pracownik.email}
-            </Table.Cell>
-            <Table.Cell className="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
+            </TableCell>
+            <TableCell className="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
               {pracownik.phone || "-"}
-            </Table.Cell>
-            <Table.Cell className="whitespace-nowrap p-4 text-base font-normal text-gray-900 dark:text-white">
+            </TableCell>
+            <TableCell className="whitespace-nowrap p-4 text-base font-normal text-gray-900 dark:text-white">
               <div className="flex items-center">
                 <div className="mr-2 h-2.5 w-2.5 rounded-full bg-green-400"></div> Aktywny
               </div>
-            </Table.Cell>
-            <Table.Cell>
+            </TableCell>
+            <TableCell>
               <div className="flex items-center gap-x-3 whitespace-nowrap">
                 <EditUserModal pracownik={pracownik} onSuccess={onSuccess} />
-                <Button color="failure" onClick={() => handleDelete(pracownik.id_staff)}>
-                  <HiTrash className="text-lg" />
-                </Button>
+                <DeleteUserModal userId={pracownik.id_staff} onDelete={handleDelete} />
               </div>
-            </Table.Cell>
-          </Table.Row>
+            </TableCell>
+          </TableRow>
         ))}
-      </Table.Body>
+      </TableBody>
     </Table>
   );
 };
@@ -675,10 +692,10 @@ const EditUserModal: FC<{
         <HiOutlinePencilAlt className="text-lg" />
       </Button>
       <Modal onClose={() => setOpen(false)} show={isOpen}>
-        <Modal.Header className="border-b border-gray-200 !p-6 dark:border-gray-700">
+        <ModalHeader className="border-b border-gray-200 !p-6 dark:border-gray-700">
           <strong>Edytuj pracownika</strong>
-        </Modal.Header>
-        <Modal.Body>
+        </ModalHeader>
+        <ModalBody>
           {error && (
             <div className="mb-4 rounded-lg bg-red-50 p-4 text-sm text-red-800 dark:bg-red-900 dark:text-red-200">
               {error}
@@ -743,49 +760,59 @@ const EditUserModal: FC<{
               </div>
             </div>
           </div>
-        </Modal.Body>
-        <Modal.Footer>
+        </ModalBody>
+        <ModalFooter>
           <Button color="primary" onClick={handleSubmit} disabled={isSubmitting}>
             {isSubmitting ? "Zapisywanie..." : "Zapisz zmiany"}
           </Button>
           <Button color="gray" onClick={() => setOpen(false)}>
             Anuluj
           </Button>
-        </Modal.Footer>
+        </ModalFooter>
       </Modal>
     </>
   );
 };
 
-const DeleteUserModal: FC = function () {
+interface DeleteUserModalProps {
+  userId: string;
+  onDelete: (id: string) => void;
+}
+
+const DeleteUserModal: FC<DeleteUserModalProps> = function ({ userId, onDelete }) {
   const [isOpen, setOpen] = useState(false);
+
+  const handleDelete = useCallback(() => {
+    onDelete(userId);
+    setOpen(false);
+  }, [onDelete, userId]);
 
   return (
     <>
       <Button color="failure" onClick={() => setOpen(true)}>
         <div className="flex items-center gap-x-2">
           <HiTrash className="text-lg" />
-          Delete user
+          Usuń użytkownika
         </div>
       </Button>
       <Modal onClose={() => setOpen(false)} show={isOpen} size="md">
-        <Modal.Header className="px-6 pb-0 pt-6">
-          <span className="sr-only">Delete user</span>
-        </Modal.Header>
-        <Modal.Body className="px-6 pb-6 pt-0">
+        <ModalHeader className="px-6 pb-0 pt-6">
+          <span className="sr-only">Usuń użytkownika</span>
+        </ModalHeader>
+        <ModalBody className="px-6 pb-6 pt-0">
           <div className="flex flex-col items-center gap-y-6 text-center">
             <HiOutlineExclamationCircle className="text-7xl text-red-500" />
-            <p className="text-xl text-gray-500">Are you sure you want to delete this user?</p>
+            <p className="text-xl text-gray-500">Czy na pewno chcesz usunąć tego użytkownika?</p>
             <div className="flex items-center gap-x-3">
-              <Button color="failure" onClick={() => setOpen(false)}>
-                Yes, I'm sure
+              <Button color="failure" onClick={handleDelete}>
+                Tak, usuń
               </Button>
               <Button color="gray" onClick={() => setOpen(false)}>
-                No, cancel
+                Anuluj
               </Button>
             </div>
           </div>
-        </Modal.Body>
+        </ModalBody>
       </Modal>
     </>
   );

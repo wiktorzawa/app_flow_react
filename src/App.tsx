@@ -1,35 +1,23 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { Suspense, lazy } from "react";
 import type { FC } from "react";
-import { Routes, Route, Navigate } from "react-router";
-import { BrowserRouter } from "react-router-dom";
+import { Routes, Route, Navigate, BrowserRouter } from "react-router-dom";
 import FlowbiteWrapper from "./components/flowbite-wrapper";
 
-const DashboardPage = lazy(() => import("./pages"));
+const AdminDashboardPage = lazy(() => import("./pages/admin/AdminDashboardPage"));
 const ForgotPasswordPage = lazy(() => import("./pages/authentication/forgot-password"));
 const ProfileLockPage = lazy(() => import("./pages/authentication/profile-lock"));
 const ResetPasswordPage = lazy(() => import("./pages/authentication/reset-password"));
 const SignInPage = lazy(() => import("./pages/authentication/sign-in"));
 const SignUpPage = lazy(() => import("./pages/authentication/sign-up"));
-const EcommerceBillingPage = lazy(() => import("./pages/e-commerce/billing"));
-const EcommerceInvoicePage = lazy(() => import("./pages/e-commerce/invoice"));
-const EcommerceProductsPage = lazy(() => import("./pages/e-commerce/products"));
 const KanbanPage = lazy(() => import("./pages/kanban"));
-const MailingComposePage = lazy(() => import("./pages/mailing/compose"));
-const MailingInboxPage = lazy(() => import("./pages/mailing/inbox"));
-const MailingReadPage = lazy(() => import("./pages/mailing/read"));
-const MailingReplyPage = lazy(() => import("./pages/mailing/reply"));
-const NotFoundPage = lazy(() => import("./pages/pages/404"));
-const ServerErrorPage = lazy(() => import("./pages/pages/500"));
-const MaintenancePage = lazy(() => import("./pages/pages/maintenance"));
-const PricingPage = lazy(() => import("./pages/pages/pricing"));
 const UserFeedPage = lazy(() => import("./pages/users/feed"));
 const UserListPage = lazy(() => import("./pages/users/list"));
 const SupplierListPage = lazy(() => import("./pages/users/listSuppliers"));
 const UserProfilePage = lazy(() => import("./pages/users/profile"));
 const UserSettingsPage = lazy(() => import("./pages/users/settings"));
 const AdsPowerDashboardPage = lazy(() => import("./pages/admin/AdsPowerDashboardPage"));
-const DatabaseViewer = lazy(() => import("./pages/DatabaseViewer"));
-
+const OrderListPage = lazy(() => import("./pages/admin/OrderListPage"));
 // Komponent ochrony trasy - sprawdza czy użytkownik jest zalogowany i ma odpowiednią rolę
 interface ProtectedRouteProps {
   element: React.ReactNode;
@@ -58,26 +46,15 @@ const App: FC = function () {
     <BrowserRouter>
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
+          {/* Trasa nadrzędna dla FlowbiteWrapper */}
           <Route element={<FlowbiteWrapper />}>
             {/* Chronione trasy - dostępne tylko dla zalogowanych użytkowników */}
-            <Route path="/" element={<ProtectedRoute element={<DashboardPage />} />} />
+            <Route path="/" element={<ProtectedRoute element={<AdminDashboardPage />} />} />
             <Route
-              path="/admin/AdsPowerDashboard"
+              path="/admin/adspower-dashboard"
               element={<ProtectedRoute element={<AdsPowerDashboardPage />} allowedRoles={["admin"]} />}
             />
-            <Route
-              path="/DatabaseViewer"
-              element={<ProtectedRoute element={<DatabaseViewer />} allowedRoles={["admin"]} />}
-            />
-            <Route path="/mailing/compose" element={<ProtectedRoute element={<MailingComposePage />} />} />
-            <Route path="/mailing/inbox" element={<ProtectedRoute element={<MailingInboxPage />} />} />
-            <Route path="/mailing/read" element={<ProtectedRoute element={<MailingReadPage />} />} />
-            <Route path="/mailing/reply" element={<ProtectedRoute element={<MailingReplyPage />} />} />
-            <Route path="/kanban" element={<ProtectedRoute element={<KanbanPage />} />} />
-            <Route path="/pages/pricing" element={<ProtectedRoute element={<PricingPage />} />} />
-            <Route path="/pages/maintenance" element={<ProtectedRoute element={<MaintenancePage />} />} />
-
-            {/* Trasy z ograniczeniami ról */}
+            <Route path="/admin/orders" element={<ProtectedRoute element={<OrderListPage />} />} />
             <Route
               path="/users/feed"
               element={<ProtectedRoute element={<UserFeedPage />} allowedRoles={["admin"]} />}
@@ -92,21 +69,12 @@ const App: FC = function () {
             />
             <Route path="/users/profile" element={<ProtectedRoute element={<UserProfilePage />} />} />
             <Route path="/users/settings" element={<ProtectedRoute element={<UserSettingsPage />} />} />
-
-            <Route path="/e-commerce/billing" element={<ProtectedRoute element={<EcommerceBillingPage />} />} />
-            <Route path="/e-commerce/invoice" element={<ProtectedRoute element={<EcommerceInvoicePage />} />} />
-            <Route path="/e-commerce/products" element={<ProtectedRoute element={<EcommerceProductsPage />} />} />
-
-            {/* Publiczne trasy - dostępne dla wszystkich */}
+            <Route path="/kanban" element={<ProtectedRoute element={<KanbanPage />} />} />
             <Route path="/authentication/sign-in" element={<SignInPage />} />
             <Route path="/authentication/sign-up" element={<SignUpPage />} />
             <Route path="/authentication/forgot-password" element={<ForgotPasswordPage />} />
             <Route path="/authentication/reset-password" element={<ResetPasswordPage />} />
             <Route path="/authentication/profile-lock" element={<ProfileLockPage />} />
-            <Route path="/pages/404" element={<NotFoundPage />} />
-            <Route path="/pages/500" element={<ServerErrorPage />} />
-
-            {/* Przekierowanie z nieznanych ścieżek na stronę główną lub logowanie */}
             <Route path="*" element={<Navigate to="/" replace />} />
           </Route>
         </Routes>

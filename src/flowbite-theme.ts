@@ -1,6 +1,6 @@
-import type { CustomFlowbiteTheme } from "flowbite-react";
+import { createTheme } from "flowbite-react";
 
-const flowbiteTheme: CustomFlowbiteTheme = {
+const flowbiteTheme = createTheme({
   badge: {
     root: {
       color: {
@@ -38,7 +38,9 @@ const flowbiteTheme: CustomFlowbiteTheme = {
       content: "rounded-xl text-sm text-gray-700 dark:text-gray-200",
       target: "w-fit dark:text-white",
     },
-    content: "",
+    // W nowszych wersjach 'content' może nie być bezpośrednim propem, a być częścią 'floating.content'
+    // Jeśli ten błąd się pojawi, trzeba będzie sprawdzić dokumentację Dropdown.
+    // content: "", // Usuń tę linię, jeśli powoduje błąd po zmianie importu
   },
   modal: {
     content: {
@@ -56,6 +58,10 @@ const flowbiteTheme: CustomFlowbiteTheme = {
   sidebar: {
     root: {
       base: "flex fixed top-0 left-0 z-20 flex-col flex-shrink-0 pt-16 h-full duration-75 border-r border-gray-200 lg:flex transition-width dark:border-gray-700",
+      collapsed: {
+        on: "w-16",
+        off: "w-64",
+      },
     },
     item: {
       base: "flex items-center justify-center rounded-lg p-2 text-base font-medium text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700",
@@ -63,6 +69,33 @@ const flowbiteTheme: CustomFlowbiteTheme = {
     collapse: {
       button:
         "group flex w-full items-center rounded-lg p-2 text-base font-medium text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700",
+    },
+    cta: {
+      base: "mt-auto p-4",
+    },
+  },
+  table: {
+    root: {
+      base: "w-full text-left text-sm text-gray-500 dark:text-gray-400",
+      shadow: "shadow-md",
+      wrapper: "relative overflow-x-auto sm:rounded-lg",
+    },
+    body: {
+      base: "group/body",
+      cell: {
+        base: "px-6 py-4 whitespace-nowrap font-medium text-gray-900 dark:text-white",
+      },
+    },
+    head: {
+      base: "text-xs uppercase text-gray-700 dark:text-gray-400",
+      cell: {
+        base: "px-6 py-3 bg-gray-50 dark:bg-gray-700",
+      },
+    },
+    row: {
+      base: "group/row border-b dark:border-gray-700",
+      hovered: "hover:bg-gray-50 dark:hover:bg-gray-600",
+      striped: "odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700",
     },
   },
   textarea: {
@@ -89,6 +122,6 @@ const flowbiteTheme: CustomFlowbiteTheme = {
       },
     },
   },
-};
+});
 
 export default flowbiteTheme;

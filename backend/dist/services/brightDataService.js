@@ -37,12 +37,14 @@ class BrightDataService {
                     Accept: "application/json",
                 };
                 console.log("DEBUG - Fetching active Bright Data zones...");
-                const activeZonesResponse = yield axios_1.default.get(`${BRIGHTDATA_API_URL}/zone/get_active_zones`, { headers });
+                const activeZonesResponse = yield axios_1.default.get(`${BRIGHTDATA_API_URL}/zone/get_active_zones`, {
+                    headers,
+                });
                 if (!activeZonesResponse.data || !Array.isArray(activeZonesResponse.data)) {
                     console.log("No active Bright Data zones found or unexpected format.");
                     return [];
                 }
-                console.log(`Found ${activeZonesResponse.data.length} active zones:`, activeZonesResponse.data.map(z => z.name));
+                console.log(`Found ${activeZonesResponse.data.length} active zones:`, activeZonesResponse.data.map((z) => z.name));
                 const detailedProxies = [];
                 for (const activeZone of activeZonesResponse.data) {
                     try {

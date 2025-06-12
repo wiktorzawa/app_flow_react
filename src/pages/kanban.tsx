@@ -1,11 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import type { FC } from "react";
-import { Fragment } from "react";
-import { useState } from "react";
-import NavbarSidebarLayout from "../layouts/navbar-sidebar";
-import kanbanBoards from "../data/kanban.json";
-import { ReactSortable } from "react-sortablejs";
-import { Button, Label, Modal, Textarea, TextInput } from "flowbite-react";
+import { Fragment, useState } from "react";
+import { Button, Label, Modal, Textarea, TextInput, ModalHeader, ModalBody, ModalFooter } from "flowbite-react";
 import {
   HiArrowsExpand,
   HiClipboard,
@@ -16,6 +12,9 @@ import {
   HiPencilAlt,
   HiPlus,
 } from "react-icons/hi";
+import { ReactSortable } from "react-sortablejs";
+import NavbarSidebarLayout from "../layouts/navbar-sidebar";
+import kanbanBoards from "../data/kanban.json";
 
 interface KanbanBoard {
   id: number;
@@ -60,7 +59,10 @@ const KanbanPage: FC = function () {
                       setList((list) => {
                         const newList = [...list];
                         const index = newList.findIndex((item) => item.id === board.id);
-                        newList[index]!.tasks = tasks;
+                        // Upewnij się, że element istnieje przed próbą dostępu do jego właściwości
+                        if (newList[index]) {
+                          newList[index]!.tasks = tasks;
+                        }
                         return newList;
                       })
                     }
@@ -142,10 +144,10 @@ const EditCardModal: FC = function () {
         <HiPencilAlt className="text-lg" />
       </button>
       <Modal onClose={() => setOpen(false)} show={isOpen}>
-        <Modal.Header className="border-b border-gray-200 !p-6 dark:border-gray-700">
+        <ModalHeader className="border-b border-gray-200 !p-6 dark:border-gray-700">
           <strong>Edit task</strong>
-        </Modal.Header>
-        <Modal.Body>
+        </ModalHeader>
+        <ModalBody>
           <div className="mb-3 text-2xl font-semibold leading-none text-gray-900 dark:text-white">
             Redesign Themesberg Homepage
           </div>
@@ -228,7 +230,7 @@ const EditCardModal: FC = function () {
           </div>
           <div className="mb-4 space-y-2 text-base text-gray-500 dark:text-gray-400">
             <p>
-              I made some wireframes that we would like you to follow since we are building it in Google’s Material
+              I made some wireframes that we would like you to follow since we are building it in Google's Material
               Design (Please learn more about this and see how to improve standard material design into something
               beautiful). But besides that, you can just do it how you like.
             </p>
@@ -328,13 +330,13 @@ const EditCardModal: FC = function () {
             <ul className="list-outside list-disc pl-6 text-xs text-gray-500 dark:text-gray-400">
               <li>
                 Latest clicks/conversions. Where you currently have the logo for merchant, we should instead have a logo
-                that represent the referring traffic sources (ex. Google or Facebook). So we’re actually missing a
-                column that should say “Source”. And there should be no icon for the merchants.
+                that represent the referring traffic sources (ex. Google or Facebook). So we're actually missing a
+                column that should say "Source". And there should be no icon for the merchants.
               </li>
             </ul>
           </div>
-        </Modal.Body>
-        <Modal.Footer>
+        </ModalBody>
+        <ModalFooter>
           <div className="grid w-full grid-cols-2 items-center gap-3 sm:grid-cols-5">
             <Button color="primary" onClick={() => setOpen(false)}>
               <div className="flex items-center gap-x-2">
@@ -367,7 +369,7 @@ const EditCardModal: FC = function () {
               </div>
             </Button>
           </div>
-        </Modal.Footer>
+        </ModalFooter>
       </Modal>
     </>
   );
@@ -392,10 +394,10 @@ const AddAnotherCardModal: FC = function () {
         Add another card
       </button>
       <Modal onClose={() => setOpen(false)} show={isOpen}>
-        <Modal.Header className="border-b border-gray-200 !p-6 dark:border-gray-700">
+        <ModalHeader className="border-b border-gray-200 !p-6 dark:border-gray-700">
           <strong>Add new task</strong>
-        </Modal.Header>
-        <Modal.Body>
+        </ModalHeader>
+        <ModalBody>
           <form>
             <div className="mb-4 grid grid-cols-1 gap-y-2">
               <Label htmlFor="taskName">Task name</Label>
@@ -406,7 +408,11 @@ const AddAnotherCardModal: FC = function () {
               <Textarea id="description" name="description" placeholder="On line 672 you ..." rows={6} />
             </div>
             <div className="flex w-full items-center justify-center">
-              <label className="flex h-32 w-full cursor-pointer items-center justify-center rounded-lg border-2 border-dashed border-gray-300 text-gray-500 hover:border-gray-300 hover:bg-gray-100 hover:text-gray-900 dark:border-gray-700 dark:hover:border-gray-600 dark:hover:bg-gray-700 dark:hover:text-white">
+              <label
+                htmlFor="file-upload"
+                className="flex h-32 w-full cursor-pointer items-center justify-center rounded-lg border-2 border-dashed border-gray-300 text-gray-500 hover:border-gray-300 hover:bg-gray-100 hover:text-gray-900 dark:border-gray-700 dark:hover:border-gray-600 dark:hover:bg-gray-700 dark:hover:text-white"
+              >
+                <span className="sr-only">Upload file</span>
                 <div className="flex items-center justify-center space-x-2">
                   <svg
                     className="h-8 w-8"
@@ -424,12 +430,12 @@ const AddAnotherCardModal: FC = function () {
                   </svg>
                   <p className="text-base">Drop files to upload</p>
                 </div>
-                <input type="file" className="hidden" />
+                <input id="file-upload" type="file" className="hidden" />
               </label>
             </div>
           </form>
-        </Modal.Body>
-        <Modal.Footer>
+        </ModalBody>
+        <ModalFooter>
           <div className="flex items-center gap-x-3">
             <Button color="primary" onClick={() => setOpen(false)}>
               <div className="flex items-center gap-x-2">
@@ -441,7 +447,7 @@ const AddAnotherCardModal: FC = function () {
               Close
             </Button>
           </div>
-        </Modal.Footer>
+        </ModalFooter>
       </Modal>
     </>
   );
