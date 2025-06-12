@@ -1,4 +1,4 @@
-import { Footer, FooterLinkGroup, FooterLink } from "flowbite-react";
+import { Footer, FooterLink, FooterLinkGroup } from "flowbite-react";
 import type { FC, PropsWithChildren } from "react";
 import Navbar from "../components/navbar";
 import Sidebar from "../components/sidebar";
@@ -13,7 +13,7 @@ interface NavbarSidebarLayoutProps {
 
 const NavbarSidebarLayout: FC<PropsWithChildren<NavbarSidebarLayoutProps>> = function ({ children, isFooter = true }) {
   return (
-    <SidebarProvider>
+    <SidebarProvider initialCollapsed={false}>
       <Navbar />
       <div className="flex items-start pt-16">
         <Sidebar />
@@ -24,13 +24,16 @@ const NavbarSidebarLayout: FC<PropsWithChildren<NavbarSidebarLayoutProps>> = fun
 };
 
 const MainContent: FC<PropsWithChildren<NavbarSidebarLayoutProps>> = function ({ children, isFooter }) {
-  const { isOpenOnSmallScreens: isSidebarOpen } = useSidebarContext();
+  const { isCollapsed } = useSidebarContext();
 
   return (
     <main
       className={classNames(
-        "overflow-y-auto relative w-full h-full bg-gray-50 dark:bg-gray-900",
-        isSidebarOpen ? "lg:ml-16" : "lg:ml-64"
+        "relative h-full w-full overflow-y-auto bg-gray-50 p-4 dark:bg-gray-900 transition-all duration-300",
+        {
+          "lg:ml-64": !isCollapsed,
+          "lg:ml-16": isCollapsed,
+        }
       )}
     >
       {children}
@@ -47,44 +50,42 @@ const MainContentFooter: FC = function () {
   return (
     <>
       <Footer container>
-        {/* Zmieniono Footer.LinkGroup na FooterLinkGroup */}
-        <FooterLinkGroup>
-          {/* Zmieniono Footer.Link na FooterLink */}
-          <FooterLink href="#" className="mr-3 mb-3 lg:mb-0">
-            Terms and conditions
-          </FooterLink>
-          <FooterLink href="#" className="mr-3 mb-3 lg:mb-0">
-            Privacy Policy
-          </FooterLink>
-          <FooterLink href="#" className="mr-3">
-            Licensing
-          </FooterLink>
-          <FooterLink href="#" className="mr-3">
-            Cookie Policy
-          </FooterLink>
-          <FooterLink href="#">Contact</FooterLink>
-        </FooterLinkGroup>
-        {/* Zmieniono Footer.LinkGroup na FooterLinkGroup */}
-        <FooterLinkGroup>
-          <div className="flex gap-4 md:gap-0">
-            {/* Zmieniono Footer.Link na FooterLink */}
-            <FooterLink href="#" className="hover:[&>*]:text-black dark:hover:[&>*]:text-gray-300">
-              <MdFacebook className="text-lg" />
+        <div className="flex w-full flex-col items-center justify-between gap-y-6 lg:flex-row">
+          <FooterLinkGroup>
+            <FooterLink href="#" className="mr-3 mb-3 lg:mb-0">
+              Terms and conditions
             </FooterLink>
-            <FooterLink href="#" className="hover:[&>*]:text-black dark:hover:[&>*]:text-gray-300">
-              <FaInstagram className="text-lg" />
+            <FooterLink href="#" className="mr-3 mb-3 lg:mb-0">
+              Privacy Policy
             </FooterLink>
-            <FooterLink href="#" className="hover:[&>*]:text-black dark:hover:[&>*]:text-gray-300">
-              <FaTwitter className="text-lg" />
+            <FooterLink href="#" className="mr-3">
+              Licensing
             </FooterLink>
-            <FooterLink href="#" className="hover:[&>*]:text-black dark:hover:[&>*]:text-gray-300">
-              <FaGithub className="text-lg" />
+            <FooterLink href="#" className="mr-3">
+              Cookie Policy
             </FooterLink>
-            <FooterLink href="#" className="hover:[&>*]:text-black dark:hover:[&>*]:text-gray-300">
-              <FaDribbble className="text-lg" />
-            </FooterLink>
-          </div>
-        </FooterLinkGroup>
+            <FooterLink href="#">Contact</FooterLink>
+          </FooterLinkGroup>
+          <FooterLinkGroup>
+            <div className="flex gap-4 md:gap-0">
+              <FooterLink href="#" className="hover:[&>*]:text-black dark:hover:[&>*]:text-gray-300">
+                <MdFacebook className="text-lg" />
+              </FooterLink>
+              <FooterLink href="#" className="hover:[&>*]:text-black dark:hover:[&>*]:text-gray-300">
+                <FaInstagram className="text-lg" />
+              </FooterLink>
+              <FooterLink href="#" className="hover:[&>*]:text-black dark:hover:[&>*]:text-gray-300">
+                <FaTwitter className="text-lg" />
+              </FooterLink>
+              <FooterLink href="#" className="hover:[&>*]:text-black dark:hover:[&>*]:text-gray-300">
+                <FaGithub className="text-lg" />
+              </FooterLink>
+              <FooterLink href="#" className="hover:[&>*]:text-black dark:hover:[&>*]:text-gray-300">
+                <FaDribbble className="text-lg" />
+              </FooterLink>
+            </div>
+          </FooterLinkGroup>
+        </div>
       </Footer>
       <p className="my-8 text-center text-sm text-gray-500 dark:text-gray-300">
         &copy; 2019-2022 Flowbite.com. All rights reserved.

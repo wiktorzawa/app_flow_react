@@ -7,12 +7,7 @@
       "stateManagement": "react-hooks",
       "routing": "react-router-dom"
     },
-    "avoidLibraries": [
-      "material-ui",
-      "ant-design", 
-      "bootstrap",
-      "styled-components"
-    ]
+    "avoidLibraries": ["material-ui", "ant-design", "bootstrap", "styled-components"]
   },
   "codeStyle": {
     "componentStyle": "functional",

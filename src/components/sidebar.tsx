@@ -1,331 +1,116 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import classNames from "classnames";
+import type { FC } from "react";
+import { useState, useEffect } from "react";
 import {
-  Dropdown,
-  Sidebar,
-  TextInput,
-  Tooltip,
+  Sidebar as FlowbiteSidebar,
   SidebarItems,
   SidebarItemGroup,
   SidebarItem,
   SidebarCollapse,
-  DropdownItem,
 } from "flowbite-react";
-import type { FC } from "react";
-import { useEffect, useState } from "react";
 import {
-  HiAdjustments,
   HiChartPie,
   HiChartSquareBar,
   HiClipboard,
-  HiCog,
   HiCollection,
   HiInboxIn,
   HiInformationCircle,
   HiLockClosed,
-  HiSearch,
   HiShoppingBag,
   HiUsers,
   HiViewGrid,
 } from "react-icons/hi";
-
 import { useSidebarContext } from "../context/SidebarContext";
-import isSmallScreen from "../helpers/is-small-screen";
 
-const ExampleSidebar: FC = function () {
-  const { isOpenOnSmallScreens: isSidebarOpenOnSmallScreens } = useSidebarContext();
+// Stałe i pomocnicze funkcje
 
+const isAdmin = (): boolean => localStorage.getItem("userRole") === "admin";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+
+const Sidebar: FC = function () {
+  const { isCollapsed, isOpenOnMobile } = useSidebarContext();
   const [currentPage, setCurrentPage] = useState("");
   const [isEcommerceOpen, setEcommerceOpen] = useState(true);
   const [isUsersOpen, setUsersOpen] = useState(true);
 
   useEffect(() => {
     const newPage = window.location.pathname;
-
     setCurrentPage(newPage);
-    setEcommerceOpen(newPage.includes("/e-commerce/"));
+    setEcommerceOpen(newPage.includes("/e-commerce/") || newPage.includes("/admin/orders"));
     setUsersOpen(newPage.includes("/users/"));
-  }, [setCurrentPage, setEcommerceOpen, setUsersOpen]);
+  }, []);
 
   return (
-    <div
-      className={classNames("lg:!block", {
-        hidden: !isSidebarOpenOnSmallScreens,
-      })}
-    >
-      <Sidebar
-        aria-label="Sidebar with multi-level dropdown example"
-        collapsed={isSidebarOpenOnSmallScreens && !isSmallScreen()}
-      >
-        <div className="flex h-full flex-col justify-between py-2">
-          <div>
-            <form className="pb-3 md:hidden">
-              <TextInput icon={HiSearch} type="search" placeholder="Search" required size={32} />
-            </form>
-            <SidebarItems>
-              <SidebarItemGroup>
-                <SidebarItem
-                  href="/"
-                  icon={HiChartPie}
-                  className={"/" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}
-                >
-                  Dashboard
+    <div className={`lg:!block ${!isOpenOnMobile && "hidden"}`}>
+      <FlowbiteSidebar aria-label="Sidebar with multi-level dropdown" collapsed={isCollapsed}>
+        <SidebarItems>
+          <SidebarItemGroup>
+            <SidebarItem href="/" icon={HiChartPie} active={currentPage === "/"}>
+              Dashboard
+            </SidebarItem>
+            <SidebarCollapse icon={HiShoppingBag} label="E-commerce" open={isEcommerceOpen}>
+              <SidebarItem href="/admin/orders" active={currentPage === "/admin/orders"}>
+                Orders
+              </SidebarItem>
+              <SidebarItem href="/e-commerce/products" active={currentPage === "/e-commerce/products"}>
+                Products
+              </SidebarItem>
+            </SidebarCollapse>
+            <SidebarItem
+              href="/admin/adspower-dashboard"
+              icon={HiViewGrid}
+              active={currentPage === "/admin/adspower-dashboard"}
+            >
+              ADS Power
+            </SidebarItem>
+            <SidebarItem href="/kanban" icon={HiCollection} active={currentPage === "/kanban"}>
+              Kanban
+            </SidebarItem>
+            <SidebarItem href="/mailing/inbox" icon={HiInboxIn} active={currentPage === "/mailing/inbox"}>
+              Inbox
+            </SidebarItem>
+            {isAdmin() && (
+              <SidebarCollapse icon={HiUsers} label="Users" open={isUsersOpen}>
+                <SidebarItem href="/users/list" active={currentPage === "/users/list"}>
+                  All users
                 </SidebarItem>
-                {localStorage.getItem("userRole") === "admin" && (
-                  <SidebarItem
-                    href="/admin/AdsPowerDashboard"
-                    icon={HiAdjustments}
-                    className={"/admin/AdsPowerDashboard" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}
-                  >
-                    Profile AdsPower
-                  </SidebarItem>
-                )}
-                <SidebarItem
-                  href="/kanban"
-                  icon={HiViewGrid}
-                  className={"/kanban" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}
-                >
-                  Kanban
+                <SidebarItem href="/users/listSuppliers" active={currentPage === "/users/listSuppliers"}>
+                  Suppliers
                 </SidebarItem>
-                <SidebarItem
-                  href="/mailing/inbox"
-                  icon={HiInboxIn}
-                  label="3"
-                  className={"/mailing/inbox" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}
-                >
-                  Inbox
+                <SidebarItem href="/users/profile" active={currentPage === "/users/profile"}>
+                  Profile
                 </SidebarItem>
-                <SidebarCollapse icon={HiShoppingBag} label="E-commerce" open={isEcommerceOpen}>
-                  <SidebarItem
-                    href="/e-commerce/products"
-                    className={"/e-commerce/products" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}
-                  >
-                    Products
-                  </SidebarItem>
-                  <SidebarItem
-                    href="/e-commerce/billing"
-                    className={"/e-commerce/billing" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}
-                  >
-                    Billing
-                  </SidebarItem>
-                  <SidebarItem
-                    href="/e-commerce/invoice"
-                    className={"/e-commerce/invoice" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}
-                  >
-                    Invoice
-                  </SidebarItem>
-                </SidebarCollapse>
-                <SidebarCollapse icon={HiUsers} label="Users" open={isUsersOpen}>
-                  {localStorage.getItem("userRole") === "admin" && (
-                    <SidebarItem
-                      href="/users/list"
-                      className={"/users/list" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}
-                    >
-                      Users list
-                    </SidebarItem>
-                  )}
-                  {localStorage.getItem("userRole") === "admin" && (
-                    <SidebarItem
-                      href="/users/listSuppliers"
-                      className={"/users/listSuppliers" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}
-                    >
-                      Suppliers list
-                    </SidebarItem>
-                  )}
-                  <SidebarItem
-                    href="/users/profile"
-                    className={"/users/profile" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}
-                  >
-                    Profile
-                  </SidebarItem>
-                  {localStorage.getItem("userRole") === "admin" && (
-                    <SidebarItem
-                      href="/users/feed"
-                      className={"/users/feed" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}
-                    >
-                      Feed
-                    </SidebarItem>
-                  )}
-                  <SidebarItem
-                    href="/users/settings"
-                    className={"/users/settings" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}
-                  >
-                    Settings
-                  </SidebarItem>
-                </SidebarCollapse>
-                <SidebarCollapse icon={HiChartSquareBar} label="Pages">
-                  <SidebarItem href="/pages/pricing">Pricing</SidebarItem>
-                  <SidebarItem href="/pages/maintenance">Maintenace</SidebarItem>
-                  <SidebarItem href="/pages/404">404 not found</SidebarItem>
-                  <SidebarItem href="/pages/500">500 server error</SidebarItem>
-                </SidebarCollapse>
-                <SidebarCollapse icon={HiLockClosed} label="Authentication">
-                  <SidebarItem href="/authentication/sign-in">Sign in</SidebarItem>
-                  <SidebarItem href="/authentication/sign-up">Sign up</SidebarItem>
-                  <SidebarItem href="/authentication/forgot-password">Forgot password</SidebarItem>
-                  <SidebarItem href="/authentication/reset-password">Reset password</SidebarItem>
-                  <SidebarItem href="/authentication/profile-lock">Profile lock</SidebarItem>
-                </SidebarCollapse>
-              </SidebarItemGroup>
-              <SidebarItemGroup>
-                <SidebarItem href="https://github.com/themesberg/flowbite-react/" icon={HiClipboard}>
-                  Docs
+                <SidebarItem href="/users/feed" active={currentPage === "/users/feed"}>
+                  Feed
                 </SidebarItem>
-                <SidebarItem href="https://flowbite-react.com/" icon={HiCollection}>
-                  Components
+                <SidebarItem href="/users/settings" active={currentPage === "/users/settings"}>
+                  Settings
                 </SidebarItem>
-                <SidebarItem href="https://github.com/themesberg/flowbite-react/issues" icon={HiInformationCircle}>
-                  Help
-                </SidebarItem>
-              </SidebarItemGroup>
-            </SidebarItems>
-          </div>
-          <BottomMenu />
-        </div>
-      </Sidebar>
+              </SidebarCollapse>
+            )}
+          </SidebarItemGroup>
+          <SidebarItemGroup>
+            <SidebarItem
+              href="/authentication/sign-in"
+              icon={HiLockClosed}
+              active={currentPage === "/authentication/sign-in"}
+            >
+              Login
+            </SidebarItem>
+            <SidebarItem href="#" icon={HiClipboard}>
+              Documentation
+            </SidebarItem>
+            <SidebarItem href="#" icon={HiChartSquareBar}>
+              Components
+            </SidebarItem>
+            <SidebarItem href="#" icon={HiInformationCircle}>
+              Help
+            </SidebarItem>
+          </SidebarItemGroup>
+        </SidebarItems>
+      </FlowbiteSidebar>
     </div>
   );
 };
 
-// ... reszta kodu komponentów pomocniczych BottomMenu, LanguageDropdown ...
-
-const BottomMenu: FC = function () {
-  return (
-    <div className="flex items-center justify-center gap-x-5">
-      <button className="rounded-lg p-2 hover:bg-gray-100 dark:hover:bg-gray-700">
-        <span className="sr-only">Tweaks</span>
-        <HiAdjustments className="text-2xl text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white " />
-      </button>
-      <div>
-        <Tooltip content="Settings page">
-          <a
-            href="/users/settings"
-            className="inline-flex cursor-pointer justify-center rounded p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-700 dark:hover:text-white"
-          >
-            <span className="sr-only">Settings page</span>
-            <HiCog className="text-2xl text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white" />
-          </a>
-        </Tooltip>
-      </div>
-      <div>
-        <LanguageDropdown />
-      </div>
-    </div>
-  );
-};
-
-const LanguageDropdown: FC = function () {
-  return (
-    <Dropdown
-      arrowIcon={false}
-      inline
-      label={
-        <span className="inline-flex cursor-pointer justify-center rounded p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-700 dark:hover:text-white">
-          <span className="sr-only">Current language</span>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            xmlnsXlink="http://www.w3.org/1999/xlink"
-            viewBox="0 0 3900 3900"
-            className="h-5 w-5 rounded-full"
-          >
-            <path fill="#b22234" d="M0 0h7410v3900H0z"></path>
-            <path d="M0 450h7410m0 600H0m0 600h7410m0 600H0m0 600h7410m0 600H0" stroke="#fff" strokeWidth="300"></path>
-            <path fill="#3c3b6e" d="M0 0h2964v2100H0z"></path>
-            <g fill="#fff">
-              <g id="d">
-                <g id="c">
-                  <g id="e">
-                    <g id="b">
-                      <path id="a" d="M247 90l70.534 217.082-184.66-134.164h228.253L176.466 307.082z"></path>
-                      <use xlinkHref="#a" y="420"></use>
-                      <use xlinkHref="#a" y="840"></use>
-                      <use xlinkHref="#a" y="1260"></use>
-                    </g>
-                    <use xlinkHref="#a" y="1680"></use>
-                  </g>
-                  <use xlinkHref="#b" x="247" y="210"></use>
-                </g>
-                <use xlinkHref="#c" x="494"></use>
-              </g>
-              <use xlinkHref="#d" x="988"></use>
-              <use xlinkHref="#c" x="1976"></use>
-              <use xlinkHref="#e" x="2470"></use>
-            </g>
-          </svg>
-          <span className="whitespace-nowrap">English (US)</span>
-        </span>
-      }
-    >
-      <DropdownItem>
-        <a
-          href="#"
-          className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
-        >
-          <div className="inline-flex items-center">
-            <svg
-              className="mr-2 h-4 w-4 rounded-full"
-              xmlns="http://www.w3.org/2000/svg"
-              id="flag-icon-css-de"
-              viewBox="0 0 512 512"
-            >
-              <path fill="#ffce00" d="M0 341.3h512V512H0z" />
-              <path d="M0 0h512v170.7H0z" />
-              <path fill="#d00" d="M0 170.7h512v170.6H0z" />
-            </svg>
-            Deutsch
-          </div>
-        </a>
-      </DropdownItem>
-      <DropdownItem>
-        <a
-          href="#"
-          className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
-        >
-          <div className="inline-flex items-center">
-            <svg
-              className="mr-2 h-4 w-4 rounded-full"
-              xmlns="http://www.w3.org/2000/svg"
-              id="flag-icon-css-it"
-              viewBox="0 0 512 512"
-            >
-              <g fillRule="evenodd" strokeWidth="1pt">
-                <path fill="#fff" d="M0 0h512v512H0z" />
-                <path fill="#009246" d="M0 0h170.7v512H0z" />
-                <path fill="#ce2b37" d="M341.3 0H512v512H341.3z" />
-              </g>
-            </svg>
-            Italiano
-          </div>
-        </a>
-      </DropdownItem>
-      <DropdownItem>
-        <a
-          href="#"
-          className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
-        >
-          <div className="inline-flex items-center">
-            <svg
-              className="mr-2 h-4 w-4 rounded-full"
-              xmlns="http://www.w3.org/2000/svg"
-              xmlnsXlink="http://www.w3.org/1999/xlink"
-              id="flag-icon-css-cn"
-              viewBox="0 0 512 512"
-            >
-              <defs>
-                <path id="a" fill="#ffde00" d="M1-.3L-.7.8 0-1 .6.8-1-.3z" />
-              </defs>
-              <use width="30" height="20" transform="matrix(76.8 0 0 76.8 128 128)" xlinkHref="#a" />
-              <use width="30" height="20" transform="rotate(-121 142.6 -47) scale(25.5827)" xlinkHref="#a" />
-              <use width="30" height="20" transform="rotate(-98.1 198 -82) scale(25.6)" xlinkHref="#a" />
-              <use width="30" height="20" transform="rotate(-74 272.4 -114) scale(25.6137)" xlinkHref="#a" />
-              <use width="30" height="20" transform="matrix(16 -19.968 19.968 16 256 230.4)" xlinkHref="#a" />
-            </svg>
-            <span className="whitespace-nowrap">中文 (繁體)</span>
-          </div>
-        </a>
-      </DropdownItem>
-    </Dropdown>
-  );
-};
-
-export default ExampleSidebar;
+export default Sidebar;

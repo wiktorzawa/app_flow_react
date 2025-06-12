@@ -33,3 +33,14 @@ yarn-error.log*
 *.sw?
 *.swp
 *.swo 
+# Pliki do pominięcia
+bun.lockb
+turbo.json
+.editorconfig
+
+# Pliki dokumentacyjne do pominięcia
+AKTUALIZACJA
+ANALIZA_VITE_VS_NEXTJS.md
+PRZEWODNIK_AKTUALIZACJI_FLOWBITE_REACT.md
+QUICK_COMMANDS.md
+SKRYPT_AKTUALIZACJI_VITE.sh

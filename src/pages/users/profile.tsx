@@ -1,4 +1,4 @@
-import { Badge, Breadcrumb, Progress } from "flowbite-react";
+import { Badge, Breadcrumb, BreadcrumbItem, Progress } from "flowbite-react";
 import type { FC } from "react";
 import { HiBriefcase, HiHome, HiMap } from "react-icons/hi";
 import NavbarSidebarLayout from "../../layouts/navbar-sidebar";
@@ -9,14 +9,14 @@ const UserProfilePage: FC = function () {
       <div className="grid grid-cols-1 px-4 pt-6 xl:grid-cols-3 xl:gap-4">
         <div className="col-span-full mb-4 xl:mb-2">
           <Breadcrumb className="mb-4">
-            <Breadcrumb.Item href="#">
+            <BreadcrumbItem href="#">
               <div className="flex items-center gap-x-3">
                 <HiHome className="text-xl" />
                 <span className="dark:text-white">Home</span>
               </div>
-            </Breadcrumb.Item>
-            <Breadcrumb.Item href="/users/list">Users</Breadcrumb.Item>
-            <Breadcrumb.Item>Profile</Breadcrumb.Item>
+            </BreadcrumbItem>
+            <BreadcrumbItem href="/users/list">Users</BreadcrumbItem>
+            <BreadcrumbItem>Profile</BreadcrumbItem>
           </Breadcrumb>
           <h1 className="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">Profile</h1>
         </div>

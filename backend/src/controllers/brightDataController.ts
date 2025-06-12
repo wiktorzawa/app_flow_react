@@ -21,4 +21,4 @@ export class BrightDataController {
   });
 }
 
-export const brightDataController = new BrightDataController(); 
+export const brightDataController = new BrightDataController();

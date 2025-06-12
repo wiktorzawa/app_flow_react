@@ -1,6 +1,6 @@
 # How To Make REST API Calls With cURL
 
-[![Promo](https://github.com/luminati-io/LinkedIn-Scraper/raw/main/Proxies%20and%20scrapers%20GitHub%20bonus%20banner.png)](https://brightdata.com/) 
+[![Promo](https://github.com/luminati-io/LinkedIn-Scraper/raw/main/Proxies%20and%20scrapers%20GitHub%20bonus%20banner.png)](https://brightdata.com/)
 
 This guide explains how to use cURL for REST API requests like GET, POST, PUT, and DELETE, and enhance efficiency with Web Unlocker proxies.
 
@@ -130,6 +130,7 @@ The `DELETE` request is used to remove an existing object from a database usin
 ```bash
 curl -X DELETE https://jsonplaceholder.typicode.com/posts/1
 ```
+
 The response is an empty JSON object, which means the post has been deleted.
 
 ```json
@@ -155,7 +156,21 @@ curl -i --proxy brd.superproxy.io:33335 --proxy-user brd-customer-<YOUR_USERNAME
 Here is the example response. Note that our location is showing up in `New Jersey`:
 
 ```json
-{"country":"US","asn":{"asnum":20473,"org_name":"AS-VULTR"},"geo":{"city":"Piscataway","region":"NJ","region_name":"New Jersey","postal_code":"08854","latitude":40.5511,"longitude":-74.4606,"tz":"America/New_York","lum_city":"piscataway","lum_region":"nj"}}
+{
+  "country": "US",
+  "asn": { "asnum": 20473, "org_name": "AS-VULTR" },
+  "geo": {
+    "city": "Piscataway",
+    "region": "NJ",
+    "region_name": "New Jersey",
+    "postal_code": "08854",
+    "latitude": 40.5511,
+    "longitude": -74.4606,
+    "tz": "America/New_York",
+    "lum_city": "piscataway",
+    "lum_region": "nj"
+  }
+}
 ```
 
 ## What Other Options Are There?
