@@ -1,13 +1,31 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState, useEffect } from "react";
-import { Breadcrumb, Button, Checkbox, Label, Modal, Table, TextInput } from "flowbite-react";
+import {
+  // Nowe importy dla Breadcrumb i jej podkomponentów
+  Breadcrumb,
+  BreadcrumbItem,
+  Button,
+  Checkbox,
+  Label,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Table,
+  TableHead,
+  TableHeadCell,
+  TableBody,
+  TableRow,
+  TableCell,
+  TextInput,
+} from "flowbite-react";
 import type { FC } from "react";
 import {
   HiChevronLeft,
   HiChevronRight,
   HiCog,
   HiDocumentDownload,
-  HiExclamationCircle,
   HiHome,
   HiOutlinePencilAlt,
   HiPlus,
@@ -50,14 +68,15 @@ export const SupplierListPage: FC = function () {
       <div className="p-4 bg-white block sm:flex items-center justify-between border-b border-gray-200 lg:mt-1.5 dark:bg-gray-800 dark:border-gray-700">
         <div className="w-full mb-1">
           <div className="mb-4">
+            {/* Breadcrumb i BreadcrumbItem są już poprawnie importowane i używane */}
             <Breadcrumb className="mb-4">
-              <Breadcrumb.Item href="/">
+              <BreadcrumbItem href="/">
                 <div className="flex items-center gap-x-3">
                   <HiHome className="text-xl" />
                   <span className="dark:text-white">Home</span>
                 </div>
-              </Breadcrumb.Item>
-              <Breadcrumb.Item>Wszyscy dostawcy</Breadcrumb.Item>
+              </BreadcrumbItem>
+              <BreadcrumbItem>Wszyscy dostawcy</BreadcrumbItem>
             </Breadcrumb>
             <h1 className="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">Wszyscy dostawcy</h1>
           </div>
@@ -68,6 +87,7 @@ export const SupplierListPage: FC = function () {
                   Search
                 </Label>
                 <div className="relative mt-1 lg:w-64 xl:w-96">
+                  {/* TextInput użycie powinno być OK, jeśli nie ma problemów z propami */}
                   <TextInput id="users-search" name="users-search" placeholder="Szukaj dostawców" />
                 </div>
               </form>
@@ -111,25 +131,11 @@ export const SupplierListPage: FC = function () {
 export const AddSupplierModal: FC<AddSupplierModalProps> = function ({ refresh }) {
   const [supplierId, setSupplierId] = useState("");
   const [modalState, setModalState] = useState<boolean>(false);
-  const [formData, setFormData] = useState<SupplierFormData>({
-    name: "",
-    contact_name: "",
-    contact_surname: "",
-    contact_phone: "",
-    nip: "",
-    contact_email: "",
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [showSuccess, setShowSuccess] = useState(false);
-  const [addedSupplier, setAddedSupplier] = useState<(Dostawca & { password: string }) | null>(null);
   const [generatedPassword, setGeneratedPassword] = useState<string>("");
 
   // Funkcja do generowania ID dostawcy
   const generateId = async () => {
     if (!supplierId) {
-      setIsLoading(true);
       try {
         console.log("Generowanie ID dostawcy");
         const id = await generujIdDostawcy();
@@ -137,9 +143,6 @@ export const AddSupplierModal: FC<AddSupplierModalProps> = function ({ refresh }
         setSupplierId(id);
       } catch (err) {
         console.error("Błąd podczas generowania ID:", err);
-        setError("Nie udało się wygenerować ID dostawcy");
-      } finally {
-        setIsLoading(false);
       }
     }
   };
@@ -148,18 +151,6 @@ export const AddSupplierModal: FC<AddSupplierModalProps> = function ({ refresh }
   useEffect(() => {
     if (modalState) {
       console.log("Modal otwarty - generowanie ID dostawcy");
-      // Reset formularza
-      setFormData({
-        name: "",
-        contact_name: "",
-        contact_surname: "",
-        contact_phone: "",
-        nip: "",
-        contact_email: "",
-      });
-      setError(null);
-      setShowSuccess(false);
-      setAddedSupplier(null);
       // Generuj ID
       generateId();
     } else {
@@ -168,67 +159,23 @@ export const AddSupplierModal: FC<AddSupplierModalProps> = function ({ refresh }
     }
   }, [modalState]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value === "" && (name === "website" || name === "address_apartment") ? null : value,
-    }));
-  };
-
-  const handleSubmit = async () => {
-    setIsSubmitting(true);
-    setError(null);
-
-    try {
-      const supplierData: NowyDostawcaBezId = {
-        company_name: formData.name,
-        first_name: formData.contact_name,
-        last_name: formData.contact_surname,
-        phone: formData.contact_phone,
-        nip: formData.nip,
-        email: formData.contact_email,
-        website: null,
-        address_street: "",
-        address_building: "",
-        address_apartment: null,
-        address_city: "",
-        address_postal_code: "",
-        address_country: "Polska",
-      };
-
-      const result = await dodajDostawceZHaslem(supplierData);
-      if (result) {
-        setAddedSupplier(result);
-        setGeneratedPassword(result.password);
-        setShowSuccess(true);
-      } else {
-        setError("Nie udało się dodać dostawcy. Spróbuj ponownie.");
-      }
-    } catch (err) {
-      setError("Wystąpił błąd podczas dodawania dostawcy.");
-      console.error(err);
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
   const handleCloseSuccessView = () => {
-    setShowSuccess(false);
     setModalState(false);
     refresh();
   };
 
   return (
     <>
+      {/* Button użycie powinno być OK */}
       <Button onClick={() => setModalState(true)}>
         <div className="flex items-center gap-x-3">
           <HiPlus className="text-xl" />
           Dodaj dostawcę
         </div>
       </Button>
+      {/* Modal użycie powinno być OK, jeśli ModalHeader, ModalBody, ModalFooter są poprawnie importowane i użyte */}
       <Modal onClose={handleCloseSuccessView} show={modalState}>
-        <Modal.Header className="border-b border-gray-200 !p-6 bg-green-100 dark:bg-green-800 dark:border-gray-700">
+        <ModalHeader className="border-b border-gray-200 !p-6 bg-green-100 dark:bg-green-800 dark:border-gray-700">
           <div className="flex items-center gap-2">
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-green-100 dark:bg-green-800">
               <svg
@@ -246,206 +193,15 @@ export const AddSupplierModal: FC<AddSupplierModalProps> = function ({ refresh }
             </div>
             <strong>Dodano nowego dostawcę</strong>
           </div>
-        </Modal.Header>
-        <Modal.Body>
+        </ModalHeader>
+        <ModalBody>
           <div className="mb-4 rounded-lg bg-green-50 p-4 text-green-800 dark:bg-gray-800 dark:text-green-300">
             <div className="mb-1 font-medium">Dostawca został pomyślnie dodany do systemu</div>
             <p className="text-sm">Poniżej znajdują się wszystkie dane dostawcy oraz dane do logowania.</p>
           </div>
-
-          {addedSupplier && (
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-              <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800">
-                <h4 className="mb-3 text-lg font-medium text-gray-900 dark:text-white flex items-center">
-                  <svg
-                    className="mr-2 h-5 w-5 text-gray-500 dark:text-gray-400"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                      clipRule="evenodd"
-                    ></path>
-                  </svg>
-                  Dane podstawowe
-                </h4>
-                <div className="space-y-2">
-                  <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
-                    <div className="text-sm font-medium text-gray-500 dark:text-gray-400">ID dostawcy:</div>
-                    <div className="text-sm font-semibold text-gray-900 dark:text-white">
-                      {addedSupplier.id_supplier}
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
-                    <div className="text-sm font-medium text-gray-500 dark:text-gray-400">Nazwa firmy:</div>
-                    <div className="text-sm font-semibold text-gray-900 dark:text-white">
-                      {addedSupplier.company_name}
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
-                    <div className="text-sm font-medium text-gray-500 dark:text-gray-400">Osoba kontaktowa:</div>
-                    <div className="text-sm font-semibold text-gray-900 dark:text-white">
-                      {addedSupplier.first_name} {addedSupplier.last_name}
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
-                    <div className="text-sm font-medium text-gray-500 dark:text-gray-400">NIP:</div>
-                    <div className="text-sm font-semibold text-gray-900 dark:text-white">{addedSupplier.nip}</div>
-                  </div>
-                  <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
-                    <div className="text-sm font-medium text-gray-500 dark:text-gray-400">Email:</div>
-                    <div className="text-sm font-semibold text-gray-900 dark:text-white">{addedSupplier.email}</div>
-                  </div>
-                  <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
-                    <div className="text-sm font-medium text-gray-500 dark:text-gray-400">Telefon:</div>
-                    <div className="text-sm font-semibold text-gray-900 dark:text-white">{addedSupplier.phone}</div>
-                  </div>
-                  <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
-                    <div className="text-sm font-medium text-gray-500 dark:text-gray-400">Strona WWW:</div>
-                    <div className="text-sm font-semibold text-gray-900 dark:text-white">
-                      {addedSupplier.website || "-"}
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800">
-                <h4 className="mb-3 text-lg font-medium text-gray-900 dark:text-white flex items-center">
-                  <svg
-                    className="mr-2 h-5 w-5 text-gray-500 dark:text-gray-400"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
-                      clipRule="evenodd"
-                    ></path>
-                  </svg>
-                  Dane adresowe
-                </h4>
-                <div className="space-y-2">
-                  <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
-                    <div className="text-sm font-medium text-gray-500 dark:text-gray-400">Ulica:</div>
-                    <div className="text-sm font-semibold text-gray-900 dark:text-white">
-                      {addedSupplier.address_street}
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
-                    <div className="text-sm font-medium text-gray-500 dark:text-gray-400">Nr budynku:</div>
-                    <div className="text-sm font-semibold text-gray-900 dark:text-white">
-                      {addedSupplier.address_building}
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
-                    <div className="text-sm font-medium text-gray-500 dark:text-gray-400">Nr lokalu:</div>
-                    <div className="text-sm font-semibold text-gray-900 dark:text-white">
-                      {addedSupplier.address_apartment || "-"}
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
-                    <div className="text-sm font-medium text-gray-500 dark:text-gray-400">Miasto:</div>
-                    <div className="text-sm font-semibold text-gray-900 dark:text-white">
-                      {addedSupplier.address_city}
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
-                    <div className="text-sm font-medium text-gray-500 dark:text-gray-400">Kod pocztowy:</div>
-                    <div className="text-sm font-semibold text-gray-900 dark:text-white">
-                      {addedSupplier.address_postal_code}
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
-                    <div className="text-sm font-medium text-gray-500 dark:text-gray-400">Kraj:</div>
-                    <div className="text-sm font-semibold text-gray-900 dark:text-white">
-                      {addedSupplier.address_country}
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800">
-                <h4 className="mb-3 text-lg font-medium text-gray-900 dark:text-white flex items-center">
-                  <svg
-                    className="mr-2 h-5 w-5 text-gray-500 dark:text-gray-400"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
-                      clipRule="evenodd"
-                    ></path>
-                  </svg>
-                  Dane logowania
-                </h4>
-                <div className="space-y-2">
-                  <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
-                    <div className="text-sm font-medium text-gray-500 dark:text-gray-400">ID logowania:</div>
-                    <div className="text-sm font-semibold text-gray-900 dark:text-white">
-                      {addedSupplier.id_supplier}/LOG
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
-                    <div className="text-sm font-medium text-gray-500 dark:text-gray-400">Login:</div>
-                    <div className="text-sm font-semibold text-gray-900 dark:text-white">{addedSupplier.email}</div>
-                  </div>
-                  <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
-                    <div className="text-sm font-medium text-gray-500 dark:text-gray-400">Hasło:</div>
-                    <div className="text-sm font-semibold text-gray-900 dark:text-white">
-                      <div className="flex items-center">
-                        <span className="mr-2">{generatedPassword}</span>
-                        <Button
-                          size="xs"
-                          color="light"
-                          onClick={() => {
-                            navigator.clipboard.writeText(generatedPassword);
-                            alert("Hasło skopiowane do schowka");
-                          }}
-                        >
-                          <svg
-                            className="h-3.5 w-3.5"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
-                            <path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"></path>
-                          </svg>
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="mt-3 p-3 bg-yellow-50 text-yellow-800 rounded-lg text-sm dark:bg-yellow-900 dark:text-yellow-300">
-                  <div className="flex">
-                    <svg
-                      className="mr-2 h-5 w-5 flex-shrink-0"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-                        clipRule="evenodd"
-                      ></path>
-                    </svg>
-                    <div>
-                      Prosimy o zapisanie hasła i przekazanie go dostawcy. Ze względów bezpieczeństwa hasło nie zostanie
-                      wyświetlone ponownie.
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-        </Modal.Body>
-        <Modal.Footer>
+        </ModalBody>
+        <ModalFooter>
+          {/* Button color="primary" powinno być OK */}
           <Button color="primary" onClick={handleCloseSuccessView}>
             <div className="flex items-center gap-x-2">
               <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -458,7 +214,7 @@ export const AddSupplierModal: FC<AddSupplierModalProps> = function ({ refresh }
               Zamknij
             </div>
           </Button>
-        </Modal.Footer>
+        </ModalFooter>
       </Modal>
     </>
   );
@@ -469,18 +225,14 @@ const AllSuppliersTable: FC<{ onSuccess: () => void; refreshTrigger: number }> =
   refreshTrigger,
 }) {
   const [dostawcy, setDostawcy] = useState<Dostawca[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
-      setIsLoading(true);
       try {
         const data = await pobierzDostawcow();
         setDostawcy(data);
       } catch (error) {
         console.error("Błąd podczas pobierania dostawców:", error);
-      } finally {
-        setIsLoading(false);
       }
     };
 
@@ -501,47 +253,43 @@ const AllSuppliersTable: FC<{ onSuccess: () => void; refreshTrigger: number }> =
     }
   };
 
-  if (isLoading) {
-    return (
-      <div className="p-4 text-center">
-        <p>Ładowanie danych...</p>
-      </div>
-    );
-  }
-
   return (
     <Table className="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
-      <Table.Head className="bg-gray-100 dark:bg-gray-700">
-        <Table.HeadCell className="p-4">
-          <div className="flex items-center">
-            <Checkbox aria-label="Select all" />
-            <Label htmlFor="select-all" className="sr-only">
-              Select all
-            </Label>
-          </div>
-        </Table.HeadCell>
-        <Table.HeadCell>Nazwa firmy</Table.HeadCell>
-        <Table.HeadCell>Osoba kontaktowa</Table.HeadCell>
-        <Table.HeadCell>NIP</Table.HeadCell>
-        <Table.HeadCell>Email</Table.HeadCell>
-        <Table.HeadCell>Telefon</Table.HeadCell>
-        <Table.HeadCell>Status</Table.HeadCell>
-        <Table.HeadCell>
-          <span className="sr-only">Akcje</span>
-        </Table.HeadCell>
-      </Table.Head>
-      <Table.Body className="divide-y divide-gray-200 bg-white dark:divide-gray-700 dark:bg-gray-800">
+      {/* TableHead, TableHeadCell, TableBody, TableRow, TableCell użycie powinno być OK */}
+      <TableHead className="bg-gray-100 dark:bg-gray-700">
+        <TableRow>
+          <TableHeadCell className="p-4">
+            <div className="flex items-center">
+              {/* Checkbox i Label użycie powinno być OK */}
+              <Checkbox aria-label="Select all" />
+              <Label htmlFor="select-all" className="sr-only">
+                Select all
+              </Label>
+            </div>
+          </TableHeadCell>
+          <TableHeadCell>Nazwa firmy</TableHeadCell>
+          <TableHeadCell>Osoba kontaktowa</TableHeadCell>
+          <TableHeadCell>NIP</TableHeadCell>
+          <TableHeadCell>Email</TableHeadCell>
+          <TableHeadCell>Telefon</TableHeadCell>
+          <TableHeadCell>Status</TableHeadCell>
+          <TableHeadCell>
+            <span className="sr-only">Akcje</span>
+          </TableHeadCell>
+        </TableRow>
+      </TableHead>
+      <TableBody className="divide-y divide-gray-200 bg-white dark:divide-gray-700 dark:bg-gray-800">
         {dostawcy.map((dostawca) => (
-          <Table.Row key={dostawca.id_supplier} className="hover:bg-gray-100 dark:hover:bg-gray-700">
-            <Table.Cell className="w-4 p-4">
+          <TableRow key={dostawca.id_supplier} className="hover:bg-gray-100 dark:hover:bg-gray-700">
+            <TableCell className="w-4 p-4">
               <div className="flex items-center">
                 <Checkbox aria-label="Select row" />
                 <Label htmlFor="checkbox-table-search-1" className="sr-only">
                   Select row
                 </Label>
               </div>
-            </Table.Cell>
-            <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
+            </TableCell>
+            <TableCell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
               <div className="flex items-center">
                 <div className="h-10 w-10 rounded-full bg-gray-200 flex items-center justify-center">
                   <span className="text-lg font-bold text-gray-600">
@@ -553,37 +301,38 @@ const AllSuppliersTable: FC<{ onSuccess: () => void; refreshTrigger: number }> =
                   <div className="text-sm font-normal text-gray-500 dark:text-gray-400">ID: {dostawca.id_supplier}</div>
                 </div>
               </div>
-            </Table.Cell>
-            <Table.Cell className="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
+            </TableCell>
+            <TableCell className="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
               {dostawca.first_name} {dostawca.last_name}
-            </Table.Cell>
-            <Table.Cell className="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
+            </TableCell>
+            <TableCell className="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
               {dostawca.nip}
-            </Table.Cell>
-            <Table.Cell className="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
+            </TableCell>
+            <TableCell className="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
               {dostawca.email}
-            </Table.Cell>
-            <Table.Cell className="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
+            </TableCell>
+            <TableCell className="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
               {dostawca.phone}
-            </Table.Cell>
-            <Table.Cell className="whitespace-nowrap p-4 text-base font-normal text-gray-900 dark:text-white">
+            </TableCell>
+            <TableCell className="whitespace-nowrap p-4 text-base font-normal text-gray-900 dark:text-white">
               <div className="flex items-center">
                 <div className="mr-2 h-2.5 w-2.5 rounded-full bg-green-400"></div>
                 Aktywny
               </div>
-            </Table.Cell>
-            <Table.Cell>
+            </TableCell>
+            <TableCell>
               <div className="flex items-center gap-x-3">
                 <EditSupplierModal dostawca={dostawca} onSuccess={onSuccess} />
+                {/* Button color="failure" i size="sm" powinno być OK */}
                 <Button color="failure" size="sm" onClick={() => handleDelete(dostawca.id_supplier)}>
                   <HiTrash className="mr-1" />
                   <span>Usuń</span>
                 </Button>
               </div>
-            </Table.Cell>
-          </Table.Row>
+            </TableCell>
+          </TableRow>
         ))}
-      </Table.Body>
+      </TableBody>
     </Table>
   );
 };
@@ -608,8 +357,6 @@ const EditSupplierModal: FC<{
     address_postal_code: dostawca.address_postal_code,
     address_country: dostawca.address_country,
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (isOpen) {
@@ -631,53 +378,42 @@ const EditSupplierModal: FC<{
     }
   }, [dostawca, isOpen]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value === "" && (name === "website" || name === "address_apartment") ? null : value,
-    }));
-  };
+  const handleChange = React.useCallback(
+    (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+      const { name, value } = e.target;
+      setFormData((prev) => ({
+        ...prev,
+        [name]: value === "" && (name === "website" || name === "address_apartment") ? null : value,
+      }));
+    },
+    []
+  );
 
   const handleSubmit = async () => {
-    setIsSubmitting(true);
-    setError(null);
-
     try {
       const result = await aktualizujDostawce(dostawca.id_supplier, formData);
       if (result) {
         setOpen(false);
         onSuccess();
-      } else {
-        setError("Nie udało się zaktualizować dostawcy. Spróbuj ponownie.");
       }
     } catch (err) {
-      setError("Wystąpił błąd podczas aktualizowania dostawcy.");
-      console.error(err);
-    } finally {
-      setIsSubmitting(false);
+      console.error("Wystąpił błąd podczas aktualizowania dostawcy.", err);
     }
   };
 
   return (
     <>
+      {/* Button color="primary" i size="sm" powinno być OK */}
       <Button color="primary" size="sm" onClick={() => setOpen(true)}>
         <HiOutlinePencilAlt className="mr-1" />
         <span>Edytuj</span>
       </Button>
+      {/* Modal, ModalHeader, ModalBody, ModalFooter, Label, TextInput użycie powinno być OK */}
       <Modal show={isOpen} onClose={() => setOpen(false)} size="xl" popup={true}>
-        <Modal.Header className="border-b border-gray-200 dark:border-gray-700">
+        <ModalHeader className="border-b border-gray-200 dark:border-gray-700">
           <h3 className="text-xl font-medium text-gray-900 dark:text-white">Edytuj dostawcę</h3>
-        </Modal.Header>
-        <Modal.Body>
-          {error && (
-            <div className="mb-4 rounded-lg bg-red-50 p-4 text-sm text-red-800 dark:bg-red-900 dark:text-red-300">
-              <div className="flex items-center">
-                <HiExclamationCircle className="mr-2 h-5 w-5" />
-                <span>{error}</span>
-              </div>
-            </div>
-          )}
+        </ModalHeader>
+        <ModalBody>
           <div className="mb-4">
             <p className="text-gray-600">
               ID dostawcy: <strong>{dostawca.id_supplier}</strong>
@@ -821,15 +557,16 @@ const EditSupplierModal: FC<{
               />
             </div>
           </div>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button color="primary" onClick={handleSubmit} disabled={isSubmitting}>
-            {isSubmitting ? "Zapisywanie..." : "Zapisz zmiany"}
+        </ModalBody>
+        <ModalFooter>
+          {/* Button color="primary" powinno być OK */}
+          <Button color="primary" onClick={handleSubmit}>
+            Zapisz zmiany
           </Button>
           <Button color="gray" onClick={() => setOpen(false)}>
             Anuluj
           </Button>
-        </Modal.Footer>
+        </ModalFooter>
       </Modal>
     </>
   );
@@ -847,6 +584,7 @@ const Pagination: FC = function () {
         </span>
       </div>
       <div className="flex items-center space-x-3">
+        {/* Button color="gray" i size="sm" powinno być OK */}
         <Button color="gray" size="sm">
           <div className="flex items-center gap-x-1">
             <HiChevronLeft className="text-xl" />

@@ -636,7 +636,9 @@ class AdsPowerService {
     const endpoint = "/api/v1/user/list"; // ZMIENIONO na poprawny endpoint
     const fullUrl = `${this.apiClient.defaults.baseURL}${endpoint}`;
     try {
-      console.log(`Attempting to get AdsPower profile detail for ID: ${userId} at URL: ${fullUrl} using ?user_id=${userId}`);
+      console.log(
+        `Attempting to get AdsPower profile detail for ID: ${userId} at URL: ${fullUrl} using ?user_id=${userId}`
+      );
       // ZMIENIONO: Typ odpowiedzi z API to lista, nawet dla pojedynczego user_id
       const response = await this.apiClient.get<AdsPowerResponse<AdsPowerProfileListData>>(endpoint, {
         params: { user_id: userId }, // ZMIENIONO: Przekazanie user_id jako parametr query
@@ -695,7 +697,10 @@ class AdsPowerService {
           axiosError.request
         );
       } else {
-        console.error(`Error setting up AdsPower API request (getProfileDetail for ID: ${userId}):`, axiosError.message);
+        console.error(
+          `Error setting up AdsPower API request (getProfileDetail for ID: ${userId}):`,
+          axiosError.message
+        );
       }
       // Zwróć ogólny błąd, jeśli nie ma konkretnej odpowiedzi od API
       return {

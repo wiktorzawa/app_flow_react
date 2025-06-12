@@ -64,16 +64,11 @@
   @apply bg-white dark:bg-gray-700 shadow-lg rounded-lg border-0 text-left !important;
 }
 
-.svgMap-tooltip
-  .svgMap-tooltip-content-container
-  .svgMap-tooltip-flag-container {
+.svgMap-tooltip .svgMap-tooltip-content-container .svgMap-tooltip-flag-container {
   @apply inline-block mr-2 text-left border-0 p-0 !important;
 }
 
-.svgMap-tooltip
-  .svgMap-tooltip-content-container
-  .svgMap-tooltip-flag-container
-  .svgMap-tooltip-flag {
+.svgMap-tooltip .svgMap-tooltip-content-container .svgMap-tooltip-flag-container .svgMap-tooltip-flag {
   @apply inline-block border-0 h-4 p-0 !important;
 }
 

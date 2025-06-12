@@ -1,6 +1,9 @@
 import axiosInstance from "./axios"; // Zakładając, że masz skonfigurowaną instancję axios
 import axios from "axios"; // Poprawiony cudzysłów
 
+// Adres URL Twojego serwera backendowego
+const API_BASE_URL = "http://localhost:3001/api";
+
 // Interfejs dla konfiguracji proxy (zgodnie z user_proxy_config)
 export interface AdsPowerProxyConfig {
   proxy_soft?: string; // np. 'brightdata', 'oxylabsauto', 'ssh', 'noproxy'
@@ -68,6 +71,7 @@ export interface AdsPowerFingerprintConfig {
   gpu?: string; // "0", "1", "2"
   tls_switch?: string; // "'0'", "'1'"
   tls?: string; // np. "'0xC02C,0xC030'"
+  ip_country?: string;
   // random_ua jest bardziej dla tworzenia, pomijam w definicji profilu
 }
 
@@ -128,6 +132,16 @@ interface FetchProfilesParams {
   pageSize?: number;
 }
 
+export interface AdsPowerProfileListData {
+  list: AdsPowerProfile[];
+}
+
+export interface CheckApiStatusResponse {
+  success: boolean;
+  message: string;
+  data?: any;
+}
+
 /**
  * Pobiera listę profili AdsPower z backendu.
  * @param params Parametry paginacji (page, pageSize)
@@ -152,9 +166,8 @@ export const fetchAdsPowerProfiles = async (
     if (response.data && response.data.success && response.data.data) {
       return response.data.data;
     } else {
-      const errorMessage = 
-        response.data?.message || 
-        "Failed to fetch AdsPower profiles: Invalid API response from backend.";
+      const errorMessage =
+        response.data?.message || "Failed to fetch AdsPower profiles: Invalid API response from backend.";
       throw new Error(errorMessage);
     }
   } catch (error: unknown) {
@@ -192,8 +205,7 @@ export const createAdsPowerProfile = async (
       return response.data.data;
     } else {
       const errorMessage =
-        response.data?.message ||
-        "Failed to create AdsPower profile: Invalid API response from backend.";
+        response.data?.message || "Failed to create AdsPower profile: Invalid API response from backend.";
       throw new Error(errorMessage);
     }
   } catch (error: unknown) {
@@ -211,6 +223,19 @@ export const createAdsPowerProfile = async (
     }
     throw new Error(msg);
   }
+};
+
+/**
+ * Sprawdza status AdsPower API.
+ */
+export const checkApiStatus = async (): Promise<CheckApiStatusResponse> => {
+  const response = await fetch(`${API_BASE_URL}/adspower/status`);
+  if (!response.ok) {
+    // Próba odczytania komunikatu o błędzie z odpowiedzi, jeśli jest dostępny
+    const errorData = await response.json().catch(() => ({}));
+    throw new Error(errorData.message || `Błąd serwera: ${response.status} - Nie można połączyć się z API AdsPower.`);
+  }
+  return response.json();
 };
 
 // Możemy tu później dodać funkcję do tworzenia profili, np. createAdsPowerProfile
