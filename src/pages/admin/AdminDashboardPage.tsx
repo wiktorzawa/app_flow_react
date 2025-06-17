@@ -14,7 +14,7 @@ import {
   TableCell, // Nowy import
 } from "flowbite-react";
 import type { FC } from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
 import svgMap from "svgmap";
 import "svgmap/dist/svgMap.min.css";
@@ -88,11 +88,26 @@ const SalesThisWeek: FC = function () {
 };
 
 const SalesChart: FC = function () {
-  // const { mode } = useTheme(); // Usunięto: useTheme
-  // const isDarkTheme = mode === "dark"; // Usunięto: isDarkTheme
-  // Do określania trybu ciemnego, możemy polegać na klasie 'dark' na <html>,
-  // co jest domyślnym zachowaniem Tailwind CSS
-  const isDarkTheme = document.documentElement.classList.contains("dark"); // Zastąpiono tym
+  // Poprawione sprawdzanie dark mode
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
+
+  useEffect(() => {
+    const checkTheme = () => {
+      const darkMode = document.documentElement.classList.contains("dark");
+      setIsDarkTheme(darkMode);
+    };
+
+    checkTheme();
+    // Obserwuj zmiany theme
+    const observer = new MutationObserver(checkTheme);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class']
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   const borderColor = isDarkTheme ? "#374151" : "#F3F4F6";
   const labelColor = isDarkTheme ? "#93ACAF" : "#6B7280";
   const opacityFrom = isDarkTheme ? 0 : 0.45;
@@ -176,7 +191,7 @@ const SalesChart: FC = function () {
           fontWeight: 500,
         },
         formatter: function (value) {
-          return "</span>" + value;
+          return "$" + value.toLocaleString(); // ✅ Poprawiony formatter
         },
       },
     },
@@ -217,7 +232,11 @@ const SalesChart: FC = function () {
     },
   ];
 
-  return <Chart height={420} options={options} series={series} type="area" />;
+  return (
+    <div className="chart-container">
+      <Chart height={420} options={options} series={series} type="area" />
+    </div>
+  );
 };
 
 const Datepicker: FC = function () {
@@ -379,7 +398,11 @@ const NewProductsChart: FC = function () {
     },
   ];
 
-  return <Chart height={305} options={options} series={series} type="bar" />;
+  return (
+    <div className="chart-container">
+      <Chart height={305} options={options} series={series} type="bar" />
+    </div>
+  );
 };
 
 const VisitorsThisWeek: FC = function () {
@@ -427,10 +450,24 @@ const VisitorsThisWeek: FC = function () {
 };
 
 const VisitorsChart: FC = function () {
-  // const { mode } = useTheme(); // Usunięto: useTheme
-  // const isDarkTheme = mode === "dark"; // Usunięto: isDarkTheme
+  // Poprawione sprawdzanie dark mode
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
 
-  const isDarkTheme = document.documentElement.classList.contains("dark"); // Zastąpiono tym
+  useEffect(() => {
+    const checkTheme = () => {
+      setIsDarkTheme(document.documentElement.classList.contains("dark"));
+    };
+
+    checkTheme();
+    // Obserwuj zmiany theme
+    const observer = new MutationObserver(checkTheme);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class']
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   const fillGradientShade = isDarkTheme ? "dark" : "light";
   const fillGradientShadeIntensity = isDarkTheme ? 0.45 : 1;
@@ -478,7 +515,11 @@ const VisitorsChart: FC = function () {
     },
   ];
 
-  return <Chart height={305} options={options} series={series} type="area" />;
+  return (
+    <div className="chart-container">
+      <Chart height={305} options={options} series={series} type="area" />
+    </div>
+  );
 };
 
 const UserSignupsThisWeek: FC = function () {
