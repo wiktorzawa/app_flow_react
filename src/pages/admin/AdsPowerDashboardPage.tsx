@@ -235,7 +235,7 @@ const AdsPowerDashboardPage: React.FC = () => {
     <NavbarSidebarLayout isFooter={false}>
       <Fragment>
         <section className="bg-gray-50 dark:bg-gray-900 py-3 sm:py-5">
-          <div className="mx-auto max-w-screen-2xl">
+          <div className="mx-auto max-w-(--breakpoint-2xl)">
             <div className="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
               <div className="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4 border-b dark:border-gray-700">
                 <div className="w-full flex items-center space-x-3">
@@ -261,7 +261,7 @@ const AdsPowerDashboardPage: React.FC = () => {
                           <input
                             id="checkbox-all-adspower"
                             type="checkbox"
-                            className="w-4 h-4 text-primary-600 bg-gray-100 rounded border-gray-300 focus:ring-primary-500"
+                            className="w-4 h-4 text-primary-600 bg-gray-100 rounded-sm border-gray-300 focus:ring-primary-500"
                           />
                         </div>
                       </TableHeadCell>
@@ -285,7 +285,7 @@ const AdsPowerDashboardPage: React.FC = () => {
                             <div className="flex items-center">
                               <input
                                 type="checkbox"
-                                className="w-4 h-4 text-primary-600 bg-gray-100 rounded border-gray-300 focus:ring-primary-500"
+                                className="w-4 h-4 text-primary-600 bg-gray-100 rounded-sm border-gray-300 focus:ring-primary-500"
                                 onClick={(e) => e.stopPropagation()}
                               />
                             </div>
@@ -418,7 +418,7 @@ const AdsPowerDashboardPage: React.FC = () => {
         </section>
 
         <section className="bg-gray-50 dark:bg-gray-900 py-3 sm:py-5 mt-8">
-          <div className="mx-auto max-w-screen-2xl">
+          <div className="mx-auto max-w-(--breakpoint-2xl)">
             <div className="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
               <div className="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4 border-b dark:border-gray-700">
                 <div className="w-full flex items-center space-x-3">
@@ -445,7 +445,7 @@ const AdsPowerDashboardPage: React.FC = () => {
                           <input
                             id="checkbox-all-brightdata"
                             type="checkbox"
-                            className="w-4 h-4 text-primary-600 bg-gray-100 rounded border-gray-300 focus:ring-primary-500"
+                            className="w-4 h-4 text-primary-600 bg-gray-100 rounded-sm border-gray-300 focus:ring-primary-500"
                           />
                         </div>
                       </TableHeadCell>
@@ -469,7 +469,7 @@ const AdsPowerDashboardPage: React.FC = () => {
                             <div className="flex items-center">
                               <input
                                 type="checkbox"
-                                className="w-4 h-4 text-primary-600 bg-gray-100 rounded border-gray-300 focus:ring-primary-500"
+                                className="w-4 h-4 text-primary-600 bg-gray-100 rounded-sm border-gray-300 focus:ring-primary-500"
                                 onClick={(e) => e.stopPropagation()}
                               />
                             </div>
@@ -570,7 +570,7 @@ const AdsPowerDashboardPage: React.FC = () => {
                                     <p>
                                       {" "}
                                       Nazwa użytkownika (do proxy):
-                                      <span className="font-mono bg-gray-100 dark:bg-gray-600 px-1 rounded">
+                                      <span className="font-mono bg-gray-100 dark:bg-gray-600 px-1 rounded-sm">
                                         brd-customer-{zone.customer_id}-zone-{zone.zone}
                                       </span>
                                     </p>

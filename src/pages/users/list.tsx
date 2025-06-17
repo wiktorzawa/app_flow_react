@@ -82,28 +82,28 @@ const UserListPage: FC = function () {
               <div className="mt-3 flex space-x-1 pl-0 sm:mt-0 sm:pl-2">
                 <a
                   href="#"
-                  className="inline-flex cursor-pointer justify-center rounded p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                  className="inline-flex cursor-pointer justify-center rounded-sm p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                 >
                   <span className="sr-only">Configure</span>
                   <HiCog className="text-2xl" />
                 </a>
                 <a
                   href="#"
-                  className="inline-flex cursor-pointer justify-center rounded p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                  className="inline-flex cursor-pointer justify-center rounded-sm p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                 >
                   <span className="sr-only">Delete</span>
                   <HiTrash className="text-2xl" />
                 </a>
                 <a
                   href="#"
-                  className="inline-flex cursor-pointer justify-center rounded p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                  className="inline-flex cursor-pointer justify-center rounded-sm p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                 >
                   <span className="sr-only">Purge</span>
                   <HiExclamationCircle className="text-2xl" />
                 </a>
                 <a
                   href="#"
-                  className="inline-flex cursor-pointer justify-center rounded p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                  className="inline-flex cursor-pointer justify-center rounded-sm p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                 >
                   <span className="sr-only">Settings</span>
                   <HiDotsVertical className="text-2xl" />
@@ -125,7 +125,7 @@ const UserListPage: FC = function () {
       <div className="flex flex-col">
         <div className="overflow-x-auto">
           <div className="inline-block min-w-full align-middle">
-            <div className="overflow-hidden shadow">
+            <div className="overflow-hidden shadow-sm">
               <AllUsersTable key={refreshTrigger} onSuccess={handleSuccess} />
             </div>
           </div>
@@ -235,7 +235,7 @@ const AddUserModal: FC<{ onSuccess: () => void }> = function ({ onSuccess }) {
   if (showSuccess && addedUser) {
     return (
       <Modal onClose={handleCloseSuccessView} show={isOpen}>
-        <ModalHeader className="border-b border-gray-200 !p-6 bg-green-100 dark:bg-green-800 dark:border-gray-700">
+        <ModalHeader className="border-b border-gray-200 p-6! bg-green-100 dark:bg-green-800 dark:border-gray-700">
           <div className="flex items-center gap-2">
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-green-100 dark:bg-green-800">
               <svg
@@ -261,7 +261,7 @@ const AddUserModal: FC<{ onSuccess: () => void }> = function ({ onSuccess }) {
           </div>
 
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-            <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+            <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-xs dark:border-gray-700 dark:bg-gray-800">
               <h4 className="mb-3 text-lg font-medium text-gray-900 dark:text-white flex items-center">
                 <svg
                   className="mr-2 h-5 w-5 text-gray-500 dark:text-gray-400"
@@ -312,7 +312,7 @@ const AddUserModal: FC<{ onSuccess: () => void }> = function ({ onSuccess }) {
               </div>
             </div>
 
-            <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+            <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-xs dark:border-gray-700 dark:bg-gray-800">
               <h4 className="mb-3 text-lg font-medium text-gray-900 dark:text-white flex items-center">
                 <svg
                   className="mr-2 h-5 w-5 text-gray-500 dark:text-gray-400"
@@ -367,7 +367,7 @@ const AddUserModal: FC<{ onSuccess: () => void }> = function ({ onSuccess }) {
               <div className="mt-3 p-3 bg-yellow-50 text-yellow-800 rounded-lg text-sm dark:bg-yellow-900 dark:text-yellow-300">
                 <div className="flex">
                   <svg
-                    className="mr-2 h-5 w-5 flex-shrink-0"
+                    className="mr-2 h-5 w-5 shrink-0"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg"
@@ -414,7 +414,7 @@ const AddUserModal: FC<{ onSuccess: () => void }> = function ({ onSuccess }) {
         </div>
       </Button>
       <Modal onClose={() => setOpen(false)} show={isOpen}>
-        <ModalHeader className="border-b border-gray-200 !p-6 dark:border-gray-700">
+        <ModalHeader className="border-b border-gray-200 p-6! dark:border-gray-700">
           <strong>Dodaj nowego pracownika</strong>
         </ModalHeader>
         <ModalBody>
@@ -692,7 +692,7 @@ const EditUserModal: FC<{
         <HiOutlinePencilAlt className="text-lg" />
       </Button>
       <Modal onClose={() => setOpen(false)} show={isOpen}>
-        <ModalHeader className="border-b border-gray-200 !p-6 dark:border-gray-700">
+        <ModalHeader className="border-b border-gray-200 p-6! dark:border-gray-700">
           <strong>Edytuj pracownika</strong>
         </ModalHeader>
         <ModalBody>
@@ -824,14 +824,14 @@ export const Pagination: FC = function () {
       <div className="mb-4 flex items-center sm:mb-0">
         <a
           href="#"
-          className="inline-flex cursor-pointer justify-center rounded p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+          className="inline-flex cursor-pointer justify-center rounded-sm p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
         >
           <span className="sr-only">Previous page</span>
           <HiChevronLeft className="text-2xl" />
         </a>
         <a
           href="#"
-          className="mr-2 inline-flex cursor-pointer justify-center rounded p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+          className="mr-2 inline-flex cursor-pointer justify-center rounded-sm p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
         >
           <span className="sr-only">Next page</span>
           <HiChevronRight className="text-2xl" />

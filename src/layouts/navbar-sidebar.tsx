@@ -68,19 +68,19 @@ const MainContentFooter: FC = function () {
           </FooterLinkGroup>
           <FooterLinkGroup>
             <div className="flex gap-4 md:gap-0">
-              <FooterLink href="#" className="hover:[&>*]:text-black dark:hover:[&>*]:text-gray-300">
+              <FooterLink href="#" className="*:hover:text-black dark:*:hover:text-gray-300">
                 <MdFacebook className="text-lg" />
               </FooterLink>
-              <FooterLink href="#" className="hover:[&>*]:text-black dark:hover:[&>*]:text-gray-300">
+              <FooterLink href="#" className="*:hover:text-black dark:*:hover:text-gray-300">
                 <FaInstagram className="text-lg" />
               </FooterLink>
-              <FooterLink href="#" className="hover:[&>*]:text-black dark:hover:[&>*]:text-gray-300">
+              <FooterLink href="#" className="*:hover:text-black dark:*:hover:text-gray-300">
                 <FaTwitter className="text-lg" />
               </FooterLink>
-              <FooterLink href="#" className="hover:[&>*]:text-black dark:hover:[&>*]:text-gray-300">
+              <FooterLink href="#" className="*:hover:text-black dark:*:hover:text-gray-300">
                 <FaGithub className="text-lg" />
               </FooterLink>
-              <FooterLink href="#" className="hover:[&>*]:text-black dark:hover:[&>*]:text-gray-300">
+              <FooterLink href="#" className="*:hover:text-black dark:*:hover:text-gray-300">
                 <FaDribbble className="text-lg" />
               </FooterLink>
             </div>

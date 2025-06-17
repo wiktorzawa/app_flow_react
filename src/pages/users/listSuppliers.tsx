@@ -94,14 +94,14 @@ export const SupplierListPage: FC = function () {
               <div className="mt-3 flex space-x-1 pl-0 sm:mt-0 sm:pl-2">
                 <a
                   href="#"
-                  className="inline-flex cursor-pointer justify-center rounded p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                  className="inline-flex cursor-pointer justify-center rounded-sm p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                 >
                   <span className="sr-only">Konfiguracja</span>
                   <HiCog className="text-2xl" />
                 </a>
                 <a
                   href="#"
-                  className="inline-flex cursor-pointer justify-center rounded p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                  className="inline-flex cursor-pointer justify-center rounded-sm p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                 >
                   <span className="sr-only">Eksport</span>
                   <HiDocumentDownload className="text-2xl" />
@@ -117,7 +117,7 @@ export const SupplierListPage: FC = function () {
       <div className="flex flex-col">
         <div className="overflow-x-auto">
           <div className="inline-block min-w-full align-middle">
-            <div className="overflow-hidden shadow">
+            <div className="overflow-hidden shadow-sm">
               <AllSuppliersTable onSuccess={handleSuccess} refreshTrigger={refreshTrigger} />
             </div>
           </div>
@@ -175,7 +175,7 @@ export const AddSupplierModal: FC<AddSupplierModalProps> = function ({ refresh }
       </Button>
       {/* Modal użycie powinno być OK, jeśli ModalHeader, ModalBody, ModalFooter są poprawnie importowane i użyte */}
       <Modal onClose={handleCloseSuccessView} show={modalState}>
-        <ModalHeader className="border-b border-gray-200 !p-6 bg-green-100 dark:bg-green-800 dark:border-gray-700">
+        <ModalHeader className="border-b border-gray-200 p-6! bg-green-100 dark:bg-green-800 dark:border-gray-700">
           <div className="flex items-center gap-2">
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-green-100 dark:bg-green-800">
               <svg

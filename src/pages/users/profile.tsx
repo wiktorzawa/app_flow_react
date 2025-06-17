@@ -36,7 +36,7 @@ const UserProfilePage: FC = function () {
 
 const ProfileIntro: FC = function () {
   return (
-    <div className="mb-4 rounded-lg bg-white p-4 shadow dark:bg-gray-800 sm:p-6 xl:p-8">
+    <div className="mb-4 rounded-lg bg-white p-4 shadow-sm dark:bg-gray-800 sm:p-6 xl:p-8">
       <div className="sm:flex sm:space-x-4 xl:block xl:space-x-0">
         <img alt="" src="../../images/users/jese-leos-2x.png" className="mb-2 h-20 w-20 rounded-lg" />
         <div>
@@ -171,7 +171,7 @@ const ProfileIntro: FC = function () {
 
 const Skills: FC = function () {
   return (
-    <div className="mb-4 rounded-lg bg-white p-4 shadow dark:bg-gray-800 sm:p-6 xl:p-8">
+    <div className="mb-4 rounded-lg bg-white p-4 shadow-sm dark:bg-gray-800 sm:p-6 xl:p-8">
       <div className="flow-root">
         <h3 className="text-xl font-bold dark:text-white">Skills</h3>
         <ul className="mt-4 flex flex-wrap gap-2">
@@ -233,7 +233,7 @@ const Skills: FC = function () {
 
 const Hobbies: FC = function () {
   return (
-    <div className="mb-4 rounded-lg bg-white p-4 shadow dark:bg-gray-800 sm:p-6 xl:p-8">
+    <div className="mb-4 rounded-lg bg-white p-4 shadow-sm dark:bg-gray-800 sm:p-6 xl:p-8">
       <div className="flow-root">
         <h3 className="text-xl font-bold dark:text-white">Hobbies</h3>
         <ul className="mt-4 flex flex-wrap gap-2">
@@ -285,7 +285,7 @@ const Hobbies: FC = function () {
 
 const GeneralInformation: FC = function () {
   return (
-    <div className="mb-4 rounded-lg bg-white p-4 shadow dark:bg-gray-800 sm:p-6 xl:p-8">
+    <div className="mb-4 rounded-lg bg-white p-4 shadow-sm dark:bg-gray-800 sm:p-6 xl:p-8">
       <h3 className="mb-4 text-xl font-bold dark:text-white">General information</h3>
       <dl className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
         <div className="sm:col-span-2">
@@ -344,7 +344,7 @@ const GeneralInformation: FC = function () {
 
 const ProgressBars: FC = function () {
   return (
-    <div className="mb-4 rounded-lg bg-white p-4 shadow dark:bg-gray-800 sm:p-6 xl:p-8">
+    <div className="mb-4 rounded-lg bg-white p-4 shadow-sm dark:bg-gray-800 sm:p-6 xl:p-8">
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-16 lg:gap-8 2xl:gap-24">
         <div className="space-y-6">
           <div>

@@ -41,7 +41,7 @@ const Sidebar: FC = function () {
   }, []);
 
   return (
-    <div className={`lg:!block ${!isOpenOnMobile && "hidden"}`}>
+    <div className={`lg:block! ${!isOpenOnMobile && "hidden"}`}>
       <FlowbiteSidebar aria-label="Sidebar with multi-level dropdown" collapsed={isCollapsed}>
         <SidebarItems>
           <SidebarItemGroup>

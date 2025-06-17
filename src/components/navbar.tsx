@@ -42,7 +42,7 @@ const ExampleNavbar: FC = function () {
               {/* Przycisk dla mobilnych urządzeń */}
               <button
                 onClick={() => setIsOpenOnMobile(!isOpenOnMobile)}
-                className="mr-3 cursor-pointer rounded p-2 text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white lg:hidden"
+                className="mr-3 cursor-pointer rounded-sm p-2 text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white lg:hidden"
               >
                 <span className="sr-only">Toggle sidebar</span>
                 {isOpenOnMobile && isSmallScreen() ? <HiX className="h-6 w-6" /> : <HiMenuAlt1 className="h-6 w-6" />}
@@ -51,7 +51,7 @@ const ExampleNavbar: FC = function () {
               {/* Przycisk dla desktopa */}
               <button
                 onClick={toggle}
-                className="mr-3 hidden cursor-pointer rounded p-2 text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white lg:inline"
+                className="mr-3 hidden cursor-pointer rounded-sm p-2 text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white lg:inline"
               >
                 <span className="sr-only">Toggle sidebar width</span>
                 <HiMenuAlt1 className="h-6 w-6" />
@@ -80,7 +80,7 @@ const ExampleNavbar: FC = function () {
             <div className="flex items-center">
               <button
                 onClick={() => setIsOpenOnMobile(!isOpenOnMobile)}
-                className="cursor-pointer rounded p-2 text-gray-600 hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:ring-2 focus:ring-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:bg-gray-700 dark:focus:ring-gray-700 lg:hidden"
+                className="cursor-pointer rounded-sm p-2 text-gray-600 hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:ring-2 focus:ring-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:bg-gray-700 dark:focus:ring-gray-700 lg:hidden"
               >
                 <span className="sr-only">Search</span>
                 <HiSearch className="h-6 w-6" />
@@ -227,7 +227,7 @@ const UserDropdown: FC = function () {
       label={
         <span>
           <span className="sr-only">User menu</span>
-          <Avatar alt="" img="../images/users/neil-sims.png" rounded size="sm" />
+          <Avatar alt="" img="../images/users/neil-sims.png" rounded-sm size="sm" />
         </span>
       }
     >

@@ -34,7 +34,7 @@ const flowbiteTheme = createTheme({
   },
   dropdown: {
     floating: {
-      base: "z-10 w-fit rounded-xl divide-y divide-gray-100 shadow",
+      base: "z-10 w-fit rounded-xl divide-y divide-gray-100 shadow-sm",
       content: "rounded-xl text-sm text-gray-700 dark:text-gray-200",
       target: "w-fit dark:text-white",
     },
@@ -44,7 +44,7 @@ const flowbiteTheme = createTheme({
   },
   modal: {
     content: {
-      inner: "relative rounded-lg bg-white shadow dark:bg-gray-800",
+      inner: "relative rounded-lg bg-white shadow-sm dark:bg-gray-800",
     },
     header: {
       base: "flex items-start justify-between rounded-t px-5 pt-5",
@@ -57,7 +57,7 @@ const flowbiteTheme = createTheme({
   },
   sidebar: {
     root: {
-      base: "flex fixed top-0 left-0 z-20 flex-col flex-shrink-0 pt-16 h-full duration-75 border-r border-gray-200 lg:flex transition-width dark:border-gray-700",
+      base: "flex fixed top-0 left-0 z-20 flex-col shrink-0 pt-16 h-full duration-75 border-r border-gray-200 lg:flex transition-width dark:border-gray-700",
       collapsed: {
         on: "w-16",
         off: "w-64",
@@ -95,7 +95,7 @@ const flowbiteTheme = createTheme({
     row: {
       base: "group/row border-b dark:border-gray-700",
       hovered: "hover:bg-gray-50 dark:hover:bg-gray-600",
-      striped: "odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700",
+      striped: "odd:bg-white even:bg-gray-50 dark:odd:bg-gray-800 dark:even:bg-gray-700",
     },
   },
   textarea: {
@@ -108,7 +108,7 @@ const flowbiteTheme = createTheme({
           info: "border-blue-500 bg-blue-50 text-blue-900 placeholder-blue-700 focus:border-blue-500 focus:ring-blue-500 dark:border-blue-400 dark:bg-blue-100 dark:focus:border-blue-500 dark:focus:ring-blue-500",
         },
         withIcon: {
-          on: "!pl-12",
+          on: "pl-12!",
         },
       },
     },

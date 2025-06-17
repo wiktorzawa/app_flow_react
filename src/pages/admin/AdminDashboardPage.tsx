@@ -45,7 +45,7 @@ const AdminDashboardPage: FC = function () {
 
 const SalesThisWeek: FC = function () {
   return (
-    <div className="rounded-lg bg-white p-4 shadow dark:bg-gray-800 sm:p-6 xl:p-8">
+    <div className="rounded-lg bg-white p-4 shadow-sm dark:bg-gray-800 sm:p-6 xl:p-8">
       <div className="mb-4 flex items-center justify-between">
         <div className="shrink-0">
           <span className="text-2xl font-bold leading-none text-gray-900 dark:text-white sm:text-3xl">45,385</span>
@@ -244,7 +244,7 @@ const Datepicker: FC = function () {
 
 const NewProductsThisWeek: FC = function () {
   return (
-    <div className="rounded-lg bg-white p-4 shadow dark:bg-gray-800 sm:p-6 xl:p-8">
+    <div className="rounded-lg bg-white p-4 shadow-sm dark:bg-gray-800 sm:p-6 xl:p-8">
       <div className="flex items-center">
         <div className="shrink-0">
           <span className="text-2xl font-bold leading-none text-gray-900 dark:text-white sm:text-3xl">2,340</span>
@@ -384,7 +384,7 @@ const NewProductsChart: FC = function () {
 
 const VisitorsThisWeek: FC = function () {
   return (
-    <div className="rounded-lg bg-white p-4 shadow dark:bg-gray-800 sm:p-6 xl:p-8">
+    <div className="rounded-lg bg-white p-4 shadow-sm dark:bg-gray-800 sm:p-6 xl:p-8">
       <div className="flex items-center">
         <div className="shrink-0">
           <span className="text-2xl font-bold leading-none text-gray-900 dark:text-white sm:text-3xl">5,355</span>
@@ -490,7 +490,7 @@ const UserSignupsThisWeek: FC = function () {
   ];
 
   return (
-    <div className="rounded-lg bg-white p-4 shadow dark:bg-gray-800 sm:p-6 xl:p-8">
+    <div className="rounded-lg bg-white p-4 shadow-sm dark:bg-gray-800 sm:p-6 xl:p-8">
       <div className="flex items-center">
         <div className="shrink-0">
           <span className="text-2xl font-bold leading-none text-gray-900 dark:text-white sm:text-3xl">
@@ -521,7 +521,7 @@ const SessionsByCountry: FC = function () {
   ];
 
   return (
-    <div className="rounded-lg bg-white p-4 shadow dark:bg-gray-800 sm:p-6 xl:p-8">
+    <div className="rounded-lg bg-white p-4 shadow-sm dark:bg-gray-800 sm:p-6 xl:p-8">
       <div className="flex items-center">
         <div className="shrink-0">
           <span className="text-2xl font-bold leading-none text-gray-900 dark:text-white sm:text-3xl">

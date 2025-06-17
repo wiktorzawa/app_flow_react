@@ -9,7 +9,7 @@ const ForgotPasswordPage: FC = function () {
         <img alt="Flowbite logo" src="https://flowbite.com/docs/images/logo.svg" className="mr-3 h-10" />
         <span className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">Flowbite</span>
       </a>
-      <Card className="w-full lg:max-w-[640px] lg:[&>*]:w-full lg:[&>*]:p-16">
+      <Card className="w-full lg:max-w-[640px] lg:*:w-full lg:*:p-16">
         <h1 className="text-2xl font-bold dark:text-white md:text-3xl">Forgot your password?</h1>
         <p className="mb-3 text-gray-500 dark:text-gray-300">
           Don't fret! Just type in your email and we will send you a code to reset your pasword!

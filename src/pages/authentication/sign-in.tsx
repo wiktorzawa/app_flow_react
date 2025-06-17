@@ -57,7 +57,7 @@ const SignInPage: FC = function () {
         horizontal
         imgSrc="/images/authentication/login.jpg"
         imgAlt=""
-        className="w-full md:max-w-[1024px] md:[&>*]:w-full md:[&>*]:p-16 [&>img]:hidden md:[&>img]:w-96 md:[&>img]:p-0 lg:[&>img]:block"
+        className="w-full md:max-w-[1024px] md:*:w-full md:*:p-16 [&>img]:hidden md:[&>img]:w-96 md:[&>img]:p-0 lg:[&>img]:block"
       >
         <h1 className="mb-3 text-2xl font-bold dark:text-white md:text-3xl">Zaloguj się do platformy</h1>
         {error && (

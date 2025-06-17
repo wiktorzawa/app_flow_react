@@ -70,7 +70,7 @@ const KanbanPage: FC = function () {
                     {board.tasks.map((task) => (
                       <div
                         key={task.id}
-                        className="mb-4 w-[28rem] cursor-grab rounded-lg bg-white p-4 shadow-md dark:bg-gray-800"
+                        className="mb-4 w-md cursor-grab rounded-lg bg-white p-4 shadow-md dark:bg-gray-800"
                       >
                         <div className="flex items-center justify-between pb-4">
                           <div className="text-base font-semibold text-gray-900 dark:text-white">{task.name}</div>
@@ -94,7 +94,7 @@ const KanbanPage: FC = function () {
                                       className="h-7 w-7 rounded-full border-2 border-white dark:border-gray-800"
                                     />
                                   </a>
-                                  <div className="invisible absolute z-50 inline-block rounded-lg bg-gray-900 py-2 px-3 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700">
+                                  <div className="invisible absolute z-50 inline-block rounded-lg bg-gray-900 py-2 px-3 text-sm font-medium text-white opacity-0 shadow-xs transition-opacity duration-300 dark:bg-gray-700">
                                     {member.name}
                                   </div>
                                 </Fragment>
@@ -144,7 +144,7 @@ const EditCardModal: FC = function () {
         <HiPencilAlt className="text-lg" />
       </button>
       <Modal onClose={() => setOpen(false)} show={isOpen}>
-        <ModalHeader className="border-b border-gray-200 !p-6 dark:border-gray-700">
+        <ModalHeader className="border-b border-gray-200 p-6! dark:border-gray-700">
           <strong>Edit task</strong>
         </ModalHeader>
         <ModalBody>
@@ -171,7 +171,7 @@ const EditCardModal: FC = function () {
                 <div
                   id="bonnie-tooltip"
                   role="tooltip"
-                  className="invisible absolute z-10 inline-block rounded-lg bg-gray-900 py-2 px-3 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300"
+                  className="invisible absolute z-10 inline-block rounded-lg bg-gray-900 py-2 px-3 text-sm font-medium text-white opacity-0 shadow-xs transition-opacity duration-300"
                 >
                   Bonnie Green
                 </div>
@@ -185,7 +185,7 @@ const EditCardModal: FC = function () {
                 <div
                   id="roberta-tooltip"
                   role="tooltip"
-                  className="invisible absolute z-10 inline-block rounded-lg bg-gray-900 py-2 px-3 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300"
+                  className="invisible absolute z-10 inline-block rounded-lg bg-gray-900 py-2 px-3 text-sm font-medium text-white opacity-0 shadow-xs transition-opacity duration-300"
                 >
                   Roberta Casas
                 </div>
@@ -199,18 +199,18 @@ const EditCardModal: FC = function () {
                 <div
                   id="michael-tooltip"
                   role="tooltip"
-                  className="invisible absolute z-10 inline-block rounded-lg bg-gray-900 py-2 px-3 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300"
+                  className="invisible absolute z-10 inline-block rounded-lg bg-gray-900 py-2 px-3 text-sm font-medium text-white opacity-0 shadow-xs transition-opacity duration-300"
                 >
                   Michael Gough
                 </div>
               </div>
-              <Button color="gray" className="ml-5 font-bold dark:bg-gray-600 [&>*]:py-1">
+              <Button color="gray" className="ml-5 font-bold dark:bg-gray-600 *:py-1">
                 <div className="flex items-center gap-x-2 text-xs">
                   <HiPlus />
                   Join
                 </div>
               </Button>
-              <Button color="gray" className="ml-3 font-bold dark:bg-gray-600 [&>*]:py-1">
+              <Button color="gray" className="ml-3 font-bold dark:bg-gray-600 *:py-1">
                 <div className="flex items-center gap-x-2 text-xs">
                   <HiPaperClip />
                   Attachment
@@ -277,7 +277,7 @@ const EditCardModal: FC = function () {
               <div className="flex space-x-1 pl-0 sm:pl-2">
                 <a
                   href="#"
-                  className="inline-flex cursor-pointer justify-center rounded p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
+                  className="inline-flex cursor-pointer justify-center rounded-sm p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
                 >
                   <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -289,7 +289,7 @@ const EditCardModal: FC = function () {
                 </a>
                 <a
                   href="#"
-                  className="inline-flex cursor-pointer justify-center rounded p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
+                  className="inline-flex cursor-pointer justify-center rounded-sm p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
                 >
                   <svg
                     className="h-6 w-6"
@@ -320,7 +320,7 @@ const EditCardModal: FC = function () {
               </div>
               <a
                 href="#"
-                className="rounded-lg p-1 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
+                className="rounded-lg p-1 text-sm text-gray-500 hover:bg-gray-100 focus:outline-hidden focus:ring-4 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
               >
                 <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                   <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"></path>
@@ -394,7 +394,7 @@ const AddAnotherCardModal: FC = function () {
         Add another card
       </button>
       <Modal onClose={() => setOpen(false)} show={isOpen}>
-        <ModalHeader className="border-b border-gray-200 !p-6 dark:border-gray-700">
+        <ModalHeader className="border-b border-gray-200 p-6! dark:border-gray-700">
           <strong>Add new task</strong>
         </ModalHeader>
         <ModalBody>

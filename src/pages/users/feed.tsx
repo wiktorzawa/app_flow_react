@@ -156,7 +156,7 @@ const UserFeed: FC = function () {
             </div>
             <a
               href="#"
-              className="inline-flex cursor-pointer justify-center rounded p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              className="inline-flex cursor-pointer justify-center rounded-sm p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
             >
               <HiDotsVertical className="text-2xl" />
             </a>
@@ -219,7 +219,7 @@ const UserFeed: FC = function () {
             </div>
             <a
               href="#"
-              className="inline-flex cursor-pointer justify-center rounded p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              className="inline-flex cursor-pointer justify-center rounded-sm p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
             >
               <HiDotsVertical className="text-2xl" />
             </a>
@@ -270,7 +270,7 @@ const UserFeed: FC = function () {
             </div>
             <a
               href="#"
-              className="inline-flex cursor-pointer justify-center rounded p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              className="inline-flex cursor-pointer justify-center rounded-sm p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
             >
               <HiDotsVertical className="text-2xl" />
             </a>
@@ -333,7 +333,7 @@ const UserFeed: FC = function () {
             </div>
             <a
               href="#"
-              className="inline-flex cursor-pointer justify-center rounded p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              className="inline-flex cursor-pointer justify-center rounded-sm p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
             >
               <HiDotsVertical className="text-2xl" />
             </a>
@@ -384,7 +384,7 @@ const UserFeed: FC = function () {
             </div>
             <a
               href="#"
-              className="inline-flex cursor-pointer justify-center rounded p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              className="inline-flex cursor-pointer justify-center rounded-sm p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
             >
               <HiDotsVertical className="text-2xl" />
             </a>
@@ -447,7 +447,7 @@ const UserFeed: FC = function () {
             </div>
             <a
               href="#"
-              className="inline-flex cursor-pointer justify-center rounded p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              className="inline-flex cursor-pointer justify-center rounded-sm p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
             >
               <HiDotsVertical className="text-2xl" />
             </a>
@@ -498,7 +498,7 @@ const UserFeed: FC = function () {
             </div>
             <a
               href="#"
-              className="inline-flex cursor-pointer justify-center rounded p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              className="inline-flex cursor-pointer justify-center rounded-sm p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
             >
               <HiDotsVertical className="text-2xl" />
             </a>
@@ -561,7 +561,7 @@ const UserFeed: FC = function () {
             </div>
             <a
               href="#"
-              className="inline-flex cursor-pointer justify-center rounded p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              className="inline-flex cursor-pointer justify-center rounded-sm p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
             >
               <HiDotsVertical className="text-2xl" />
             </a>
@@ -612,7 +612,7 @@ const UserFeed: FC = function () {
             </div>
             <a
               href="#"
-              className="inline-flex cursor-pointer justify-center rounded p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              className="inline-flex cursor-pointer justify-center rounded-sm p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
             >
               <HiDotsVertical className="text-2xl" />
             </a>
@@ -675,7 +675,7 @@ const UserFeed: FC = function () {
             </div>
             <a
               href="#"
-              className="inline-flex cursor-pointer justify-center rounded p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              className="inline-flex cursor-pointer justify-center rounded-sm p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
             >
               <HiDotsVertical className="text-2xl" />
             </a>
@@ -726,7 +726,7 @@ const UserFeed: FC = function () {
             </div>
             <a
               href="#"
-              className="inline-flex cursor-pointer justify-center rounded p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              className="inline-flex cursor-pointer justify-center rounded-sm p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
             >
               <HiDotsVertical className="text-2xl" />
             </a>
@@ -789,7 +789,7 @@ const UserFeed: FC = function () {
             </div>
             <a
               href="#"
-              className="inline-flex cursor-pointer justify-center rounded p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              className="inline-flex cursor-pointer justify-center rounded-sm p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
             >
               <HiDotsVertical className="text-2xl" />
             </a>
@@ -840,7 +840,7 @@ const UserFeed: FC = function () {
             </div>
             <a
               href="#"
-              className="inline-flex cursor-pointer justify-center rounded p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              className="inline-flex cursor-pointer justify-center rounded-sm p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
             >
               <HiDotsVertical className="text-2xl" />
             </a>
@@ -903,7 +903,7 @@ const UserFeed: FC = function () {
             </div>
             <a
               href="#"
-              className="inline-flex cursor-pointer justify-center rounded p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              className="inline-flex cursor-pointer justify-center rounded-sm p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
             >
               <HiDotsVertical className="text-2xl" />
             </a>
@@ -954,7 +954,7 @@ const UserFeed: FC = function () {
             </div>
             <a
               href="#"
-              className="inline-flex cursor-pointer justify-center rounded p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              className="inline-flex cursor-pointer justify-center rounded-sm p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
             >
               <HiDotsVertical className="text-2xl" />
             </a>
@@ -1017,7 +1017,7 @@ const UserFeed: FC = function () {
             </div>
             <a
               href="#"
-              className="inline-flex cursor-pointer justify-center rounded p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              className="inline-flex cursor-pointer justify-center rounded-sm p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
             >
               <HiDotsVertical className="text-2xl" />
             </a>
@@ -1099,7 +1099,7 @@ const UserFeed: FC = function () {
               </div>
             </li>
             <li className="flex items-center space-x-4 pt-4">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white shadow">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white shadow-sm">
                 <svg className="h-6 w-6" viewBox="0 0 21 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M20.989 11.2057C20.989 10.3044 20.9175 9.64668 20.7629 8.9646H10.7092V13.0328H16.6105C16.4916 14.0437 15.8491 15.5663 14.4213 16.5894L14.4013 16.7256L17.5801 19.2466L17.8003 19.2691C19.8229 17.3568 20.989 14.5431 20.989 11.2057Z"

@@ -13,7 +13,7 @@ const SignUpPage: FC = function () {
         horizontal
         imgSrc="/images/authentication/create-account.jpg"
         imgAlt=""
-        className="w-full md:max-w-[1024px] md:[&>*]:w-full md:[&>*]:p-16 [&>img]:hidden md:[&>img]:w-96 md:[&>img]:p-0 lg:[&>img]:block"
+        className="w-full md:max-w-[1024px] md:*:w-full md:*:p-16 [&>img]:hidden md:[&>img]:w-96 md:[&>img]:p-0 lg:[&>img]:block"
       >
         <h1 className="mb-3 text-2xl font-bold dark:text-white md:text-3xl">Create a Free Account</h1>
         <form>

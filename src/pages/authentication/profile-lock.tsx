@@ -10,7 +10,7 @@ const ProfileLockPage: FC = function () {
         <img alt="Flowbite logo" src="https://flowbite.com/docs/images/logo.svg" className="mr-3 h-10" />
         <span className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">Flowbite</span>
       </a>
-      <Card className="w-full md:max-w-[640px] md:[&>*]:w-full md:[&>*]:p-16">
+      <Card className="w-full md:max-w-[640px] md:*:w-full md:*:p-16">
         <div className="flex items-center gap-x-4">
           <img alt="" src="/images/users/bonnie-green.png" className="h-9 rounded-full" />
           <span className="self-center whitespace-nowrap text-3xl font-semibold dark:text-white">Bonnie Green</span>
