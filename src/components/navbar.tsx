@@ -227,7 +227,7 @@ const UserDropdown: FC = function () {
       label={
         <span>
           <span className="sr-only">User menu</span>
-          <Avatar alt="" img="../images/users/neil-sims.png" rounded-sm size="sm" />
+          <Avatar alt="" img="../images/users/neil-sims.png" rounded size="sm" />
         </span>
       }
     >
