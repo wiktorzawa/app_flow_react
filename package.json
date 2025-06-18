@@ -14,11 +14,18 @@
   "scripts": {
     "build": "tsc && vite build",
     "dev": "vite --host",
-    "format": "prettier --check --ignore-path .gitignore --write .",
-    "lint": "eslint --ignore-path .gitignore .",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,css,md}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,css,md}\"",
+    "lint": "eslint . --ext .ts,.tsx",
+    "lint:fix": "eslint . --ext .ts,.tsx --fix",
     "preview": "vite preview --host",
-    "typecheck": "tsc",
-    "postinstall": "flowbite-react patch"
+    "start": "node dist/server.js",
+    "clean": "rm -rf node_modules",
+    "test": "vitest",
+    "typecheck": "tsc --noEmit",
+    "turbo:build": "turbo run build",
+    "turbo:dev": "turbo run dev",
+    "turbo:test": "turbo run test"
   },
   "engines": {
     "node": ">= 16",
@@ -31,6 +38,7 @@
     "axios": "^1.9.0",
     "bcrypt": "^6.0.0",
     "classnames": "^2.3.2",
+    "clsx": "^2.1.1",
     "express-session": "^1.18.1",
     "flowbite": "^3.1.2",
     "flowbite-react": "^0.11.8",
@@ -38,9 +46,11 @@
     "react-icons": "^5.5.0",
     "react-sortablejs": "^6.1.4",
     "sortablejs": "^1.15.0",
-    "svgmap": "^2.10.1"
+    "svgmap": "^2.10.1",
+    "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {
+    "@ianvs/prettier-plugin-sort-imports": "^4.4.2",
     "@tailwindcss/forms": "^0.5.10",
     "@tailwindcss/postcss": "^4.1.10",
     "@tailwindcss/typography": "^0.5.16",
@@ -51,24 +61,33 @@
     "@types/sortablejs": "^1.15.1",
     "@typescript-eslint/eslint-plugin": "^6.2.0",
     "@typescript-eslint/parser": "^6.2.0",
-    "@vitejs/plugin-react": "^4.0.3",
+    "@vitejs/plugin-react": "^4.5.2",
+    "autoprefixer": "^10.4.21",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.46.0",
-    "eslint-config-prettier": "^8.9.0",
+    "eslint-config-next": "^15.3.3",
+    "eslint-config-prettier": "8.10.0",
     "eslint-plugin-jsx-a11y": "^6.7.1",
-    "eslint-plugin-prettier": "^5.4.1",
+    "eslint-plugin-prettier": "5.5.0",
     "eslint-plugin-react": "^7.33.1",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-tailwindcss": "^3.13.0",
-    "postcss": "^8.5.4",
-    "prettier": "^3.0.0",
+    "eslint-plugin-react-refresh": "^0.4.20",
+    "eslint-plugin-tailwindcss": "^3.18.0",
+    "eslint-plugin-vitest": "^0.5.4",
+    "next": "^15.3.3",
+    "postcss": "^8.5.6",
+    "prettier": "3.5.3",
+    "prettier-plugin-packagejson": "^2.5.15",
+    "prettier-plugin-tailwindcss": "^0.6.12",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router": "^6.14.2",
     "react-router-dom": "^6.14.2",
     "tailwindcss": "^4.1.10",
-    "typescript": "^5.1.6",
+    "turbo": "^2.5.4",
+    "typescript": "^5.3.3",
     "vite": "^6.3.5",
+    "vite-plugin-tailwind": "^0.0.4",
     "vitest": "^3.1.3"
   },
   "private": true,
@@ -123,5 +142,6 @@
         "version": "detect"
       }
     }
-  }
+  },
+  "packageManager": "npm@10.2.4"
 }

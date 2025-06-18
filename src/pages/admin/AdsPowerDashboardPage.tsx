@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useState, useEffect, Fragment, useRef } from "react";
-import { AdsPowerProfile, fetchAdsPowerProfiles, checkApiStatus } from "../../api/adsPowerApi";
-import { BrightDataProxy, fetchBrightDataProxies } from "../../api/brightDataApi";
+import React, { useState, useEffect, Fragment, useRef } from 'react';
+import { AdsPowerProfile, fetchAdsPowerProfiles, checkApiStatus } from '../../api/adsPowerApi';
+import { BrightDataProxy, fetchBrightDataProxies } from '../../api/brightDataApi';
 import {
   Alert,
   Spinner,
@@ -13,8 +13,8 @@ import {
   TableBody,
   TableRow,
   TableCell,
-} from "flowbite-react";
-import NavbarSidebarLayout from "../../layouts/navbar-sidebar";
+} from 'flowbite-react';
+import NavbarSidebarLayout from '../../layouts/navbar-sidebar';
 import {
   HiOutlinePlus,
   HiChevronDown,
@@ -24,16 +24,16 @@ import {
   HiTrash,
   HiInformationCircle,
   HiServer,
-} from "react-icons/hi";
+} from 'react-icons/hi';
 
-const API_BASE_URL = "http://localhost:3001/api";
+const API_BASE_URL = 'http://localhost:3001/api';
 
 const AdsPowerDashboardPage: React.FC = () => {
   const [profiles, setProfiles] = useState<AdsPowerProfile[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-  const [apiStatus, setApiStatus] = useState<"checking" | "ok" | "error">("checking");
+  const [apiStatus, setApiStatus] = useState<'checking' | 'ok' | 'error'>('checking');
   const [apiErrorMessage, setApiErrorMessage] = useState<string | null>(null);
   const apiCheckRef = useRef(false);
 
@@ -46,7 +46,7 @@ const AdsPowerDashboardPage: React.FC = () => {
   const [errorBrightData, setErrorBrightData] = useState<string | null>(null);
   const [expandedBrightDataRows, setExpandedBrightDataRows] = useState<Set<string>>(new Set());
 
-  const isDarkTheme = document.documentElement.classList.contains("dark");
+  const isDarkTheme = document.documentElement.classList.contains('dark');
 
   useEffect(() => {
     if (apiCheckRef.current) {
@@ -56,18 +56,20 @@ const AdsPowerDashboardPage: React.FC = () => {
 
     const verifyApiStatus = async () => {
       try {
-        setApiStatus("checking");
+        setApiStatus('checking');
         const response = await checkApiStatus();
         if (response.success) {
-          setApiStatus("ok");
+          setApiStatus('ok');
         } else {
-          setApiStatus("error");
-          setApiErrorMessage(response.message || "API AdsPower zwróciło błąd.");
+          setApiStatus('error');
+          setApiErrorMessage(response.message || 'API AdsPower zwróciło błąd.');
         }
-      } catch (err: any) {
-        setApiStatus("error");
+      } catch (err: unknown) {
+        setApiStatus('error');
         setApiErrorMessage(
-          err.message || "Nie można połączyć się z serwerem lub aplikacją AdsPower. Upewnij się, że jest uruchomiona."
+          err instanceof Error
+            ? err.message
+            : 'Nie można połączyć się z serwerem lub aplikacją AdsPower. Upewnij się, że jest uruchomiona.'
         );
       }
     };
@@ -75,7 +77,7 @@ const AdsPowerDashboardPage: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if (apiStatus !== "ok") return;
+    if (apiStatus !== 'ok') return;
 
     const loadData = async () => {
       setIsLoading(true);
@@ -86,8 +88,10 @@ const AdsPowerDashboardPage: React.FC = () => {
       try {
         const profilesResponse = await fetchAdsPowerProfiles();
         setProfiles(profilesResponse.list || []);
-      } catch (err: any) {
-        setError(err.message || "Wystąpił błąd podczas ładowania profili AdsPower.");
+      } catch (err: unknown) {
+        setError(
+          err instanceof Error ? err.message : 'Wystąpił błąd podczas ładowania profili AdsPower.'
+        );
         setProfiles([]);
       }
 
@@ -96,10 +100,12 @@ const AdsPowerDashboardPage: React.FC = () => {
         if (brightDataResponse.success) {
           setBrightDataZones(brightDataResponse.data || []);
         } else {
-          throw new Error(brightDataResponse.message || "Nie udało się pobrać stref Bright Data.");
+          throw new Error(brightDataResponse.message || 'Nie udało się pobrać stref Bright Data.');
         }
-      } catch (err: any) {
-        setErrorBrightData(err.message || "Wystąpił błąd podczas ładowania stref Bright Data.");
+      } catch (err: unknown) {
+        setErrorBrightData(
+          err instanceof Error ? err.message : 'Wystąpił błąd podczas ładowania stref Bright Data.'
+        );
         setBrightDataZones([]);
       }
 
@@ -111,7 +117,7 @@ const AdsPowerDashboardPage: React.FC = () => {
   }, [apiStatus]);
 
   const handleAdsPowerRowExpand = (id: string) => {
-    setExpandedAdsPowerRows((prev) => {
+    setExpandedAdsPowerRows(prev => {
       const newSet = new Set(prev);
       if (newSet.has(id)) {
         newSet.delete(id);
@@ -123,7 +129,7 @@ const AdsPowerDashboardPage: React.FC = () => {
   };
 
   const handleBrightDataRowExpand = (zoneName: string) => {
-    setExpandedBrightDataRows((prev) => {
+    setExpandedBrightDataRows(prev => {
       const newSet = new Set(prev);
       if (newSet.has(zoneName)) {
         newSet.delete(zoneName);
@@ -135,34 +141,34 @@ const AdsPowerDashboardPage: React.FC = () => {
   };
 
   const onDeleteProfile = () => {
-    console.log("Delete profile action triggered");
+    console.log('Delete profile action triggered');
   };
 
   const onEditProfile = () => {
-    console.log("Edit profile action triggered");
+    console.log('Edit profile action triggered');
   };
 
   const onSyncProfile = () => {
-    console.log("Sync profile action triggered");
+    console.log('Sync profile action triggered');
   };
 
   const onAddNewProfile = () => {
-    console.log("Add new profile action triggered");
+    console.log('Add new profile action triggered');
   };
 
   const onEditBrightDataZone = (zoneName: string) => {
-    console.log("Edit Bright Data zone:", zoneName);
+    console.log('Edit Bright Data zone:', zoneName);
   };
 
   const onDeleteBrightDataZone = (zoneName: string) => {
-    console.log("Delete Bright Data zone:", zoneName);
+    console.log('Delete Bright Data zone:', zoneName);
   };
 
   const onAddNewBrightDataZone = () => {
-    console.log("Add new Bright Data zone action triggered");
+    console.log('Add new Bright Data zone action triggered');
   };
 
-  if (apiStatus === "checking") {
+  if (apiStatus === 'checking') {
     return (
       <NavbarSidebarLayout isFooter={false}>
         <div className="flex justify-center items-center h-64">
@@ -173,7 +179,7 @@ const AdsPowerDashboardPage: React.FC = () => {
     );
   }
 
-  if (apiStatus === "error") {
+  if (apiStatus === 'error') {
     return (
       <NavbarSidebarLayout isFooter={false}>
         <div className="p-4">
@@ -181,7 +187,7 @@ const AdsPowerDashboardPage: React.FC = () => {
             <h3 className="text-lg font-medium">Błąd połączenia z AdsPower API</h3>
             <div className="mt-2 mb-4 text-sm">
               {apiErrorMessage ||
-                "Nie udało się nawiązać połączenia. Sprawdź, czy lokalna aplikacja AdsPower jest uruchomiona i czy serwer backendowy działa poprawnie."}
+                'Nie udało się nawiązać połączenia. Sprawdź, czy lokalna aplikacja AdsPower jest uruchomiona i czy serwer backendowy działa poprawnie.'}
             </div>
             <Button color="failure" onClick={() => window.location.reload()}>
               Spróbuj ponownie
@@ -253,7 +259,10 @@ const AdsPowerDashboardPage: React.FC = () => {
               ) : error ? (
                 renderAdsPowerError()
               ) : (
-                <Table hoverable className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                <Table
+                  hoverable
+                  className="w-full text-sm text-left text-gray-500 dark:text-gray-400"
+                >
                   <TableHead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <TableRow>
                       <TableHeadCell className="p-4">
@@ -286,7 +295,7 @@ const AdsPowerDashboardPage: React.FC = () => {
                               <input
                                 type="checkbox"
                                 className="w-4 h-4 text-primary-600 bg-gray-100 rounded-sm border-gray-300 focus:ring-primary-500"
-                                onClick={(e) => e.stopPropagation()}
+                                onClick={e => e.stopPropagation()}
                               />
                             </div>
                           </TableCell>
@@ -305,16 +314,16 @@ const AdsPowerDashboardPage: React.FC = () => {
                           </TableCell>
                           <TableCell>{profile.user_id}</TableCell>
                           <TableCell>{profile.group_name}</TableCell>
-                          <TableCell>{profile.ip_country || profile.ip || "N/A"}</TableCell>
+                          <TableCell>{profile.ip_country || profile.ip || 'N/A'}</TableCell>
                           <TableCell>
-                            <Badge color={profile.status === "active" ? "success" : "warning"}>
-                              {profile.status || "Nieaktywny"}
+                            <Badge color={profile.status === 'active' ? 'success' : 'warning'}>
+                              {profile.status || 'Nieaktywny'}
                             </Badge>
                           </TableCell>
                           <TableCell>
                             {profile.last_open_time
                               ? new Date(profile.last_open_time * 1000).toLocaleString()
-                              : "Nigdy"}
+                              : 'Nigdy'}
                           </TableCell>
                           <TableCell>
                             <div className="flex items-center space-x-2">
@@ -372,15 +381,23 @@ const AdsPowerDashboardPage: React.FC = () => {
                                     </h6>
                                     <div className="text-sm text-gray-500 dark:text-gray-400">
                                       <p>
-                                        System: {profile.fingerprint_config?.browser_kernel_config?.type || "chrome"}
+                                        System:{' '}
+                                        {profile.fingerprint_config?.browser_kernel_config?.type ||
+                                          'chrome'}
                                       </p>
                                       <p>
-                                        Wersja: {profile.fingerprint_config?.browser_kernel_config?.version || "N/A"}
+                                        Wersja:{' '}
+                                        {profile.fingerprint_config?.browser_kernel_config
+                                          ?.version || 'N/A'}
                                       </p>
                                       <p>
-                                        Rozdzielczość: {profile.fingerprint_config?.screen_resolution || "1920x1080"}
+                                        Rozdzielczość:{' '}
+                                        {profile.fingerprint_config?.screen_resolution ||
+                                          '1920x1080'}
                                       </p>
-                                      <p>WebRTC: {profile.fingerprint_config?.webrtc || "disabled"}</p>
+                                      <p>
+                                        WebRTC: {profile.fingerprint_config?.webrtc || 'disabled'}
+                                      </p>
                                     </div>
                                   </div>
                                   <div className="p-3 rounded-lg">
@@ -388,9 +405,9 @@ const AdsPowerDashboardPage: React.FC = () => {
                                       Konfiguracja proxy
                                     </h6>
                                     <div className="text-sm text-gray-500 dark:text-gray-400">
-                                      <p>Typ: {profile.user_proxy_config?.proxy_type || "N/A"}</p>
-                                      <p>Host: {profile.user_proxy_config?.proxy_host || "N/A"}</p>
-                                      <p>Port: {profile.user_proxy_config?.proxy_port || "N/A"}</p>
+                                      <p>Typ: {profile.user_proxy_config?.proxy_type || 'N/A'}</p>
+                                      <p>Host: {profile.user_proxy_config?.proxy_host || 'N/A'}</p>
+                                      <p>Port: {profile.user_proxy_config?.proxy_port || 'N/A'}</p>
                                     </div>
                                   </div>
                                   <div className="p-3 rounded-lg">
@@ -398,9 +415,15 @@ const AdsPowerDashboardPage: React.FC = () => {
                                       Dodatkowe informacje
                                     </h6>
                                     <div className="text-sm text-gray-500 dark:text-gray-400">
-                                      <p>Strefa czasowa: {profile.fingerprint_config?.timezone || "N/A"}</p>
-                                      <p>Języki: {profile.fingerprint_config?.language?.join(", ") || "N/A"}</p>
-                                      <p>Notatki: {profile.remark || "Brak"}</p>
+                                      <p>
+                                        Strefa czasowa:{' '}
+                                        {profile.fingerprint_config?.timezone || 'N/A'}
+                                      </p>
+                                      <p>
+                                        Języki:{' '}
+                                        {profile.fingerprint_config?.language?.join(', ') || 'N/A'}
+                                      </p>
+                                      <p>Notatki: {profile.remark || 'Brak'}</p>
                                     </div>
                                   </div>
                                 </div>
@@ -437,7 +460,10 @@ const AdsPowerDashboardPage: React.FC = () => {
               ) : errorBrightData ? (
                 renderBrightDataError()
               ) : (
-                <Table hoverable className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                <Table
+                  hoverable
+                  className="w-full text-sm text-left text-gray-500 dark:text-gray-400"
+                >
                   <TableHead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <TableRow>
                       <TableHeadCell className="p-4">
@@ -470,11 +496,14 @@ const AdsPowerDashboardPage: React.FC = () => {
                               <input
                                 type="checkbox"
                                 className="w-4 h-4 text-primary-600 bg-gray-100 rounded-sm border-gray-300 focus:ring-primary-500"
-                                onClick={(e) => e.stopPropagation()}
+                                onClick={e => e.stopPropagation()}
                               />
                             </div>
                           </TableCell>
-                          <TableCell onClick={() => handleBrightDataRowExpand(zone.zone)} className="cursor-pointer">
+                          <TableCell
+                            onClick={() => handleBrightDataRowExpand(zone.zone)}
+                            className="cursor-pointer"
+                          >
                             {expandedBrightDataRows.has(zone.zone) ? (
                               <HiChevronUp className="w-6 h-6" />
                             ) : (
@@ -484,24 +513,30 @@ const AdsPowerDashboardPage: React.FC = () => {
                           <TableCell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
                             {zone.zone}
                           </TableCell>
-                          <TableCell>{zone.plan_details?.product || zone.proxy_type || "N/A"}</TableCell>
-                          <TableCell>{zone.country || "Wszystkie"}</TableCell>
-                          <TableCell>{zone.password ? `${zone.password.substring(0, 3)}...` : "N/A"}</TableCell>
+                          <TableCell>
+                            {zone.plan_details?.product || zone.proxy_type || 'N/A'}
+                          </TableCell>
+                          <TableCell>{zone.country || 'Wszystkie'}</TableCell>
+                          <TableCell>
+                            {zone.password ? `${zone.password.substring(0, 3)}...` : 'N/A'}
+                          </TableCell>
                           <TableCell>
                             <Badge
                               color={
-                                zone.status === "active"
-                                  ? "success"
-                                  : zone.status === "active_details_unavailable"
-                                    ? "purple"
-                                    : "warning"
+                                zone.status === 'active'
+                                  ? 'success'
+                                  : zone.status === 'active_details_unavailable'
+                                    ? 'purple'
+                                    : 'warning'
                               }
                             >
-                              {zone.status || "Nieznany"}
+                              {zone.status || 'Nieznany'}
                             </Badge>
                           </TableCell>
                           <TableCell>
-                            {zone.created_at ? new Date(zone.created_at).toLocaleDateString() : "N/A"}
+                            {zone.created_at
+                              ? new Date(zone.created_at).toLocaleDateString()
+                              : 'N/A'}
                           </TableCell>
                           <TableCell>
                             <div className="flex items-center space-x-2">
@@ -539,16 +574,17 @@ const AdsPowerDashboardPage: React.FC = () => {
                                 </h6>
                                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-sm text-gray-500 dark:text-gray-400">
                                   <div>
-                                    <strong>ID Klienta:</strong> {zone.customer_id || "N/A"}
+                                    <strong>ID Klienta:</strong> {zone.customer_id || 'N/A'}
                                   </div>
                                   <div>
-                                    <strong>Pełne Hasło:</strong> {zone.password || "N/A"}
+                                    <strong>Pełne Hasło:</strong> {zone.password || 'N/A'}
                                   </div>
                                   <div>
-                                    <strong>Konfiguracja IP:</strong> {zone.ips_config?.join(", ") || "N/A"}
+                                    <strong>Konfiguracja IP:</strong>{' '}
+                                    {zone.ips_config?.join(', ') || 'N/A'}
                                   </div>
                                   <div>
-                                    <strong>Uprawnienia:</strong> {zone.permissions || "N/A"}
+                                    <strong>Uprawnienia:</strong> {zone.permissions || 'N/A'}
                                   </div>
                                   <div className="md:col-span-full mt-3 pt-3 border-t dark:border-gray-600">
                                     <p className="font-semibold text-gray-900 dark:text-white mb-1">
@@ -559,16 +595,16 @@ const AdsPowerDashboardPage: React.FC = () => {
                                     </p>
                                     <p>
                                       Port:
-                                      {zone.zone === "bd_residential_profile_pl" ? (
+                                      {zone.zone === 'bd_residential_profile_pl' ? (
                                         <strong> 33335</strong>
-                                      ) : zone.plan_details?.product === "res_rotating" ? (
+                                      ) : zone.plan_details?.product === 'res_rotating' ? (
                                         " Typowy dla stref rezydencjalnych to np. 22225 lub 33335 (Sprawdź 'Access Details' w panelu Bright Data dla tej konkretnej strefy)."
                                       ) : (
                                         " Sprawdź 'Access Details' w panelu Bright Data dla tej strefy."
                                       )}
                                     </p>
                                     <p>
-                                      {" "}
+                                      {' '}
                                       Nazwa użytkownika (do proxy):
                                       <span className="font-mono bg-gray-100 dark:bg-gray-600 px-1 rounded-sm">
                                         brd-customer-{zone.customer_id}-zone-{zone.zone}
@@ -576,21 +612,23 @@ const AdsPowerDashboardPage: React.FC = () => {
                                     </p>
                                   </div>
                                   <div className="md:col-span-full mt-3 pt-3 border-t dark:border-gray-600">
-                                    <p className="font-semibold text-gray-900 dark:text-white mb-1">Detale Planu:</p>
+                                    <p className="font-semibold text-gray-900 dark:text-white mb-1">
+                                      Detale Planu:
+                                    </p>
                                     <p>
-                                      Start:{" "}
+                                      Start:{' '}
                                       {zone.plan_details?.start_date
                                         ? new Date(zone.plan_details.start_date).toLocaleString()
-                                        : "N/A"}
+                                        : 'N/A'}
                                     </p>
-                                    <p>Typ: {zone.plan_details?.type || "N/A"}</p>
-                                    <p>Typ VIP: {zone.plan_details?.vips_type || "N/A"}</p>
-                                    <p>Produkt: {zone.plan_details?.product || "N/A"}</p>
+                                    <p>Typ: {zone.plan_details?.type || 'N/A'}</p>
+                                    <p>Typ VIP: {zone.plan_details?.vips_type || 'N/A'}</p>
+                                    <p>Produkt: {zone.plan_details?.product || 'N/A'}</p>
                                     <p>
-                                      Smart Resi:{" "}
+                                      Smart Resi:{' '}
                                       {zone.plan_details?.smart_resi !== undefined
                                         ? zone.plan_details.smart_resi
-                                        : "N/A"}
+                                        : 'N/A'}
                                     </p>
                                   </div>
                                 </div>

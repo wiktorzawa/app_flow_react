@@ -1,7 +1,7 @@
-import { Request, Response } from "express";
-import * as authService from "../services/login_auth_data.service";
-import asyncHandler from "express-async-handler";
-import { LoginCredentials } from "../models/login_auth_data.model";
+import { Request, Response } from 'express';
+import * as authService from '../services/login_auth_data.service';
+import asyncHandler from 'express-async-handler';
+import { LoginCredentials } from '../models/login_auth_data.model';
 
 /**
  * Obsługuje logowanie użytkownika
@@ -12,7 +12,7 @@ export const login = asyncHandler(async (req: Request, res: Response): Promise<v
   if (!username || !password) {
     res.status(400).json({
       success: false,
-      error: "Nazwa użytkownika i hasło są wymagane",
+      error: 'Nazwa użytkownika i hasło są wymagane',
     });
     return;
   }
@@ -22,7 +22,7 @@ export const login = asyncHandler(async (req: Request, res: Response): Promise<v
     const user = await authService.getAuthDataByEmail(username);
 
     if (!user) {
-      res.status(401).json({ success: false, error: "Nieprawidłowe dane logowania" });
+      res.status(401).json({ success: false, error: 'Nieprawidłowe dane logowania' });
       return;
     }
 
@@ -38,14 +38,14 @@ export const login = asyncHandler(async (req: Request, res: Response): Promise<v
     // TYMCZASOWE ROZWIĄZANIE: Akceptuj hasło "test" dla wszystkich użytkowników
     // Lub specjalne hasła dla poszczególnych ról
     let isMatch = false;
-    if (password === "test") {
-      console.log("Używam tymczasowego hasła testowego.");
+    if (password === 'test') {
+      console.log('Używam tymczasowego hasła testowego.');
       isMatch = true;
-    } else if (user.role === "supplier" && password === "dostawca") {
-      console.log("Bezpośrednie dopasowanie dla dostawcy");
+    } else if (user.role === 'supplier' && password === 'dostawca') {
+      console.log('Bezpośrednie dopasowanie dla dostawcy');
       isMatch = true;
-    } else if ((user.role === "staff" || user.role === "admin") && password === "pracownik") {
-      console.log("Bezpośrednie dopasowanie dla pracownika/admina");
+    } else if ((user.role === 'staff' || user.role === 'admin') && password === 'pracownik') {
+      console.log('Bezpośrednie dopasowanie dla pracownika/admina');
       isMatch = true;
     } else {
       // Sprawdź hash hasła
@@ -75,16 +75,17 @@ export const login = asyncHandler(async (req: Request, res: Response): Promise<v
         await authService.lockAccount(user.id_login, 15);
         res.status(401).json({
           success: false,
-          error: "Przekroczono limit nieudanych prób logowania. Konto zostało tymczasowo zablokowane na 15 minut.",
+          error:
+            'Przekroczono limit nieudanych prób logowania. Konto zostało tymczasowo zablokowane na 15 minut.',
         });
         return;
       }
 
-      res.status(401).json({ success: false, error: "Nieprawidłowe dane logowania" });
+      res.status(401).json({ success: false, error: 'Nieprawidłowe dane logowania' });
       return;
     }
   } catch (error) {
-    console.error("Błąd podczas logowania:", error);
-    res.status(500).json({ success: false, error: "Błąd serwera" });
+    console.error('Błąd podczas logowania:', error);
+    res.status(500).json({ success: false, error: 'Błąd serwera' });
   }
 });

@@ -1,9 +1,9 @@
-"use strict";
+'use strict';
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("supplier_deliveries", {
+    await queryInterface.createTable('supplier_deliveries', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -37,22 +37,22 @@ module.exports = {
       unit_retail: {
         type: Sequelize.DECIMAL(10, 2),
         allowNull: false,
-        comment: "Cena rynkowa produktu w walucie zadeklarowanej przez dostawcę",
+        comment: 'Cena rynkowa produktu w walucie zadeklarowanej przez dostawcę',
       },
       currency_value: {
         type: Sequelize.DECIMAL(10, 4),
         allowNull: false,
-        comment: "Kurs waluty (np. EUR/PLN) wprowadzony przez dostawcę",
+        comment: 'Kurs waluty (np. EUR/PLN) wprowadzony przez dostawcę',
       },
       value_pln_net: {
         type: Sequelize.DECIMAL(10, 2),
         allowNull: false,
-        comment: "Obliczone: unit_retail * currency_value",
+        comment: 'Obliczone: unit_retail * currency_value',
       },
       value_percentage: {
         type: Sequelize.DECIMAL(5, 4),
         allowNull: false,
-        comment: "Procentowa wartość ceny dostawcy dla nas (np. 0.1800 dla 18%)",
+        comment: 'Procentowa wartość ceny dostawcy dla nas (np. 0.1800 dla 18%)',
       },
       vat_rate: {
         type: Sequelize.DECIMAL(4, 2),
@@ -63,7 +63,7 @@ module.exports = {
         type: Sequelize.DECIMAL(10, 2),
         allowNull: false,
         comment:
-          "Stores the calculated VAT amount on the net cost price in PLN, based on the formula: (value_pln_net * value_percentage) * vat_rate",
+          'Stores the calculated VAT amount on the net cost price in PLN, based on the formula: (value_pln_net * value_percentage) * vat_rate',
       },
       country_of_origin: {
         type: Sequelize.STRING(2),
@@ -94,14 +94,14 @@ module.exports = {
       },
     });
 
-    await queryInterface.addIndex("supplier_deliveries", ["lot_number"]);
-    await queryInterface.addIndex("supplier_deliveries", ["pallet_id"]);
-    await queryInterface.addIndex("supplier_deliveries", ["ean"]);
-    await queryInterface.addIndex("supplier_deliveries", ["asin"]);
-    await queryInterface.addIndex("supplier_deliveries", ["import_timestamp"]);
+    await queryInterface.addIndex('supplier_deliveries', ['lot_number']);
+    await queryInterface.addIndex('supplier_deliveries', ['pallet_id']);
+    await queryInterface.addIndex('supplier_deliveries', ['ean']);
+    await queryInterface.addIndex('supplier_deliveries', ['asin']);
+    await queryInterface.addIndex('supplier_deliveries', ['import_timestamp']);
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("supplier_deliveries");
+    await queryInterface.dropTable('supplier_deliveries');
   },
 };

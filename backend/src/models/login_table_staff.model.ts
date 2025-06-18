@@ -3,7 +3,7 @@
  * Tabela zawierająca dane pracowników i administratorów
  */
 
-export type StaffRole = "admin" | "staff";
+export type StaffRole = 'admin' | 'staff';
 
 export interface LoginTableStaff {
   id_staff: string; // Identyfikator pracownika (np. ADM/00001, STF/00001)

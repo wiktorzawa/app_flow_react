@@ -3,10 +3,10 @@ import {
   Modal,
   ModalHeader, // Nowy import
   ModalBody,
-} from "flowbite-react";
-import { usunPracownika } from "../../api/login_table_staff.api";
-import { useState } from "react";
-import type { FC } from "react"; // Dodany import FC, jeśli był nieobecny (w poprzednim kodzie był)
+} from 'flowbite-react';
+import { usunPracownika } from '../../api/login_table_staff.api';
+import { useState } from 'react';
+import type { FC } from 'react'; // Dodany import FC, jeśli był nieobecny (w poprzednim kodzie był)
 
 export type DeleteUserModalProps = {
   isOpen: boolean;
@@ -16,7 +16,12 @@ export type DeleteUserModalProps = {
 };
 
 // Dodajemy FC, aby typować komponent funkcyjny
-export const DeleteUserModal: FC<DeleteUserModalProps> = ({ isOpen, onClose, pracownikId, onSuccess }) => {
+export const DeleteUserModal: FC<DeleteUserModalProps> = ({
+  isOpen,
+  onClose,
+  pracownikId,
+  onSuccess,
+}) => {
   const [isDeleting, setIsDeleting] = useState(false);
 
   const handleDelete = async () => {
@@ -27,7 +32,7 @@ export const DeleteUserModal: FC<DeleteUserModalProps> = ({ isOpen, onClose, pra
       onSuccess();
       onClose();
     } catch (error) {
-      console.error("Błąd podczas usuwania pracownika:", error);
+      console.error('Błąd podczas usuwania pracownika:', error);
       // Możesz dodać tutaj logikę wyświetlania błędu użytkownikowi, np. za pomocą Alert
     } finally {
       setIsDeleting(false);
@@ -46,7 +51,7 @@ export const DeleteUserModal: FC<DeleteUserModalProps> = ({ isOpen, onClose, pra
           </h3>
           <div className="flex justify-center gap-4">
             <Button color="failure" onClick={handleDelete} disabled={isDeleting}>
-              {isDeleting ? "Usuwanie..." : "Tak, usuń"}
+              {isDeleting ? 'Usuwanie...' : 'Tak, usuń'}
             </Button>
             <Button color="gray" onClick={onClose}>
               Nie, anuluj

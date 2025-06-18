@@ -1,23 +1,24 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { Suspense, lazy } from "react";
-import type { FC } from "react";
-import { Routes, Route, Navigate, BrowserRouter } from "react-router-dom";
-import FlowbiteWrapper from "./components/flowbite-wrapper";
+import React, { Suspense, lazy } from 'react';
+import type { FC } from 'react';
+import { Routes, Route, Navigate, BrowserRouter } from 'react-router-dom';
+import FlowbiteWrapper from './components/flowbite-wrapper';
 
-const AdminDashboardPage = lazy(() => import("./pages/admin/AdminDashboardPage"));
-const ForgotPasswordPage = lazy(() => import("./pages/authentication/forgot-password"));
-const ProfileLockPage = lazy(() => import("./pages/authentication/profile-lock"));
-const ResetPasswordPage = lazy(() => import("./pages/authentication/reset-password"));
-const SignInPage = lazy(() => import("./pages/authentication/sign-in"));
-const SignUpPage = lazy(() => import("./pages/authentication/sign-up"));
-const KanbanPage = lazy(() => import("./pages/kanban"));
-const UserFeedPage = lazy(() => import("./pages/users/feed"));
-const UserListPage = lazy(() => import("./pages/users/list"));
-const SupplierListPage = lazy(() => import("./pages/users/listSuppliers"));
-const UserProfilePage = lazy(() => import("./pages/users/profile"));
-const UserSettingsPage = lazy(() => import("./pages/users/settings"));
-const AdsPowerDashboardPage = lazy(() => import("./pages/admin/AdsPowerDashboardPage"));
-const OrderListPage = lazy(() => import("./pages/admin/OrderListPage"));
+const AdminDashboardPage = lazy(() => import('./pages/admin/AdminDashboardPage'));
+const ForgotPasswordPage = lazy(() => import('./pages/authentication/forgot-password'));
+const ProfileLockPage = lazy(() => import('./pages/authentication/profile-lock'));
+const ResetPasswordPage = lazy(() => import('./pages/authentication/reset-password'));
+const SignInPage = lazy(() => import('./pages/authentication/sign-in'));
+const SignUpPage = lazy(() => import('./pages/authentication/sign-up'));
+const KanbanPage = lazy(() => import('./pages/kanban'));
+const UserFeedPage = lazy(() => import('./pages/users/feed'));
+const UserListPage = lazy(() => import('./pages/users/list'));
+const SupplierListPage = lazy(() => import('./pages/users/listSuppliers'));
+const UserProfilePage = lazy(() => import('./pages/users/profile'));
+const UserSettingsPage = lazy(() => import('./pages/users/settings'));
+const AdsPowerDashboardPage = lazy(() => import('./pages/admin/AdsPowerDashboardPage'));
+const OrderListPage = lazy(() => import('./pages/admin/OrderListPage'));
+const TestyBlokowPage = lazy(() => import('./pages/TestyBlokow'));
 // Komponent ochrony trasy - sprawdza czy użytkownik jest zalogowany i ma odpowiednią rolę
 interface ProtectedRouteProps {
   element: React.ReactNode;
@@ -25,7 +26,7 @@ interface ProtectedRouteProps {
 }
 
 const ProtectedRoute: FC<ProtectedRouteProps> = ({ element, allowedRoles = [] }) => {
-  const userRole = localStorage.getItem("userRole");
+  const userRole = localStorage.getItem('userRole');
 
   // Jeśli nie ma roli użytkownika w localStorage, przekieruj do logowania
   if (!userRole) {
@@ -52,24 +53,36 @@ const App: FC = function () {
             <Route path="/" element={<ProtectedRoute element={<AdminDashboardPage />} />} />
             <Route
               path="/admin/adspower-dashboard"
-              element={<ProtectedRoute element={<AdsPowerDashboardPage />} allowedRoles={["admin"]} />}
+              element={
+                <ProtectedRoute element={<AdsPowerDashboardPage />} allowedRoles={['admin']} />
+              }
             />
             <Route path="/admin/orders" element={<ProtectedRoute element={<OrderListPage />} />} />
             <Route
               path="/users/feed"
-              element={<ProtectedRoute element={<UserFeedPage />} allowedRoles={["admin"]} />}
+              element={<ProtectedRoute element={<UserFeedPage />} allowedRoles={['admin']} />}
             />
             <Route
               path="/users/list"
-              element={<ProtectedRoute element={<UserListPage />} allowedRoles={["admin"]} />}
+              element={<ProtectedRoute element={<UserListPage />} allowedRoles={['admin']} />}
             />
             <Route
               path="/users/listSuppliers"
-              element={<ProtectedRoute element={<SupplierListPage />} allowedRoles={["admin"]} />}
+              element={<ProtectedRoute element={<SupplierListPage />} allowedRoles={['admin']} />}
             />
-            <Route path="/users/profile" element={<ProtectedRoute element={<UserProfilePage />} />} />
-            <Route path="/users/settings" element={<ProtectedRoute element={<UserSettingsPage />} />} />
+            <Route
+              path="/users/profile"
+              element={<ProtectedRoute element={<UserProfilePage />} />}
+            />
+            <Route
+              path="/users/settings"
+              element={<ProtectedRoute element={<UserSettingsPage />} />}
+            />
             <Route path="/kanban" element={<ProtectedRoute element={<KanbanPage />} />} />
+            <Route
+              path="/testy-blokow"
+              element={<ProtectedRoute element={<TestyBlokowPage />} />}
+            />
             <Route path="/authentication/sign-in" element={<SignInPage />} />
             <Route path="/authentication/sign-up" element={<SignUpPage />} />
             <Route path="/authentication/forgot-password" element={<ForgotPasswordPage />} />

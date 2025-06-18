@@ -3,7 +3,7 @@
  * Tabela zawierająca podstawowe dane do logowania i autoryzacji użytkowników
  */
 
-export type UserRole = "admin" | "staff" | "supplier";
+export type UserRole = 'admin' | 'staff' | 'supplier';
 
 export interface LoginAuthData {
   id_login: string; // Identyfikator logowania (np. ADM/00001/LOG)

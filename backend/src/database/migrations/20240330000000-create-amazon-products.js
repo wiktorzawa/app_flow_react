@@ -1,8 +1,8 @@
-"use strict";
+'use strict';
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("amazon_products", {
+    await queryInterface.createTable('amazon_products', {
       id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -42,7 +42,7 @@ module.exports = {
       },
       currency: {
         type: Sequelize.STRING(3),
-        defaultValue: "USD",
+        defaultValue: 'USD',
       },
       availability: {
         type: Sequelize.STRING,
@@ -285,14 +285,14 @@ module.exports = {
     });
 
     // Dodaj indeksy
-    await queryInterface.addIndex("amazon_products", ["asin"], { unique: true });
-    await queryInterface.addIndex("amazon_products", ["lastScraped"]);
-    await queryInterface.addIndex("amazon_products", ["brand"]);
-    await queryInterface.addIndex("amazon_products", ["seller_id"]);
-    await queryInterface.addIndex("amazon_products", ["root_bs_category"]);
+    await queryInterface.addIndex('amazon_products', ['asin'], { unique: true });
+    await queryInterface.addIndex('amazon_products', ['lastScraped']);
+    await queryInterface.addIndex('amazon_products', ['brand']);
+    await queryInterface.addIndex('amazon_products', ['seller_id']);
+    await queryInterface.addIndex('amazon_products', ['root_bs_category']);
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("amazon_products");
+    await queryInterface.dropTable('amazon_products');
   },
 };

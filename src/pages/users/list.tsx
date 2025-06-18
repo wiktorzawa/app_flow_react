@@ -17,9 +17,9 @@ import {
   TableCell,
   TextInput,
   Select,
-} from "flowbite-react";
-import type { FC } from "react";
-import { useState, useEffect, useCallback } from "react";
+} from 'flowbite-react';
+import type { FC } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import {
   HiChevronLeft,
   HiChevronRight,
@@ -32,8 +32,8 @@ import {
   HiOutlinePencilAlt,
   HiPlus,
   HiTrash,
-} from "react-icons/hi";
-import NavbarSidebarLayout from "../../layouts/navbar-sidebar";
+} from 'react-icons/hi';
+import NavbarSidebarLayout from '../../layouts/navbar-sidebar';
 import {
   pobierzPracownikow,
   aktualizujPracownika,
@@ -43,13 +43,13 @@ import {
   type Pracownik,
   type NowyPracownikBezId,
   type AktualizacjaPracownika,
-} from "../../api/login_table_staff.api";
+} from '../../api/login_table_staff.api';
 
 const UserListPage: FC = function () {
   const [refreshTrigger, setRefreshTrigger] = useState(0);
 
   const handleSuccess = () => {
-    setRefreshTrigger((prev) => prev + 1);
+    setRefreshTrigger(prev => prev + 1);
   };
 
   return (
@@ -67,7 +67,9 @@ const UserListPage: FC = function () {
               <BreadcrumbItem href="/users/list">Użytkownicy</BreadcrumbItem>
               <BreadcrumbItem>Lista</BreadcrumbItem>
             </Breadcrumb>
-            <h1 className="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">Wszyscy pracownicy</h1>
+            <h1 className="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">
+              Wszyscy pracownicy
+            </h1>
           </div>
           <div className="sm:flex">
             <div className="mb-3 hidden items-center dark:divide-gray-700 sm:mb-0 sm:flex sm:divide-x sm:divide-gray-100">
@@ -76,7 +78,11 @@ const UserListPage: FC = function () {
                   Szukaj
                 </Label>
                 <div className="relative mt-1 lg:w-64 xl:w-96">
-                  <TextInput id="users-search" name="users-search" placeholder="Szukaj pracowników" />
+                  <TextInput
+                    id="users-search"
+                    name="users-search"
+                    placeholder="Szukaj pracowników"
+                  />
                 </div>
               </form>
               <div className="mt-3 flex space-x-1 pl-0 sm:mt-0 sm:pl-2">
@@ -139,29 +145,29 @@ const UserListPage: FC = function () {
 const AddUserModal: FC<{ onSuccess: () => void }> = function ({ onSuccess }) {
   const [isOpen, setOpen] = useState(false);
   const [formData, setFormData] = useState<NowyPracownikBezId>({
-    first_name: "",
-    last_name: "",
-    role: "staff",
-    email: "",
+    first_name: '',
+    last_name: '',
+    role: 'staff',
+    email: '',
     phone: null,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [generatedId, setGeneratedId] = useState<string>("");
+  const [generatedId, setGeneratedId] = useState<string>('');
   const [showSuccess, setShowSuccess] = useState(false);
   const [addedUser, setAddedUser] = useState<Pracownik | null>(null);
 
-  const handleRoleChange = async (role: "admin" | "staff") => {
+  const handleRoleChange = async (role: 'admin' | 'staff') => {
     setIsLoading(true);
     try {
-      console.log("Generowanie ID dla roli:", role);
+      console.log('Generowanie ID dla roli:', role);
       const newId = await generujIdPracownika(role);
-      console.log("Wygenerowane ID:", newId);
+      console.log('Wygenerowane ID:', newId);
       setGeneratedId(newId);
     } catch (err) {
-      console.error("Błąd podczas generowania ID:", err);
-      setError("Nie udało się wygenerować ID");
+      console.error('Błąd podczas generowania ID:', err);
+      setError('Nie udało się wygenerować ID');
     } finally {
       setIsLoading(false);
     }
@@ -170,38 +176,38 @@ const AddUserModal: FC<{ onSuccess: () => void }> = function ({ onSuccess }) {
   const handleChange = async (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
 
-    if (name === "role") {
-      console.log("Zmieniono rolę na:", value);
-      if (value === "staff" || value === "admin") {
-        setFormData((prev) => ({
+    if (name === 'role') {
+      console.log('Zmieniono rolę na:', value);
+      if (value === 'staff' || value === 'admin') {
+        setFormData(prev => ({
           ...prev,
           [name]: value,
         }));
-        await handleRoleChange(value as "admin" | "staff");
+        await handleRoleChange(value as 'admin' | 'staff');
       }
     } else {
-      setFormData((prev) => ({
+      setFormData(prev => ({
         ...prev,
-        [name]: value === "" && name === "phone" ? null : value,
+        [name]: value === '' && name === 'phone' ? null : value,
       }));
     }
   };
 
   useEffect(() => {
     if (isOpen) {
-      console.log("Modal otwarty - generowanie początkowego ID dla roli staff");
+      console.log('Modal otwarty - generowanie początkowego ID dla roli staff');
       setFormData({
-        first_name: "",
-        last_name: "",
-        role: "staff",
-        email: "",
+        first_name: '',
+        last_name: '',
+        role: 'staff',
+        email: '',
         phone: null,
       });
       setError(null);
       setShowSuccess(false);
       setAddedUser(null);
 
-      handleRoleChange("staff");
+      handleRoleChange('staff');
     }
   }, [isOpen]);
 
@@ -215,17 +221,19 @@ const AddUserModal: FC<{ onSuccess: () => void }> = function ({ onSuccess }) {
         setAddedUser(result);
         setShowSuccess(true);
       } else {
-        setError("Nie udało się dodać pracownika");
+        setError('Nie udało się dodać pracownika');
       }
     } catch (err) {
-      setError("Wystąpił błąd podczas dodawania pracownika");
+      setError('Wystąpił błąd podczas dodawania pracownika');
       console.error(err);
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const generatedPassword = generatedId ? `pracownika${generatedId.charAt(generatedId.length - 1)}` : "";
+  const generatedPassword = generatedId
+    ? `pracownika${generatedId.charAt(generatedId.length - 1)}`
+    : '';
 
   const handleCloseSuccessView = () => {
     setOpen(false);
@@ -257,7 +265,9 @@ const AddUserModal: FC<{ onSuccess: () => void }> = function ({ onSuccess }) {
         <ModalBody>
           <div className="mb-4 rounded-lg bg-green-50 p-4 text-green-800 dark:bg-gray-800 dark:text-green-300">
             <div className="mb-1 font-medium">Pracownik został pomyślnie dodany do systemu</div>
-            <p className="text-sm">Poniżej znajdują się wszystkie dane pracownika oraz dane do logowania.</p>
+            <p className="text-sm">
+              Poniżej znajdują się wszystkie dane pracownika oraz dane do logowania.
+            </p>
           </div>
 
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
@@ -280,10 +290,14 @@ const AddUserModal: FC<{ onSuccess: () => void }> = function ({ onSuccess }) {
               <div className="space-y-2">
                 <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
                   <div className="text-sm font-medium text-gray-500 dark:text-gray-400">ID:</div>
-                  <div className="text-sm font-semibold text-gray-900 dark:text-white">{addedUser.id_staff}</div>
+                  <div className="text-sm font-semibold text-gray-900 dark:text-white">
+                    {addedUser.id_staff}
+                  </div>
                 </div>
                 <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
-                  <div className="text-sm font-medium text-gray-500 dark:text-gray-400">Imię i nazwisko:</div>
+                  <div className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                    Imię i nazwisko:
+                  </div>
                   <div className="text-sm font-semibold text-gray-900 dark:text-white">
                     {addedUser.first_name} {addedUser.last_name}
                   </div>
@@ -292,22 +306,29 @@ const AddUserModal: FC<{ onSuccess: () => void }> = function ({ onSuccess }) {
                   <div className="text-sm font-medium text-gray-500 dark:text-gray-400">Rola:</div>
                   <div className="text-sm font-semibold text-gray-900 dark:text-white">
                     <span
-                      className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${addedUser.role === "admin"
-                        ? "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300"
-                        : "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300"
-                        }`}
+                      className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${
+                        addedUser.role === 'admin'
+                          ? 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300'
+                          : 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300'
+                      }`}
                     >
-                      {addedUser.role === "admin" ? "Administrator" : "Pracownik"}
+                      {addedUser.role === 'admin' ? 'Administrator' : 'Pracownik'}
                     </span>
                   </div>
                 </div>
                 <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
                   <div className="text-sm font-medium text-gray-500 dark:text-gray-400">Email:</div>
-                  <div className="text-sm font-semibold text-gray-900 dark:text-white">{addedUser.email}</div>
+                  <div className="text-sm font-semibold text-gray-900 dark:text-white">
+                    {addedUser.email}
+                  </div>
                 </div>
                 <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
-                  <div className="text-sm font-medium text-gray-500 dark:text-gray-400">Telefon:</div>
-                  <div className="text-sm font-semibold text-gray-900 dark:text-white">{addedUser.phone || "-"}</div>
+                  <div className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                    Telefon:
+                  </div>
+                  <div className="text-sm font-semibold text-gray-900 dark:text-white">
+                    {addedUser.phone || '-'}
+                  </div>
                 </div>
               </div>
             </div>
@@ -330,12 +351,18 @@ const AddUserModal: FC<{ onSuccess: () => void }> = function ({ onSuccess }) {
               </h4>
               <div className="space-y-2">
                 <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
-                  <div className="text-sm font-medium text-gray-500 dark:text-gray-400">ID logowania:</div>
-                  <div className="text-sm font-semibold text-gray-900 dark:text-white">{addedUser.id_staff}/LOG</div>
+                  <div className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                    ID logowania:
+                  </div>
+                  <div className="text-sm font-semibold text-gray-900 dark:text-white">
+                    {addedUser.id_staff}/LOG
+                  </div>
                 </div>
                 <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
                   <div className="text-sm font-medium text-gray-500 dark:text-gray-400">Login:</div>
-                  <div className="text-sm font-semibold text-gray-900 dark:text-white">{addedUser.email}</div>
+                  <div className="text-sm font-semibold text-gray-900 dark:text-white">
+                    {addedUser.email}
+                  </div>
                 </div>
                 <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
                   <div className="text-sm font-medium text-gray-500 dark:text-gray-400">Hasło:</div>
@@ -347,7 +374,7 @@ const AddUserModal: FC<{ onSuccess: () => void }> = function ({ onSuccess }) {
                         color="light"
                         onClick={() => {
                           navigator.clipboard.writeText(generatedPassword);
-                          alert("Hasło skopiowane do schowka");
+                          alert('Hasło skopiowane do schowka');
                         }}
                       >
                         <svg
@@ -379,8 +406,8 @@ const AddUserModal: FC<{ onSuccess: () => void }> = function ({ onSuccess }) {
                     ></path>
                   </svg>
                   <div>
-                    Prosimy o zapisanie hasła i przekazanie go pracownikowi. Ze względów bezpieczeństwa hasło nie
-                    zostanie wyświetlone ponownie.
+                    Prosimy o zapisanie hasła i przekazanie go pracownikowi. Ze względów
+                    bezpieczeństwa hasło nie zostanie wyświetlone ponownie.
                   </div>
                 </div>
               </div>
@@ -390,7 +417,12 @@ const AddUserModal: FC<{ onSuccess: () => void }> = function ({ onSuccess }) {
         <ModalFooter>
           <Button color="primary" onClick={handleCloseSuccessView}>
             <div className="flex items-center gap-x-2">
-              <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <svg
+                className="h-5 w-5"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
                 <path
                   fillRule="evenodd"
                   d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
@@ -445,8 +477,16 @@ const AddUserModal: FC<{ onSuccess: () => void }> = function ({ onSuccess }) {
             </div>
             <div>
               <Label htmlFor="id_staff">ID Pracownika</Label>
-              <TextInput id="id_staff" name="id_staff" className="mt-1" value={generatedId} disabled={true} />
-              <p className="mt-1 text-xs text-gray-500">ID generowane automatycznie na podstawie roli</p>
+              <TextInput
+                id="id_staff"
+                name="id_staff"
+                className="mt-1"
+                value={generatedId}
+                disabled={true}
+              />
+              <p className="mt-1 text-xs text-gray-500">
+                ID generowane automatycznie na podstawie roli
+              </p>
             </div>
             <div>
               <Label htmlFor="first_name">Imię</Label>
@@ -492,7 +532,7 @@ const AddUserModal: FC<{ onSuccess: () => void }> = function ({ onSuccess }) {
                 name="phone"
                 placeholder="123456789"
                 className="mt-1"
-                value={formData.phone || ""}
+                value={formData.phone || ''}
                 onChange={handleChange}
               />
             </div>
@@ -511,7 +551,7 @@ const AddUserModal: FC<{ onSuccess: () => void }> = function ({ onSuccess }) {
               !formData.email
             }
           >
-            {isSubmitting ? "Dodawanie..." : "Dodaj pracownika"}
+            {isSubmitting ? 'Dodawanie...' : 'Dodaj pracownika'}
           </Button>
           <Button color="gray" onClick={() => setOpen(false)}>
             Anuluj
@@ -535,7 +575,7 @@ const AllUsersTable: FC<{ onSuccess: () => void }> = function ({ onSuccess }) {
         setPracownicy(data);
         setError(null);
       } catch (err) {
-        setError("Nie udało się pobrać danych pracowników");
+        setError('Nie udało się pobrać danych pracowników');
         console.error(err);
       } finally {
         setIsLoading(false);
@@ -546,22 +586,23 @@ const AllUsersTable: FC<{ onSuccess: () => void }> = function ({ onSuccess }) {
   }, []);
 
   const handleDelete = async (id: string) => {
-    if (window.confirm("Czy na pewno chcesz usunąć tego pracownika?")) {
+    if (window.confirm('Czy na pewno chcesz usunąć tego pracownika?')) {
       try {
         const success = await usunPracownika(id);
         if (success) {
-          setPracownicy(pracownicy.filter((p) => p.id_staff !== id));
+          setPracownicy(pracownicy.filter(p => p.id_staff !== id));
           onSuccess();
         }
       } catch (err) {
-        console.error("Błąd podczas usuwania pracownika:", err);
+        console.error('Błąd podczas usuwania pracownika:', err);
       }
     }
   };
 
   if (isLoading) return <div className="p-4 text-center">Ładowanie danych...</div>;
   if (error) return <div className="p-4 text-center text-red-500">Błąd: {error}</div>;
-  if (pracownicy.length === 0) return <div className="p-4 text-center">Brak pracowników do wyświetlenia</div>;
+  if (pracownicy.length === 0)
+    return <div className="p-4 text-center">Brak pracowników do wyświetlenia</div>;
 
   return (
     <Table className="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
@@ -582,11 +623,14 @@ const AllUsersTable: FC<{ onSuccess: () => void }> = function ({ onSuccess }) {
         </TableRow>
       </TableHead>
       <TableBody className="divide-y divide-gray-200 bg-white dark:divide-gray-700 dark:bg-gray-800">
-        {pracownicy.map((pracownik) => (
+        {pracownicy.map(pracownik => (
           <TableRow key={pracownik.id_staff} className="hover:bg-gray-100 dark:hover:bg-gray-700">
             <TableCell className="w-4 p-4">
               <div className="flex items-center">
-                <Checkbox aria-describedby={`checkbox-${pracownik.id_staff}`} id={`checkbox-${pracownik.id_staff}`} />
+                <Checkbox
+                  aria-describedby={`checkbox-${pracownik.id_staff}`}
+                  id={`checkbox-${pracownik.id_staff}`}
+                />
                 <label htmlFor={`checkbox-${pracownik.id_staff}`} className="sr-only">
                   checkbox
                 </label>
@@ -603,17 +647,19 @@ const AllUsersTable: FC<{ onSuccess: () => void }> = function ({ onSuccess }) {
                 <div className="text-base font-semibold text-gray-900 dark:text-white">
                   {pracownik.first_name} {pracownik.last_name}
                 </div>
-                <div className="text-sm font-normal text-gray-500 dark:text-gray-400">ID: {pracownik.id_staff}</div>
+                <div className="text-sm font-normal text-gray-500 dark:text-gray-400">
+                  ID: {pracownik.id_staff}
+                </div>
               </div>
             </TableCell>
             <TableCell className="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
-              {pracownik.role === "admin" ? "Administrator" : "Pracownik"}
+              {pracownik.role === 'admin' ? 'Administrator' : 'Pracownik'}
             </TableCell>
             <TableCell className="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
               {pracownik.email}
             </TableCell>
             <TableCell className="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
-              {pracownik.phone || "-"}
+              {pracownik.phone || '-'}
             </TableCell>
             <TableCell className="whitespace-nowrap p-4 text-base font-normal text-gray-900 dark:text-white">
               <div className="flex items-center">
@@ -660,9 +706,9 @@ const EditUserModal: FC<{
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
+    setFormData(prev => ({
       ...prev,
-      [name]: value === "" && name === "phone" ? null : value,
+      [name]: value === '' && name === 'phone' ? null : value,
     }));
   };
 
@@ -676,10 +722,10 @@ const EditUserModal: FC<{
         setOpen(false);
         onSuccess();
       } else {
-        setError("Nie udało się zaktualizować pracownika");
+        setError('Nie udało się zaktualizować pracownika');
       }
     } catch (err) {
-      setError("Wystąpił błąd podczas aktualizacji pracownika");
+      setError('Wystąpił błąd podczas aktualizacji pracownika');
       console.error(err);
     } finally {
       setIsSubmitting(false);
@@ -734,7 +780,13 @@ const EditUserModal: FC<{
             <div>
               <Label htmlFor="role">Rola</Label>
               <div className="mt-1">
-                <Select id="role" name="role" required value={formData.role} onChange={handleChange}>
+                <Select
+                  id="role"
+                  name="role"
+                  required
+                  value={formData.role}
+                  onChange={handleChange}
+                >
                   <option value="staff">Pracownik</option>
                   <option value="admin">Administrator</option>
                 </Select>
@@ -756,14 +808,20 @@ const EditUserModal: FC<{
             <div>
               <Label htmlFor="phone">Telefon</Label>
               <div className="mt-1">
-                <TextInput id="phone" name="phone" type="tel" value={formData.phone || ""} onChange={handleChange} />
+                <TextInput
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  value={formData.phone || ''}
+                  onChange={handleChange}
+                />
               </div>
             </div>
           </div>
         </ModalBody>
         <ModalFooter>
           <Button color="primary" onClick={handleSubmit} disabled={isSubmitting}>
-            {isSubmitting ? "Zapisywanie..." : "Zapisz zmiany"}
+            {isSubmitting ? 'Zapisywanie...' : 'Zapisz zmiany'}
           </Button>
           <Button color="gray" onClick={() => setOpen(false)}>
             Anuluj

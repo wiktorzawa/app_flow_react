@@ -1,13 +1,19 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { Button, Card, Checkbox, Label, TextInput } from "flowbite-react";
-import type { FC } from "react";
+import { Button, Card, Checkbox, Label, TextInput } from 'flowbite-react';
+import type { FC } from 'react';
 
 const ResetPasswordPage: FC = function () {
   return (
     <div className="flex flex-col items-center justify-center px-6 lg:h-screen lg:gap-y-12">
       <a href="/" className="my-6 flex items-center gap-x-1 lg:my-0">
-        <img alt="Flowbite logo" src="https://flowbite.com/docs/images/logo.svg" className="mr-3 h-10" />
-        <span className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">Flowbite</span>
+        <img
+          alt="Flowbite logo"
+          src="https://flowbite.com/docs/images/logo.svg"
+          className="mr-3 h-10"
+        />
+        <span className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">
+          Flowbite
+        </span>
       </a>
       <Card
         horizontal
@@ -27,7 +33,12 @@ const ResetPasswordPage: FC = function () {
           </div>
           <div className="mb-6 flex flex-col gap-y-3">
             <Label htmlFor="confirmNewPassword">Confirm New Password</Label>
-            <TextInput id="confirmNewPassword" name="confirmNewPassword" placeholder="••••••••" type="password" />
+            <TextInput
+              id="confirmNewPassword"
+              name="confirmNewPassword"
+              placeholder="••••••••"
+              type="password"
+            />
           </div>
           <div className="mb-6 flex items-center gap-x-3">
             <Checkbox id="acceptTerms" name="acceptTerms" />

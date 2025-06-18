@@ -1,6 +1,6 @@
-import { Request, Response } from "express";
-import * as staffService from "../services/login_table_staff.service";
-import asyncHandler from "express-async-handler";
+import { Request, Response } from 'express';
+import * as staffService from '../services/login_table_staff.service';
+import asyncHandler from 'express-async-handler';
 
 /**
  * Generuje ID pracownika na podstawie roli
@@ -8,62 +8,68 @@ import asyncHandler from "express-async-handler";
 export const generateStaffId = asyncHandler(async (req: Request, res: Response): Promise<void> => {
   const { role } = req.query;
 
-  if (!role || (role !== "admin" && role !== "staff")) {
-    res.status(400).json({ error: 'Nieprawidłowa rola. Dozwolone wartości to "admin" lub "staff"' });
+  if (!role || (role !== 'admin' && role !== 'staff')) {
+    res
+      .status(400)
+      .json({ error: 'Nieprawidłowa rola. Dozwolone wartości to "admin" lub "staff"' });
     return;
   }
 
   try {
     console.log(`Generowanie ID dla roli: ${role}`);
-    const newId = await staffService.generateStaffId(role as "admin" | "staff");
+    const newId = await staffService.generateStaffId(role as 'admin' | 'staff');
     console.log(`Wygenerowane ID: ${newId}`);
     res.json({ id_staff: newId });
   } catch (error) {
-    console.error("Błąd podczas generowania ID pracownika:", error);
-    res.status(500).json({ error: "Błąd serwera" });
+    console.error('Błąd podczas generowania ID pracownika:', error);
+    res.status(500).json({ error: 'Błąd serwera' });
   }
 });
 
 /**
  * Tworzy nowego pracownika z automatycznie wygenerowanym ID i hasłem
  */
-export const createStaffWithPassword = asyncHandler(async (req: Request, res: Response): Promise<void> => {
-  try {
-    // Walidacja danych wejściowych
-    const { first_name, last_name, role, email, phone } = req.body;
+export const createStaffWithPassword = asyncHandler(
+  async (req: Request, res: Response): Promise<void> => {
+    try {
+      // Walidacja danych wejściowych
+      const { first_name, last_name, role, email, phone } = req.body;
 
-    if (!first_name || !last_name || !role || !email) {
-      res.status(400).json({ error: "Wszystkie wymagane pola muszą być wypełnione" });
-      return;
+      if (!first_name || !last_name || !role || !email) {
+        res.status(400).json({ error: 'Wszystkie wymagane pola muszą być wypełnione' });
+        return;
+      }
+
+      if (role !== 'admin' && role !== 'staff') {
+        res
+          .status(400)
+          .json({ error: 'Nieprawidłowa rola. Dozwolone wartości to "admin" lub "staff"' });
+        return;
+      }
+
+      // Sprawdź, czy pracownik o tym adresie email już istnieje
+      const existingStaffByEmail = await staffService.getStaffByEmail(email);
+      if (existingStaffByEmail) {
+        res.status(409).json({ error: 'Pracownik o podanym adresie email już istnieje' });
+        return;
+      }
+
+      // Utwórz nowego pracownika z automatycznie wygenerowanym ID i hasłem
+      const newStaff = await staffService.createStaffWithPassword({
+        first_name,
+        last_name,
+        role,
+        email,
+        phone,
+      });
+
+      res.status(201).json(newStaff);
+    } catch (error) {
+      console.error('Błąd podczas tworzenia pracownika:', error);
+      res.status(500).json({ error: 'Błąd serwera' });
     }
-
-    if (role !== "admin" && role !== "staff") {
-      res.status(400).json({ error: 'Nieprawidłowa rola. Dozwolone wartości to "admin" lub "staff"' });
-      return;
-    }
-
-    // Sprawdź, czy pracownik o tym adresie email już istnieje
-    const existingStaffByEmail = await staffService.getStaffByEmail(email);
-    if (existingStaffByEmail) {
-      res.status(409).json({ error: "Pracownik o podanym adresie email już istnieje" });
-      return;
-    }
-
-    // Utwórz nowego pracownika z automatycznie wygenerowanym ID i hasłem
-    const newStaff = await staffService.createStaffWithPassword({
-      first_name,
-      last_name,
-      role,
-      email,
-      phone,
-    });
-
-    res.status(201).json(newStaff);
-  } catch (error) {
-    console.error("Błąd podczas tworzenia pracownika:", error);
-    res.status(500).json({ error: "Błąd serwera" });
   }
-});
+);
 
 /**
  * Pobiera listę wszystkich pracowników
@@ -73,8 +79,8 @@ export const getAllStaff = asyncHandler(async (req: Request, res: Response): Pro
     const staffList = await staffService.getAllStaff();
     res.json(staffList);
   } catch (error) {
-    console.error("Błąd podczas pobierania pracowników:", error);
-    res.status(500).json({ error: "Błąd serwera" });
+    console.error('Błąd podczas pobierania pracowników:', error);
+    res.status(500).json({ error: 'Błąd serwera' });
   }
 });
 
@@ -88,14 +94,14 @@ export const getStaffById = asyncHandler(async (req: Request, res: Response): Pr
     const staff = await staffService.getStaffById(id);
 
     if (!staff) {
-      res.status(404).json({ error: "Pracownik nie został znaleziony" });
+      res.status(404).json({ error: 'Pracownik nie został znaleziony' });
       return;
     }
 
     res.json(staff);
   } catch (error) {
     console.error(`Błąd podczas pobierania pracownika o ID ${id}:`, error);
-    res.status(500).json({ error: "Błąd serwera" });
+    res.status(500).json({ error: 'Błąd serwera' });
   }
 });
 
@@ -108,20 +114,20 @@ export const createStaff = asyncHandler(async (req: Request, res: Response): Pro
     const { id_staff, first_name, last_name, role, email, phone } = req.body;
 
     if (!id_staff || !first_name || !last_name || !role || !email) {
-      res.status(400).json({ error: "Wszystkie wymagane pola muszą być wypełnione" });
+      res.status(400).json({ error: 'Wszystkie wymagane pola muszą być wypełnione' });
       return;
     }
 
     // Sprawdź, czy pracownik o tym ID lub adresie email już istnieje
     const existingStaffById = await staffService.getStaffById(id_staff);
     if (existingStaffById) {
-      res.status(409).json({ error: "Pracownik o podanym ID już istnieje" });
+      res.status(409).json({ error: 'Pracownik o podanym ID już istnieje' });
       return;
     }
 
     const existingStaffByEmail = await staffService.getStaffByEmail(email);
     if (existingStaffByEmail) {
-      res.status(409).json({ error: "Pracownik o podanym adresie email już istnieje" });
+      res.status(409).json({ error: 'Pracownik o podanym adresie email już istnieje' });
       return;
     }
 
@@ -137,8 +143,8 @@ export const createStaff = asyncHandler(async (req: Request, res: Response): Pro
 
     res.status(201).json(newStaff);
   } catch (error) {
-    console.error("Błąd podczas tworzenia pracownika:", error);
-    res.status(500).json({ error: "Błąd serwera" });
+    console.error('Błąd podczas tworzenia pracownika:', error);
+    res.status(500).json({ error: 'Błąd serwera' });
   }
 });
 
@@ -152,7 +158,7 @@ export const updateStaff = asyncHandler(async (req: Request, res: Response): Pro
     // Sprawdź, czy pracownik istnieje
     const existingStaff = await staffService.getStaffById(id);
     if (!existingStaff) {
-      res.status(404).json({ error: "Pracownik nie został znaleziony" });
+      res.status(404).json({ error: 'Pracownik nie został znaleziony' });
       return;
     }
 
@@ -163,7 +169,7 @@ export const updateStaff = asyncHandler(async (req: Request, res: Response): Pro
     if (email && email !== existingStaff.email) {
       const existingStaffByEmail = await staffService.getStaffByEmail(email);
       if (existingStaffByEmail && existingStaffByEmail.id_staff !== id) {
-        res.status(409).json({ error: "Pracownik o podanym adresie email już istnieje" });
+        res.status(409).json({ error: 'Pracownik o podanym adresie email już istnieje' });
         return;
       }
     }
@@ -180,7 +186,7 @@ export const updateStaff = asyncHandler(async (req: Request, res: Response): Pro
     res.json(updatedStaff);
   } catch (error) {
     console.error(`Błąd podczas aktualizacji pracownika o ID ${id}:`, error);
-    res.status(500).json({ error: "Błąd serwera" });
+    res.status(500).json({ error: 'Błąd serwera' });
   }
 });
 
@@ -196,7 +202,7 @@ export const deleteStaff = asyncHandler(async (req: Request, res: Response): Pro
     // Sprawdź, czy pracownik istnieje
     const existingStaff = await staffService.getStaffById(id);
     if (!existingStaff) {
-      res.status(404).json({ error: "Pracownik nie został znaleziony" });
+      res.status(404).json({ error: 'Pracownik nie został znaleziony' });
       return;
     }
 
@@ -204,12 +210,12 @@ export const deleteStaff = asyncHandler(async (req: Request, res: Response): Pro
     const deleted = await staffService.deleteStaff(id);
 
     if (deleted) {
-      res.status(200).json({ message: "Pracownik został usunięty" });
+      res.status(200).json({ message: 'Pracownik został usunięty' });
     } else {
-      res.status(500).json({ error: "Nie udało się usunąć pracownika" });
+      res.status(500).json({ error: 'Nie udało się usunąć pracownika' });
     }
   } catch (error) {
     console.error(`Błąd podczas usuwania pracownika o ID ${id}:`, error);
-    res.status(500).json({ error: "Błąd serwera" });
+    res.status(500).json({ error: 'Błąd serwera' });
   }
 });

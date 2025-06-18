@@ -8,33 +8,33 @@ export interface AdsPowerResponse<T = unknown> {
 
 // --- INTERFEJCY DLA PROFILI ---
 export interface UserProxyConfigInput {
-  proxy_type?: "http" | "https" | "socks5";
+  proxy_type?: 'http' | 'https' | 'socks5';
   proxy_host?: string;
   proxy_port?: string;
   proxy_user?: string;
   proxy_password?: string;
   proxy_soft:
-    | "brightdata"
-    | "brightauto"
-    | "oxylabsauto"
-    | "922S5auto"
-    | "ipideaauto"
-    | "ipfoxyauto"
-    | "922S5auth"
-    | "kookauto"
-    | "ssh"
-    | "other"
-    | "no_proxy";
+    | 'brightdata'
+    | 'brightauto'
+    | 'oxylabsauto'
+    | '922S5auto'
+    | 'ipideaauto'
+    | 'ipfoxyauto'
+    | '922S5auth'
+    | 'kookauto'
+    | 'ssh'
+    | 'other'
+    | 'no_proxy';
   proxy_url?: string;
-  global_config?: "0" | "1";
+  global_config?: '0' | '1';
 }
 
 export interface FingerprintConfigInput {
   ua?: string;
-  automatic_timezone?: "0" | "1";
+  automatic_timezone?: '0' | '1';
   language?: string[];
-  flash?: "allow" | "block" | "ask";
-  webrtc?: "forward" | "proxy" | "local" | "disabled";
+  flash?: 'allow' | 'block' | 'ask';
+  webrtc?: 'forward' | 'proxy' | 'local' | 'disabled';
   // Można dodać więcej pól
 }
 
@@ -48,7 +48,7 @@ export interface CreateProfilePayload {
   password?: string;
   fakey?: string;
   cookie?: string;
-  ignore_cookie_error?: "0" | "1";
+  ignore_cookie_error?: '0' | '1';
   user_proxy_config?: UserProxyConfigInput;
   proxyid?: string;
   fingerprint_config: FingerprintConfigInput;
@@ -56,7 +56,7 @@ export interface CreateProfilePayload {
   country?: string;
   region?: string;
   city?: string;
-  ipchecker?: "ip2location" | "ipapi";
+  ipchecker?: 'ip2location' | 'ipapi';
   sys_app_cate_id?: string;
   repeat_config?: (0 | 2 | 3 | 4)[];
 }
@@ -95,7 +95,7 @@ export interface UpdateProfilePayload {
   password?: string;
   fakey?: string;
   cookie?: string;
-  ignore_cookie_error?: "0" | "1";
+  ignore_cookie_error?: '0' | '1';
   user_proxy_config?: UserProxyConfigInput;
   proxyid?: string;
   fingerprint_config?: FingerprintConfigInput;
@@ -103,7 +103,7 @@ export interface UpdateProfilePayload {
   country?: string;
   region?: string;
   city?: string;
-  ipchecker?: "ip2location" | "ipapi";
+  ipchecker?: 'ip2location' | 'ipapi';
   sys_app_cate_id?: string;
   repeat_config?: (0 | 2 | 3 | 4)[];
 }
@@ -157,7 +157,7 @@ export interface StopBrowserResponseData {
 }
 
 export interface BrowserStatusData {
-  status: "Active" | "Inactive";
+  status: 'Active' | 'Inactive';
 }
 
 export interface BrowserStatusResponseData extends BrowserStatusData {}

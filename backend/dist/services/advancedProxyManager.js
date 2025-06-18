@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 var __awaiter =
   (this && this.__awaiter) ||
   function (thisArg, _arguments, P, generator) {
@@ -19,7 +19,7 @@ var __awaiter =
       }
       function rejected(value) {
         try {
-          step(generator["throw"](value));
+          step(generator['throw'](value));
         } catch (e) {
           reject(e);
         }
@@ -30,18 +30,21 @@ var __awaiter =
       step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
   };
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, '__esModule', { value: true });
 exports.AdvancedProxyManager = exports.ProxyType = void 0;
-const config_1 = require("../config/config");
+const config_1 = require('../config/config');
 var ProxyType;
 (function (ProxyType) {
-  ProxyType["RESIDENTIAL"] = "residential";
-  ProxyType["DATACENTER"] = "datacenter";
-  ProxyType["ISP"] = "isp";
-  ProxyType["MOBILE"] = "mobile";
+  ProxyType['RESIDENTIAL'] = 'residential';
+  ProxyType['DATACENTER'] = 'datacenter';
+  ProxyType['ISP'] = 'isp';
+  ProxyType['MOBILE'] = 'mobile';
 })(ProxyType || (exports.ProxyType = ProxyType = {}));
 class AdvancedProxyManager {
-  constructor(username = config_1.config.brightData.username, password = config_1.config.brightData.password) {
+  constructor(
+    username = config_1.config.brightData.username,
+    password = config_1.config.brightData.password
+  ) {
     this.username = username;
     this.password = password;
     this.maxRetries = 3;
@@ -72,25 +75,25 @@ class AdvancedProxyManager {
     switch (type) {
       case ProxyType.RESIDENTIAL:
         return Object.assign(Object.assign({}, baseConfig), {
-          host: "zproxy.lum-superproxy.io",
+          host: 'zproxy.lum-superproxy.io',
           port: 22225,
           proxyType: ProxyType.RESIDENTIAL,
         });
       case ProxyType.DATACENTER:
         return Object.assign(Object.assign({}, baseConfig), {
-          host: "brd.superproxy.io",
+          host: 'brd.superproxy.io',
           port: 22225,
           proxyType: ProxyType.DATACENTER,
         });
       case ProxyType.ISP:
         return Object.assign(Object.assign({}, baseConfig), {
-          host: "isp.lum-superproxy.io",
+          host: 'isp.lum-superproxy.io',
           port: 22225,
           proxyType: ProxyType.ISP,
         });
       case ProxyType.MOBILE:
         return Object.assign(Object.assign({}, baseConfig), {
-          host: "mobile.lum-superproxy.io",
+          host: 'mobile.lum-superproxy.io',
           port: 22225,
           proxyType: ProxyType.MOBILE,
         });
@@ -133,40 +136,47 @@ class AdvancedProxyManager {
     });
   }
   executeWithProxy(action_1) {
-    return __awaiter(this, arguments, void 0, function* (action, preferredType = ProxyType.RESIDENTIAL) {
-      let retries = 0;
-      let lastError;
-      while (retries < this.maxRetries) {
-        const proxyConfig = yield this.getWorkingProxy(preferredType);
-        const proxyUrl = this.getProxyUrl(proxyConfig);
-        try {
-          const result = yield action(proxyUrl);
-          this.incrementRequestCount(proxyConfig);
-          return result;
-        } catch (error) {
-          lastError = error;
-          this.handleProxyError(error, proxyConfig);
-          retries++;
-          // Jeśli błąd wskazuje na zablokowane proxy, spróbuj innego typu
-          if (error.statusCode === 403 || error.statusCode === 429) {
-            const fallbackTypes = [ProxyType.ISP, ProxyType.DATACENTER, ProxyType.MOBILE].filter(
-              (type) => type !== preferredType
-            );
-            for (const type of fallbackTypes) {
-              try {
-                const newProxyConfig = yield this.getWorkingProxy(type);
-                const result = yield action(this.getProxyUrl(newProxyConfig));
-                this.incrementRequestCount(newProxyConfig);
-                return result;
-              } catch (fallbackError) {
-                lastError = fallbackError;
+    return __awaiter(
+      this,
+      arguments,
+      void 0,
+      function* (action, preferredType = ProxyType.RESIDENTIAL) {
+        let retries = 0;
+        let lastError;
+        while (retries < this.maxRetries) {
+          const proxyConfig = yield this.getWorkingProxy(preferredType);
+          const proxyUrl = this.getProxyUrl(proxyConfig);
+          try {
+            const result = yield action(proxyUrl);
+            this.incrementRequestCount(proxyConfig);
+            return result;
+          } catch (error) {
+            lastError = error;
+            this.handleProxyError(error, proxyConfig);
+            retries++;
+            // Jeśli błąd wskazuje na zablokowane proxy, spróbuj innego typu
+            if (error.statusCode === 403 || error.statusCode === 429) {
+              const fallbackTypes = [ProxyType.ISP, ProxyType.DATACENTER, ProxyType.MOBILE].filter(
+                (type) => type !== preferredType
+              );
+              for (const type of fallbackTypes) {
+                try {
+                  const newProxyConfig = yield this.getWorkingProxy(type);
+                  const result = yield action(this.getProxyUrl(newProxyConfig));
+                  this.incrementRequestCount(newProxyConfig);
+                  return result;
+                } catch (fallbackError) {
+                  lastError = fallbackError;
+                }
               }
             }
           }
         }
+        throw new Error(
+          `Failed after ${this.maxRetries} retries. Last error: ${lastError.message}`
+        );
       }
-      throw new Error(`Failed after ${this.maxRetries} retries. Last error: ${lastError.message}`);
-    });
+    );
   }
 }
 exports.AdvancedProxyManager = AdvancedProxyManager;

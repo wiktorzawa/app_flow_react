@@ -51,20 +51,62 @@
   @apply w-full;
 }
 
-.apexcharts-tooltip {
-  @apply bg-white! dark:bg-gray-700! text-gray-500! dark:text-gray-400! border-0! rounded-lg! shadow-lg!;
+/* ApexCharts tooltip dark mode fix - bardziej specyficzne selektory */
+.apexcharts-tooltip.apexcharts-theme-light {
+  @apply bg-white! text-gray-900! border-0! rounded-lg! shadow-lg!;
+  /* Debug border */
+  border: 2px solid red !important;
+}
+
+.dark .apexcharts-tooltip.apexcharts-theme-light,
+.dark .apexcharts-tooltip {
+  @apply bg-gray-800! text-white! border! border-gray-600! shadow-xl!;
+  /* Debug border dla dark mode */
+  border: 2px solid lime !important;
 }
 
 .apexcharts-tooltip .apexcharts-tooltip-title {
-  @apply py-2! px-4! bg-gray-100! dark:bg-gray-600! border-b! border-gray-200! dark:border-gray-500!;
+  @apply py-2! px-4! bg-gray-50! text-gray-900! border-b! border-gray-200! font-semibold!;
 }
 
-.apexcharts-xaxistooltip {
-  @apply text-gray-500! border-0! bg-white! dark:bg-gray-700! dark:text-gray-300! rounded-lg! shadow-lg!;
+.dark .apexcharts-tooltip .apexcharts-tooltip-title {
+  @apply bg-gray-700! text-white! border-gray-600!;
 }
 
 .apexcharts-tooltip .apexcharts-tooltip-text-y-value {
-  @apply dark:text-white!;
+  @apply text-gray-900! font-semibold!;
+}
+
+.dark .apexcharts-tooltip .apexcharts-tooltip-text-y-value {
+  @apply text-white!;
+}
+
+.apexcharts-tooltip .apexcharts-tooltip-text-y-label {
+  @apply text-gray-600!;
+}
+
+.dark .apexcharts-tooltip .apexcharts-tooltip-text-y-label {
+  @apply text-gray-300!;
+}
+
+.apexcharts-tooltip .apexcharts-tooltip-text-z-value {
+  @apply text-gray-900!;
+}
+
+.dark .apexcharts-tooltip .apexcharts-tooltip-text-z-value {
+  @apply text-white!;
+}
+
+.apexcharts-tooltip .apexcharts-tooltip-marker {
+  @apply mr-2!;
+}
+
+.apexcharts-xaxistooltip {
+  @apply bg-white! text-gray-900! border-0! rounded-lg! shadow-lg!;
+}
+
+.dark .apexcharts-xaxistooltip {
+  @apply bg-gray-800! text-white! border! border-gray-600!;
 }
 
 .apexcharts-xaxistooltip-text {
@@ -74,6 +116,15 @@
 .apexcharts-xaxistooltip:before,
 .apexcharts-xaxistooltip:after {
   @apply border-0!;
+}
+
+/* Dodatkowe style dla lepszej widoczności */
+.dark .apexcharts-tooltip-series-group {
+  @apply text-white!;
+}
+
+.dark .apexcharts-tooltip-text {
+  @apply text-white!;
 }
 
 /* Naprawka dla błędów renderowania */
@@ -123,7 +174,10 @@
   @apply inline-block! mr-2! text-left! border-0! p-0!;
 }
 
-.svgMap-tooltip .svgMap-tooltip-content-container .svgMap-tooltip-flag-container .svgMap-tooltip-flag {
+.svgMap-tooltip
+  .svgMap-tooltip-content-container
+  .svgMap-tooltip-flag-container
+  .svgMap-tooltip-flag {
   @apply inline-block! border-0! h-4! p-0!;
 }
 
@@ -155,7 +209,7 @@
   @apply dark:stroke-gray-800!;
 }
 
-.svgMap-country[fill="#4B5563"] {
+.svgMap-country[fill='#4B5563'] {
   @apply fill-[#4B5563]!;
 }
 
@@ -232,3 +286,9 @@
 .fc .fc-daygrid-day-frame {
   @apply hover:bg-gray-50! cursor-pointer!;
 }
+
+/* 
+  ZNANY BUG: Flowbite React v0.11.8 + Tailwind CSS v4.1.10
+  Ostrzeżenie "rounded-sm" w konsoli jest spowodowane błędem w konwerterze v3→v4 w Flowbite React.
+  Nie wpływa na funkcjonalność aplikacji. Zostanie naprawione w przyszłych wersjach Flowbite React.
+*/

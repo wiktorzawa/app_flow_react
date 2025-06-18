@@ -1,17 +1,20 @@
-import { Footer, FooterLink, FooterLinkGroup } from "flowbite-react";
-import type { FC, PropsWithChildren } from "react";
-import Navbar from "../components/navbar";
-import Sidebar from "../components/sidebar";
-import { MdFacebook } from "react-icons/md";
-import { FaDribbble, FaGithub, FaInstagram, FaTwitter } from "react-icons/fa";
-import { SidebarProvider, useSidebarContext } from "../context/SidebarContext";
-import classNames from "classnames";
+import { Footer, FooterLink, FooterLinkGroup } from 'flowbite-react';
+import type { FC, PropsWithChildren } from 'react';
+import Navbar from '../components/navbar';
+import Sidebar from '../components/sidebar';
+import { MdFacebook } from 'react-icons/md';
+import { FaDribbble, FaGithub, FaInstagram, FaTwitter } from 'react-icons/fa';
+import { SidebarProvider, useSidebarContext } from '../context/SidebarContext';
+import classNames from 'classnames';
 
 interface NavbarSidebarLayoutProps {
   isFooter?: boolean;
 }
 
-const NavbarSidebarLayout: FC<PropsWithChildren<NavbarSidebarLayoutProps>> = function ({ children, isFooter = true }) {
+const NavbarSidebarLayout: FC<PropsWithChildren<NavbarSidebarLayoutProps>> = function ({
+  children,
+  isFooter = true,
+}) {
   return (
     <SidebarProvider initialCollapsed={false}>
       <Navbar />
@@ -23,16 +26,19 @@ const NavbarSidebarLayout: FC<PropsWithChildren<NavbarSidebarLayoutProps>> = fun
   );
 };
 
-const MainContent: FC<PropsWithChildren<NavbarSidebarLayoutProps>> = function ({ children, isFooter }) {
+const MainContent: FC<PropsWithChildren<NavbarSidebarLayoutProps>> = function ({
+  children,
+  isFooter,
+}) {
   const { isCollapsed } = useSidebarContext();
 
   return (
     <main
       className={classNames(
-        "relative h-full w-full overflow-y-auto bg-gray-50 p-4 dark:bg-gray-900 transition-all duration-300",
+        'relative h-full w-full overflow-y-auto bg-gray-50 p-4 dark:bg-gray-900 transition-all duration-300',
         {
-          "lg:ml-64": !isCollapsed,
-          "lg:ml-16": isCollapsed,
+          'lg:ml-64': !isCollapsed,
+          'lg:ml-16': isCollapsed,
         }
       )}
     >

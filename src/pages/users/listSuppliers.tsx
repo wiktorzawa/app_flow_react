@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from 'react';
 import {
   // Nowe importy dla Breadcrumb i jej podkomponentów
   Breadcrumb,
@@ -19,8 +19,8 @@ import {
   TableRow,
   TableCell,
   TextInput,
-} from "flowbite-react";
-import type { FC } from "react";
+} from 'flowbite-react';
+import type { FC } from 'react';
 import {
   HiChevronLeft,
   HiChevronRight,
@@ -30,8 +30,8 @@ import {
   HiOutlinePencilAlt,
   HiPlus,
   HiTrash,
-} from "react-icons/hi";
-import NavbarSidebarLayout from "../../layouts/navbar-sidebar";
+} from 'react-icons/hi';
+import NavbarSidebarLayout from '../../layouts/navbar-sidebar';
 import {
   pobierzDostawcow,
   aktualizujDostawce,
@@ -41,7 +41,7 @@ import {
   type Dostawca,
   type NowyDostawcaBezId,
   type AktualizacjaDostawcy,
-} from "../../api/login_table_suppliers.api";
+} from '../../api/login_table_suppliers.api';
 
 interface SupplierFormData {
   name: string;
@@ -78,7 +78,9 @@ export const SupplierListPage: FC = function () {
               </BreadcrumbItem>
               <BreadcrumbItem>Wszyscy dostawcy</BreadcrumbItem>
             </Breadcrumb>
-            <h1 className="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">Wszyscy dostawcy</h1>
+            <h1 className="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">
+              Wszyscy dostawcy
+            </h1>
           </div>
           <div className="sm:flex">
             <div className="items-center hidden mb-3 sm:flex sm:divide-x sm:divide-gray-100 sm:mb-0 dark:divide-gray-700">
@@ -129,35 +131,24 @@ export const SupplierListPage: FC = function () {
 };
 
 export const AddSupplierModal: FC<AddSupplierModalProps> = function ({ refresh }) {
-  const [supplierId, setSupplierId] = useState("");
+  const [supplierId, setSupplierId] = useState('');
   const [modalState, setModalState] = useState<boolean>(false);
-  const [generatedPassword, setGeneratedPassword] = useState<string>("");
+  const [generatedPassword, setGeneratedPassword] = useState<string>('');
 
-  // Funkcja do generowania ID dostawcy
-  const generateId = async () => {
-    if (!supplierId) {
-      try {
-        console.log("Generowanie ID dostawcy");
-        const id = await generujIdDostawcy();
-        console.log("Wygenerowane ID:", id);
-        setSupplierId(id);
-      } catch (err) {
-        console.error("Błąd podczas generowania ID:", err);
-      }
-    }
-  };
+  const generateId = useCallback(() => {
+    const timestamp = new Date().getTime();
+    const random = Math.floor(Math.random() * 1000);
+    setSupplierId(`${timestamp}-${random}`);
+  }, [setSupplierId]);
 
-  // Generuj ID po otwarciu modalu
   useEffect(() => {
     if (modalState) {
-      console.log("Modal otwarty - generowanie ID dostawcy");
-      // Generuj ID
+      console.log('Modal otwarty - generowanie ID dostawcy');
       generateId();
     } else {
-      // Reset ID przy zamykaniu
-      setSupplierId("");
+      setSupplierId('');
     }
-  }, [modalState]);
+  }, [modalState, generateId]);
 
   const handleCloseSuccessView = () => {
     setModalState(false);
@@ -197,14 +188,21 @@ export const AddSupplierModal: FC<AddSupplierModalProps> = function ({ refresh }
         <ModalBody>
           <div className="mb-4 rounded-lg bg-green-50 p-4 text-green-800 dark:bg-gray-800 dark:text-green-300">
             <div className="mb-1 font-medium">Dostawca został pomyślnie dodany do systemu</div>
-            <p className="text-sm">Poniżej znajdują się wszystkie dane dostawcy oraz dane do logowania.</p>
+            <p className="text-sm">
+              Poniżej znajdują się wszystkie dane dostawcy oraz dane do logowania.
+            </p>
           </div>
         </ModalBody>
         <ModalFooter>
           {/* Button color="primary" powinno być OK */}
           <Button color="primary" onClick={handleCloseSuccessView}>
             <div className="flex items-center gap-x-2">
-              <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <svg
+                className="h-5 w-5"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
                 <path
                   fillRule="evenodd"
                   d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
@@ -232,7 +230,7 @@ const AllSuppliersTable: FC<{ onSuccess: () => void; refreshTrigger: number }> =
         const data = await pobierzDostawcow();
         setDostawcy(data);
       } catch (error) {
-        console.error("Błąd podczas pobierania dostawców:", error);
+        console.error('Błąd podczas pobierania dostawców:', error);
       }
     };
 
@@ -240,11 +238,11 @@ const AllSuppliersTable: FC<{ onSuccess: () => void; refreshTrigger: number }> =
   }, [refreshTrigger]);
 
   const handleDelete = async (id: string) => {
-    if (window.confirm("Czy na pewno chcesz usunąć tego dostawcę?")) {
+    if (window.confirm('Czy na pewno chcesz usunąć tego dostawcę?')) {
       try {
         const success = await usunDostawce(id);
         if (success) {
-          setDostawcy(dostawcy.filter((d) => d.id_supplier !== id));
+          setDostawcy(dostawcy.filter(d => d.id_supplier !== id));
           onSuccess();
         }
       } catch (err) {
@@ -279,7 +277,7 @@ const AllSuppliersTable: FC<{ onSuccess: () => void; refreshTrigger: number }> =
         </TableRow>
       </TableHead>
       <TableBody className="divide-y divide-gray-200 bg-white dark:divide-gray-700 dark:bg-gray-800">
-        {dostawcy.map((dostawca) => (
+        {dostawcy.map(dostawca => (
           <TableRow key={dostawca.id_supplier} className="hover:bg-gray-100 dark:hover:bg-gray-700">
             <TableCell className="w-4 p-4">
               <div className="flex items-center">
@@ -298,7 +296,9 @@ const AllSuppliersTable: FC<{ onSuccess: () => void; refreshTrigger: number }> =
                 </div>
                 <div className="text-base font-semibold text-gray-900 dark:text-white ml-3">
                   <div>{dostawca.company_name}</div>
-                  <div className="text-sm font-normal text-gray-500 dark:text-gray-400">ID: {dostawca.id_supplier}</div>
+                  <div className="text-sm font-normal text-gray-500 dark:text-gray-400">
+                    ID: {dostawca.id_supplier}
+                  </div>
                 </div>
               </div>
             </TableCell>
@@ -324,7 +324,11 @@ const AllSuppliersTable: FC<{ onSuccess: () => void; refreshTrigger: number }> =
               <div className="flex items-center gap-x-3">
                 <EditSupplierModal dostawca={dostawca} onSuccess={onSuccess} />
                 {/* Button color="failure" i size="sm" powinno być OK */}
-                <Button color="failure" size="sm" onClick={() => handleDelete(dostawca.id_supplier)}>
+                <Button
+                  color="failure"
+                  size="sm"
+                  onClick={() => handleDelete(dostawca.id_supplier)}
+                >
                   <HiTrash className="mr-1" />
                   <span>Usuń</span>
                 </Button>
@@ -381,9 +385,9 @@ const EditSupplierModal: FC<{
   const handleChange = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
       const { name, value } = e.target;
-      setFormData((prev) => ({
+      setFormData(prev => ({
         ...prev,
-        [name]: value === "" && (name === "website" || name === "address_apartment") ? null : value,
+        [name]: value === '' && (name === 'website' || name === 'address_apartment') ? null : value,
       }));
     },
     []
@@ -397,7 +401,7 @@ const EditSupplierModal: FC<{
         onSuccess();
       }
     } catch (err) {
-      console.error("Wystąpił błąd podczas aktualizowania dostawcy.", err);
+      console.error('Wystąpił błąd podczas aktualizowania dostawcy.', err);
     }
   };
 
@@ -455,7 +459,14 @@ const EditSupplierModal: FC<{
             </div>
             <div>
               <Label htmlFor="nip">NIP</Label>
-              <TextInput id="nip" name="nip" required className="mt-1" value={formData.nip} onChange={handleChange} />
+              <TextInput
+                id="nip"
+                name="nip"
+                required
+                className="mt-1"
+                value={formData.nip}
+                onChange={handleChange}
+              />
             </div>
             <div>
               <Label htmlFor="email">Email</Label>
@@ -487,7 +498,7 @@ const EditSupplierModal: FC<{
                 id="website"
                 name="website"
                 className="mt-1"
-                value={formData.website || ""}
+                value={formData.website || ''}
                 onChange={handleChange}
               />
             </div>
@@ -519,7 +530,7 @@ const EditSupplierModal: FC<{
                 id="address_apartment"
                 name="address_apartment"
                 className="mt-1"
-                value={formData.address_apartment || ""}
+                value={formData.address_apartment || ''}
                 onChange={handleChange}
               />
             </div>

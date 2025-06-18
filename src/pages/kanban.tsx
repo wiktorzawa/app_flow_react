@@ -1,7 +1,16 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import type { FC } from "react";
-import { Fragment, useState } from "react";
-import { Button, Label, Modal, Textarea, TextInput, ModalHeader, ModalBody, ModalFooter } from "flowbite-react";
+import type { FC } from 'react';
+import { Fragment, useState } from 'react';
+import {
+  Button,
+  Label,
+  Modal,
+  Textarea,
+  TextInput,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+} from 'flowbite-react';
 import {
   HiArrowsExpand,
   HiClipboard,
@@ -11,10 +20,10 @@ import {
   HiPaperClip,
   HiPencilAlt,
   HiPlus,
-} from "react-icons/hi";
-import { ReactSortable } from "react-sortablejs";
-import NavbarSidebarLayout from "../layouts/navbar-sidebar";
-import kanbanBoards from "../data/kanban.json";
+} from 'react-icons/hi';
+import { ReactSortable } from 'react-sortablejs';
+import NavbarSidebarLayout from '../layouts/navbar-sidebar';
+import kanbanBoards from '../data/kanban.json';
 
 interface KanbanBoard {
   id: number;
@@ -46,19 +55,21 @@ const KanbanPage: FC = function () {
       <div className="overflow-x-auto">
         <div className="inline-block min-w-full align-middle">
           <div className="mb-6 flex items-start justify-start space-x-4 px-4">
-            {list.map((board) => (
+            {list.map(board => (
               <div key={board.id}>
-                <div className="py-4 text-base font-semibold text-gray-900 dark:text-gray-300">{board.title}</div>
+                <div className="py-4 text-base font-semibold text-gray-900 dark:text-gray-300">
+                  {board.title}
+                </div>
                 <div className="mb-6 space-y-4">
                   <ReactSortable
                     animation={100}
                     forceFallback
                     group="kanban"
                     list={board.tasks}
-                    setList={(tasks) =>
-                      setList((list) => {
+                    setList={tasks =>
+                      setList(list => {
                         const newList = [...list];
-                        const index = newList.findIndex((item) => item.id === board.id);
+                        const index = newList.findIndex(item => item.id === board.id);
                         // Upewnij się, że element istnieje przed próbą dostępu do jego właściwości
                         if (newList[index]) {
                           newList[index]!.tasks = tasks;
@@ -67,25 +78,29 @@ const KanbanPage: FC = function () {
                       })
                     }
                   >
-                    {board.tasks.map((task) => (
+                    {board.tasks.map(task => (
                       <div
                         key={task.id}
                         className="mb-4 w-md cursor-grab rounded-lg bg-white p-4 shadow-md dark:bg-gray-800"
                       >
                         <div className="flex items-center justify-between pb-4">
-                          <div className="text-base font-semibold text-gray-900 dark:text-white">{task.name}</div>
+                          <div className="text-base font-semibold text-gray-900 dark:text-white">
+                            {task.name}
+                          </div>
                           <div className="w-8">
                             <EditCardModal />
                           </div>
                         </div>
                         <div className="flex flex-col">
-                          {task.attachment && <img alt="" src={task.attachment} className="mb-3 rounded-lg" />}
+                          {task.attachment && (
+                            <img alt="" src={task.attachment} className="mb-3 rounded-lg" />
+                          )}
                           <div className="pb-4 text-sm font-normal text-gray-700 dark:text-gray-400">
                             {task.description}
                           </div>
                           <div className="flex justify-between">
                             <div className="flex items-center justify-start">
-                              {task.members.map((member) => (
+                              {task.members.map(member => (
                                 <Fragment key={member.id}>
                                   <a href="#" className="-mr-3">
                                     <img
@@ -153,7 +168,7 @@ const EditCardModal: FC = function () {
           </div>
           <div className="mb-5 flex flex-col items-start justify-center space-y-3">
             <div className="text-sm text-gray-500 dark:text-gray-400">
-              Added by{" "}
+              Added by{' '}
               <a className="cursor-pointer text-primary-700 no-underline hover:underline dark:text-primary-500">
                 Bonnie Green
               </a>
@@ -219,7 +234,12 @@ const EditCardModal: FC = function () {
             </div>
           </div>
           <div className="mb-2 inline-flex items-center text-center text-lg font-semibold text-gray-900 dark:text-white">
-            <svg className="mr-1 h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <svg
+              className="mr-1 h-5 w-5"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
               <path
                 fillRule="evenodd"
                 d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z"
@@ -230,13 +250,14 @@ const EditCardModal: FC = function () {
           </div>
           <div className="mb-4 space-y-2 text-base text-gray-500 dark:text-gray-400">
             <p>
-              I made some wireframes that we would like you to follow since we are building it in Google's Material
-              Design (Please learn more about this and see how to improve standard material design into something
-              beautiful). But besides that, you can just do it how you like.
+              I made some wireframes that we would like you to follow since we are building it in
+              Google&apos;s Material Design (Please learn more about this and see how to improve
+              standard material design into something beautiful). But besides that, you can just do
+              it how you like.
             </p>
             <p>
-              Next Friday should be done. Next Monday we should deliver the first iteration. Make sure, we have a good
-              result to be delivered by the day.
+              Next Friday should be done. Next Monday we should deliver the first iteration. Make
+              sure, we have a good result to be delivered by the day.
             </p>
             <div className="w-max cursor-pointer text-sm font-semibold text-primary-700 hover:underline dark:text-primary-500">
               Show Full Description
@@ -279,7 +300,12 @@ const EditCardModal: FC = function () {
                   href="#"
                   className="inline-flex cursor-pointer justify-center rounded-sm p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
                 >
-                  <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                  <svg
+                    className="h-6 w-6"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
                     <path
                       fillRule="evenodd"
                       d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z"
@@ -312,26 +338,40 @@ const EditCardModal: FC = function () {
           <div className="flex flex-col space-y-2">
             <div className="flex items-center space-x-3">
               <a href="#" className="shrink-0">
-                <img className="h-7 w-7 rounded-full" src="../images/users/michael-gough.png" alt="Micheal Gough" />
+                <img
+                  className="h-7 w-7 rounded-full"
+                  src="../images/users/michael-gough.png"
+                  alt="Micheal Gough"
+                />
               </a>
               <div className="min-w-0 flex-1">
-                <p className="truncate text-sm font-semibold text-gray-900 dark:text-white">Micheal Gough</p>
-                <p className="truncate text-sm font-normal text-gray-500 dark:text-gray-400">Product Manager</p>
+                <p className="truncate text-sm font-semibold text-gray-900 dark:text-white">
+                  Micheal Gough
+                </p>
+                <p className="truncate text-sm font-normal text-gray-500 dark:text-gray-400">
+                  Product Manager
+                </p>
               </div>
               <a
                 href="#"
                 className="rounded-lg p-1 text-sm text-gray-500 hover:bg-gray-100 focus:outline-hidden focus:ring-4 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
               >
-                <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <svg
+                  className="h-4 w-4"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
                   <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"></path>
                 </svg>
               </a>
             </div>
             <ul className="list-outside list-disc pl-6 text-xs text-gray-500 dark:text-gray-400">
               <li>
-                Latest clicks/conversions. Where you currently have the logo for merchant, we should instead have a logo
-                that represent the referring traffic sources (ex. Google or Facebook). So we're actually missing a
-                column that should say "Source". And there should be no icon for the merchants.
+                Latest clicks/conversions. Where you currently have the logo for merchant, we should
+                instead have a logo that represent the referring traffic sources (ex. Google or
+                Facebook). So we&apos;re actually missing a column that should say
+                &quot;Source&quot;. And there should be no icon for the merchants.
               </li>
             </ul>
           </div>
@@ -384,7 +424,12 @@ const AddAnotherCardModal: FC = function () {
         onClick={() => setOpen(true)}
         className="flex w-full items-center justify-center whitespace-nowrap rounded-lg border-2 border-dashed border-gray-200 px-5 py-2 font-semibold text-gray-500 hover:border-gray-300 hover:bg-gray-100 hover:text-gray-900 dark:border-gray-800 dark:hover:border-gray-700 dark:hover:bg-gray-800 dark:hover:text-white"
       >
-        <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <svg
+          className="h-6 w-6"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <path
             fillRule="evenodd"
             d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
@@ -405,7 +450,12 @@ const AddAnotherCardModal: FC = function () {
             </div>
             <div className="mb-4 grid grid-cols-1 gap-y-2">
               <Label htmlFor="description">Enter a description</Label>
-              <Textarea id="description" name="description" placeholder="On line 672 you ..." rows={6} />
+              <Textarea
+                id="description"
+                name="description"
+                placeholder="On line 672 you ..."
+                rows={6}
+              />
             </div>
             <div className="flex w-full items-center justify-center">
               <label

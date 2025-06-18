@@ -1,5 +1,46 @@
-import { DataTypes, Model, Optional, Op } from "sequelize";
-import { sequelize } from "../config/database";
+import { DataTypes, Model, Optional, Op } from 'sequelize';
+import { sequelize } from '../config/database';
+
+interface ReviewData {
+  text?: string;
+  rating?: number;
+  date?: string;
+  author?: string;
+  verified?: boolean;
+}
+
+interface VariationData {
+  asin?: string;
+  title?: string;
+  price?: number;
+  image?: string;
+  selected?: boolean;
+  attributes?: Record<string, string>;
+}
+
+interface DeliveryData {
+  date?: string;
+  price?: number;
+  method?: string;
+  location?: string;
+  provider?: string;
+}
+
+interface PricesBreakdownData {
+  original?: number;
+  current?: number;
+  discount?: number;
+  savings?: number;
+  currency?: string;
+}
+
+interface CouponData {
+  type?: string;
+  amount?: number;
+  code?: string;
+  expiry?: string;
+  description?: string;
+}
 
 interface AmazonProductAttributes {
   id: number;
@@ -39,9 +80,9 @@ interface AmazonProductAttributes {
   plus_content: boolean | null;
   upc: string | null;
   video: string[] | null;
-  top_review: Record<string, any> | null;
-  variations: Record<string, any>[] | null;
-  delivery: Record<string, any> | null;
+  top_review: ReviewData | null;
+  variations: VariationData[] | null;
+  delivery: DeliveryData | null;
   features: string[] | null;
   format: string | null;
   buybox_prices: number[] | null;
@@ -56,14 +97,14 @@ interface AmazonProductAttributes {
   images: string[] | null;
   country_of_origin: string | null;
   product_details: Array<{ title: string; value: string }> | null;
-  prices_breakdown: Record<string, any> | null;
+  prices_breakdown: PricesBreakdownData | null;
   unit_price: string | null;
   other_sellers_prices: number[] | null;
   measurement: string | null;
   product_rating_object: Record<string, number> | null;
   sustainability_features: string[] | null;
   climate_pledge_friendly: boolean | null;
-  coupon: Record<string, any> | null;
+  coupon: CouponData | null;
   sponsered: boolean | null;
   fba_sellers_count: number | null;
   fbm_sellers_count: number | null;
@@ -72,7 +113,7 @@ interface AmazonProductAttributes {
 }
 
 // Atrybuty używane podczas tworzenia nowego produktu
-interface AmazonProductCreationAttributes extends Optional<AmazonProductAttributes, "id"> {}
+interface AmazonProductCreationAttributes extends Optional<AmazonProductAttributes, 'id'> {}
 
 class AmazonProduct
   extends Model<AmazonProductAttributes, AmazonProductCreationAttributes>
@@ -115,9 +156,9 @@ class AmazonProduct
   public plus_content!: boolean | null;
   public upc!: string | null;
   public video!: string[] | null;
-  public top_review!: Record<string, any> | null;
-  public variations!: Record<string, any>[] | null;
-  public delivery!: Record<string, any> | null;
+  public top_review!: ReviewData | null;
+  public variations!: VariationData[] | null;
+  public delivery!: DeliveryData | null;
   public features!: string[] | null;
   public format!: string | null;
   public buybox_prices!: number[] | null;
@@ -132,14 +173,14 @@ class AmazonProduct
   public images!: string[] | null;
   public country_of_origin!: string | null;
   public product_details!: Array<{ title: string; value: string }> | null;
-  public prices_breakdown!: Record<string, any> | null;
+  public prices_breakdown!: PricesBreakdownData | null;
   public unit_price!: string | null;
   public other_sellers_prices!: number[] | null;
   public measurement!: string | null;
   public product_rating_object!: Record<string, number> | null;
   public sustainability_features!: string[] | null;
   public climate_pledge_friendly!: boolean | null;
-  public coupon!: Record<string, any> | null;
+  public coupon!: CouponData | null;
   public sponsered!: boolean | null;
   public fba_sellers_count!: number | null;
   public fbm_sellers_count!: number | null;
@@ -223,7 +264,7 @@ AmazonProduct.init(
     currency: {
       type: DataTypes.STRING(3),
       allowNull: false,
-      defaultValue: "USD",
+      defaultValue: 'USD',
     },
     availability: {
       type: DataTypes.STRING,
@@ -459,23 +500,23 @@ AmazonProduct.init(
   },
   {
     sequelize,
-    tableName: "amazon_products",
+    tableName: 'amazon_products',
     indexes: [
       {
         unique: true,
-        fields: ["asin"],
+        fields: ['asin'],
       },
       {
-        fields: ["lastScraped"],
+        fields: ['lastScraped'],
       },
       {
-        fields: ["brand"],
+        fields: ['brand'],
       },
       {
-        fields: ["seller_id"],
+        fields: ['seller_id'],
       },
       {
-        fields: ["root_bs_category"],
+        fields: ['root_bs_category'],
       },
     ],
   }

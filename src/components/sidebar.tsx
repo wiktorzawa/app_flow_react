@@ -1,13 +1,13 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import type { FC } from "react";
-import { useState, useEffect } from "react";
+import type { FC } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Sidebar as FlowbiteSidebar,
   SidebarItems,
   SidebarItemGroup,
   SidebarItem,
   SidebarCollapse,
-} from "flowbite-react";
+} from 'flowbite-react';
 import {
   HiChartPie,
   HiChartSquareBar,
@@ -19,71 +19,88 @@ import {
   HiShoppingBag,
   HiUsers,
   HiViewGrid,
-} from "react-icons/hi";
-import { useSidebarContext } from "../context/SidebarContext";
+} from 'react-icons/hi';
+import { useSidebarContext } from '../context/SidebarContext';
 
 // Stałe i pomocnicze funkcje
 
-const isAdmin = (): boolean => localStorage.getItem("userRole") === "admin";
+const isAdmin = (): boolean => localStorage.getItem('userRole') === 'admin';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 
 const Sidebar: FC = function () {
   const { isCollapsed, isOpenOnMobile } = useSidebarContext();
-  const [currentPage, setCurrentPage] = useState("");
+  const [currentPage, setCurrentPage] = useState('');
   const [isEcommerceOpen, setEcommerceOpen] = useState(true);
   const [isUsersOpen, setUsersOpen] = useState(true);
 
   useEffect(() => {
     const newPage = window.location.pathname;
     setCurrentPage(newPage);
-    setEcommerceOpen(newPage.includes("/e-commerce/") || newPage.includes("/admin/orders"));
-    setUsersOpen(newPage.includes("/users/"));
+    setEcommerceOpen(newPage.includes('/e-commerce/') || newPage.includes('/admin/orders'));
+    setUsersOpen(newPage.includes('/users/'));
   }, []);
 
   return (
-    <div className={`lg:block! ${!isOpenOnMobile && "hidden"}`}>
+    <div className={`lg:block! ${!isOpenOnMobile && 'hidden'}`}>
       <FlowbiteSidebar aria-label="Sidebar with multi-level dropdown" collapsed={isCollapsed}>
         <SidebarItems>
           <SidebarItemGroup>
-            <SidebarItem href="/" icon={HiChartPie} active={currentPage === "/"}>
+            <SidebarItem href="/" icon={HiChartPie} active={currentPage === '/'}>
               Dashboard
             </SidebarItem>
             <SidebarCollapse icon={HiShoppingBag} label="E-commerce" open={isEcommerceOpen}>
-              <SidebarItem href="/admin/orders" active={currentPage === "/admin/orders"}>
+              <SidebarItem href="/admin/orders" active={currentPage === '/admin/orders'}>
                 Orders
               </SidebarItem>
-              <SidebarItem href="/e-commerce/products" active={currentPage === "/e-commerce/products"}>
+              <SidebarItem
+                href="/e-commerce/products"
+                active={currentPage === '/e-commerce/products'}
+              >
                 Products
               </SidebarItem>
             </SidebarCollapse>
             <SidebarItem
               href="/admin/adspower-dashboard"
               icon={HiViewGrid}
-              active={currentPage === "/admin/adspower-dashboard"}
+              active={currentPage === '/admin/adspower-dashboard'}
             >
               ADS Power
             </SidebarItem>
-            <SidebarItem href="/kanban" icon={HiCollection} active={currentPage === "/kanban"}>
+            <SidebarItem href="/kanban" icon={HiCollection} active={currentPage === '/kanban'}>
               Kanban
             </SidebarItem>
-            <SidebarItem href="/mailing/inbox" icon={HiInboxIn} active={currentPage === "/mailing/inbox"}>
+            <SidebarItem
+              href="/mailing/inbox"
+              icon={HiInboxIn}
+              active={currentPage === '/mailing/inbox'}
+            >
               Inbox
+            </SidebarItem>
+            <SidebarItem
+              href="/testy-blokow"
+              icon={HiViewGrid}
+              active={currentPage === '/testy-blokow'}
+            >
+              Testy bloków
             </SidebarItem>
             {isAdmin() && (
               <SidebarCollapse icon={HiUsers} label="Users" open={isUsersOpen}>
-                <SidebarItem href="/users/list" active={currentPage === "/users/list"}>
+                <SidebarItem href="/users/list" active={currentPage === '/users/list'}>
                   All users
                 </SidebarItem>
-                <SidebarItem href="/users/listSuppliers" active={currentPage === "/users/listSuppliers"}>
+                <SidebarItem
+                  href="/users/listSuppliers"
+                  active={currentPage === '/users/listSuppliers'}
+                >
                   Suppliers
                 </SidebarItem>
-                <SidebarItem href="/users/profile" active={currentPage === "/users/profile"}>
+                <SidebarItem href="/users/profile" active={currentPage === '/users/profile'}>
                   Profile
                 </SidebarItem>
-                <SidebarItem href="/users/feed" active={currentPage === "/users/feed"}>
+                <SidebarItem href="/users/feed" active={currentPage === '/users/feed'}>
                   Feed
                 </SidebarItem>
-                <SidebarItem href="/users/settings" active={currentPage === "/users/settings"}>
+                <SidebarItem href="/users/settings" active={currentPage === '/users/settings'}>
                   Settings
                 </SidebarItem>
               </SidebarCollapse>
@@ -93,7 +110,7 @@ const Sidebar: FC = function () {
             <SidebarItem
               href="/authentication/sign-in"
               icon={HiLockClosed}
-              active={currentPage === "/authentication/sign-in"}
+              active={currentPage === '/authentication/sign-in'}
             >
               Login
             </SidebarItem>

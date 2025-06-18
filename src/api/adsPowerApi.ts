@@ -1,8 +1,8 @@
-import axiosInstance from "./axios"; // Zakładając, że masz skonfigurowaną instancję axios
-import axios from "axios"; // Poprawiony cudzysłów
+import axiosInstance from './axios'; // Zakładając, że masz skonfigurowaną instancję axios
+import axios from 'axios'; // Poprawiony cudzysłów
 
 // Adres URL Twojego serwera backendowego
-const API_BASE_URL = "http://localhost:3001/api";
+const API_BASE_URL = 'http://localhost:3001/api';
 
 // Interfejs dla konfiguracji proxy (zgodnie z user_proxy_config)
 export interface AdsPowerProxyConfig {
@@ -139,7 +139,7 @@ export interface AdsPowerProfileListData {
 export interface CheckApiStatusResponse {
   success: boolean;
   message: string;
-  data?: any;
+  data?: Record<string, unknown>;
 }
 
 /**
@@ -153,10 +153,10 @@ export const fetchAdsPowerProfiles = async (
   try {
     const queryParams = new URLSearchParams();
     if (params.page !== undefined) {
-      queryParams.append("page", params.page.toString());
+      queryParams.append('page', params.page.toString());
     }
     if (params.pageSize !== undefined) {
-      queryParams.append("pageSize", params.pageSize.toString());
+      queryParams.append('pageSize', params.pageSize.toString());
     }
 
     const response = await axiosInstance.get<BackendApiResponse<AdsPowerProfilesResponseData>>(
@@ -167,12 +167,13 @@ export const fetchAdsPowerProfiles = async (
       return response.data.data;
     } else {
       const errorMessage =
-        response.data?.message || "Failed to fetch AdsPower profiles: Invalid API response from backend.";
+        response.data?.message ||
+        'Failed to fetch AdsPower profiles: Invalid API response from backend.';
       throw new Error(errorMessage);
     }
   } catch (error: unknown) {
-    console.error("Error fetching AdsPower profiles:", error);
-    let msg = "An unknown error occurred while fetching profiles";
+    console.error('Error fetching AdsPower profiles:', error);
+    let msg = 'An unknown error occurred while fetching profiles';
 
     if (axios.isAxiosError(error)) {
       if (error.response && error.response.data && error.response.data.message) {
@@ -196,21 +197,21 @@ export const createAdsPowerProfile = async (
   payload: CreateAdsPowerProfilePayload
 ): Promise<CreateAdsPowerProfileResponseData> => {
   try {
-    const response = await axiosInstance.post<BackendApiResponse<CreateAdsPowerProfileResponseData>>(
-      "/adspower/create-profile",
-      payload
-    );
+    const response = await axiosInstance.post<
+      BackendApiResponse<CreateAdsPowerProfileResponseData>
+    >('/adspower/create-profile', payload);
 
     if (response.data && response.data.success && response.data.data) {
       return response.data.data;
     } else {
       const errorMessage =
-        response.data?.message || "Failed to create AdsPower profile: Invalid API response from backend.";
+        response.data?.message ||
+        'Failed to create AdsPower profile: Invalid API response from backend.';
       throw new Error(errorMessage);
     }
   } catch (error: unknown) {
-    console.error("Error creating AdsPower profile:", error);
-    let msg = "An unknown error occurred while creating the profile";
+    console.error('Error creating AdsPower profile:', error);
+    let msg = 'An unknown error occurred while creating the profile';
 
     if (axios.isAxiosError(error)) {
       if (error.response && error.response.data && error.response.data.message) {
@@ -233,7 +234,10 @@ export const checkApiStatus = async (): Promise<CheckApiStatusResponse> => {
   if (!response.ok) {
     // Próba odczytania komunikatu o błędzie z odpowiedzi, jeśli jest dostępny
     const errorData = await response.json().catch(() => ({}));
-    throw new Error(errorData.message || `Błąd serwera: ${response.status} - Nie można połączyć się z API AdsPower.`);
+    throw new Error(
+      errorData.message ||
+        `Błąd serwera: ${response.status} - Nie można połączyć się z API AdsPower.`
+    );
   }
   return response.json();
 };

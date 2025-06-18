@@ -5,10 +5,10 @@
 export const rdsService = {
   async executeQuery(sql: string, parameters: (string | number | boolean | null)[] = []) {
     try {
-      const response = await fetch("http://localhost:3000/api/query", {
-        method: "POST",
+      const response = await fetch('http://localhost:3000/api/query', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({ sql, parameters }),
       });
@@ -19,7 +19,7 @@ export const rdsService = {
       }
       return data.data;
     } catch (error) {
-      console.error("Error executing RDS query:", error);
+      console.error('Error executing RDS query:', error);
       throw error;
     }
   },
@@ -29,8 +29,8 @@ export const rdsService = {
 export const s3Service = {
   async uploadFile(file: File, key: string) {
     // Tymczasowo usunięto funkcjonalność AWS S3
-    console.log("Funkcja uploadFile tymczasowo wyłączona");
-    return { status: "mock", key };
+    console.log('Funkcja uploadFile tymczasowo wyłączona');
+    return { status: 'mock', key };
 
     /*
     const command = new PutObjectCommand({
@@ -51,8 +51,8 @@ export const s3Service = {
 
   async getFile(key: string) {
     // Tymczasowo usunięto funkcjonalność AWS S3
-    console.log("Funkcja getFile tymczasowo wyłączona");
-    return { status: "mock", key };
+    console.log('Funkcja getFile tymczasowo wyłączona');
+    return { status: 'mock', key };
 
     /*
     const command = new GetObjectCommand({

@@ -1,4 +1,4 @@
-import axiosInstance from "./axios";
+import axiosInstance from './axios';
 
 // Interfejs dla modelu danych dostawcy bazujący na login_table_suppliers
 export interface Dostawca {
@@ -21,13 +21,15 @@ export interface Dostawca {
 }
 
 // Typ dla nowego dostawcy (bez dat)
-export type NowyDostawca = Omit<Dostawca, "created_at" | "updated_at">;
+export type NowyDostawca = Omit<Dostawca, 'created_at' | 'updated_at'>;
 
 // Typ dla aktualizacji dostawcy (częściowe dane, bez ID i dat)
-export type AktualizacjaDostawcy = Partial<Omit<Dostawca, "id_supplier" | "created_at" | "updated_at">>;
+export type AktualizacjaDostawcy = Partial<
+  Omit<Dostawca, 'id_supplier' | 'created_at' | 'updated_at'>
+>;
 
 // Typ dla nowego dostawcy bez ID (generowane automatycznie)
-export type NowyDostawcaBezId = Omit<NowyDostawca, "id_supplier">;
+export type NowyDostawcaBezId = Omit<NowyDostawca, 'id_supplier'>;
 
 /**
  * Generuje ID dostawcy
@@ -38,8 +40,8 @@ export const generujIdDostawcy = async (): Promise<string> => {
     const response = await axiosInstance.get(`/suppliers/generate-id`);
     return response.data.id_supplier;
   } catch (error) {
-    console.error("Błąd podczas generowania ID dostawcy:", error);
-    return "";
+    console.error('Błąd podczas generowania ID dostawcy:', error);
+    return '';
   }
 };
 
@@ -49,10 +51,10 @@ export const generujIdDostawcy = async (): Promise<string> => {
  */
 export const pobierzDostawcow = async (): Promise<Dostawca[]> => {
   try {
-    const response = await axiosInstance.get("/suppliers");
+    const response = await axiosInstance.get('/suppliers');
     return response.data;
   } catch (error) {
-    console.error("Błąd podczas pobierania dostawców:", error);
+    console.error('Błąd podczas pobierania dostawców:', error);
     return [];
   }
 };
@@ -79,10 +81,10 @@ export const pobierzDostawce = async (id: string): Promise<Dostawca | null> => {
  */
 export const dodajDostawce = async (dostawca: NowyDostawca): Promise<Dostawca | null> => {
   try {
-    const response = await axiosInstance.post("/suppliers", dostawca);
+    const response = await axiosInstance.post('/suppliers', dostawca);
     return response.data;
   } catch (error) {
-    console.error("Błąd podczas dodawania dostawcy:", error);
+    console.error('Błąd podczas dodawania dostawcy:', error);
     return null;
   }
 };
@@ -93,7 +95,10 @@ export const dodajDostawce = async (dostawca: NowyDostawca): Promise<Dostawca | 
  * @param dane Dane do aktualizacji
  * @returns Zaktualizowane dane dostawcy lub null w przypadku błędu
  */
-export const aktualizujDostawce = async (id: string, dane: AktualizacjaDostawcy): Promise<Dostawca | null> => {
+export const aktualizujDostawce = async (
+  id: string,
+  dane: AktualizacjaDostawcy
+): Promise<Dostawca | null> => {
   try {
     const response = await axiosInstance.put(`/suppliers/${id}`, dane);
     return response.data;
@@ -128,10 +133,10 @@ export const dodajDostawceZHaslem = async (
   dostawca: NowyDostawcaBezId
 ): Promise<(Dostawca & { password: string }) | null> => {
   try {
-    const response = await axiosInstance.post("/suppliers/with-password", dostawca);
+    const response = await axiosInstance.post('/suppliers/with-password', dostawca);
     return response.data;
   } catch (error) {
-    console.error("Błąd podczas dodawania dostawcy z hasłem:", error);
+    console.error('Błąd podczas dodawania dostawcy z hasłem:', error);
     return null;
   }
 };

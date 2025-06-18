@@ -45,7 +45,7 @@
     "L_KodPocztowy_Docelowy_Przyklad": "41-605",
     "L_Region_Docelowy": "Śląskie",
     "L_Kraj_Docelowy": "PL",
-    "L_Uwagi_Lokalizacja": "Centrum\/Piaśniki, gęsta zabudowa wielorodzinna"
+    "L_Uwagi_Lokalizacja": "Centrum/Piaśniki, gęsta zabudowa wielorodzinna"
   },
   {
     "ID_Profilu_Master": "PROF_007",
@@ -93,7 +93,7 @@
     "L_KodPocztowy_Docelowy_Przyklad": "41-106",
     "L_Region_Docelowy": "Śląskie",
     "L_Kraj_Docelowy": "PL",
-    "L_Uwagi_Lokalizacja": "Bytków \/ Węzłowiec, osiedla bloków"
+    "L_Uwagi_Lokalizacja": "Bytków / Węzłowiec, osiedla bloków"
   },
   {
     "ID_Profilu_Master": "PROF_013",
@@ -125,7 +125,7 @@
     "L_KodPocztowy_Docelowy_Przyklad": "54-150",
     "L_Region_Docelowy": "Dolnośląskie",
     "L_Kraj_Docelowy": "PL",
-    "L_Uwagi_Lokalizacja": "Nowy Dwór \/ Kuźniki, duże osiedla bloków"
+    "L_Uwagi_Lokalizacja": "Nowy Dwór / Kuźniki, duże osiedla bloków"
   },
   {
     "ID_Profilu_Master": "PROF_017",
@@ -133,7 +133,7 @@
     "L_KodPocztowy_Docelowy_Przyklad": "41-907",
     "L_Region_Docelowy": "Śląskie",
     "L_Kraj_Docelowy": "PL",
-    "L_Uwagi_Lokalizacja": "Stroszek \/ Szombierki, osiedla bloków"
+    "L_Uwagi_Lokalizacja": "Stroszek / Szombierki, osiedla bloków"
   },
   {
     "ID_Profilu_Master": "PROF_018",
@@ -141,7 +141,7 @@
     "L_KodPocztowy_Docelowy_Przyklad": "41-800",
     "L_Region_Docelowy": "Śląskie",
     "L_Kraj_Docelowy": "PL",
-    "L_Uwagi_Lokalizacja": "Helenka \/ Rokitnica, osiedla wielorodzinne"
+    "L_Uwagi_Lokalizacja": "Helenka / Rokitnica, osiedla wielorodzinne"
   },
   {
     "ID_Profilu_Master": "PROF_019",
@@ -149,7 +149,7 @@
     "L_KodPocztowy_Docelowy_Przyklad": "41-709",
     "L_Region_Docelowy": "Śląskie",
     "L_Kraj_Docelowy": "PL",
-    "L_Uwagi_Lokalizacja": "Nowy Bytom \/ Wirek, obszary z blokami"
+    "L_Uwagi_Lokalizacja": "Nowy Bytom / Wirek, obszary z blokami"
   },
   {
     "ID_Profilu_Master": "PROF_020",

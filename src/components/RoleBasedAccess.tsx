@@ -1,4 +1,4 @@
-import { FC, ReactNode } from "react";
+import { FC, ReactNode } from 'react';
 
 interface RoleBasedAccessProps {
   allowedRoles: string[];
@@ -8,7 +8,7 @@ interface RoleBasedAccessProps {
 
 const RoleBasedAccess: FC<RoleBasedAccessProps> = ({ allowedRoles, children, fallback = null }) => {
   // Pobierz rolę użytkownika z localStorage
-  const userRole = localStorage.getItem("userRole");
+  const userRole = localStorage.getItem('userRole');
 
   // Renderuj dzieci tylko jeśli rola użytkownika jest dozwolona
   if (userRole && allowedRoles.includes(userRole)) {

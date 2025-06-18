@@ -1,7 +1,7 @@
-import "express-session";
-import { UserTokenData } from "../services/allegroService"; // Upewnij się, że ścieżka jest poprawna
+import 'express-session';
+import { UserTokenData } from '../services/allegroService'; // Upewnij się, że ścieżka jest poprawna
 
-declare module "express-session" {
+declare module 'express-session' {
   interface SessionData {
     allegroAuth?: {
       verifier: string;

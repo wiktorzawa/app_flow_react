@@ -1,6 +1,6 @@
-import { Request, Response } from "express";
-import asyncHandler from "express-async-handler";
-import { brightDataService, BrightDataProxy } from "../services/brightDataService";
+import { Request, Response } from 'express';
+import asyncHandler from 'express-async-handler';
+import { brightDataService, BrightDataProxy } from '../services/brightDataService';
 
 export class BrightDataController {
   /**
@@ -16,7 +16,7 @@ export class BrightDataController {
       success: true,
       count: proxies.length,
       data: proxies,
-      message: "Successfully fetched Bright Data proxies.",
+      message: 'Successfully fetched Bright Data proxies.',
     });
   });
 }

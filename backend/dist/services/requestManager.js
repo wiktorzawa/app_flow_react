@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 var __awaiter =
   (this && this.__awaiter) ||
   function (thisArg, _arguments, P, generator) {
@@ -19,7 +19,7 @@ var __awaiter =
       }
       function rejected(value) {
         try {
-          step(generator["throw"](value));
+          step(generator['throw'](value));
         } catch (e) {
           reject(e);
         }
@@ -30,7 +30,7 @@ var __awaiter =
       step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
   };
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, '__esModule', { value: true });
 exports.RequestManager = void 0;
 class RequestManager {
   constructor(page) {
@@ -67,8 +67,8 @@ class RequestManager {
           console.error(`Attempt ${attempt + 1} failed:`, error);
           // Sprawdź czy strona nie została zablokowana
           const content = yield this.page.content();
-          if (content.includes("captcha") || content.includes("blocked")) {
-            throw new Error("Detected blocking/CAPTCHA page");
+          if (content.includes('captcha') || content.includes('blocked')) {
+            throw new Error('Detected blocking/CAPTCHA page');
           }
         }
       }
@@ -84,13 +84,14 @@ class RequestManager {
           __awaiter(this, void 0, void 0, function* () {
             yield this.page.goto(url, {
               timeout:
-                (options === null || options === void 0 ? void 0 : options.timeout) || this.defaultOptions.timeout,
-              waitUntil: "networkidle",
+                (options === null || options === void 0 ? void 0 : options.timeout) ||
+                this.defaultOptions.timeout,
+              waitUntil: 'networkidle',
             });
             // Dodatkowe sprawdzenie czy strona załadowała się poprawnie
             const content = yield this.page.content();
-            if (content.includes("captcha") || content.includes("blocked")) {
-              throw new Error("Detected blocking/CAPTCHA page");
+            if (content.includes('captcha') || content.includes('blocked')) {
+              throw new Error('Detected blocking/CAPTCHA page');
             }
           }),
         options
@@ -121,7 +122,10 @@ class RequestManager {
       // Losowe ruchy myszką
       const viewportSize = yield this.page.viewportSize();
       if (viewportSize) {
-        yield this.page.mouse.move(Math.random() * viewportSize.width, Math.random() * viewportSize.height);
+        yield this.page.mouse.move(
+          Math.random() * viewportSize.width,
+          Math.random() * viewportSize.height
+        );
       }
       // Losowe opóźnienie
       yield this.delay(Math.random() * 500 + 200);
@@ -134,8 +138,11 @@ class RequestManager {
           __awaiter(this, void 0, void 0, function* () {
             yield this.page.waitForSelector(selector, {
               timeout:
-                (options === null || options === void 0 ? void 0 : options.timeout) || this.defaultOptions.timeout,
-              state: (options === null || options === void 0 ? void 0 : options.visible) ? "visible" : "attached",
+                (options === null || options === void 0 ? void 0 : options.timeout) ||
+                this.defaultOptions.timeout,
+              state: (options === null || options === void 0 ? void 0 : options.visible)
+                ? 'visible'
+                : 'attached',
             });
           }),
         options

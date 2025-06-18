@@ -1,8 +1,8 @@
-import axios from "axios";
-import { config } from "../config/config";
+import axios from 'axios';
+import { config } from '../config/config';
 
 // Bright Data REST API
-const BRIGHTDATA_API_URL = "https://api.brightdata.com";
+const BRIGHTDATA_API_URL = 'https://api.brightdata.com';
 
 // Interfejs dla proxy/zone z Bright Data API
 export interface BrightDataProxy {
@@ -63,38 +63,43 @@ export class BrightDataService {
   private apiToken: string;
 
   constructor() {
-    this.customerID = config.brightDataCustomerID || "";
-    this.apiToken = config.brightDataApiToken || "";
+    this.customerID = config.brightDataCustomerID || '';
+    this.apiToken = config.brightDataApiToken || '';
 
     if (!this.customerID || !this.apiToken) {
-      console.warn("OSTRZEŻENIE: Brak konfiguracji Bright Data (BRIGHT_DATA_CUSTOMER_ID lub BRIGHT_DATA_API_TOKEN)");
+      console.warn(
+        'OSTRZEŻENIE: Brak konfiguracji Bright Data (BRIGHT_DATA_CUSTOMER_ID lub BRIGHT_DATA_API_TOKEN)'
+      );
     }
   }
 
   public async listProxies(): Promise<BrightDataProxy[]> {
     try {
       if (!this.customerID || !this.apiToken) {
-        console.log("Bright Data credentials not configured, returning empty proxy list");
+        console.log('Bright Data credentials not configured, returning empty proxy list');
         return [];
       }
 
       const headers = {
         Authorization: `Bearer ${this.apiToken}`,
-        Accept: "application/json",
+        Accept: 'application/json',
       };
 
-      console.log("DEBUG - Fetching active Bright Data zones...");
-      const activeZonesResponse = await axios.get<ActiveZoneInfo[]>(`${BRIGHTDATA_API_URL}/zone/get_active_zones`, {
-        headers,
-      });
+      console.log('DEBUG - Fetching active Bright Data zones...');
+      const activeZonesResponse = await axios.get<ActiveZoneInfo[]>(
+        `${BRIGHTDATA_API_URL}/zone/get_active_zones`,
+        {
+          headers,
+        }
+      );
 
       if (!activeZonesResponse.data || !Array.isArray(activeZonesResponse.data)) {
-        console.log("No active Bright Data zones found or unexpected format.");
+        console.log('No active Bright Data zones found or unexpected format.');
         return [];
       }
       console.log(
         `Found ${activeZonesResponse.data.length} active zones:`,
-        activeZonesResponse.data.map((z) => z.name)
+        activeZonesResponse.data.map(z => z.name)
       );
 
       const detailedProxies: BrightDataProxy[] = [];
@@ -114,7 +119,8 @@ export class BrightDataService {
           detailedProxies.push({
             zone: activeZone.name,
             proxy_type: details.plan.product || activeZone.type,
-            password: details.password && details.password.length > 0 ? details.password[0] : undefined,
+            password:
+              details.password && details.password.length > 0 ? details.password[0] : undefined,
             created_at: details.created,
             ips_config: details.ips,
             plan_details: {
@@ -127,48 +133,57 @@ export class BrightDataService {
             country: details.plan.country,
             permissions: details.perm,
             customer_id: this.customerID,
-            status: "active",
+            status: 'active',
             port: 0,
             whitelist_ips: [],
             // listen_port, test_url, gb_cost, mobile, unblock, preset, city - te pola nie są bezpośrednio mapowane z odpowiedzi API
             // Możesz je dodać, jeśli mają być ustawiane na jakieś wartości domyślne lub pobierane z innego miejsca
           });
-        } catch (detailError: any) {
-          console.error(`Error fetching details for zone ${activeZone.name}:`, detailError.message);
-          if (axios.isAxiosError(detailError) && detailError.response) {
-            // Dodano bardziej szczegółowe logowanie błędu
+        } catch (detailError: unknown) {
+          if (detailError instanceof Error) {
             console.error(
-              `Bright Data API Error for zone ${activeZone.name} details (status ${detailError.response.status}):`,
-              JSON.stringify(detailError.response.data, null, 2)
+              `Error fetching details for zone ${activeZone.name}:`,
+              detailError.message
             );
+            if (axios.isAxiosError(detailError) && detailError.response) {
+              console.error(
+                `Bright Data API Error for zone ${activeZone.name} details (status ${detailError.response.status}):`,
+                JSON.stringify(detailError.response.data, null, 2)
+              );
+            }
           }
           detailedProxies.push({
             zone: activeZone.name,
             proxy_type: activeZone.type,
             customer_id: this.customerID,
-            status: "active_details_unavailable",
+            status: 'active_details_unavailable',
             port: 0,
             whitelist_ips: [],
           });
         }
       }
-      console.log("Successfully fetched detailed Bright Data proxies");
+      console.log('Successfully fetched detailed Bright Data proxies');
       return detailedProxies;
-    } catch (error: any) {
-      console.error("Error in listProxies general execution:", error.message);
-      if (axios.isAxiosError(error) && error.response) {
-        // Dodano bardziej szczegółowe logowanie błędu
-        console.error("Bright Data API Error Response (general):", JSON.stringify(error.response.data, null, 2));
-        if (error.response.status === 401) {
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.error('Error in listProxies general execution:', error.message);
+        if (axios.isAxiosError(error) && error.response) {
+          console.error(
+            'Bright Data API Error Response (general):',
+            JSON.stringify(error.response.data, null, 2)
+          );
+          if (error.response.status === 401) {
+            throw new Error(
+              'Nieprawidłowe dane dostępowe do Bright Data API. Sprawdź BRIGHT_DATA_CUSTOMER_ID i BRIGHT_DATA_API_TOKEN.'
+            );
+          }
           throw new Error(
-            "Nieprawidłowe dane dostępowe do Bright Data API. Sprawdź BRIGHT_DATA_CUSTOMER_ID i BRIGHT_DATA_API_TOKEN."
+            `Failed to fetch Bright Data zones: ${error.response.status} ${error.response.statusText} - ${JSON.stringify(error.response.data)}`
           );
         }
-        throw new Error(
-          `Failed to fetch Bright Data zones: ${error.response.status} ${error.response.statusText} - ${JSON.stringify(error.response.data)}`
-        );
+        throw new Error('Failed to fetch Bright Data zones: ' + error.message);
       }
-      throw new Error("Failed to fetch Bright Data zones: " + error.message);
+      throw new Error('Failed to fetch Bright Data zones: Unknown error');
     }
   }
 }

@@ -1,5 +1,5 @@
-import type { PropsWithChildren } from "react";
-import { createContext, useContext, useState } from "react";
+import type { PropsWithChildren } from 'react';
+import { createContext, useContext, useState } from 'react';
 
 interface SidebarContextProps {
   isCollapsed: boolean;
@@ -47,7 +47,7 @@ export function useSidebarContext(): SidebarContextProps {
   const context = useContext(SidebarContext);
 
   if (!context) {
-    throw new Error("useSidebarContext must be used within the SidebarContext provider!");
+    throw new Error('useSidebarContext must be used within the SidebarContext provider!');
   }
 
   return context;

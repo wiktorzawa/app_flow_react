@@ -1,8 +1,21 @@
-import react from "@vitejs/plugin-react";
-import { defineConfig } from "vite";
-import flowbiteReact from "flowbite-react/plugin/vite";
+/// <reference types="vite/client" />
+import react from '@vitejs/plugin-react';
+import { defineConfig } from 'vite';
+import { resolve } from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), flowbiteReact()],
+  plugins: [react()],
+  resolve: {
+    alias: {
+      '@': resolve(__dirname, './src'),
+      '@backend': resolve(__dirname, './backend/src'),
+    },
+  },
+  server: {
+    watch: {
+      usePolling: true,
+    },
+    hmr: true,
+  },
 });

@@ -1,3 +1,7 @@
+export interface RawSupplierRow {
+  [key: string]: string | number | boolean | null | undefined;
+}
+
 export interface SupplierProductInput {
   // Pola z nowego, wyraźniejszego zrzutu ekranu
   nr_palety?: string | number | null;
@@ -25,5 +29,5 @@ export interface SupplierProductInput {
   nazwa_produktu_dostawcy?: string | null;
   waga_dostawcy?: string | number | null;
   wymiary_dostawcy?: string | null;
-  raw_supplier_row?: Record<string, any> | null;
+  raw_supplier_row?: RawSupplierRow | null;
 }

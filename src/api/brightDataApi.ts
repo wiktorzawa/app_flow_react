@@ -1,5 +1,5 @@
-import axiosInstance from "./axios"; // Zakładając, że masz skonfigurowaną instancję axios
-import { AxiosError } from "axios";
+import axiosInstance from './axios'; // Zakładając, że masz skonfigurowaną instancję axios
+import { AxiosError } from 'axios';
 
 // Interfejs dla pojedynczego proxy z Bright Data (frontend)
 // Powinien odpowiadać strukturze BrightDataProxy z backendu
@@ -48,14 +48,14 @@ export interface BrightDataProxiesResponse {
 export const fetchBrightDataProxies = async (): Promise<BrightDataProxiesResponse> => {
   try {
     const response = await axiosInstance.get<BrightDataProxiesResponse>(
-      "/brightdata/proxies" // Endpoint na Twoim backendzie
+      '/brightdata/proxies' // Endpoint na Twoim backendzie
     );
     return response.data;
-  } catch (error: any) {
-    console.error("Error fetching Bright Data proxies from backend:", error);
+  } catch (error: unknown) {
+    console.error('Error fetching Bright Data proxies from backend:', error);
     // Rzucanie błędu dalej, aby komponent mógł go obsłużyć
     // Możesz chcieć bardziej szczegółowo obsłużyć różne typy błędów
-    let errorMessage = "An unknown error occurred while fetching Bright Data proxies.";
+    let errorMessage = 'An unknown error occurred while fetching Bright Data proxies.';
     if (error instanceof AxiosError && error.response) {
       errorMessage = error.response.data?.message || error.message || errorMessage;
     } else if (error instanceof Error) {

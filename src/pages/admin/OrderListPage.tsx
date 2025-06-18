@@ -1,47 +1,37 @@
 import {
+  Table,
   Badge,
-  Breadcrumb,
-  BreadcrumbItem,
-  Button,
-  Dropdown,
   Modal,
   ModalBody,
   ModalHeader,
-  Pagination,
-  Table,
-  TextInput,
-  Card,
-  Avatar,
   TableBody,
   TableCell,
   TableHead,
   TableHeadCell,
   TableRow,
-} from "flowbite-react";
+  Breadcrumb,
+  BreadcrumbItem,
+  Button,
+  Pagination,
+  Card,
+  Avatar,
+  TextInput,
+} from 'flowbite-react';
+import type { FC } from 'react';
+import { useState } from 'react';
 import {
   HiHome,
   HiOutlinePlus,
+  HiOutlineDownload,
+  HiOutlineSearch,
+  HiOutlineFilter,
   HiOutlineAdjustments,
+  HiOutlineRefresh,
   HiOutlineEye,
   HiOutlinePencil,
   HiOutlineTrash,
-  HiOutlineDownload,
-  HiOutlineRefresh,
-  HiOutlineSearch,
-  HiOutlineFilter,
-  HiX,
-  HiCheck,
-  HiCog,
-  HiUserCircle,
-  HiHeart,
-  HiClipboard,
-  HiTruck,
-  HiOutlineShoppingBag,
-} from "react-icons/hi";
-import { useState } from "react";
-import type { FC } from "react";
-import NavbarSidebarLayout from "../../layouts/navbar-sidebar";
-import { useSidebarContext } from "../../context/SidebarContext";
+} from 'react-icons/hi';
+import NavbarSidebarLayout from '../../layouts/navbar-sidebar';
 
 interface Order {
   id: string;
@@ -53,18 +43,18 @@ interface Order {
   };
   date: string;
   amount: string;
-  status: "delivered" | "processing" | "failed" | "completed";
+  status: 'delivered' | 'processing' | 'failed' | 'completed';
 }
 
-const getStatusBadge = (status: Order["status"]) => {
+const getStatusBadge = (status: Order['status']) => {
   switch (status) {
-    case "delivered":
+    case 'delivered':
       return <Badge color="success">Dostarczono</Badge>;
-    case "processing":
+    case 'processing':
       return <Badge color="warning">W trakcie</Badge>;
-    case "failed":
+    case 'failed':
       return <Badge color="failure">Anulowane</Badge>;
-    case "completed":
+    case 'completed':
       return <Badge color="info">Zakończone</Badge>;
     default:
       return <Badge>Nieznany</Badge>;
@@ -73,64 +63,64 @@ const getStatusBadge = (status: Order["status"]) => {
 
 const sampleOrders: Order[] = [
   {
-    id: "1",
-    orderNumber: "ORD-12345",
+    id: '1',
+    orderNumber: 'ORD-12345',
     customer: {
-      name: "Jan Kowalski",
-      email: "jan.kowalski@example.com",
-      avatar: "https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png",
+      name: 'Jan Kowalski',
+      email: 'jan.kowalski@example.com',
+      avatar: 'https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png',
     },
-    date: "12-04-2023",
-    amount: "1499,99 zł",
-    status: "delivered",
+    date: '12-04-2023',
+    amount: '1499,99 zł',
+    status: 'delivered',
   },
   {
-    id: "2",
-    orderNumber: "ORD-23456",
+    id: '2',
+    orderNumber: 'ORD-23456',
     customer: {
-      name: "Anna Nowak",
-      email: "anna.nowak@example.com",
-      avatar: "https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/bonnie-green.png",
+      name: 'Anna Nowak',
+      email: 'anna.nowak@example.com',
+      avatar: 'https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/bonnie-green.png',
     },
-    date: "10-04-2023",
-    amount: "799,00 zł",
-    status: "processing",
+    date: '10-04-2023',
+    amount: '799,00 zł',
+    status: 'processing',
   },
   {
-    id: "3",
-    orderNumber: "ORD-34567",
+    id: '3',
+    orderNumber: 'ORD-34567',
     customer: {
-      name: "Piotr Wiśniewski",
-      email: "piotr.wisniewski@example.com",
-      avatar: "https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/thomas-lean.png",
+      name: 'Piotr Wiśniewski',
+      email: 'piotr.wisniewski@example.com',
+      avatar: 'https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/thomas-lean.png',
     },
-    date: "08-04-2023",
-    amount: "2499,99 zł",
-    status: "failed",
+    date: '08-04-2023',
+    amount: '2499,99 zł',
+    status: 'failed',
   },
   {
-    id: "4",
-    orderNumber: "ORD-45678",
+    id: '4',
+    orderNumber: 'ORD-45678',
     customer: {
-      name: "Agnieszka Zielińska",
-      email: "agnieszka.zielinska@example.com",
-      avatar: "https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/helene-engels.png",
+      name: 'Agnieszka Zielińska',
+      email: 'agnieszka.zielinska@example.com',
+      avatar: 'https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/helene-engels.png',
     },
-    date: "05-04-2023",
-    amount: "349,99 zł",
-    status: "completed",
+    date: '05-04-2023',
+    amount: '349,99 zł',
+    status: 'completed',
   },
   {
-    id: "5",
-    orderNumber: "ORD-56789",
+    id: '5',
+    orderNumber: 'ORD-56789',
     customer: {
-      name: "Marcin Dąbrowski",
-      email: "marcin.dabrowski@example.com",
-      avatar: "https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/neil-sims.png",
+      name: 'Marcin Dąbrowski',
+      email: 'marcin.dabrowski@example.com',
+      avatar: 'https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/neil-sims.png',
     },
-    date: "01-04-2023",
-    amount: "1299,99 zł",
-    status: "delivered",
+    date: '01-04-2023',
+    amount: '1299,99 zł',
+    status: 'delivered',
   },
 ];
 
@@ -138,7 +128,7 @@ const OrderListPage: FC = function () {
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedOrderId, setSelectedOrderId] = useState<string | null>(null);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
 
   const onPageChange = (page: number) => setCurrentPage(page);
 
@@ -159,7 +149,7 @@ const OrderListPage: FC = function () {
   };
 
   const filteredOrders = sampleOrders.filter(
-    (order) =>
+    order =>
       order.orderNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
       order.customer.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       order.customer.email.toLowerCase().includes(searchTerm.toLowerCase())
@@ -204,7 +194,7 @@ const OrderListPage: FC = function () {
                     type="text"
                     placeholder="Szukaj zamówień..."
                     value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
+                    onChange={e => setSearchTerm(e.target.value)}
                     className="pl-10"
                     icon={HiOutlineSearch}
                   />
@@ -240,15 +230,21 @@ const OrderListPage: FC = function () {
               </TableRow>
             </TableHead>
             <TableBody>
-              {filteredOrders.map((order) => (
+              {filteredOrders.map(order => (
                 <TableRow key={order.id} className="hover:bg-gray-50 dark:hover:bg-gray-700">
-                  <TableCell className="font-medium text-gray-900 dark:text-white">{order.orderNumber}</TableCell>
+                  <TableCell className="font-medium text-gray-900 dark:text-white">
+                    {order.orderNumber}
+                  </TableCell>
                   <TableCell>
                     <div className="flex items-center">
                       <Avatar img={order.customer.avatar} rounded size="sm" className="mr-3" />
                       <div>
-                        <div className="font-medium text-gray-900 dark:text-white">{order.customer.name}</div>
-                        <div className="text-sm text-gray-500 dark:text-gray-400">{order.customer.email}</div>
+                        <div className="font-medium text-gray-900 dark:text-white">
+                          {order.customer.name}
+                        </div>
+                        <div className="text-sm text-gray-500 dark:text-gray-400">
+                          {order.customer.email}
+                        </div>
                       </div>
                     </div>
                   </TableCell>
@@ -265,7 +261,12 @@ const OrderListPage: FC = function () {
                         <HiOutlinePencil className="h-4 w-4" />
                         <span>Edytuj</span>
                       </Button>
-                      <Button size="xs" color="failure" className="gap-1" onClick={() => openDeleteModal(order.id)}>
+                      <Button
+                        size="xs"
+                        color="failure"
+                        className="gap-1"
+                        onClick={() => openDeleteModal(order.id)}
+                      >
                         <HiOutlineTrash className="h-4 w-4" />
                         <span>Usuń</span>
                       </Button>
@@ -277,10 +278,15 @@ const OrderListPage: FC = function () {
           </Table>
           <div className="flex items-center justify-between pt-4">
             <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
-              Pokazano <span className="font-semibold text-gray-900 dark:text-white">1-5</span> z{" "}
+              Pokazano <span className="font-semibold text-gray-900 dark:text-white">1-5</span> z{' '}
               <span className="font-semibold text-gray-900 dark:text-white">100</span> zamówień
             </span>
-            <Pagination currentPage={currentPage} totalPages={20} onPageChange={onPageChange} showIcons />
+            <Pagination
+              currentPage={currentPage}
+              totalPages={20}
+              onPageChange={onPageChange}
+              showIcons
+            />
           </div>
         </Card>
 

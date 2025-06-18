@@ -1,19 +1,27 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { Button, Card, Checkbox, Label, TextInput } from "flowbite-react";
-import type { FC } from "react";
-import { HiLockOpen } from "react-icons/hi";
+import { Button, Card, Checkbox, Label, TextInput } from 'flowbite-react';
+import type { FC } from 'react';
+import { HiLockOpen } from 'react-icons/hi';
 
 const ProfileLockPage: FC = function () {
   return (
     <div className="flex flex-col items-center justify-center px-6 lg:h-screen lg:gap-y-12">
       <a href="/" className="my-8 flex items-center gap-x-1 lg:my-0">
-        <img alt="Flowbite logo" src="https://flowbite.com/docs/images/logo.svg" className="mr-3 h-10" />
-        <span className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">Flowbite</span>
+        <img
+          alt="Flowbite logo"
+          src="https://flowbite.com/docs/images/logo.svg"
+          className="mr-3 h-10"
+        />
+        <span className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">
+          Flowbite
+        </span>
       </a>
       <Card className="w-full md:max-w-[640px] md:*:w-full md:*:p-16">
         <div className="flex items-center gap-x-4">
           <img alt="" src="/images/users/bonnie-green.png" className="h-9 rounded-full" />
-          <span className="self-center whitespace-nowrap text-3xl font-semibold dark:text-white">Bonnie Green</span>
+          <span className="self-center whitespace-nowrap text-3xl font-semibold dark:text-white">
+            Bonnie Green
+          </span>
         </div>
         <p className="mb-3 text-gray-500 dark:text-gray-300">Better to be safe than sorry.</p>
         <form>

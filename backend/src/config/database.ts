@@ -1,8 +1,8 @@
-import { Sequelize } from "sequelize";
-import { config } from "./config";
+import { Sequelize, Dialect } from 'sequelize';
+import { config } from './config';
 
 export const sequelize = new Sequelize({
-  dialect: config.dbDialect as any,
+  dialect: config.dbDialect as Dialect,
   host: config.dbHost,
   port: config.dbPort,
   username: config.dbUsername,

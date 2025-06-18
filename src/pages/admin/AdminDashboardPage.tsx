@@ -12,13 +12,13 @@ import {
   TableBody, // Nowy import
   TableRow, // Nowy import
   TableCell, // Nowy import
-} from "flowbite-react";
-import type { FC } from "react";
-import { useEffect, useState } from "react";
-import Chart from "react-apexcharts";
-import svgMap from "svgmap";
-import "svgmap/dist/svgMap.min.css";
-import NavbarSidebarLayout from "../../layouts/navbar-sidebar";
+} from 'flowbite-react';
+import type { FC } from 'react';
+import { useEffect, useState } from 'react';
+import Chart from 'react-apexcharts';
+import svgMap from 'svgmap';
+import 'svgmap/dist/svgMap.min.css';
+import NavbarSidebarLayout from '../../layouts/navbar-sidebar';
 
 const AdminDashboardPage: FC = function () {
   return (
@@ -48,12 +48,21 @@ const SalesThisWeek: FC = function () {
     <div className="rounded-lg bg-white p-4 shadow-sm dark:bg-gray-800 sm:p-6 xl:p-8">
       <div className="mb-4 flex items-center justify-between">
         <div className="shrink-0">
-          <span className="text-2xl font-bold leading-none text-gray-900 dark:text-white sm:text-3xl">45,385</span>
-          <h3 className="text-base font-normal text-gray-600 dark:text-gray-400">Sales this week</h3>
+          <span className="text-2xl font-bold leading-none text-gray-900 dark:text-white sm:text-3xl">
+            45,385
+          </span>
+          <h3 className="text-base font-normal text-gray-600 dark:text-gray-400">
+            Sales this week
+          </h3>
         </div>
         <div className="flex flex-1 items-center justify-end text-base font-bold text-green-600 dark:text-green-400">
           12.5%
-          <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <svg
+            className="h-5 w-5"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
             <path
               fillRule="evenodd"
               d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z"
@@ -93,7 +102,7 @@ const SalesChart: FC = function () {
 
   useEffect(() => {
     const checkTheme = () => {
-      const darkMode = document.documentElement.classList.contains("dark");
+      const darkMode = document.documentElement.classList.contains('dark');
       setIsDarkTheme(darkMode);
     };
 
@@ -102,34 +111,34 @@ const SalesChart: FC = function () {
     const observer = new MutationObserver(checkTheme);
     observer.observe(document.documentElement, {
       attributes: true,
-      attributeFilter: ['class']
+      attributeFilter: ['class'],
     });
 
     return () => observer.disconnect();
   }, []);
 
-  const borderColor = isDarkTheme ? "#374151" : "#F3F4F6";
-  const labelColor = isDarkTheme ? "#93ACAF" : "#6B7280";
+  const borderColor = isDarkTheme ? '#374151' : '#F3F4F6';
+  const labelColor = isDarkTheme ? '#93ACAF' : '#6B7280';
   const opacityFrom = isDarkTheme ? 0 : 0.45;
   const opacityTo = isDarkTheme ? 0.15 : 0;
   const options: ApexCharts.ApexOptions = {
     stroke: {
-      curve: "smooth",
+      curve: 'smooth',
     },
     chart: {
-      type: "area",
-      fontFamily: "Inter, sans-serif",
+      type: 'area',
+      fontFamily: 'Inter, sans-serif',
       foreColor: labelColor,
       toolbar: {
         show: false,
       },
     },
     fill: {
-      type: "gradient",
+      type: 'gradient',
       gradient: {
         opacityFrom,
         opacityTo,
-        type: "vertical",
+        type: 'vertical',
       },
     },
     dataLabels: {
@@ -137,8 +146,8 @@ const SalesChart: FC = function () {
     },
     tooltip: {
       style: {
-        fontSize: "14px",
-        fontFamily: "Inter, sans-serif",
+        fontSize: '14px',
+        fontFamily: 'Inter, sans-serif',
       },
     },
     grid: {
@@ -152,18 +161,18 @@ const SalesChart: FC = function () {
     },
     markers: {
       size: 5,
-      strokeColors: "#ffffff",
+      strokeColors: '#ffffff',
       hover: {
         size: undefined,
         sizeOffset: 3,
       },
     },
     xaxis: {
-      categories: ["01 Feb", "02 Feb", "03 Feb", "04 Feb", "05 Feb", "06 Feb", "07 Feb"],
+      categories: ['01 Feb', '02 Feb', '03 Feb', '04 Feb', '05 Feb', '06 Feb', '07 Feb'],
       labels: {
         style: {
           colors: [labelColor],
-          fontSize: "14px",
+          fontSize: '14px',
           fontWeight: 500,
         },
       },
@@ -175,7 +184,7 @@ const SalesChart: FC = function () {
       },
       crosshairs: {
         show: true,
-        position: "back",
+        position: 'back',
         stroke: {
           color: borderColor,
           width: 1,
@@ -187,18 +196,18 @@ const SalesChart: FC = function () {
       labels: {
         style: {
           colors: [labelColor],
-          fontSize: "14px",
+          fontSize: '14px',
           fontWeight: 500,
         },
         formatter: function (value) {
-          return "$" + value.toLocaleString(); // ✅ Poprawiony formatter
+          return '$' + value.toLocaleString(); // ✅ Poprawiony formatter
         },
       },
     },
     legend: {
-      fontSize: "14px",
+      fontSize: '14px',
       fontWeight: 500,
-      fontFamily: "Inter, sans-serif",
+      fontFamily: 'Inter, sans-serif',
       labels: {
         colors: [labelColor],
       },
@@ -221,14 +230,14 @@ const SalesChart: FC = function () {
   };
   const series = [
     {
-      name: "Revenue",
+      name: 'Revenue',
       data: [6356, 6218, 6156, 6526, 6356, 6256, 6056],
-      color: "#1A56DB",
+      color: '#1A56DB',
     },
     {
-      name: "Revenue (previous period)",
+      name: 'Revenue (previous period)',
       data: [6556, 6725, 6424, 6356, 6586, 6756, 6616],
-      color: "#FDBA8C",
+      color: '#FDBA8C',
     },
   ];
 
@@ -266,12 +275,21 @@ const NewProductsThisWeek: FC = function () {
     <div className="rounded-lg bg-white p-4 shadow-sm dark:bg-gray-800 sm:p-6 xl:p-8">
       <div className="flex items-center">
         <div className="shrink-0">
-          <span className="text-2xl font-bold leading-none text-gray-900 dark:text-white sm:text-3xl">2,340</span>
-          <h3 className="text-base font-normal text-gray-600 dark:text-gray-400">New products this week</h3>
+          <span className="text-2xl font-bold leading-none text-gray-900 dark:text-white sm:text-3xl">
+            2,340
+          </span>
+          <h3 className="text-base font-normal text-gray-600 dark:text-gray-400">
+            New products this week
+          </h3>
         </div>
         <div className="ml-5 flex w-0 flex-1 items-center justify-end text-base font-bold text-green-600 dark:text-green-400">
           14.6%
-          <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <svg
+            className="h-5 w-5"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
             <path
               fillRule="evenodd"
               d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z"
@@ -307,17 +325,17 @@ const NewProductsThisWeek: FC = function () {
 
 const NewProductsChart: FC = function () {
   const options: ApexCharts.ApexOptions = {
-    colors: ["#1A56DB", "#FDBA8C"],
+    colors: ['#1A56DB', '#FDBA8C'],
     chart: {
-      fontFamily: "Inter, sans-serif",
-      foreColor: "#4B5563",
+      fontFamily: 'Inter, sans-serif',
+      foreColor: '#4B5563',
       toolbar: {
         show: false,
       },
     },
     plotOptions: {
       bar: {
-        columnWidth: "50%",
+        columnWidth: '50%',
         borderRadius: 3,
       },
     },
@@ -325,21 +343,21 @@ const NewProductsChart: FC = function () {
       shared: true,
       intersect: false,
       style: {
-        fontSize: "14px",
-        fontFamily: "Inter, sans-serif",
+        fontSize: '14px',
+        fontFamily: 'Inter, sans-serif',
       },
     },
     states: {
       hover: {
         filter: {
-          type: "darken",
+          type: 'darken',
         },
       },
     },
     stroke: {
       show: true,
       width: 5,
-      colors: ["transparent"],
+      colors: ['transparent'],
     },
     grid: {
       show: false,
@@ -371,29 +389,29 @@ const NewProductsChart: FC = function () {
   };
   const series = [
     {
-      name: "Digital",
-      color: "#1A56DB",
+      name: 'Digital',
+      color: '#1A56DB',
       data: [
-        { x: "01 Feb", y: 170 },
-        { x: "02 Feb", y: 180 },
-        { x: "03 Feb", y: 164 },
-        { x: "04 Feb", y: 145 },
-        { x: "05 Feb", y: 174 },
-        { x: "06 Feb", y: 170 },
-        { x: "07 Feb", y: 155 },
+        { x: '01 Feb', y: 170 },
+        { x: '02 Feb', y: 180 },
+        { x: '03 Feb', y: 164 },
+        { x: '04 Feb', y: 145 },
+        { x: '05 Feb', y: 174 },
+        { x: '06 Feb', y: 170 },
+        { x: '07 Feb', y: 155 },
       ],
     },
     {
-      name: "Goods",
-      color: "#FDBA8C",
+      name: 'Goods',
+      color: '#FDBA8C',
       data: [
-        { x: "01 Feb", y: 120 },
-        { x: "02 Feb", y: 134 },
-        { x: "03 Feb", y: 167 },
-        { x: "04 Feb", y: 179 },
-        { x: "05 Feb", y: 145 },
-        { x: "06 Feb", y: 182 },
-        { x: "07 Feb", y: 143 },
+        { x: '01 Feb', y: 120 },
+        { x: '02 Feb', y: 134 },
+        { x: '03 Feb', y: 167 },
+        { x: '04 Feb', y: 179 },
+        { x: '05 Feb', y: 145 },
+        { x: '06 Feb', y: 182 },
+        { x: '07 Feb', y: 143 },
       ],
     },
   ];
@@ -410,12 +428,21 @@ const VisitorsThisWeek: FC = function () {
     <div className="rounded-lg bg-white p-4 shadow-sm dark:bg-gray-800 sm:p-6 xl:p-8">
       <div className="flex items-center">
         <div className="shrink-0">
-          <span className="text-2xl font-bold leading-none text-gray-900 dark:text-white sm:text-3xl">5,355</span>
-          <h3 className="text-base font-normal text-gray-600 dark:text-gray-400">Visitors this week</h3>
+          <span className="text-2xl font-bold leading-none text-gray-900 dark:text-white sm:text-3xl">
+            5,355
+          </span>
+          <h3 className="text-base font-normal text-gray-600 dark:text-gray-400">
+            Visitors this week
+          </h3>
         </div>
         <div className="ml-5 flex w-0 flex-1 items-center justify-end text-base font-bold text-green-600 dark:text-green-400">
           32.9%
-          <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <svg
+            className="h-5 w-5"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
             <path
               fillRule="evenodd"
               d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z"
@@ -455,7 +482,7 @@ const VisitorsChart: FC = function () {
 
   useEffect(() => {
     const checkTheme = () => {
-      setIsDarkTheme(document.documentElement.classList.contains("dark"));
+      setIsDarkTheme(document.documentElement.classList.contains('dark'));
     };
 
     checkTheme();
@@ -463,19 +490,19 @@ const VisitorsChart: FC = function () {
     const observer = new MutationObserver(checkTheme);
     observer.observe(document.documentElement, {
       attributes: true,
-      attributeFilter: ['class']
+      attributeFilter: ['class'],
     });
 
     return () => observer.disconnect();
   }, []);
 
-  const fillGradientShade = isDarkTheme ? "dark" : "light";
+  const fillGradientShade = isDarkTheme ? 'dark' : 'light';
   const fillGradientShadeIntensity = isDarkTheme ? 0.45 : 1;
 
   const options: ApexCharts.ApexOptions = {
-    labels: ["01 Feb", "02 Feb", "03 Feb", "04 Feb", "05 Feb", "06 Feb", "07 Feb"],
+    labels: ['01 Feb', '02 Feb', '03 Feb', '04 Feb', '05 Feb', '06 Feb', '07 Feb'],
     chart: {
-      fontFamily: "Inter, sans-serif",
+      fontFamily: 'Inter, sans-serif',
       sparkline: {
         enabled: true,
       },
@@ -484,7 +511,7 @@ const VisitorsChart: FC = function () {
       },
     },
     fill: {
-      type: "gradient",
+      type: 'gradient',
       gradient: {
         shade: fillGradientShade,
         shadeIntensity: fillGradientShadeIntensity,
@@ -492,25 +519,25 @@ const VisitorsChart: FC = function () {
     },
     plotOptions: {
       area: {
-        fillTo: "end",
+        fillTo: 'end',
       },
     },
     theme: {
       monochrome: {
         enabled: true,
-        color: "#1A56DB",
+        color: '#1A56DB',
       },
     },
     tooltip: {
       style: {
-        fontSize: "14px",
-        fontFamily: "Inter, sans-serif",
+        fontSize: '14px',
+        fontFamily: 'Inter, sans-serif',
       },
     },
   };
   const series = [
     {
-      name: "Visitors",
+      name: 'Visitors',
       data: [500, 590, 600, 520, 610, 550, 600],
     },
   ];
@@ -526,8 +553,8 @@ const UserSignupsThisWeek: FC = function () {
   // Przykładowe dane
   const userSignups = 120; // Możesz pobrać te dane z API
   const sessionsByCountry = [
-    { country: "USA", sessions: 300 },
-    { country: "Poland", sessions: 150 },
+    { country: 'USA', sessions: 300 },
+    { country: 'Poland', sessions: 150 },
   ];
 
   return (
@@ -537,11 +564,18 @@ const UserSignupsThisWeek: FC = function () {
           <span className="text-2xl font-bold leading-none text-gray-900 dark:text-white sm:text-3xl">
             {userSignups}
           </span>
-          <h3 className="text-base font-normal text-gray-600 dark:text-gray-400">User signups this week</h3>
+          <h3 className="text-base font-normal text-gray-600 dark:text-gray-400">
+            User signups this week
+          </h3>
         </div>
         <div className="ml-5 flex w-0 flex-1 items-center justify-end text-base font-bold text-red-600 dark:text-red-400">
           -2.7%
-          <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <svg
+            className="h-5 w-5"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
             <path
               fillRule="evenodd"
               d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z"
@@ -557,8 +591,8 @@ const UserSignupsThisWeek: FC = function () {
 const SessionsByCountry: FC = function () {
   // Przykładowe dane
   const sessionsByCountry = [
-    { country: "USA", sessions: 300 },
-    { country: "Poland", sessions: 150 },
+    { country: 'USA', sessions: 300 },
+    { country: 'Poland', sessions: 150 },
   ];
 
   return (
@@ -568,12 +602,14 @@ const SessionsByCountry: FC = function () {
           <span className="text-2xl font-bold leading-none text-gray-900 dark:text-white sm:text-3xl">
             Sessions by country
           </span>
-          <h3 className="text-base font-normal text-gray-600 dark:text-gray-400">Sessions by country</h3>
+          <h3 className="text-base font-normal text-gray-600 dark:text-gray-400">
+            Sessions by country
+          </h3>
         </div>
       </div>
       <div className="mt-4">
         <ul>
-          {sessionsByCountry.map((session) => (
+          {sessionsByCountry.map(session => (
             <li key={session.country}>
               {session.country}: {session.sessions}
             </li>

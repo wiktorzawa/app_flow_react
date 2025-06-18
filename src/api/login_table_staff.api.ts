@@ -1,11 +1,11 @@
-import axiosInstance from "./axios";
+import axiosInstance from './axios';
 
 // Interfejs dla modelu danych pracownika bazujący na login_table_staff
 export interface Pracownik {
   id_staff: string;
   first_name: string;
   last_name: string;
-  role: "admin" | "staff";
+  role: 'admin' | 'staff';
   email: string;
   phone: string | null;
   created_at: string;
@@ -13,26 +13,28 @@ export interface Pracownik {
 }
 
 // Typ dla nowego pracownika (bez dat)
-export type NowyPracownik = Omit<Pracownik, "created_at" | "updated_at">;
+export type NowyPracownik = Omit<Pracownik, 'created_at' | 'updated_at'>;
 
 // Typ dla aktualizacji pracownika (częściowe dane, bez ID i dat)
-export type AktualizacjaPracownika = Partial<Omit<Pracownik, "id_staff" | "created_at" | "updated_at">>;
+export type AktualizacjaPracownika = Partial<
+  Omit<Pracownik, 'id_staff' | 'created_at' | 'updated_at'>
+>;
 
 // Typ dla nowego pracownika bez ID (generowane automatycznie)
-export type NowyPracownikBezId = Omit<NowyPracownik, "id_staff">;
+export type NowyPracownikBezId = Omit<NowyPracownik, 'id_staff'>;
 
 /**
  * Generuje ID pracownika na podstawie roli
  * @param role Rola pracownika ('admin' lub 'staff')
  * @returns Wygenerowane ID lub pusty string w przypadku błędu
  */
-export const generujIdPracownika = async (role: "admin" | "staff"): Promise<string> => {
+export const generujIdPracownika = async (role: 'admin' | 'staff'): Promise<string> => {
   try {
     const response = await axiosInstance.get(`/staff/generate-id?role=${role}`);
     return response.data.id_staff;
   } catch (error) {
-    console.error("Błąd podczas generowania ID pracownika:", error);
-    return "";
+    console.error('Błąd podczas generowania ID pracownika:', error);
+    return '';
   }
 };
 
@@ -41,12 +43,14 @@ export const generujIdPracownika = async (role: "admin" | "staff"): Promise<stri
  * @param pracownik Dane nowego pracownika (bez ID)
  * @returns Dane utworzonego pracownika lub null w przypadku błędu
  */
-export const dodajPracownikaZHaslem = async (pracownik: NowyPracownikBezId): Promise<Pracownik | null> => {
+export const dodajPracownikaZHaslem = async (
+  pracownik: NowyPracownikBezId
+): Promise<Pracownik | null> => {
   try {
-    const response = await axiosInstance.post("/staff/with-password", pracownik);
+    const response = await axiosInstance.post('/staff/with-password', pracownik);
     return response.data;
   } catch (error) {
-    console.error("Błąd podczas dodawania pracownika z hasłem:", error);
+    console.error('Błąd podczas dodawania pracownika z hasłem:', error);
     return null;
   }
 };
@@ -57,10 +61,10 @@ export const dodajPracownikaZHaslem = async (pracownik: NowyPracownikBezId): Pro
  */
 export const pobierzPracownikow = async (): Promise<Pracownik[]> => {
   try {
-    const response = await axiosInstance.get("/staff");
+    const response = await axiosInstance.get('/staff');
     return response.data;
   } catch (error) {
-    console.error("Błąd podczas pobierania pracowników:", error);
+    console.error('Błąd podczas pobierania pracowników:', error);
     return [];
   }
 };
@@ -87,10 +91,10 @@ export const pobierzPracownika = async (id: string): Promise<Pracownik | null> =
  */
 export const dodajPracownika = async (pracownik: NowyPracownik): Promise<Pracownik | null> => {
   try {
-    const response = await axiosInstance.post("/staff", pracownik);
+    const response = await axiosInstance.post('/staff', pracownik);
     return response.data;
   } catch (error) {
-    console.error("Błąd podczas dodawania pracownika:", error);
+    console.error('Błąd podczas dodawania pracownika:', error);
     return null;
   }
 };
@@ -101,7 +105,10 @@ export const dodajPracownika = async (pracownik: NowyPracownik): Promise<Pracown
  * @param dane Dane do aktualizacji
  * @returns Zaktualizowane dane pracownika lub null w przypadku błędu
  */
-export const aktualizujPracownika = async (id: string, dane: AktualizacjaPracownika): Promise<Pracownik | null> => {
+export const aktualizujPracownika = async (
+  id: string,
+  dane: AktualizacjaPracownika
+): Promise<Pracownik | null> => {
   try {
     const response = await axiosInstance.put(`/staff/${id}`, dane);
     return response.data;

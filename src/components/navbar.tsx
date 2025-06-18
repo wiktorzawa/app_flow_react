@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import type { FC } from "react";
+import type { FC } from 'react';
 import {
   Avatar,
   DarkThemeToggle,
@@ -11,7 +11,7 @@ import {
   Navbar,
   NavbarBrand,
   TextInput,
-} from "flowbite-react";
+} from 'flowbite-react';
 import {
   HiBell,
   HiCog,
@@ -27,9 +27,9 @@ import {
   HiUsers,
   HiViewGrid,
   HiX,
-} from "react-icons/hi";
-import { useSidebarContext } from "../context/SidebarContext";
-import isSmallScreen from "../helpers/is-small-screen";
+} from 'react-icons/hi';
+import { useSidebarContext } from '../context/SidebarContext';
+import isSmallScreen from '../helpers/is-small-screen';
 const ExampleNavbar: FC = function () {
   const { isOpenOnMobile, setIsOpenOnMobile, toggle } = useSidebarContext();
 
@@ -45,7 +45,11 @@ const ExampleNavbar: FC = function () {
                 className="mr-3 cursor-pointer rounded-sm p-2 text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white lg:hidden"
               >
                 <span className="sr-only">Toggle sidebar</span>
-                {isOpenOnMobile && isSmallScreen() ? <HiX className="h-6 w-6" /> : <HiMenuAlt1 className="h-6 w-6" />}
+                {isOpenOnMobile && isSmallScreen() ? (
+                  <HiX className="h-6 w-6" />
+                ) : (
+                  <HiMenuAlt1 className="h-6 w-6" />
+                )}
               </button>
 
               {/* Przycisk dla desktopa */}
@@ -58,8 +62,14 @@ const ExampleNavbar: FC = function () {
               </button>
             </>
             <NavbarBrand href="/">
-              <img alt="" src="https://flowbite.com/docs/images/logo.svg" className="mr-3 h-6 sm:h-8" />
-              <span className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">Flowbite</span>
+              <img
+                alt=""
+                src="https://flowbite.com/docs/images/logo.svg"
+                className="mr-3 h-6 sm:h-8"
+              />
+              <span className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">
+                Flowbite
+              </span>
             </NavbarBrand>
             <form className="ml-16 hidden md:block">
               <Label htmlFor="search" className="sr-only">
@@ -119,7 +129,11 @@ const NotificationBellDropdown: FC = function () {
           <DropdownItem>
             <div className="flex py-3">
               <div className="shrink-0">
-                <img alt="" src="../images/users/bonnie-green.png" className="h-11 w-11 rounded-full" />
+                <img
+                  alt=""
+                  src="../images/users/bonnie-green.png"
+                  className="h-11 w-11 rounded-full"
+                />
                 <div className="absolute -mt-5 ml-6 flex h-5 w-5 items-center justify-center rounded-full border border-white bg-primary-700 dark:border-gray-700">
                   <svg
                     className="h-3 w-3 text-white"
@@ -135,10 +149,12 @@ const NotificationBellDropdown: FC = function () {
               <div className="w-full pl-3">
                 <div className="mb-1.5 text-sm font-normal text-gray-500 dark:text-gray-400">
                   New message from&nbsp;
-                  <span className="font-semibold text-gray-900 dark:text-white">Bonnie Green</span>: "Hey, what's up?
-                  All set for the presentation?"
+                  <span className="font-semibold text-gray-900 dark:text-white">Bonnie Green</span>:
+                  &quot;Hey, what&apos;s up? All set for the presentation?&quot;
                 </div>
-                <div className="text-xs font-medium text-primary-700 dark:text-primary-400">a few moments ago</div>
+                <div className="text-xs font-medium text-primary-700 dark:text-primary-400">
+                  a few moments ago
+                </div>
               </div>
             </div>
           </DropdownItem>
@@ -211,13 +227,13 @@ const AppDrawerDropdown: FC = function () {
 };
 
 const UserDropdown: FC = function () {
-  const userRole = localStorage.getItem("userRole");
-  const userEmail = localStorage.getItem("username") || "admin@msbox.com";
+  const userRole = localStorage.getItem('userRole');
+  const userEmail = localStorage.getItem('username') || 'admin@msbox.com';
 
   const handleLogout = () => {
-    localStorage.removeItem("userRole");
-    localStorage.removeItem("username");
-    window.location.href = "/authentication/sign-in";
+    localStorage.removeItem('userRole');
+    localStorage.removeItem('username');
+    window.location.href = '/authentication/sign-in';
   };
 
   return (
@@ -232,12 +248,14 @@ const UserDropdown: FC = function () {
       }
     >
       <DropdownHeader>
-        <span className="block text-sm font-bold">{userRole || "Użytkownik"}</span>
+        <span className="block text-sm font-bold">{userRole || 'Użytkownik'}</span>
         <span className="block truncate text-sm font-medium">{userEmail}</span>
       </DropdownHeader>
       <DropdownItem href="/">Dashboard</DropdownItem>
       <DropdownItem href="/users/settings">Ustawienia</DropdownItem>
-      {userRole === "admin" && <DropdownItem href="/users/list">Zarządzaj użytkownikami</DropdownItem>}
+      {userRole === 'admin' && (
+        <DropdownItem href="/users/list">Zarządzaj użytkownikami</DropdownItem>
+      )}
       <DropdownDivider />
       <DropdownItem onClick={handleLogout}>Wyloguj</DropdownItem>
     </Dropdown>

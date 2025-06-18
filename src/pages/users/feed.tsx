@@ -1,9 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { Card } from "flowbite-react";
-import type { FC } from "react";
-import { HiBriefcase, HiDotsVertical, HiHeart, HiMap } from "react-icons/hi";
-import { MdComment } from "react-icons/md";
-import NavbarSidebarLayout from "../../layouts/navbar-sidebar";
+import { Card } from 'flowbite-react';
+import type { FC } from 'react';
+import { HiBriefcase, HiDotsVertical, HiHeart, HiMap } from 'react-icons/hi';
+import { MdComment } from 'react-icons/md';
+import NavbarSidebarLayout from '../../layouts/navbar-sidebar';
 
 const UserFeedPage: FC = function () {
   return (
@@ -20,7 +20,11 @@ const UserProfile: FC = function () {
   return (
     <div className="px-4 py-6 xl:sticky xl:mb-0 xl:pb-0">
       <div className="sm:flex sm:space-x-4 xl:block xl:space-x-0">
-        <img className="mb-2 h-20 w-20 rounded-lg" src="../../images/users/jese-leos-2x.png" alt="Jese portrait" />
+        <img
+          className="mb-2 h-20 w-20 rounded-lg"
+          src="../../images/users/jese-leos-2x.png"
+          alt="Jese portrait"
+        />
         <div>
           <h2 className="text-xl font-bold dark:text-white">Jese Leos</h2>
           <ul className="mt-2 space-y-1">
@@ -39,7 +43,10 @@ const UserProfile: FC = function () {
         <div className="sm:flex-1">
           <address className="text-sm font-normal not-italic text-gray-500 dark:text-gray-400">
             <div className="mt-4">Email address</div>
-            <a className="text-sm font-medium text-gray-900 dark:text-white" href="mailto:webmaster@flowbite.com">
+            <a
+              className="text-sm font-medium text-gray-900 dark:text-white"
+              href="mailto:webmaster@flowbite.com"
+            >
               yourname@flowbite.com
             </a>
             <div className="mt-4">Home address</div>
@@ -48,7 +55,9 @@ const UserProfile: FC = function () {
               United States of America
             </div>
             <div className="mt-4 dark:text-gray-400">Phone number</div>
-            <div className="text-sm font-medium text-gray-900 dark:text-white">+00 123 456 789 / +12 345 678</div>
+            <div className="text-sm font-medium text-gray-900 dark:text-white">
+              +00 123 456 789 / +12 345 678
+            </div>
           </address>
         </div>
       </div>
@@ -74,8 +83,14 @@ const UserProfile: FC = function () {
           <path d="M4.03524 5.71497L8.98317 15.5589L0.666626 5.71497H4.03524Z" fill="#EA6C00" />
           <path d="M13.929 5.71497L8.98107 15.5589L17.2976 5.71497H13.929Z" fill="#EA6C00" />
           <path d="M4.03467 5.71497H13.9305L8.9826 15.5589L4.03467 5.71497Z" fill="#FDAD00" />
-          <path d="M8.98272 0.259277L4.2952 0.762992L4.03479 5.71483L8.98272 0.259277Z" fill="#FDD231" />
-          <path d="M8.98164 0.259277L13.6692 0.762992L13.9296 5.71483L8.98164 0.259277Z" fill="#FDD231" />
+          <path
+            d="M8.98272 0.259277L4.2952 0.762992L4.03479 5.71483L8.98272 0.259277Z"
+            fill="#FDD231"
+          />
+          <path
+            d="M8.98164 0.259277L13.6692 0.762992L13.9296 5.71483L8.98164 0.259277Z"
+            fill="#FDD231"
+          />
           <path d="M17.2987 5.71453L13.6696 0.762695L13.9301 5.71453H17.2987Z" fill="#FDAD00" />
           <path d="M0.666626 5.71453L4.29565 0.762695L4.03524 5.71453H0.666626Z" fill="#FDAD00" />
           <path d="M8.98272 0.259277L4.03479 5.71483H13.9306L8.98272 0.259277Z" fill="#FEEEB7" />
@@ -109,7 +124,10 @@ const UserProfile: FC = function () {
             d="M4.12203 1.09285H4.79923V2.63598H5.5665V1.09285H6.24703V0.321289H4.12203V1.09285ZM2.30926 0.321317H1.54199V2.63602H2.31593V1.86445H3.01648V2.63602H3.78375V0.321317H3.01648V1.08618H2.30926V0.321317ZM6.58222 0.321289H7.38618L7.8799 1.13646L8.37362 0.321289H9.17759V2.63598H8.41032V1.4887L7.87323 2.32065L7.33614 1.4887V2.63598H6.58222V0.321289ZM10.3271 0.321289H9.5598V2.63598H11.4146V1.87113H10.3271V0.321289Z"
             fill="black"
           />
-          <path d="M1.51371 16.1212L0.412842 3.69568H12.5157L11.4148 16.1145L6.45425 17.4966" fill="#E44D26" />
+          <path
+            d="M1.51371 16.1212L0.412842 3.69568H12.5157L11.4148 16.1145L6.45425 17.4966"
+            fill="#E44D26"
+          />
           <path d="M6.46338 16.4406V4.71619H11.4106L10.4665 15.3168" fill="#F16529" />
           <path
             fillRule="evenodd"
@@ -148,11 +166,19 @@ const UserFeed: FC = function () {
         <Card>
           <div className="flex items-center space-x-4">
             <div className="shrink-0">
-              <img alt="Portrait Neil Sims" src="../../images/users/neil-sims.png" className="h-10 w-10 rounded-full" />
+              <img
+                alt="Portrait Neil Sims"
+                src="../../images/users/neil-sims.png"
+                className="h-10 w-10 rounded-full"
+              />
             </div>
             <div className="min-w-0 flex-1">
-              <p className="truncate text-sm font-semibold text-gray-900 dark:text-white">Neil Sims</p>
-              <p className="truncate text-sm font-normal text-gray-500 dark:text-gray-400">12 April at 09.28 PM</p>
+              <p className="truncate text-sm font-semibold text-gray-900 dark:text-white">
+                Neil Sims
+              </p>
+              <p className="truncate text-sm font-normal text-gray-500 dark:text-gray-400">
+                12 April at 09.28 PM
+              </p>
             </div>
             <a
               href="#"
@@ -163,8 +189,8 @@ const UserFeed: FC = function () {
           </div>
           <div className="space-y-4">
             <p className="text-base font-normal text-gray-500 dark:text-gray-400">
-              Hi @everyone, the new designs are attached. Go check them out and let me know if I missed anything.
-              Thanks!
+              Hi @everyone, the new designs are attached. Go check them out and let me know if I
+              missed anything. Thanks!
             </p>
             <div className="flex flex-wrap">
               <img
@@ -211,11 +237,19 @@ const UserFeed: FC = function () {
         <Card>
           <div className="flex items-center space-x-4">
             <div className="shrink-0">
-              <img className="h-10 w-10 rounded-full" src="../../images/users/roberta-casas.png" alt="Roberta Casas" />
+              <img
+                className="h-10 w-10 rounded-full"
+                src="../../images/users/roberta-casas.png"
+                alt="Roberta Casas"
+              />
             </div>
             <div className="min-w-0 flex-1">
-              <p className="truncate text-sm font-semibold text-gray-900 dark:text-white">Roberta Casas</p>
-              <p className="truncate text-sm font-normal text-gray-500 dark:text-gray-400">13 April at 10.55 PM</p>
+              <p className="truncate text-sm font-semibold text-gray-900 dark:text-white">
+                Roberta Casas
+              </p>
+              <p className="truncate text-sm font-normal text-gray-500 dark:text-gray-400">
+                13 April at 10.55 PM
+              </p>
             </div>
             <a
               href="#"
@@ -226,7 +260,8 @@ const UserFeed: FC = function () {
           </div>
           <div className="space-y-4">
             <p className="text-base font-normal text-gray-500 dark:text-gray-400">
-              I've been working on my app and grew it to $22k MMR in just a few years. Hard work pays off!
+              I&apos;ve been working on my app and grew it to $22k MMR in just a few years. Hard
+              work pays off!
             </p>
           </div>
           <div className="flex space-x-6 border-y border-gray-200 py-3 dark:border-gray-700">
@@ -262,11 +297,19 @@ const UserFeed: FC = function () {
         <Card>
           <div className="flex items-center space-x-4">
             <div className="shrink-0">
-              <img className="h-10 w-10 rounded-full" src="../../images/users/neil-sims.png" alt="Neil Sims" />
+              <img
+                className="h-10 w-10 rounded-full"
+                src="../../images/users/neil-sims.png"
+                alt="Neil Sims"
+              />
             </div>
             <div className="min-w-0 flex-1">
-              <p className="truncate text-sm font-semibold text-gray-900 dark:text-white">Neil Sims</p>
-              <p className="truncate text-sm font-normal text-gray-500 dark:text-gray-400">12 April at 09.28 PM</p>
+              <p className="truncate text-sm font-semibold text-gray-900 dark:text-white">
+                Neil Sims
+              </p>
+              <p className="truncate text-sm font-normal text-gray-500 dark:text-gray-400">
+                12 April at 09.28 PM
+              </p>
             </div>
             <a
               href="#"
@@ -277,8 +320,8 @@ const UserFeed: FC = function () {
           </div>
           <div className="space-y-4">
             <p className="text-base font-normal text-gray-500 dark:text-gray-400">
-              Hi @everyone, the new designs are attached. Go check them out and let me know if I missed anything.
-              Thanks!
+              Hi @everyone, the new designs are attached. Go check them out and let me know if I
+              missed anything. Thanks!
             </p>
             <div className="flex flex-wrap">
               <img
@@ -325,11 +368,19 @@ const UserFeed: FC = function () {
         <Card>
           <div className="flex items-center space-x-4">
             <div className="shrink-0">
-              <img className="h-10 w-10 rounded-full" src="../../images/users/roberta-casas.png" alt="Roberta Casas" />
+              <img
+                className="h-10 w-10 rounded-full"
+                src="../../images/users/roberta-casas.png"
+                alt="Roberta Casas"
+              />
             </div>
             <div className="min-w-0 flex-1">
-              <p className="truncate text-sm font-semibold text-gray-900 dark:text-white">Roberta Casas</p>
-              <p className="truncate text-sm font-normal text-gray-500 dark:text-gray-400">13 April at 10.55 PM</p>
+              <p className="truncate text-sm font-semibold text-gray-900 dark:text-white">
+                Roberta Casas
+              </p>
+              <p className="truncate text-sm font-normal text-gray-500 dark:text-gray-400">
+                13 April at 10.55 PM
+              </p>
             </div>
             <a
               href="#"
@@ -340,7 +391,8 @@ const UserFeed: FC = function () {
           </div>
           <div className="space-y-4">
             <p className="text-base font-normal text-gray-500 dark:text-gray-400">
-              I've been working on my app and grew it to $22k MMR in just a few years. Hard work pays off!
+              I&apos;ve been working on my app and grew it to $22k MMR in just a few years. Hard
+              work pays off!
             </p>
           </div>
           <div className="flex space-x-6 border-y border-gray-200 py-3 dark:border-gray-700">
@@ -376,11 +428,19 @@ const UserFeed: FC = function () {
         <Card>
           <div className="flex items-center space-x-4">
             <div className="shrink-0">
-              <img className="h-10 w-10 rounded-full" src="../../images/users/neil-sims.png" alt="Neil Sims" />
+              <img
+                className="h-10 w-10 rounded-full"
+                src="../../images/users/neil-sims.png"
+                alt="Neil Sims"
+              />
             </div>
             <div className="min-w-0 flex-1">
-              <p className="truncate text-sm font-semibold text-gray-900 dark:text-white">Neil Sims</p>
-              <p className="truncate text-sm font-normal text-gray-500 dark:text-gray-400">12 April at 09.28 PM</p>
+              <p className="truncate text-sm font-semibold text-gray-900 dark:text-white">
+                Neil Sims
+              </p>
+              <p className="truncate text-sm font-normal text-gray-500 dark:text-gray-400">
+                12 April at 09.28 PM
+              </p>
             </div>
             <a
               href="#"
@@ -391,8 +451,8 @@ const UserFeed: FC = function () {
           </div>
           <div className="space-y-4">
             <p className="text-base font-normal text-gray-500 dark:text-gray-400">
-              Hi @everyone, the new designs are attached. Go check them out and let me know if I missed anything.
-              Thanks!
+              Hi @everyone, the new designs are attached. Go check them out and let me know if I
+              missed anything. Thanks!
             </p>
             <div className="flex flex-wrap">
               <img
@@ -439,11 +499,19 @@ const UserFeed: FC = function () {
         <Card>
           <div className="flex items-center space-x-4">
             <div className="shrink-0">
-              <img className="h-10 w-10 rounded-full" src="../../images/users/roberta-casas.png" alt="Roberta Casas" />
+              <img
+                className="h-10 w-10 rounded-full"
+                src="../../images/users/roberta-casas.png"
+                alt="Roberta Casas"
+              />
             </div>
             <div className="min-w-0 flex-1">
-              <p className="truncate text-sm font-semibold text-gray-900 dark:text-white">Roberta Casas</p>
-              <p className="truncate text-sm font-normal text-gray-500 dark:text-gray-400">13 April at 10.55 PM</p>
+              <p className="truncate text-sm font-semibold text-gray-900 dark:text-white">
+                Roberta Casas
+              </p>
+              <p className="truncate text-sm font-normal text-gray-500 dark:text-gray-400">
+                13 April at 10.55 PM
+              </p>
             </div>
             <a
               href="#"
@@ -454,7 +522,8 @@ const UserFeed: FC = function () {
           </div>
           <div className="space-y-4">
             <p className="text-base font-normal text-gray-500 dark:text-gray-400">
-              I've been working on my app and grew it to $22k MMR in just a few years. Hard work pays off!
+              I&apos;ve been working on my app and grew it to $22k MMR in just a few years. Hard
+              work pays off!
             </p>
           </div>
           <div className="flex space-x-6 border-y border-gray-200 py-3 dark:border-gray-700">
@@ -490,11 +559,19 @@ const UserFeed: FC = function () {
         <Card>
           <div className="flex items-center space-x-4">
             <div className="shrink-0">
-              <img className="h-10 w-10 rounded-full" src="../../images/users/neil-sims.png" alt="Neil Sims" />
+              <img
+                className="h-10 w-10 rounded-full"
+                src="../../images/users/neil-sims.png"
+                alt="Neil Sims"
+              />
             </div>
             <div className="min-w-0 flex-1">
-              <p className="truncate text-sm font-semibold text-gray-900 dark:text-white">Neil Sims</p>
-              <p className="truncate text-sm font-normal text-gray-500 dark:text-gray-400">12 April at 09.28 PM</p>
+              <p className="truncate text-sm font-semibold text-gray-900 dark:text-white">
+                Neil Sims
+              </p>
+              <p className="truncate text-sm font-normal text-gray-500 dark:text-gray-400">
+                12 April at 09.28 PM
+              </p>
             </div>
             <a
               href="#"
@@ -505,8 +582,8 @@ const UserFeed: FC = function () {
           </div>
           <div className="space-y-4">
             <p className="text-base font-normal text-gray-500 dark:text-gray-400">
-              Hi @everyone, the new designs are attached. Go check them out and let me know if I missed anything.
-              Thanks!
+              Hi @everyone, the new designs are attached. Go check them out and let me know if I
+              missed anything. Thanks!
             </p>
             <div className="flex flex-wrap">
               <img
@@ -553,11 +630,19 @@ const UserFeed: FC = function () {
         <Card>
           <div className="flex items-center space-x-4">
             <div className="shrink-0">
-              <img className="h-10 w-10 rounded-full" src="../../images/users/roberta-casas.png" alt="Roberta Casas" />
+              <img
+                className="h-10 w-10 rounded-full"
+                src="../../images/users/roberta-casas.png"
+                alt="Roberta Casas"
+              />
             </div>
             <div className="min-w-0 flex-1">
-              <p className="truncate text-sm font-semibold text-gray-900 dark:text-white">Roberta Casas</p>
-              <p className="truncate text-sm font-normal text-gray-500 dark:text-gray-400">13 April at 10.55 PM</p>
+              <p className="truncate text-sm font-semibold text-gray-900 dark:text-white">
+                Roberta Casas
+              </p>
+              <p className="truncate text-sm font-normal text-gray-500 dark:text-gray-400">
+                13 April at 10.55 PM
+              </p>
             </div>
             <a
               href="#"
@@ -568,7 +653,8 @@ const UserFeed: FC = function () {
           </div>
           <div className="space-y-4">
             <p className="text-base font-normal text-gray-500 dark:text-gray-400">
-              I've been working on my app and grew it to $22k MMR in just a few years. Hard work pays off!
+              I&apos;ve been working on my app and grew it to $22k MMR in just a few years. Hard
+              work pays off!
             </p>
           </div>
           <div className="flex space-x-6 border-y border-gray-200 py-3 dark:border-gray-700">
@@ -604,11 +690,19 @@ const UserFeed: FC = function () {
         <Card>
           <div className="flex items-center space-x-4">
             <div className="shrink-0">
-              <img className="h-10 w-10 rounded-full" src="../../images/users/neil-sims.png" alt="Neil Sims" />
+              <img
+                className="h-10 w-10 rounded-full"
+                src="../../images/users/neil-sims.png"
+                alt="Neil Sims"
+              />
             </div>
             <div className="min-w-0 flex-1">
-              <p className="truncate text-sm font-semibold text-gray-900 dark:text-white">Neil Sims</p>
-              <p className="truncate text-sm font-normal text-gray-500 dark:text-gray-400">12 April at 09.28 PM</p>
+              <p className="truncate text-sm font-semibold text-gray-900 dark:text-white">
+                Neil Sims
+              </p>
+              <p className="truncate text-sm font-normal text-gray-500 dark:text-gray-400">
+                12 April at 09.28 PM
+              </p>
             </div>
             <a
               href="#"
@@ -619,8 +713,8 @@ const UserFeed: FC = function () {
           </div>
           <div className="space-y-4">
             <p className="text-base font-normal text-gray-500 dark:text-gray-400">
-              Hi @everyone, the new designs are attached. Go check them out and let me know if I missed anything.
-              Thanks!
+              Hi @everyone, the new designs are attached. Go check them out and let me know if I
+              missed anything. Thanks!
             </p>
             <div className="flex flex-wrap">
               <img
@@ -667,11 +761,19 @@ const UserFeed: FC = function () {
         <Card>
           <div className="flex items-center space-x-4">
             <div className="shrink-0">
-              <img className="h-10 w-10 rounded-full" src="../../images/users/roberta-casas.png" alt="Roberta Casas" />
+              <img
+                className="h-10 w-10 rounded-full"
+                src="../../images/users/roberta-casas.png"
+                alt="Roberta Casas"
+              />
             </div>
             <div className="min-w-0 flex-1">
-              <p className="truncate text-sm font-semibold text-gray-900 dark:text-white">Roberta Casas</p>
-              <p className="truncate text-sm font-normal text-gray-500 dark:text-gray-400">13 April at 10.55 PM</p>
+              <p className="truncate text-sm font-semibold text-gray-900 dark:text-white">
+                Roberta Casas
+              </p>
+              <p className="truncate text-sm font-normal text-gray-500 dark:text-gray-400">
+                13 April at 10.55 PM
+              </p>
             </div>
             <a
               href="#"
@@ -682,7 +784,8 @@ const UserFeed: FC = function () {
           </div>
           <div className="space-y-4">
             <p className="text-base font-normal text-gray-500 dark:text-gray-400">
-              I've been working on my app and grew it to $22k MMR in just a few years. Hard work pays off!
+              I&apos;ve been working on my app and grew it to $22k MMR in just a few years. Hard
+              work pays off!
             </p>
           </div>
           <div className="flex space-x-6 border-y border-gray-200 py-3 dark:border-gray-700">
@@ -718,11 +821,19 @@ const UserFeed: FC = function () {
         <Card>
           <div className="flex items-center space-x-4">
             <div className="shrink-0">
-              <img className="h-10 w-10 rounded-full" src="../../images/users/neil-sims.png" alt="Neil Sims" />
+              <img
+                className="h-10 w-10 rounded-full"
+                src="../../images/users/neil-sims.png"
+                alt="Neil Sims"
+              />
             </div>
             <div className="min-w-0 flex-1">
-              <p className="truncate text-sm font-semibold text-gray-900 dark:text-white">Neil Sims</p>
-              <p className="truncate text-sm font-normal text-gray-500 dark:text-gray-400">12 April at 09.28 PM</p>
+              <p className="truncate text-sm font-semibold text-gray-900 dark:text-white">
+                Neil Sims
+              </p>
+              <p className="truncate text-sm font-normal text-gray-500 dark:text-gray-400">
+                12 April at 09.28 PM
+              </p>
             </div>
             <a
               href="#"
@@ -733,8 +844,8 @@ const UserFeed: FC = function () {
           </div>
           <div className="space-y-4">
             <p className="text-base font-normal text-gray-500 dark:text-gray-400">
-              Hi @everyone, the new designs are attached. Go check them out and let me know if I missed anything.
-              Thanks!
+              Hi @everyone, the new designs are attached. Go check them out and let me know if I
+              missed anything. Thanks!
             </p>
             <div className="flex flex-wrap">
               <img
@@ -781,11 +892,19 @@ const UserFeed: FC = function () {
         <Card>
           <div className="flex items-center space-x-4">
             <div className="shrink-0">
-              <img className="h-10 w-10 rounded-full" src="../../images/users/roberta-casas.png" alt="Roberta Casas" />
+              <img
+                className="h-10 w-10 rounded-full"
+                src="../../images/users/roberta-casas.png"
+                alt="Roberta Casas"
+              />
             </div>
             <div className="min-w-0 flex-1">
-              <p className="truncate text-sm font-semibold text-gray-900 dark:text-white">Roberta Casas</p>
-              <p className="truncate text-sm font-normal text-gray-500 dark:text-gray-400">13 April at 10.55 PM</p>
+              <p className="truncate text-sm font-semibold text-gray-900 dark:text-white">
+                Roberta Casas
+              </p>
+              <p className="truncate text-sm font-normal text-gray-500 dark:text-gray-400">
+                13 April at 10.55 PM
+              </p>
             </div>
             <a
               href="#"
@@ -796,7 +915,8 @@ const UserFeed: FC = function () {
           </div>
           <div className="space-y-4">
             <p className="text-base font-normal text-gray-500 dark:text-gray-400">
-              I've been working on my app and grew it to $22k MMR in just a few years. Hard work pays off!
+              I&apos;ve been working on my app and grew it to $22k MMR in just a few years. Hard
+              work pays off!
             </p>
           </div>
           <div className="flex space-x-6 border-y border-gray-200 py-3 dark:border-gray-700">
@@ -832,11 +952,19 @@ const UserFeed: FC = function () {
         <Card>
           <div className="flex items-center space-x-4">
             <div className="shrink-0">
-              <img className="h-10 w-10 rounded-full" src="../../images/users/neil-sims.png" alt="Neil Sims" />
+              <img
+                className="h-10 w-10 rounded-full"
+                src="../../images/users/neil-sims.png"
+                alt="Neil Sims"
+              />
             </div>
             <div className="min-w-0 flex-1">
-              <p className="truncate text-sm font-semibold text-gray-900 dark:text-white">Neil Sims</p>
-              <p className="truncate text-sm font-normal text-gray-500 dark:text-gray-400">12 April at 09.28 PM</p>
+              <p className="truncate text-sm font-semibold text-gray-900 dark:text-white">
+                Neil Sims
+              </p>
+              <p className="truncate text-sm font-normal text-gray-500 dark:text-gray-400">
+                12 April at 09.28 PM
+              </p>
             </div>
             <a
               href="#"
@@ -847,8 +975,8 @@ const UserFeed: FC = function () {
           </div>
           <div className="space-y-4">
             <p className="text-base font-normal text-gray-500 dark:text-gray-400">
-              Hi @everyone, the new designs are attached. Go check them out and let me know if I missed anything.
-              Thanks!
+              Hi @everyone, the new designs are attached. Go check them out and let me know if I
+              missed anything. Thanks!
             </p>
             <div className="flex flex-wrap">
               <img
@@ -895,125 +1023,19 @@ const UserFeed: FC = function () {
         <Card>
           <div className="flex items-center space-x-4">
             <div className="shrink-0">
-              <img className="h-10 w-10 rounded-full" src="../../images/users/roberta-casas.png" alt="Roberta Casas" />
-            </div>
-            <div className="min-w-0 flex-1">
-              <p className="truncate text-sm font-semibold text-gray-900 dark:text-white">Roberta Casas</p>
-              <p className="truncate text-sm font-normal text-gray-500 dark:text-gray-400">13 April at 10.55 PM</p>
-            </div>
-            <a
-              href="#"
-              className="inline-flex cursor-pointer justify-center rounded-sm p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-            >
-              <HiDotsVertical className="text-2xl" />
-            </a>
-          </div>
-          <div className="space-y-4">
-            <p className="text-base font-normal text-gray-500 dark:text-gray-400">
-              I've been working on my app and grew it to $22k MMR in just a few years. Hard work pays off!
-            </p>
-          </div>
-          <div className="flex space-x-6 border-y border-gray-200 py-3 dark:border-gray-700">
-            <a
-              href="#"
-              className="flex items-center text-sm font-medium text-gray-500 hover:text-gray-900 hover:underline dark:text-gray-400 dark:hover:text-white"
-            >
-              <MdComment className="mr-2 text-lg" />
-              No comments
-            </a>
-            <a
-              href="#"
-              className="flex items-center text-sm font-medium text-gray-500 hover:text-gray-900 hover:underline dark:text-gray-400 dark:hover:text-white"
-            >
-              <HiHeart className="mr-2 text-lg" />
-              43 Likes
-            </a>
-          </div>
-          <div>
-            <form action="#">
-              <label htmlFor="write-message" className="sr-only">
-                Comment
-              </label>
-              <input
-                type="text"
-                id="write-message"
-                placeholder="Write comment"
-                className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-              />
-            </form>
-          </div>
-        </Card>
-        <Card>
-          <div className="flex items-center space-x-4">
-            <div className="shrink-0">
-              <img className="h-10 w-10 rounded-full" src="../../images/users/neil-sims.png" alt="Neil Sims" />
-            </div>
-            <div className="min-w-0 flex-1">
-              <p className="truncate text-sm font-semibold text-gray-900 dark:text-white">Neil Sims</p>
-              <p className="truncate text-sm font-normal text-gray-500 dark:text-gray-400">12 April at 09.28 PM</p>
-            </div>
-            <a
-              href="#"
-              className="inline-flex cursor-pointer justify-center rounded-sm p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-            >
-              <HiDotsVertical className="text-2xl" />
-            </a>
-          </div>
-          <div className="space-y-4">
-            <p className="text-base font-normal text-gray-500 dark:text-gray-400">
-              Hi @everyone, the new designs are attached. Go check them out and let me know if I missed anything.
-              Thanks!
-            </p>
-            <div className="flex flex-wrap">
               <img
-                className="mb-4 mr-4 h-40 w-40 rounded-lg"
-                src="../../images/feed/image-1.jpg"
-                alt="task screenshot"
+                className="h-10 w-10 rounded-full"
+                src="../../images/users/roberta-casas.png"
+                alt="Roberta Casas"
               />
-              <img
-                className="mb-4 mr-4 h-40 w-40 rounded-lg"
-                src="../../images/feed/image-2.jpg"
-                alt="task screenshot"
-              />
-            </div>
-          </div>
-          <div className="flex space-x-6 border-y border-gray-200 py-3 dark:border-gray-700">
-            <a
-              href="#"
-              className="flex items-center text-sm font-medium text-gray-500 hover:text-gray-900 hover:underline dark:text-gray-400 dark:hover:text-white"
-            >
-              <MdComment className="mr-2 text-lg" />7 Comments
-            </a>
-            <a
-              href="#"
-              className="flex items-center text-sm font-medium text-gray-500 hover:text-gray-900 hover:underline dark:text-gray-400 dark:hover:text-white"
-            >
-              <HiHeart className="mr-2 text-lg" />
-              457 Likes
-            </a>
-          </div>
-          <div>
-            <form action="#">
-              <label htmlFor="write-message" className="sr-only">
-                Comment
-              </label>
-              <input
-                type="text"
-                id="write-message"
-                placeholder="Write comment"
-                className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-              />
-            </form>
-          </div>
-        </Card>
-        <Card>
-          <div className="flex items-center space-x-4">
-            <div className="shrink-0">
-              <img className="h-10 w-10 rounded-full" src="../../images/users/roberta-casas.png" alt="Roberta Casas" />
             </div>
             <div className="min-w-0 flex-1">
-              <p className="truncate text-sm font-semibold text-gray-900 dark:text-white">Roberta Casas</p>
-              <p className="truncate text-sm font-normal text-gray-500 dark:text-gray-400">13 April at 10.55 PM</p>
+              <p className="truncate text-sm font-semibold text-gray-900 dark:text-white">
+                Roberta Casas
+              </p>
+              <p className="truncate text-sm font-normal text-gray-500 dark:text-gray-400">
+                13 April at 10.55 PM
+              </p>
             </div>
             <a
               href="#"
@@ -1024,7 +1046,8 @@ const UserFeed: FC = function () {
           </div>
           <div className="space-y-4">
             <p className="text-base font-normal text-gray-500 dark:text-gray-400">
-              I've been working on my app and grew it to $22k MMR in just a few years. Hard work pays off!
+              I&apos;ve been working on my app and grew it to $22k MMR in just a few years. Hard
+              work pays off!
             </p>
           </div>
           <div className="flex space-x-6 border-y border-gray-200 py-3 dark:border-gray-700">
@@ -1064,7 +1087,12 @@ const UserFeed: FC = function () {
           <ul className="divide-y divide-gray-200 dark:divide-gray-700">
             <li className="flex items-center space-x-4 pb-4">
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-purple-600">
-                <svg className="h-6 w-6" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg
+                  className="h-6 w-6"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
                   <path
                     fillRule="evenodd"
                     clipRule="evenodd"
@@ -1082,7 +1110,12 @@ const UserFeed: FC = function () {
             </li>
             <li className="flex items-center space-x-4 py-4">
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gray-900">
-                <svg className="h-6 w-6" viewBox="0 0 17 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg
+                  className="h-6 w-6"
+                  viewBox="0 0 17 22"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
                   <path
                     fillRule="evenodd"
                     clipRule="evenodd"
@@ -1100,7 +1133,12 @@ const UserFeed: FC = function () {
             </li>
             <li className="flex items-center space-x-4 pt-4">
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white shadow-sm">
-                <svg className="h-6 w-6" viewBox="0 0 21 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg
+                  className="h-6 w-6"
+                  viewBox="0 0 21 22"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
                   <path
                     d="M20.989 11.2057C20.989 10.3044 20.9175 9.64668 20.7629 8.9646H10.7092V13.0328H16.6105C16.4916 14.0437 15.8491 15.5663 14.4213 16.5894L14.4013 16.7256L17.5801 19.2466L17.8003 19.2691C19.8229 17.3568 20.989 14.5431 20.989 11.2057Z"
                     fill="#4285F4"
@@ -1136,7 +1174,9 @@ const UserFeed: FC = function () {
                 Su
               </div>
               <div>
-                <div className="text-base font-semibold text-gray-900 dark:text-white">Stanford University</div>
+                <div className="text-base font-semibold text-gray-900 dark:text-white">
+                  Stanford University
+                </div>
                 <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
                   Computer Science and Engineering
                 </span>
@@ -1147,7 +1187,9 @@ const UserFeed: FC = function () {
                 Th
               </div>
               <div>
-                <div className="text-base font-semibold text-gray-900 dark:text-white">Thomas Jeff High School</div>
+                <div className="text-base font-semibold text-gray-900 dark:text-white">
+                  Thomas Jeff High School
+                </div>
                 <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
                   Secondary School Certificate
                 </span>

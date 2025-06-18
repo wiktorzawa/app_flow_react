@@ -1,6 +1,8 @@
+type LogArgs = (string | number | boolean | null | undefined | Error | Record<string, unknown>)[];
+
 export const logger = {
-  info: (...args: any[]) => console.log("[INFO]", ...args),
-  warn: (...args: any[]) => console.warn("[WARN]", ...args),
-  error: (...args: any[]) => console.error("[ERROR]", ...args),
-  debug: (...args: any[]) => console.debug("[DEBUG]", ...args),
+  info: (...args: LogArgs) => console.log('[INFO]', ...args),
+  warn: (...args: LogArgs) => console.warn('[WARN]', ...args),
+  error: (...args: LogArgs) => console.error('[ERROR]', ...args),
+  debug: (...args: LogArgs) => console.debug('[DEBUG]', ...args),
 };

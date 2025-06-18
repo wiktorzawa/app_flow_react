@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 var __awaiter =
   (this && this.__awaiter) ||
   function (thisArg, _arguments, P, generator) {
@@ -19,7 +19,7 @@ var __awaiter =
       }
       function rejected(value) {
         try {
-          step(generator["throw"](value));
+          step(generator['throw'](value));
         } catch (e) {
           reject(e);
         }
@@ -30,12 +30,12 @@ var __awaiter =
       step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
   };
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, '__esModule', { value: true });
 exports.BrowserApiService = void 0;
-const config_1 = require("../config/config");
+const config_1 = require('../config/config');
 class BrowserApiService {
   constructor() {
-    this.host = "brd.superproxy.io";
+    this.host = 'brd.superproxy.io';
     this.port = 22225;
     this.username = config_1.config.brightData.username; // wiktor.zawadzki@gmail.com
     this.password = config_1.config.brightData.password; // ibwvrl7p6fjv
@@ -45,7 +45,7 @@ class BrowserApiService {
   }
   createBrowserContext() {
     return __awaiter(this, void 0, void 0, function* () {
-      const { chromium } = require("playwright");
+      const { chromium } = require('playwright');
       const browser = yield chromium.connectOverCDP(this.getBrowserWSEndpoint());
       return browser;
     });
@@ -54,7 +54,7 @@ class BrowserApiService {
     return __awaiter(this, void 0, void 0, function* () {
       const context = yield browser.newContext({
         userAgent:
-          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+          'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
       });
       const page = yield context.newPage();
       return page;

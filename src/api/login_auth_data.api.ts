@@ -1,4 +1,5 @@
-import axiosInstance from "./axios";
+import axiosInstance from './axios';
+import { AxiosError } from 'axios';
 
 // Interfejs dla danych uwierzytelniających
 export interface DaneLogowania {
@@ -9,7 +10,7 @@ export interface DaneLogowania {
 // Interfejs dla odpowiedzi z logowania
 export interface OdpowiedzLogowania {
   success: boolean;
-  userRole?: "admin" | "staff" | "supplier";
+  userRole?: 'admin' | 'staff' | 'supplier';
   userId?: string;
   error?: string;
 }
@@ -21,16 +22,16 @@ export interface OdpowiedzLogowania {
  */
 export const zaloguj = async (credentials: DaneLogowania): Promise<OdpowiedzLogowania> => {
   try {
-    const response = await axiosInstance.post("/auth/login", credentials);
+    const response = await axiosInstance.post('/auth/login', credentials);
     return response.data;
-  } catch (error: any) {
-    if (error.response && error.response.data) {
+  } catch (error: unknown) {
+    if (error instanceof AxiosError && error.response?.data) {
       return error.response.data as OdpowiedzLogowania;
     }
 
     return {
       success: false,
-      error: "Błąd połączenia z serwerem",
+      error: 'Błąd połączenia z serwerem',
     };
   }
 };
