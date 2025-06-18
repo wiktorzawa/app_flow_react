@@ -1,0 +1,105 @@
+---
+title: Dark Mode - Flowbite React
+description: Learn how to implement and customize dark mode in your React application using Flowbite and Tailwind CSS. Includes step-by-step instructions for theme switching, SSR support, and framework-specific integrations.
+---
+
+## Overview
+
+Flowbite React provides built-in dark mode functionality that seamlessly integrates with popular full-stack frameworks like Next.js, Remix, Astro, and Gatsby. The dark mode implementation fully supports server-side rendering (SSR) and offers an intuitive developer experience.
+
+## Dark Mode Toggle
+
+The easiest way to implement dark mode in your application is by using the `DarkThemeToggle` component. This component automatically handles theme detection and provides a user-friendly interface for switching between light and dark modes.
+
+```jsx
+import { DarkThemeToggle } from "flowbite-react";
+
+export default function MyPage() {
+  return (
+    // ...
+    <DarkThemeToggle />
+  );
+}
+```
+
+## Theme Mode Hook
+
+For more granular control over theme management, Flowbite React provides the `useThemeMode` hook. This powerful hook handles:
+
+- Theme state management
+- Automatic theme detection
+- Theme persistence in LocalStorage
+- Cross-tab theme synchronization
+
+### Hook API
+
+```tsx
+type ThemeMode = "light" | "dark" | "auto";
+
+declare const useThemeMode: () => {
+  mode: ThemeMode;
+  computedMode: ThemeMode; // "light" | "dark"
+  setMode: (mode: ThemeMode) => void;
+  toggleMode: () => void;
+  clearMode: () => void;
+};
+```
+
+### Features
+
+1. **Automatic Theme Persistence**: Your users' theme preferences are automatically saved in the browser's LocalStorage
+2. **Cross-Tab Synchronization**: Theme changes are instantly synchronized across all open browser tabs
+3. **No Additional Configuration**: All features work out of the box
+
+## Disabling Dark Mode
+
+To completely disable dark mode class generation in your Flowbite React application, you should use both of the following methods:
+
+### 1. Using the ThemeConfig Component
+
+First, disable dark mode at the application level by setting the `dark` prop to `false` in the `ThemeConfig` component:
+
+```jsx
+import { ThemeConfig } from "flowbite-react";
+
+function App() {
+  return (
+    <>
+      <ThemeConfig dark={false} />
+      {/* Your application */}
+    </>
+  );
+}
+```
+
+This approach prevents the dark mode toggle functionality from working in your application's runtime.
+
+### 2. Using the Configuration File
+
+Additionally, you must disable dark mode in your build configuration by setting the `dark` property to `false` in your `.flowbite-react/config.json` file:
+
+```json {4}
+{
+  "$schema": "https://unpkg.com/flowbite-react/schema.json",
+  "components": [],
+  "dark": false,
+  "path": "src/components",
+  "prefix": "",
+  "rsc": true,
+  "tsx": true
+}
+```
+
+This method prevents dark mode classes from being generated during the build process, which reduces your CSS bundle size.
+
+> **Important**: For complete dark mode disabling, both methods should be used together. The ThemeConfig approach affects runtime behavior, while the config.json approach affects build-time class generation.
+
+## Framework Integration
+
+For detailed, framework-specific implementation instructions, refer to our comprehensive integration guides:
+
+- [AdonisJS Dark Mode](/docs/guides/adonisjs#dark-mode)
+- [Astro Dark Mode](/docs/guides/astro#dark-mode)
+- [Gatsby Dark Mode](/docs/guides/gatsby#dark-mode)
+- [Next.js Dark Mode](/docs/guides/nextjs#dark-mode)
+- [Remix Dark Mode](/docs/guides/remix#dark-mode)

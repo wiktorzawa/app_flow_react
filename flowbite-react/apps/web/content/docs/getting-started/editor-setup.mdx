@@ -1,0 +1,158 @@
+---
+title: Editor Setup - Flowbite React
+description: Learn how to configure Visual Studio Code with Tailwind CSS support, code formatting, and linting for Flowbite React development.
+---
+
+This comprehensive guide will help you set up your development environment with proper intellisense, formatting, and linting support for Flowbite React's custom `theme` prop and Tailwind CSS integration.
+
+## VS Code Setup
+
+Visual Studio Code is our recommended editor for Flowbite React development. Follow these sections to configure your environment properly.
+
+### Tailwind Intellisense
+
+Follow these steps to enable intelligent Tailwind CSS suggestions and autocompletion:
+
+1. Install the official [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss) extension from the VS Code marketplace.
+2. Create a `.vscode` directory in your project root:
+
+```bash
+mkdir .vscode
+```
+
+3. Create a VS Code settings file:
+
+```bash
+touch .vscode/settings.json
+```
+
+4. Configure VS Code settings for Tailwind CSS support:
+
+```json
+{
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "tailwindCSS.classAttributes": ["class", "className", "theme"],
+  "tailwindCSS.experimental.classRegex": [
+    ["twMerge\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["createTheme(?:<\\w+>)?\\s*\\(([^)]*)\\)", "{?\\s?[\\w].*:\\s*?[\"'`]([^\"'`]*).*?,?\\s?}?"]
+  ]
+}
+```
+
+### Prettier Setup
+
+Ensure consistent code formatting with Prettier:
+
+1. Install the required packages:
+
+```bash
+npm i -D prettier prettier-plugin-tailwindcss
+```
+
+2. Create a Prettier configuration file:
+
+```bash
+touch prettier.config.js
+```
+
+3. Configure Prettier with Tailwind CSS support:
+
+```js
+/** @type {import('prettier').Config} */
+module.exports = {
+  plugins: ["prettier-plugin-tailwindcss"],
+  // tailwindcss
+  tailwindAttributes: ["theme"],
+  tailwindFunctions: ["twMerge", "createTheme"],
+};
+```
+
+### ESLint Setup
+
+Set up ESLint to ensure code quality and catch potential issues:
+
+#### Legacy Configuration
+
+1. Install the Tailwind CSS ESLint plugin:
+
+```bash
+npm i -D eslint-plugin-tailwindcss
+```
+
+2. Configure ESLint with Tailwind CSS support:
+
+```js {6,10-13}
+/** @type {import("eslint").Linter.Config} */
+module.exports = {
+  // ...
+  extends: [
+    // ...
+    "plugin:tailwindcss/recommended",
+  ],
+  settings: {
+    // ...
+    tailwindcss: {
+      callees: ["twMerge", "createTheme"],
+      classRegex: "^(class(Name)|theme)?$",
+    },
+  },
+};
+```
+
+#### Flat Configuration
+
+Starting with ESLint v9, the flat config format is the default configuration method. Here's how to set up ESLint with Tailwind CSS support using the new flat config format:
+
+1. Install ESLint Tailwind CSS plugin:
+
+```bash
+npm i -D eslint-plugin-tailwindcss
+```
+
+2. Configure ESLint with Tailwind CSS support using the flat config format:
+
+```js {1,4,6-10}
+import tailwindcss from "eslint-plugin-tailwindcss";
+
+export default [
+  ...tailwindcss.configs["flat/recommended"],
+  {
+    settings: {
+      tailwindcss: {
+        callees: ["twMerge", "createTheme"],
+        classRegex: "^(class(Name)|theme)?$",
+      },
+    },
+  },
+];
+```
+
+## Automated Setup
+
+For existing projects, you can quickly configure your editor using our CLI tool:
+
+```bash
+npx flowbite-react@latest setup vscode
+```
+
+This command will:
+
+- Create the necessary `.vscode` directory
+- Configure VS Code settings for Tailwind CSS
+- Set up recommended extensions
+- Configure Prettier and ESLint integrations
+
+> **Note:** If you're starting a new project, you don't need to run this command separately. The `npx flowbite-react@latest init` command automatically includes all editor setup as part of its initialization process. Only use `setup vscode` when configuring an editor for an existing project.
+
+## Next Steps
+
+After completing this setup, your Visual Studio Code environment will be fully configured for Flowbite React development with:
+
+- Intelligent Tailwind CSS suggestions
+- Automatic code formatting
+- Code quality checking
+- Full support for the custom `theme` prop
+
+For additional configuration options or troubleshooting, refer to our [GitHub repository](https://github.com/themesberg/flowbite-react) or join our community on Discord.

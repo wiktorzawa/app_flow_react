@@ -1,0 +1,117 @@
+---
+title: Use with Remix - Flowbite React
+description: Learn how to install Flowbite React for your Remix project to leverage quicker page loads with a full-stack web framework built by Shopify
+---
+
+This guide provides three ways to integrate Flowbite React with Remix:
+
+1. [Quick Start](#quick-start): Create a new project with everything pre-configured
+2. [Add to Existing Project](#add-to-existing-project): Add Flowbite React to an existing Remix project
+3. [Manual Setup](#manual-setup): Set up everything from scratch manually
+
+<TextDivider>Quick Start (Recommended)</TextDivider>
+
+## Quick Start
+
+The fastest way to get started is using our project creation CLI, which sets up a new Remix project with Flowbite React, Tailwind CSS, and all necessary configurations:
+
+```bash
+npx create-flowbite-react@latest -t remix
+```
+
+This will:
+
+- Create a new Remix project
+- Install and configure Tailwind CSS
+- Set up Flowbite React with all required dependencies
+- Configure dark mode support
+- Set up example components
+
+<TextDivider>Add to Existing Project</TextDivider>
+
+## Add to Existing Project
+
+If you already have a Remix project and want to add Flowbite React, you can use our initialization CLI:
+
+```bash
+npx flowbite-react@latest init
+```
+
+This will automatically:
+
+- Install Flowbite React and its dependencies
+- Configure Tailwind CSS to include Flowbite React plugin
+- Set up necessary configurations for dark mode
+
+<TextDivider>Manual Setup</TextDivider>
+
+## Manual Setup
+
+If you prefer to set everything up manually or need more control over the configuration, follow these steps:
+
+### 1. Create Project
+
+Create a new Remix project:
+
+```bash
+npx create-remix@latest
+```
+
+### 2. Install Flowbite React
+
+Install Flowbite React:
+
+```bash
+npx flowbite-react@latest init
+```
+
+This will:
+
+- Install Flowbite React and its dependencies
+- Configure Tailwind CSS to include Flowbite React plugin
+- Configure Vite to include Flowbite React plugin
+
+### 3. Configure Dark Mode
+
+In server-side rendered applications like Remix, to avoid page flicker (if `dark` mode is set) before Remix hydrates the content, the `ThemeModeScript` component must be rendered in the `<head>` tag.
+
+`ThemeModeScript` renders a script tag that sets `dark` or removes `dark` from the `<html>` element before hydration occurs.
+
+Import and render `ThemeModeScript` in `app/root.tsx` the `<head>` tag:
+
+```tsx {1,8}
+import { ThemeModeScript } from "flowbite-react";
+
+export default function Layout() {
+  return (
+    <html lang="en">
+      <head>
+        {/* ... */}
+        <ThemeModeScript />
+      </head>
+      <body>{/* ... */}</body>
+    </html>
+  );
+}
+```
+
+## Try it out
+
+Now that you have successfully installed Flowbite React you can start using the components from the library:
+
+```tsx
+// app/routes/_index.tsx
+
+import { Button } from "flowbite-react";
+
+export default function Index() {
+  return <Button>Click me</Button>;
+}
+```
+
+<hr />
+
+## Templates
+
+- [Github](https://github.com/themesberg/flowbite-react-template-remix)
+- [StackBlitz](https://stackblitz.com/edit/flowbite-react-template-remix)

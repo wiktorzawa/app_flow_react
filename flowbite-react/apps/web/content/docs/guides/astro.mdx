@@ -1,0 +1,162 @@
+---
+title: Use with Astro - Flowbite React
+description: Learn how to install Flowbite React for your Astro project and start building modern websites with a lightning fast and content-focused web framework
+---
+
+This guide provides three ways to integrate Flowbite React with Astro:
+
+1. [Quick Start](#quick-start): Create a new project with everything pre-configured
+2. [Add to Existing Project](#add-to-existing-project): Add Flowbite React to an existing Astro project
+3. [Manual Setup](#manual-setup): Set up everything from scratch manually
+
+<TextDivider>Quick Start (Recommended)</TextDivider>
+
+## Quick Start
+
+The fastest way to get started is using our project creation CLI, which sets up a new Astro project with Flowbite React, Tailwind CSS, and all necessary configurations:
+
+```bash
+npx create-flowbite-react@latest -t astro
+```
+
+This will:
+
+- Create a new Astro project
+- Install and configure Tailwind CSS
+- Set up Flowbite React with all required dependencies
+- Configure dark mode support
+- Set up example components
+
+<TextDivider>Add to Existing Project</TextDivider>
+
+## Add to Existing Project
+
+If you already have an Astro project and want to add Flowbite React, you can use our initialization CLI:
+
+```bash
+npx flowbite-react@latest init
+```
+
+This will automatically:
+
+- Install Flowbite React and its dependencies
+- Configure Tailwind CSS to include Flowbite React plugin
+- Set up dark mode support
+
+<TextDivider>Manual Setup</TextDivider>
+
+## Manual Setup
+
+If you prefer to set everything up manually or need more control over the configuration, follow these steps:
+
+### 1. Create Astro Project
+
+Create a new Astro project:
+
+```bash
+npx create-astro@latest
+```
+
+### 2. Add React Support
+
+Install React support using the Astro CLI:
+
+```bash
+npx astro add react
+```
+
+**Note:** Make sure to answer `Yes` to all the questions.
+
+### 3. Configure Tailwind CSS
+
+Install Tailwind CSS using the Astro CLI:
+
+```bash
+npx astro add tailwind
+```
+
+**Note:** Make sure to answer `Yes` to all the questions.
+
+### 4. Install Flowbite React
+
+Install Flowbite React:
+
+```bash
+npx flowbite-react@latest init
+```
+
+This will:
+
+- Install Flowbite React and its dependencies
+- Configure Tailwind CSS to include Flowbite React plugin
+- Configure Vite to include Flowbite React plugin
+
+### 5. Configure Dark Mode
+
+To prevent dark mode flickering, add the `ThemeModeScript` component to your root layout:
+
+```tsx
+// src/layouts/index.astro
+---
+import { ThemeModeScript } from "flowbite-react";
+---
+
+<html lang="en">
+  <head>
+    <ThemeModeScript />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+```
+
+Import and use the layout in your pages:
+
+```tsx
+// src/pages/index.astro
+---
+import RootLayout from "../layouts/index.astro";
+---
+
+<RootLayout>
+  // Your content here
+</RootLayout>
+```
+
+### 6. Component Hydration
+
+By default, UI Framework components are not hydrated in the client. To make Flowbite React components interactive, add a `client:*` directive:
+
+```tsx
+<DarkThemeToggle client:load />
+```
+
+Available directives:
+
+- `client:load`: Hydrates immediately on page load
+- `client:idle`: Hydrates when the browser is idle
+- `client:visible`: Hydrates when the component becomes visible
+
+## Try it out
+
+Now that you have successfully installed Flowbite React you can start using the components from the library:
+
+```tsx
+// src/pages/index.astro
+---
+import { Button } from "flowbite-react";
+import RootLayout from "../layouts/index.astro";
+---
+
+<RootLayout>
+  <Button>Click me</Button>
+</RootLayout>
+```
+
+<hr />
+
+## Templates
+
+- [Github](https://github.com/themesberg/flowbite-react-template-astro)
+- [StackBlitz](https://stackblitz.com/edit/flowbite-react-template-astro)
