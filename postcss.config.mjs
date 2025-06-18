@@ -1,7 +1,7 @@
 // postcss.config.js
 import tailwindcss from "@tailwindcss/postcss";
 
-module.exports = {
+export default {
   plugins: [
     tailwindcss,
     // inne pluginy PostCSS, jeśli są
