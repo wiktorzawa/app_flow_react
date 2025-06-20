@@ -1,50 +1,53 @@
-import React from "react";
-import type { FC } from "react";
-import { Routes, Route, Navigate } from "react-router";
-import { BrowserRouter } from "react-router-dom";
-import DashboardPage from "./pages";
-import ForgotPasswordPage from "./pages/authentication/forgot-password";
-import ProfileLockPage from "./pages/authentication/profile-lock";
-import ResetPasswordPage from "./pages/authentication/reset-password";
-import SignInPage from "./pages/authentication/sign-in";
-import SignUpPage from "./pages/authentication/sign-up";
-import EcommerceBillingPage from "./pages/e-commerce/billing";
-import EcommerceInvoicePage from "./pages/e-commerce/invoice";
-import EcommerceProductsPage from "./pages/e-commerce/products";
-import AmazonScraper from "./pages/e-commerce/AmazonScraper";
-import KanbanPage from "./pages/kanban";
-import MailingComposePage from "./pages/mailing/compose";
-import MailingInboxPage from "./pages/mailing/inbox";
-import MailingReadPage from "./pages/mailing/read";
-import MailingReplyPage from "./pages/mailing/reply";
-import NotFoundPage from "./pages/pages/404";
-import ServerErrorPage from "./pages/pages/500";
-import MaintenancePage from "./pages/pages/maintenance";
-import PricingPage from "./pages/pages/pricing";
-import UserFeedPage from "./pages/users/feed";
-import UserListPage from "./pages/users/list";
-import SupplierListPage from "./pages/users/listSuppliers";
-import UserProfilePage from "./pages/users/profile";
-import UserSettingsPage from "./pages/users/settings";
-import FlowbiteWrapper from "./components/flowbite-wrapper";
-import AdsPowerDashboardPage from "./pages/admin/AdsPowerDashboardPage";
-import DatabaseViewer from "./pages/DatabaseViewer";
-import AdsPowerBrowserTest from "./pages/admin/AdsPowerBrowserTest";
-import InkubatorProfilowy from "./pages/Boty/InkubatorProfilowy";
-import Generator from "./pages/Boty/Generator";
+import React from 'react';
+import type { FC } from 'react';
+import { Routes, Route, Navigate } from 'react-router';
+import { BrowserRouter } from 'react-router-dom';
+import DashboardPage from './pages';
+import ForgotPasswordPage from './pages/authentication/forgot-password';
+import ProfileLockPage from './pages/authentication/profile-lock';
+import ResetPasswordPage from './pages/authentication/reset-password';
+import SignInPage from './pages/authentication/sign-in';
+import SignUpPage from './pages/authentication/sign-up';
+import EcommerceBillingPage from './pages/e-commerce/billing';
+import EcommerceInvoicePage from './pages/e-commerce/invoice';
+import EcommerceProductsPage from './pages/e-commerce/products';
+import AmazonScraper from './pages/e-commerce/AmazonScraper';
+import KanbanPage from './pages/kanban';
+import MailingComposePage from './pages/mailing/compose';
+import MailingInboxPage from './pages/mailing/inbox';
+import MailingReadPage from './pages/mailing/read';
+import MailingReplyPage from './pages/mailing/reply';
+import NotFoundPage from './pages/pages/404';
+import ServerErrorPage from './pages/pages/500';
+import MaintenancePage from './pages/pages/maintenance';
+import PricingPage from './pages/pages/pricing';
+import UserFeedPage from './pages/users/feed';
+import UserListPage from './pages/users/list';
+import SupplierListPage from './pages/users/listSuppliers';
+import UserProfilePage from './pages/users/profile';
+import UserSettingsPage from './pages/users/settings';
+import FlowbiteWrapper from './components/flowbite-wrapper';
+import AdsPowerDashboardPage from './pages/admin/AdsPowerDashboardPage';
+import DatabaseViewer from './pages/DatabaseViewer';
+import AdsPowerBrowserTest from './pages/admin/AdsPowerBrowserTest';
+import InkubatorProfilowy from './pages/Boty/InkubatorProfilowy';
+import Generator from './pages/Boty/Generator';
 
 // Test component
 const TestRouteOk: FC = () => (
-  <div className="flex items-center justify-center h-screen bg-green-100">
+  <div className="flex h-screen items-center justify-center bg-green-100">
     <div className="text-center">
-      <h1 className="text-4xl font-bold text-green-800 mb-4">✅ Test Route OK!</h1>
-      <p className="text-lg text-green-600 mb-4">Frontend jest uruchomiony i routing działa!</p>
+      <h1 className="mb-4 text-4xl font-bold text-green-800">✅ Test Route OK!</h1>
+      <p className="mb-4 text-lg text-green-600">Frontend jest uruchomiony i routing działa!</p>
       <div className="space-y-2 text-sm text-gray-600">
         <p>Port: 5173</p>
         <p>Status: Działa poprawnie</p>
         <p>Profile pages: Gotowe do testowania</p>
       </div>
-      <a href="/" className="mt-4 inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+      <a
+        href="/"
+        className="mt-4 inline-block rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
+      >
         Powrót do Dashboard
       </a>
     </div>
@@ -58,7 +61,7 @@ interface ProtectedRouteProps {
 }
 
 const ProtectedRoute: FC<ProtectedRouteProps> = ({ element, allowedRoles = [] }) => {
-  const userRole = localStorage.getItem("userRole");
+  const userRole = localStorage.getItem('userRole');
 
   // Jeśli nie ma roli użytkownika w localStorage, przekieruj do logowania
   if (!userRole) {
@@ -83,43 +86,81 @@ const App: FC = function () {
           <Route path="/test-route-ok" element={<TestRouteOk />} />
 
           {/* Chronione trasy - dostępne tylko dla zalogowanych użytkowników */}
-          <Route path="/" element={<ProtectedRoute element={<DashboardPage />} />} />
+          <Route path="/" element={<DashboardPage />} />
           <Route
             path="/admin/AdsPowerDashboard"
-            element={<ProtectedRoute element={<AdsPowerDashboardPage />} allowedRoles={["admin"]} />}
+            element={
+              <ProtectedRoute element={<AdsPowerDashboardPage />} allowedRoles={['admin']} />
+            }
           />
           <Route
             path="/admin/AdsPowerBrowserTest"
-            element={<ProtectedRoute element={<AdsPowerBrowserTest />} allowedRoles={["admin"]} />}
+            element={<ProtectedRoute element={<AdsPowerBrowserTest />} allowedRoles={['admin']} />}
           />
           <Route
             path="/DatabaseViewer"
-            element={<ProtectedRoute element={<DatabaseViewer />} allowedRoles={["admin"]} />}
+            element={<ProtectedRoute element={<DatabaseViewer />} allowedRoles={['admin']} />}
           />
-          <Route path="/mailing/compose" element={<ProtectedRoute element={<MailingComposePage />} />} />
-          <Route path="/mailing/inbox" element={<ProtectedRoute element={<MailingInboxPage />} />} />
+          <Route
+            path="/mailing/compose"
+            element={<ProtectedRoute element={<MailingComposePage />} />}
+          />
+          <Route
+            path="/mailing/inbox"
+            element={<ProtectedRoute element={<MailingInboxPage />} />}
+          />
           <Route path="/mailing/read" element={<ProtectedRoute element={<MailingReadPage />} />} />
-          <Route path="/mailing/reply" element={<ProtectedRoute element={<MailingReplyPage />} />} />
+          <Route
+            path="/mailing/reply"
+            element={<ProtectedRoute element={<MailingReplyPage />} />}
+          />
           <Route path="/kanban" element={<ProtectedRoute element={<KanbanPage />} />} />
           <Route path="/pages/pricing" element={<ProtectedRoute element={<PricingPage />} />} />
-          <Route path="/pages/maintenance" element={<ProtectedRoute element={<MaintenancePage />} />} />
+          <Route
+            path="/pages/maintenance"
+            element={<ProtectedRoute element={<MaintenancePage />} />}
+          />
           <Route
             path="/boty/inkubator"
-            element={<ProtectedRoute element={<InkubatorProfilowy />} allowedRoles={["admin"]} />}
+            element={<ProtectedRoute element={<InkubatorProfilowy />} allowedRoles={['admin']} />}
           />
-          <Route path="/boty/settings" element={<ProtectedRoute element={<Generator />} allowedRoles={["admin"]} />} />
-          <Route path="/users/feed" element={<ProtectedRoute element={<UserFeedPage />} allowedRoles={["admin"]} />} />
-          <Route path="/users/list" element={<ProtectedRoute element={<UserListPage />} allowedRoles={["admin"]} />} />
+          <Route
+            path="/boty/settings"
+            element={<ProtectedRoute element={<Generator />} allowedRoles={['admin']} />}
+          />
+          <Route
+            path="/users/feed"
+            element={<ProtectedRoute element={<UserFeedPage />} allowedRoles={['admin']} />}
+          />
+          <Route
+            path="/users/list"
+            element={<ProtectedRoute element={<UserListPage />} allowedRoles={['admin']} />}
+          />
           <Route
             path="/users/listSuppliers"
-            element={<ProtectedRoute element={<SupplierListPage />} allowedRoles={["admin"]} />}
+            element={<ProtectedRoute element={<SupplierListPage />} allowedRoles={['admin']} />}
           />
           <Route path="/users/profile" element={<ProtectedRoute element={<UserProfilePage />} />} />
-          <Route path="/users/settings" element={<ProtectedRoute element={<UserSettingsPage />} />} />
-          <Route path="/e-commerce/billing" element={<ProtectedRoute element={<EcommerceBillingPage />} />} />
-          <Route path="/e-commerce/invoice" element={<ProtectedRoute element={<EcommerceInvoicePage />} />} />
-          <Route path="/e-commerce/products" element={<ProtectedRoute element={<EcommerceProductsPage />} />} />
-          <Route path="/e-commerce/amazon-scraper" element={<ProtectedRoute element={<AmazonScraper />} />} />
+          <Route
+            path="/users/settings"
+            element={<ProtectedRoute element={<UserSettingsPage />} />}
+          />
+          <Route
+            path="/e-commerce/billing"
+            element={<ProtectedRoute element={<EcommerceBillingPage />} />}
+          />
+          <Route
+            path="/e-commerce/invoice"
+            element={<ProtectedRoute element={<EcommerceInvoicePage />} />}
+          />
+          <Route
+            path="/e-commerce/products"
+            element={<ProtectedRoute element={<EcommerceProductsPage />} />}
+          />
+          <Route
+            path="/e-commerce/amazon-scraper"
+            element={<ProtectedRoute element={<AmazonScraper />} />}
+          />
           <Route path="/authentication/sign-in" element={<SignInPage />} />
           <Route path="/authentication/sign-up" element={<SignUpPage />} />
           <Route path="/authentication/forgot-password" element={<ForgotPasswordPage />} />

@@ -112,7 +112,7 @@ const AmazonScraper: FC = () => {
 
         <div className="flex gap-4">
           <div className="flex-1">
-            <Label htmlFor="url" value="URL produktu Amazon" />
+            <Label htmlFor="url">URL produktu Amazon</Label>
             <TextInput
               id="url"
               type="url"
@@ -203,7 +203,7 @@ const AmazonScraper: FC = () => {
                   </TableCell>
                   <TableCell>
                     <div className="flex gap-2">
-                      <Button size="xs" color="gray" href={product.url} target="_blank">
+                      <Button size="xs" color="gray" href={product.url}>
                         <HiEye className="h-4 w-4" />
                       </Button>
                     </div>

@@ -375,7 +375,9 @@ const AdsPowerDashboardPage: React.FC = () => {
                                     </h6>
                                     <div className="text-sm text-gray-500 dark:text-gray-400">
                                       <p>Typ: {profile.user_proxy_config?.proxy_type || "N/A"}</p>
-                                      <p>Port: {profile.user_proxy_config?.proxy_port || "33335"}</p>
+                                      <p>
+                                        Port: {profile.user_proxy_config?.proxy_port || '33335'}
+                                      </p>
                                     </div>
                                   </div>
                                   <div className="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
@@ -597,7 +599,7 @@ const AdsPowerDashboardPage: React.FC = () => {
 
               <div>
                 <div className="flex items-center gap-2 mb-1">
-                  <Label htmlFor="fpUa" value="User Agent (zostaw puste dla losowego)" />
+                  <Label htmlFor="fpUa">User Agent (zostaw puste dla losowego)</Label>
                   <Tooltip content="Najlepiej pozostawić puste - system wybierze naturalny User Agent">
                     <span className="text-gray-400 cursor-help">ⓘ</span>
                   </Tooltip>
@@ -620,7 +622,7 @@ const AdsPowerDashboardPage: React.FC = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <div className="flex items-center gap-2 mb-1">
-                    <Label htmlFor="fpScreenRes" value="Rozdzielczość" />
+                    <Label htmlFor="fpScreenRes">Rozdzielczość</Label>
                     <Tooltip content="1920x1080 to najbezpieczniejszy wybór">
                       <span className="text-gray-400 cursor-help">ⓘ</span>
                     </Tooltip>
@@ -644,7 +646,7 @@ const AdsPowerDashboardPage: React.FC = () => {
                 </div>
                 <div>
                   <div className="flex items-center gap-2 mb-1">
-                    <Label htmlFor="profileRemark" value="Notatka" />
+                    <Label htmlFor="profileRemark">Notatka</Label>
                   </div>
                   <TextInput
                     id="profileRemark"

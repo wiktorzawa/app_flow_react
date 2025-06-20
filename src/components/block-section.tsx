@@ -20,7 +20,6 @@ export function BlockSection({ children, description, githubLink, title }: Block
         </div>
         <Button
           href={githubLink}
-          target="_blank"
           className="ml-0 w-full shrink-0 hover:bg-gray-50 hover:text-primary-600 dark:hover:bg-gray-700 dark:hover:text-white md:w-auto"
           color="gray"
         >
